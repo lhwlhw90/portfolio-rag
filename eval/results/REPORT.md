@@ -228,6 +228,8 @@ Ablation — same dev-calibration protocol without the unknown-identifier refusa
 
 ## 5. Answerability: cosine threshold vs NLI / cross-encoder judges (M4)
 
+> **Note:** the M4 numbers in sections 5–7 (and the M3/M4 numbers in sections 1–4) were generated *before* the document-ordering bug was fixed (documents ingested within the same second were ordered by their random uuid, which changed retrieval tie-breaks between runs; fixed in M5). They have not been recomputed.
+
 Each variant's threshold(s) are chosen on **dev** (max balanced accuracy, middle of the plateau; 2-D grid for AND/OR) and applied unchanged to **test**. Judges score the top-3 candidate sentences: `nli` = mDeBERTa-v3 XNLI fp32 ONNX, max P(entailment) with the question as hypothesis; `nli-t` = same with "The text answers the question: …"; `reranker` = ms-marco-MiniLM-L-12 (en); `reranker-m3` = bge-reranker-v2-m3 uint8 (multilingual). answer acc = answerable questions answered with the expected fact (threshold-free answer text, so variants differ only by what they refuse). Latency p50 = retrieval + extractive answer + judge, CPU. **Bold** = variant chosen on dev.
 
 | lang | variant | thresholds (cos / judge) | dev bal. acc | test refusal acc | test false refusal | test bal. acc | test answer acc | judge ms p50 | latency p50 ms |

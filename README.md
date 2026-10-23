@@ -254,6 +254,8 @@ What the held-out split shows:
 
 The tables above are the M3 baseline (cosine threshold). M4 results follow; full tables are in REPORT.md sections 5–7 and [DESIGN §12](docs/DESIGN.md).
 
+> **Note:** the M4 numbers in this section were generated *before* the document-ordering bug was fixed (documents ingested within the same second were ordered by their random uuid, which changed retrieval tie-breaks between runs; fixed in M5). They have not been recomputed.
+
 **Answerability judge (M4).** Each variant's thresholds are calibrated on dev; the default is the variant with the best dev balanced accuracy.
 
 | lang | refusal rule | dev bal. acc | test refusal acc | test false refusal | test bal. acc | test answer acc | extra latency (p50) |
@@ -369,19 +371,33 @@ eval/            authoring/ (question sources), datasets/{en,zh}.{dev,test}.json
 docs/            DESIGN.md, screenshots
 ```
 
-## Limitations and roadmap
+## Limitations
 
-- **English refusal is still the weakest part, and English ships without a judge.** M5 added heading-context judge input, a false-refusal cap and 47 extra dev unanswerables, but the dev-chosen judge was still worse than M3 on test. Next steps:
-  - more *answerable* dev questions, especially colloquial paraphrases, because the false-refusal estimate rests on only 37;
-  - a fresh test split, since the current one has now been looked at in M4 and M5;
-  - judging the LLM-rewritten query instead of the raw question;
-  - a stronger English embedding model.
-- English paraphrase retrieval improved (hit@1 50 → 59 %) but needs the local LLM and adds about 0.5 s. A stronger embedding model is the other route.
-- `HYBRID_ALPHA` defaults to 0.5 in the app, while the eval uses the dev-tuned alpha (en 0.3, zh 0.5). The sweep is flat, but the shipped English system isn't byte-for-byte the evaluated one.
-- **int8 ONNX models are unsafe on this AMX VM.** onnxruntime's AMX int8 GEMM returns random results when tile state isn't preserved (onnxruntime #33247), so the judges use fp32 / uint8 weights. The bge-small embedders are unaffected; this was verified bit-for-bit.
-- Scanned PDFs (images) are rejected because there's no OCR yet.
-- PDF highlight boxes come from text search on the page. If a cited sentence was hyphenated across lines in the PDF, it may not be boxed (the chunk text is still highlighted).
-- Datasets were written by the author for synthetic sample documents. Use them for relative comparisons, not as absolute quality claims.
+- **English refusal is not solved.** English ships with the M3 refusal rule: cosine threshold 0.67 plus the unknown-identifier rule, with no answerability judge.
+  - M4's dev-chosen NLI judge over-refused on test.
+  - M5 added heading-context judge input, a "dev false refusal ≤ M3" constraint and 47 extra dev unanswerables. The dev-chosen judge was still worse than M3 on test (answer accuracy 61.4 vs 66.7, false refusal 35.1 % vs 29.8 %), so the pre-registered fallback switched it off.
+  - Root cause: the English dev set has few answerable questions (37) and few colloquial paraphrases, so its false-refusal estimate doesn't carry over to test (8.1 % on dev → 35.1 % on test).
+- **Iteration on English refusal has stopped on purpose.** The held-out test split has been looked at once in M4 and once in M5. Iterating further against it would amount to tuning on test. The M5 test numbers may already carry a slight selection bias.
+- **The English fallback is not identical to M3.** It keeps M4's query rewriting and heading context. On test it answers 1 question fewer than M3 (64.9 vs 66.7) and catches 1 unanswerable fewer, with the same false-refusal rate (29.8 %).
+- **App and eval use different `HYBRID_ALPHA`.** The app defaults to 0.5, while the eval uses the dev-tuned value (en 0.3, zh 0.5). The sweep is flat within ±0.02 MRR, but the shipped English system isn't byte-for-byte the evaluated one.
+- **Synthetic corpus and questions.** The documents and questions were written by the author: 9 short documents and 120–200 questions per language. Use the numbers for relative comparisons, not as absolute quality claims. With 18–19 unanswerable test questions, 1 question ≈ 5 points of refusal accuracy.
+- **PDF highlights can miss some sentences.** Highlight boxes come from text search on the rendered page. A cited sentence that is hyphenated or wrapped across lines in the PDF may not get a box; the chunk text in the viewer is still highlighted.
+- **Rootless podman caveats.** Without the setuid `newuidmap` helper, podman runs in single-UID mode:
+  - the container must run with `--user 0` (the unprivileged host user, not real root);
+  - inside the container there is no query rewriting, because it can't reach the host's Ollama and falls back to no expansion.
+- **No OCR.** Scanned (image-only) PDFs are rejected.
+- **int8 ONNX models are unsafe on this AMX VM.** onnxruntime's AMX int8 GEMM returns wrong or random results when tile state isn't preserved (onnxruntime #33247), so the judges use fp32 / uint8 weights. The bge-small embedders were verified to be deterministic.
+- **Query rewriting needs a running Ollama.** It improves English paraphrase retrieval (hit@1 50 → 59 %) but adds about 0.5 s per question.
+
+## Future work
+
+- **A fresh, never-seen test split**, before any further work on refusal.
+- **More answerable dev questions**, especially colloquial English paraphrases, so the false-refusal constraint is estimated on a representative set.
+- **A stronger English embedding model** (bge-base / e5 class), for both paraphrase retrieval and the cosine refusal signal.
+- **Re-evaluate the int8 judge exports on other CPUs** (without the AMX tile issue): they would cut model size and latency several-fold.
+- Run the answerability judge on the LLM-rewritten query as well as the raw question.
+- Use the same `HYBRID_ALPHA` in the app and the eval.
+- OCR for scanned PDFs; line-aware PDF highlight matching.
 
 ## License
 
