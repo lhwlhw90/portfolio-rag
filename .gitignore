@@ -11,3 +11,16 @@ data/*
 build/
 dist/
 tools/
+
+# large / local-only artifacts (models, tools, container state, exports) - never commit
+*.onnx
+*.gguf
+*.safetensors
+*.bin
+*.tar
+*.tar.gz
+.cache/
+.uv-cache/
+*.log
+.coverage
+htmlcov/

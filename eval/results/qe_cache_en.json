@@ -2529,6 +2529,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Are there showers for staff who cycle to work?",
+"expansions": [
+"Do they provide showers for staff who cycle to work?"
+],
+"ms": 394.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "At what collision force does the X2 stop, and can that limit be configured?",
 "expansions": [
 "What is the stopping force for the X2 model, and is it possible to configure this limit?"
@@ -2603,6 +2612,24 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Can I work remotely from another country for a month?",
+"expansions": [
+"Is it possible to work remotely from another country for a month?"
+],
+"ms": 1318.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can the X2 be leased instead of bought?",
+"expansions": [
+"Can the X2 be leased instead of purchased?"
+],
+"ms": 424.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Can the controller run on a 24 V DC battery?",
 "expansions": [
 "Is it possible for a controller to function on a 24 V DC battery?",
@@ -2659,11 +2686,58 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Does Acme reimburse home internet costs?",
+"expansions": [
+"Does Acme provide reimbursement for home internet expenses?"
+],
+"ms": 575.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Does my health insurance start right away when I join?",
 "expansions": [
 "What is the immediate effect of joining health insurance?"
 ],
 "ms": 430.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does the X2 support EtherCAT?",
+"expansions": [
+"Does the X2 model support EtherCAT communication protocol?"
+],
+"ms": 430.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does the controller box have a fan filter that needs cleaning?",
+"expansions": [
+"Does the controller box require a fan filter cleaning?"
+],
+"ms": 452.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does the group health insurance also cover spouses?",
+"expansions": [
+"Does the company provide health coverage for my spouse?"
+],
+"ms": 405.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does the open-source driver work with ROS 1 Noetic?",
+"expansions": [
+"Is the open-source driver compatible with ROS 1 Noetic?",
+"Can I use the open-source driver with ROS 1 Noetic?",
+"Does ROS 1 Noetic support the open-source driver?"
+],
+"ms": 1481.3
 },
 {
 "mode": "rewrite",
@@ -2682,6 +2756,25 @@
 "What is the retention period for database backups?"
 ],
 "ms": 380.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How are overtime hours compensated?",
+"expansions": [
+"What are the HR policies regarding overtime pay?"
+],
+"ms": 346.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How do I bake sourdough bread?",
+"expansions": [
+"What are the steps to make sourdough bread from scratch?",
+"How can I learn to bake sourdough bread?"
+],
+"ms": 959.3
 },
 {
 "mode": "rewrite",
@@ -2706,6 +2799,17 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "How fast can the base joint rotate in degrees per second?",
+"expansions": [
+"What is the maximum rotation speed of the base joint in degrees per second?",
+"What is the rotational speed of the base joint in degrees per second?",
+"What is the rate of rotation of the base joint in degrees per second?"
+],
+"ms": 1269.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
 "expansions": [
 "What is the customer service response time for Acme's better plan?",
@@ -2717,11 +2821,29 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "How large is the wedding gift Acme gives to employees who marry?",
+"expansions": [
+"What is the size of the wedding gift offered by Acme to its employees who get married?"
+],
+"ms": 758.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "How long are guest Wi-Fi access codes valid?",
 "expansions": [
 "What is the duration of validity for guest Wi-Fi access codes?"
 ],
 "ms": 471.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long are server logs retained?",
+"expansions": [
+"What is the retention period for server logs?"
+],
+"ms": 336.8
 },
 {
 "mode": "rewrite",
@@ -2740,6 +2862,15 @@
 "What is the policy on screen lock duration when leaving my device unattended?"
 ],
 "ms": 565.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long do people usually wait for a garage spot?",
+"expansions": [
+"What is the average time people typically spend waiting for a parking space?"
+],
+"ms": 466.5
 },
 {
 "mode": "rewrite",
@@ -2852,6 +2983,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "How many days of bereavement leave are granted?",
+"expansions": [
+"What is the duration of bereavement leave entitlement?"
+],
+"ms": 541.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "How many days of paid vacation do full-time employees get?",
 "expansions": [
 "What is the typical number of paid vacation days offered to full-time employees?"
@@ -2902,6 +3042,15 @@
 "What are the annual sick leave entitlements for employees?"
 ],
 "ms": 418.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many weeks does delivery of a newly ordered X2 take?",
+"expansions": [
+"What is the typical delivery time for a new X2 order?"
+],
+"ms": 517.4
 },
 {
 "mode": "rewrite",
@@ -3047,6 +3196,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "How often must staff complete security awareness training?",
+"expansions": [
+"What is the frequency of staff security awareness training?"
+],
+"ms": 400.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "How often should the cables be checked for damage?",
 "expansions": [
 "What is the frequency for inspecting cables for signs of damage?"
@@ -3125,11 +3283,47 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Is life insurance part of the benefits package?",
+"expansions": [
+"What are the HR policies regarding life insurance benefits?"
+],
+"ms": 429.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is on-site training at the customer's plant available?",
+"expansions": [
+"Do you offer on-site training at the customer's facility?"
+],
+"ms": 470.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is sabbatical leave available after several years at Acme?",
+"expansions": [
+"Can you provide information on sabbatical leave for employees at Acme?"
+],
+"ms": 4235.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Is the X2 certified for use in food production?",
 "expansions": [
 "Is the X2 device approved for food processing applications?"
 ],
 "ms": 393.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is the headquarters building open on public holidays?",
+"expansions": [
+"Do they have a policy on public holidays?"
+],
+"ms": 302.9
 },
 {
 "mode": "rewrite",
@@ -3148,6 +3342,15 @@
 "What are the dress code policies for the workplace?"
 ],
 "ms": 485.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is there a monthly page quota for printing?",
+"expansions": [
+"What is the printing page limit per month?"
+],
+"ms": 335.9
 },
 {
 "mode": "rewrite",
@@ -3188,11 +3391,38 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "On which day of the month are salaries paid?",
+"expansions": [
+"What is the payday for salaries?"
+],
+"ms": 416.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "On which floor is reception located?",
+"expansions": [
+"What floor houses the reception area?"
+],
+"ms": 333.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Somebody stole my work notebook computer. What should I do?",
 "expansions": [
 "What are the HR policies regarding lost or stolen work equipment?"
 ],
 "ms": 466.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Up to what value may employees give presents to customers?",
+"expansions": [
+"What is the maximum amount an employee can give as a gift to a customer?"
+],
+"ms": 622.3
 },
 {
 "mode": "rewrite",
@@ -3233,11 +3463,47 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "What changed in firmware 1.9?",
+"expansions": [
+"What are the updates in firmware version 1.9?"
+],
+"ms": 506.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What colour is the arm's housing?",
+"expansions": [
+"What is the color of the arm's housing?"
+],
+"ms": 430.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "What data classification levels exist?",
 "expansions": [
 "What are the different data classification levels?"
 ],
 "ms": 431.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does Standard support cost once the warranty has expired?",
+"expansions": [
+"What is the cost of Standard support after the warranty period ends?"
+],
+"ms": 560.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does a cup of coffee cost in the canteen?",
+"expansions": [
+"What is the price of a coffee in the canteen?"
+],
+"ms": 484.3
 },
 {
 "mode": "rewrite",
@@ -3353,6 +3619,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "What is the capacity in watt-hours of the X2 battery?",
+"expansions": [
+"What is the watt-hour capacity of the X2 battery?"
+],
+"ms": 512.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "What is the collision limit for recalibration, and what is the default collision stop force?",
 "expansions": [
 "What is the recalibration collision limit and default collision stop force?"
@@ -3423,6 +3698,13 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "What is the mileage allowance for using a private car on company business?",
+"expansions": [],
+"ms": 588.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "What is the minimum password length?",
 "expansions": [
 "What is the minimum password length required by the company?"
@@ -3441,6 +3723,24 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "What is the notice period when an employee resigns?",
+"expansions": [
+"What is the policy on notice periods for employee resignations?"
+],
+"ms": 485.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the number of joints on this robot arm?",
+"expansions": [
+"What is the total number of joints on this robot arm?"
+],
+"ms": 395.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "What is the operating temperature range of the X2?",
 "expansions": [
 "What is the acceptable temperature range for the X2 device?",
@@ -3448,6 +3748,15 @@
 "What is the temperature range for the X2 model?"
 ],
 "ms": 1151.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the phone number of the front desk?",
+"expansions": [
+"What is the contact number for the front desk?"
+],
+"ms": 345.7
 },
 {
 "mode": "rewrite",
@@ -3480,6 +3789,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "What is the turnaround for fixing a robot whose guarantee has lapsed?",
+"expansions": [
+"What is the process for resolving a robot's warranty issue after it has expired?"
+],
+"ms": 647.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "What torque are the X2 base bolts tightened to?",
 "expansions": [
 "What is the tightening torque for the X2 base bolts?"
@@ -3494,6 +3812,17 @@
 "What was Acme's annual revenue for the previous fiscal year?"
 ],
 "ms": 421.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What will the weather be like in Berlin tomorrow?",
+"expansions": [
+"What is the forecast for Berlin tomorrow?",
+"What is the weather forecast for Berlin tomorrow?",
+"What is the weather like in Berlin tomorrow?"
+],
+"ms": 948.1
 },
 {
 "mode": "rewrite",
@@ -3530,6 +3859,15 @@
 "What is the cafeteria's lunch serving schedule?"
 ],
 "ms": 338.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When exactly is the next evacuation exercise scheduled?",
+"expansions": [
+"What is the upcoming evacuation drill date?"
+],
+"ms": 287.2
 },
 {
 "mode": "rewrite",
@@ -3590,6 +3928,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Which ISO flange pattern does the X2 tool mount follow?",
+"expansions": [
+"What is the ISO flange pattern that the X2 tool is designed to mount?"
+],
+"ms": 699.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Which Linux distributions does the X2 SDK officially support?",
 "expansions": [],
 "ms": 480.0
@@ -3604,6 +3951,40 @@
 "What is the ROS 2 distribution version 2.2 introduced?"
 ],
 "ms": 1466.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which authenticator app is mandatory, Microsoft or Google?",
+"expansions": [
+"What is the mandatory authentication app for Microsoft or Google services?"
+],
+"ms": 450.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which bugs did release 2.1 fix?",
+"expansions": [
+"What were the bugs resolved in version 2.1?"
+],
+"ms": 396.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which clinic carries out the yearly check-up?",
+"expansions": [
+"What is the name of the clinic that performs annual check-ups?"
+],
+"ms": 438.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which cloud storage services are on the approved list?",
+"expansions": [],
+"ms": 557.0
 },
 {
 "mode": "rewrite",
@@ -3635,11 +4016,29 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Which laptop brand and model do new hires receive?",
+"expansions": [
+"What is the laptop brand and model that new employees are provided with?"
+],
+"ms": 663.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Which seat class may I book on a long-haul flight?",
 "expansions": [
 "What are the options for booking economy class on a long-distance flight?"
 ],
 "ms": 524.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which vendor makes the VPN client we use?",
+"expansions": [
+"What is the manufacturer of the VPN client we are using?"
+],
+"ms": 439.6
 },
 {
 "mode": "rewrite",
@@ -3653,6 +4052,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Who is Acme's data protection officer?",
+"expansions": [
+"What are the HR policies of Acme?"
+],
+"ms": 467.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Who is the CEO of Acme Robotics?",
 "expansions": [
 "What is the name of the person in charge of Acme Robotics?"
@@ -3662,11 +4070,33 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:1.5b",
+"question": "Who is the current VP of People?",
+"expansions": [
+"What is the current position of the VP of People at the company?",
+"Who is the current person in charge of People at the company?",
+"What is the current role of the VP of People at the firm?"
+],
+"ms": 1318.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
 "question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
 "expansions": [
 "What is the procedure for reporting a security incident, and what is the contact number for urgent IT issues after regular business hours?"
 ],
 "ms": 940.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Who won the 2022 football World Cup?",
+"expansions": [
+"What is the winner of the 2022 FIFA World Cup?",
+"Who was the winner of the 2022 FIFA World Cup?",
+"What team won the 2022 FIFA World Cup?"
+],
+"ms": 1620.5
 },
 {
 "mode": "rewrite",

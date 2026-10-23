@@ -1694,6 +1694,13 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "S7充电座的额定功率是多少瓦？",
+"expansions": [],
+"ms": 257.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "S7单层地图最多可以保存几张？",
 "expansions": [
 "S7单层地图最多可以保存3张。"
@@ -1791,6 +1798,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "S7的App能查看每次清扫的面积统计吗？",
+"expansions": [
+"S7的App能查看每次清扫的总面积吗？"
+],
+"ms": 254.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "S7的主刷可以水洗吗？",
 "expansions": [
 "S7的主刷是否可以水洗？"
@@ -1882,6 +1898,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "S7能接入米家App控制吗？",
+"expansions": [
+"S7是否能通过米家App控制？"
+],
+"ms": 181.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "S7首次使用前需要充电多久？",
 "expansions": [],
 "ms": 188.9
@@ -1892,6 +1917,15 @@
 "question": "S9扫地机器人的吸力是多少？",
 "expansions": [],
 "ms": 186.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "VPN客户端从哪里下载安装？",
+"expansions": [
+"公司知识库（人事制度、IT服务、产品说明书）中，下载安装的VPN客户端应从哪里获取？"
+],
+"ms": 395.5
 },
 {
 "mode": "rewrite",
@@ -1926,6 +1960,15 @@
 "出差到一线城市，住宿标准如何？"
 ],
 "ms": 216.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "丧假一共有几天？",
+"expansions": [
+"公司知识库（人事制度）：员工请假天数：10天。"
+],
+"ms": 2097.8
 },
 {
 "mode": "rewrite",
@@ -1980,11 +2023,29 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "住房公积金能提取出来付房租吗？",
+"expansions": [
+"能否提取公积金用于支付房租？"
+],
+"ms": 195.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "体检可以带家属一起去吗？",
 "expansions": [
 "是否可以带家属一起去体检？"
 ],
 "ms": 157.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "信息安全培训多久必须参加一次？",
+"expansions": [
+"公司知识库（人事制度、IT服务、产品说明书）中是否有关于信息安全培训的详细规定？"
+],
+"ms": 271.8
 },
 {
 "mode": "rewrite",
@@ -2055,6 +2116,15 @@
 "上海是否有办公室？"
 ],
 "ms": 125.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司年会一般安排在几月份？",
+"expansions": [
+"公司年会一般安排在四月份。"
+],
+"ms": 191.3
 },
 {
 "mode": "rewrite",
@@ -2145,11 +2215,27 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "内部技术分享会在哪个会议室举行？",
+"expansions": [],
+"ms": 163.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "出差住宿超标了怎么处理？",
 "expansions": [
 "查询公司知识库（人事制度）：出差住宿超标如何处理？"
 ],
 "ms": 234.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "出差坐高铁能买一等座吗？",
+"expansions": [
+"出差坐高铁是否能买一等座？"
+],
+"ms": 175.7
 },
 {
 "mode": "rewrite",
@@ -2184,6 +2270,15 @@
 "公司是否可以报销加班到很晚回家的打车费用？"
 ],
 "ms": 226.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "加班费按什么标准计算？",
+"expansions": [
+"加班费按小时计算。"
+],
+"ms": 138.9
 },
 {
 "mode": "rewrite",
@@ -2224,6 +2319,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "员工离职要提前多久提出申请？",
+"expansions": [
+"员工离职需提前多久提出申请？"
+],
+"ms": 163.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "员工走人那天账号什么时候被关掉？",
 "expansions": [
 "员工走人当天账号被关掉。"
@@ -2238,6 +2342,15 @@
 "餐厅晚餐何时供应？"
 ],
 "ms": 144.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "固件v2.0.0更新了哪些内容？",
+"expansions": [
+"v2.0.0更新了哪些内容？"
+],
+"ms": 210.4
 },
 {
 "mode": "rewrite",
@@ -2265,6 +2378,15 @@
 "停车场有多少个车位？"
 ],
 "ms": 140.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "地下车库的充电桩充电要收费吗？",
+"expansions": [
+"地下车库的充电桩是否需要收费？"
+],
+"ms": 175.0
 },
 {
 "mode": "rewrite",
@@ -2440,6 +2562,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "招待客户时的烟酒费用可以报销吗？",
+"expansions": [
+"是否可以报销，需要咨询公司人事部门。"
+],
+"ms": 234.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "招待客户的人均标准是多少？",
 "expansions": [
 "公司的人均标准是多少？"
@@ -2499,6 +2630,24 @@
 "试用期多久？"
 ],
 "ms": 193.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "明天杭州会下雨吗？",
+"expansions": [
+"明天杭州是否下雨？"
+],
+"ms": 111.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "星河大厦一共有几部电梯？",
+"expansions": [
+"星河大厦共有几部电梯？"
+],
+"ms": 179.3
 },
 {
 "mode": "rewrite",
@@ -2600,6 +2749,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "生产服务器权限到期前系统会提醒吗？",
+"expansions": [
+"服务器权限到期提醒系统。"
+],
+"ms": 123.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "生产服务器访问权限的有效期是多久？",
 "expansions": [
 "服务器访问权限的有效期是多少？"
@@ -2645,6 +2803,15 @@
 {
 "mode": "rewrite",
 "model": "qwen2.5:0.5b",
+"question": "研发岗位配的笔记本电脑是什么品牌？",
+"expansions": [
+"研发岗位配的笔记本电脑品牌是什么？"
+],
+"ms": 169.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
 "question": "笔记本电脑丢失要什么时候通知IT？IT服务台的分机号是多少？",
 "expansions": [
 "IT服务台的电话号码是多少？通知IT的日期是什么时候？"
@@ -2677,6 +2844,15 @@
 "手机电脑是否能连办公网，取决于具体设备的型号和操作系统。"
 ],
 "ms": 260.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "补充商业医疗保险能给配偶投保吗？",
+"expansions": [
+"查询公司知识库（人事制度）：配偶能否投保商业医疗保险？"
+],
+"ms": 224.9
 },
 {
 "mode": "rewrite",
@@ -2722,6 +2898,13 @@
 "能，但可能需要考虑其他因素。"
 ],
 "ms": 214.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "高级体检套餐具体包含哪些检查项目？",
+"expansions": [],
+"ms": 163.8
 },
 {
 "mode": "rewrite",
