@@ -2,27 +2,12 @@
 from __future__ import annotations
 
 import hashlib
-import re
 from pathlib import Path
 from typing import Protocol
 
 import numpy as np
 
-_TOKEN = re.compile(r"[a-z0-9]+|[\u4e00-\u9fff]")
-
-
-def _stem(tok: str) -> str:
-    """Tiny suffix stripper (plurals) so 'passwords' matches 'password'."""
-    if len(tok) > 4 and tok.endswith("ies"):
-        return tok[:-3] + "y"
-    if len(tok) > 3 and tok.endswith("s") and not tok.endswith(("ss", "us", "is")):
-        return tok[:-1]
-    return tok
-
-
-def tokenize(text: str) -> list[str]:
-    return [_stem(t) for t in _TOKEN.findall(text.lower())]
-
+from .text import content_tokens, tokenize  # noqa: F401  (tokenize re-exported)
 
 def _l2(m: np.ndarray) -> np.ndarray:
     norms = np.linalg.norm(m, axis=1, keepdims=True)
@@ -48,7 +33,7 @@ class HashEmbedder:
 
     def _vec(self, text: str) -> np.ndarray:
         v = np.zeros(self.dim, dtype=np.float32)
-        for tok in tokenize(text):
+        for tok in content_tokens(text):
             h = int.from_bytes(hashlib.md5(tok.encode()).digest()[:4], "little")
             v[h % self.dim] += 1.0 if (h >> 31) & 1 == 0 else -1.0
         return v

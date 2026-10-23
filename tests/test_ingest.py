@@ -42,7 +42,7 @@ def test_parse_txt_and_md():
 
 def test_parse_pdf_keeps_page_numbers(pdf_bytes):
     pages = parse_document("policy.pdf", pdf_bytes)
-    assert [p.page for p in pages] == [1, 2]
+    assert [p.page for p in pages] == [1, 2, 3, 4]
     assert "14 characters" in pages[0].text and "1 hour" in pages[1].text
 
 
@@ -54,5 +54,5 @@ def test_unsupported_type():
 def test_chunk_metadata(pdf_bytes):
     chunks = chunk_pages("d1", "policy.pdf", parse_document("policy.pdf", pdf_bytes), 120, 20)
     assert [c.chunk_index for c in chunks] == list(range(len(chunks)))
-    assert {c.page for c in chunks} == {1, 2}
+    assert {c.page for c in chunks} == {1, 2, 3, 4}
     assert all(c.doc_name == "policy.pdf" and c.chunk_id.startswith("d1:") for c in chunks)

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
@@ -18,6 +19,7 @@ STATIC = Path(__file__).parent / "static"
 class AskRequest(BaseModel):
     question: str = Field(..., min_length=1, max_length=2000)
     top_k: int | None = Field(None, ge=1, le=20)
+    mode: Literal["hybrid", "vector", "bm25"] = "hybrid"
 
 
 class CitationOut(BaseModel):
@@ -34,6 +36,10 @@ class AskResponse(BaseModel):
     question: str
     answer: str
     backend: str
+    refused: bool = False
+    confidence: float | None = None
+    citation_mode: str = "explicit"
+    latency_ms: float | None = None
     citations: list[CitationOut]
 
 
@@ -51,7 +57,8 @@ def create_app(settings: Settings | None = None, service: RAGService | None = No
     def health():
         s = svc()
         return {"status": "ok", "version": __version__, "embedder": s.embedder.name,
-                "answerer": s.answerer.name, "documents": len(s.store.list_documents()),
+                "answerer": s.answerer.name, "llm_model": getattr(s.answerer, "model", None),
+                "min_score": s.settings.resolved_min_score, "documents": len(s.store.list_documents()),
                 "chunks": len(s.store.chunks)}
 
     @app.post("/documents", status_code=201)
@@ -77,7 +84,7 @@ def create_app(settings: Settings | None = None, service: RAGService | None = No
 
     @app.post("/ask", response_model=AskResponse)
     def ask(req: AskRequest):
-        return svc().ask(req.question, req.top_k)
+        return svc().ask(req.question, req.top_k, req.mode)
 
     @app.get("/")
     def index():

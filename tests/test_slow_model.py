@@ -1,33 +1,62 @@
-"""Optional integration test with the real ONNX embedding model.
-Run with: make test-slow   (or pytest -m slow). Requires the model in MODEL_DIR
-(make download-model) or network access."""
+"""Optional integration tests with real ONNX embedding models (and a live local LLM).
+Run with: make test-slow   (or pytest -m slow). Requires models in MODEL_DIR
+(make download-model) or network access. The LLM test is skipped unless an
+OpenAI-compatible server (e.g. `make ollama-up`) answers at LLM_BASE_URL."""
 import os
 from pathlib import Path
 
+import httpx
 import pytest
 
 from rag.config import Settings, apply_model_cache_env
 from rag.service import RAGService
-from tests_helpers import SAMPLES
 
 pytestmark = pytest.mark.slow
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_DIR = Path(os.environ.get("MODEL_DIR", ROOT / "models"))
 
 
-def test_real_embedding_end_to_end(tmp_path, pdf_bytes):
-    model_dir = Path(os.environ.get("MODEL_DIR", Path(__file__).resolve().parents[1] / "models"))
-    apply_model_cache_env(model_dir)
-    s = Settings(data_dir=tmp_path, model_dir=model_dir, embedding_backend="fastembed", _env_file=None)
+def _service(tmp_path, lang, model, **kw):
+    apply_model_cache_env(MODEL_DIR)
+    s = Settings(data_dir=tmp_path, model_dir=MODEL_DIR, embedding_backend="fastembed", embedding_model=model,
+                 _env_file=None, **kw)
     svc = RAGService(s)
+    for p in sorted((ROOT / "sample_docs" / lang).iterdir()):
+        svc.ingest(p.name, p.read_bytes())
+    return svc
+
+
+def test_real_embedding_english(tmp_path):
+    svc = _service(tmp_path, "en", "BAAI/bge-small-en-v1.5")
     assert svc.embedder.dim == 384
-    for name in ("employee_handbook.md", "product_faq.txt"):
-        svc.ingest(name, (SAMPLES / name).read_bytes())
-    svc.ingest("security_policy.pdf", pdf_bytes)
-    # paraphrased query (little lexical overlap) -> needs semantic embedding
-    res = svc.ask("How much weight can the robot arm carry?")
-    assert "7.5 kg" in res["answer"] and res["citations"][0]["doc_name"] == "product_faq.txt"
-    res = svc.ask("Whom do I notify after a data leak and how quickly?")
-    assert any(c["doc_name"] == "security_policy.pdf" and c["page"] == 2 for c in res["citations"])
     res = svc.ask("How many vacation days can I carry over?")
-    assert "carried over" in res["answer"]
+    assert "carried over" in res["answer"] and res["citations"][0]["doc_name"] == "employee_handbook.md"
+    res = svc.ask("Whom do I notify after a security incident and how quickly?")
+    assert any(c["doc_name"] == "security_policy.pdf" and c["page"] == 2 for c in res["citations"])
     res = svc.ask("Who are the founders of the company?")
-    assert res["citations"] == []  # unanswerable -> "not found" instead of a hallucinated pick
+    assert res["refused"] and res["citations"] == []
+
+
+def test_real_embedding_chinese(tmp_path):
+    svc = _service(tmp_path, "zh", "BAAI/bge-small-zh-v1.5", chunk_size=200, chunk_overlap=30)
+    res = svc.ask("报销的钱多久能到账？")
+    assert "7个工作日" in res["answer"] and res["citations"][0]["doc_name"] == "报销制度.txt"
+    res = svc.ask("公司的CEO是谁？")
+    assert res["refused"]
+
+
+def test_live_llm_backend(tmp_path):
+    base = os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1")
+    try:
+        httpx.get(base.rsplit("/v1", 1)[0] + "/api/version", timeout=2).raise_for_status()
+    except Exception:
+        pytest.skip(f"no local LLM server at {base}")
+    svc = _service(tmp_path, "en", "BAAI/bge-small-en-v1.5", llm_backend="openai", llm_base_url=base,
+                   llm_model=os.environ.get("LLM_MODEL", "qwen2.5:0.5b"))
+    res = svc.ask("What is the maximum payload of the RoboArm X2?")
+    assert res["backend"] == "openai" and "7.5" in res["answer"]
+    assert res["citations"] and res["citations"][0]["doc_name"] == "product_faq.txt"
+    # broken endpoint -> graceful fallback to extractive
+    svc.answerer.base_url = "http://127.0.0.1:9/v1"
+    res = svc.ask("What is the maximum payload of the RoboArm X2?")
+    assert res["backend"].startswith("openai->fallback") and "7.5 kg" in res["answer"]

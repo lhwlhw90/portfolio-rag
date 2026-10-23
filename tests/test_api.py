@@ -14,7 +14,7 @@ def test_full_api_flow(settings, service, pdf_bytes):
     r = c.post("/documents", files={"file": ("product_faq.txt", (SAMPLES / "product_faq.txt").read_bytes(), "text/plain")})
     assert r.status_code == 201 and r.json()["n_chunks"] >= 1
     r = c.post("/documents", files={"file": ("security_policy.pdf", pdf_bytes, "application/pdf")})
-    assert r.status_code == 201 and r.json()["pages"] == 2
+    assert r.status_code == 201 and r.json()["pages"] == 4
     docs = c.get("/documents").json()
     assert {d["name"] for d in docs} == {"product_faq.txt", "security_policy.pdf"}
 
@@ -44,3 +44,14 @@ def test_ask_validation(settings, service):
 def test_index_page_served(settings, service):
     r = _client(settings, service).get("/")
     assert r.status_code == 200 and "Portfolio RAG" in r.text
+
+
+def test_ask_modes_and_fields(settings, service):
+    c = _client(settings, service)
+    c.post("/documents", files={"file": ("product_faq.txt", (SAMPLES / "product_faq.txt").read_bytes(), "text/plain")})
+    for mode in ("hybrid", "vector", "bm25"):
+        body = c.post("/ask", json={"question": "How long is the warranty?", "mode": mode}).json()
+        assert "3-year" in body["answer"] and body["refused"] is False and "confidence" in body
+    assert c.post("/ask", json={"question": "x", "mode": "magic"}).status_code == 422
+    h = c.get("/health").json()
+    assert h["min_score"] == 0.0 and h["llm_model"] is None

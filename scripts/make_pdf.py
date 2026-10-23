@@ -37,16 +37,29 @@ def make_pdf(pages: list[list[str]]) -> bytes:
 
 SAMPLE_PAGES = [
     ["Acme Robotics - Security Policy (2026)", "",
-     "Section 1. Passwords", "All employee passwords must be at least 14 characters long.",
+     "Section 1. Passwords",
+     "All employee passwords must be at least 14 characters long.",
      "Passwords must be rotated every 180 days and may not be reused.",
-     "Multi-factor authentication (MFA) is mandatory for VPN and email access."],
+     "Multi-factor authentication (MFA) is mandatory for VPN and email access.",
+     "Accounts are locked for 15 minutes after 5 failed login attempts."],
     ["Section 2. Incident response",
      "Security incidents must be reported to security@acme.example within 1 hour of discovery.",
      "The on-call security engineer triages incidents and opens a post-mortem within 5 business days.",
-     "Customer data breaches are escalated to the legal team immediately."],
+     "Customer data breaches are escalated to the legal team immediately.",
+     "Lost or stolen laptops must be reported to the IT helpdesk on the same day."],
+    ["Section 3. Devices and data",
+     "All laptops must use full-disk encryption and lock the screen after 5 minutes of inactivity.",
+     "Confidential data may only be stored on company-managed devices and approved cloud storage.",
+     "USB storage devices are blocked on company laptops unless an exception is approved by security.",
+     "Data is classified as Public, Internal, Confidential or Strictly Confidential."],
+    ["Section 4. Backups and vendors",
+     "Production databases are backed up every 6 hours and backups are kept for 35 days.",
+     "Backup restore tests are performed every quarter.",
+     "Vendors receive time-limited access accounts that expire after 90 days.",
+     "Vendor access to production systems requires approval from the system owner."],
 ]
 
 if __name__ == "__main__":
-    out = Path(sys.argv[1] if len(sys.argv) > 1 else "sample_docs/security_policy.pdf")
+    out = Path(sys.argv[1] if len(sys.argv) > 1 else "sample_docs/en/security_policy.pdf")
     out.write_bytes(make_pdf(SAMPLE_PAGES))
     print(f"wrote {out}")

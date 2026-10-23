@@ -31,7 +31,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 async function refresh(){
   const docs=await (await fetch('/documents')).json();
   $('#docs').innerHTML=docs.length?docs.map(d=>`<li>${esc(d.name)} <span class="mut">— ${d.n_chunks} chunk${d.n_chunks===1?'':'s'}${d.pages>1?`, ${d.pages} pages`:''}</span> <a href="#" data-id="${d.doc_id}" class="mut del">delete</a></li>`).join(''):'<li class="mut">No documents yet.</li>';
-  const h=await (await fetch('/health')).json();$('#health').textContent=`embedder: ${h.embedder} · answerer: ${h.answerer} · ${h.chunks} chunks indexed`;
+  const h=await (await fetch('/health')).json();$('#health').textContent=`embedder: ${h.embedder} · answerer: ${h.answerer}${h.llm_model?' ('+h.llm_model+')':''} · refusal threshold: ${h.min_score} · ${h.chunks} chunks indexed`;
 }
 $('#docs').onclick=async e=>{if(!e.target.classList.contains('del'))return;e.preventDefault();await fetch('/documents/'+e.target.dataset.id,{method:'DELETE'});refresh();};
 $('#up').onclick=async()=>{
@@ -45,7 +45,7 @@ $('#askf').onsubmit=async e=>{
   const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();$('#go').disabled=false;
   if(!r.ok){$('#out').innerHTML=`<p>${esc(JSON.stringify(j.detail))}</p>`;return;}
   const ans=esc(j.answer).replace(/\[(\d+)\]/g,'<sup>[$1]</sup>');
-  $('#out').innerHTML=`<div class="answer">${ans}</div><div class="mut">backend: ${esc(j.backend)}</div>`+
+  $('#out').innerHTML=`<div class="answer">${ans}</div><div class="mut">backend: ${esc(j.backend)} · confidence: ${j.confidence??'–'} · ${j.latency_ms} ms${j.refused?' · refused (below threshold or not in documents)':''}${j.citation_mode!=='explicit'?' · citations '+esc(j.citation_mode):''}</div>`+
     j.citations.map(c=>`<div class="cit"><b>[${c.index}] ${esc(c.doc_name)}${c.page!=null?`, p. ${c.page}`:''}</b> <span class="mut">${esc(c.chunk_id)}</span><p>${esc(c.snippet)}</p></div>`).join('');
 };
 refresh();

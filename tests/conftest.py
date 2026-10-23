@@ -12,7 +12,7 @@ from rag.config import Settings  # noqa: E402
 from rag.embeddings import HashEmbedder  # noqa: E402
 from rag.service import RAGService  # noqa: E402
 
-SAMPLES = ROOT / "sample_docs"
+SAMPLES = ROOT / "sample_docs" / "en"
 
 
 @pytest.fixture

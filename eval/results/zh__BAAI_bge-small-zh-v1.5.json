@@ -1,0 +1,5063 @@
+{
+ "lang": "zh",
+ "model": "BAAI/bge-small-zh-v1.5",
+ "top_k": 4,
+ "n_questions": 26,
+ "date": "2026-10-23 21:43 CST",
+ "chunking": {
+  "800": {
+   "n_chunks": 4,
+   "ingest_seconds": 0.06,
+   "retrieval": {
+    "vector": {
+     "overall": {
+      "hit@1": 94.7,
+      "hit@3": 100.0,
+      "hit@5": 100.0,
+      "mrr": 0.974,
+      "evidence_recall@5": 100.0,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 87.5,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.938,
+       "evidence_recall@5": 100.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    },
+    "bm25": {
+     "overall": {
+      "hit@1": 89.5,
+      "hit@3": 89.5,
+      "hit@5": 89.5,
+      "mrr": 0.895,
+      "evidence_recall@5": 89.5,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 75.0,
+       "hit@3": 75.0,
+       "hit@5": 75.0,
+       "mrr": 0.75,
+       "evidence_recall@5": 75.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": null,
+       "evidence_recall@5": 0.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": null,
+       "evidence_recall@5": 0.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    },
+    "hybrid": {
+     "overall": {
+      "hit@1": 94.7,
+      "hit@3": 100.0,
+      "hit@5": 100.0,
+      "mrr": 0.974,
+      "evidence_recall@5": 100.0,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 87.5,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.938,
+       "evidence_recall@5": 100.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    }
+   },
+   "calibration": {
+    "best": {
+     "threshold": 0.635,
+     "refusal_accuracy": 100.0,
+     "false_refusal_rate": 10.5,
+     "balanced_accuracy": 94.7
+    },
+    "sweep": [
+     {
+      "threshold": 0.4,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.405,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.41,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.415,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.42,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.425,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.43,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.435,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.44,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.445,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.45,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.455,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.46,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.465,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.47,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.475,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.48,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.485,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.49,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.495,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.5,
+      "refusal_accuracy": 14.3,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 57.1
+     },
+     {
+      "threshold": 0.505,
+      "refusal_accuracy": 14.3,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 57.1
+     },
+     {
+      "threshold": 0.51,
+      "refusal_accuracy": 28.6,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 64.3
+     },
+     {
+      "threshold": 0.515,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.52,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.525,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.53,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.535,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.54,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.545,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.55,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.555,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.56,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.565,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.57,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.575,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.58,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.585,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.59,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.595,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.6,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.605,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.61,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.615,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.62,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.625,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.63,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.635,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.64,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.645,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.65,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.655,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.66,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.665,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.67,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.675,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.68,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.685,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 31.6,
+      "balanced_accuracy": 84.2
+     },
+     {
+      "threshold": 0.69,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 31.6,
+      "balanced_accuracy": 84.2
+     },
+     {
+      "threshold": 0.695,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.7,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.705,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.71,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.715,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.72,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 47.4,
+      "balanced_accuracy": 76.3
+     },
+     {
+      "threshold": 0.725,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 52.6,
+      "balanced_accuracy": 73.7
+     },
+     {
+      "threshold": 0.73,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.735,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.74,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.745,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.75,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 63.2,
+      "balanced_accuracy": 68.4
+     },
+     {
+      "threshold": 0.755,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.76,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.765,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.77,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.775,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.78,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.785,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 84.2,
+      "balanced_accuracy": 57.9
+     },
+     {
+      "threshold": 0.79,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 89.5,
+      "balanced_accuracy": 55.3
+     },
+     {
+      "threshold": 0.795,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 89.5,
+      "balanced_accuracy": 55.3
+     },
+     {
+      "threshold": 0.8,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.805,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.81,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.815,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.82,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.825,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.83,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.835,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.84,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.845,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.85,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.855,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.86,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.865,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.87,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.875,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.88,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.885,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.89,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.895,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.9,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     }
+    ],
+    "answerable_conf": {
+     "min": 0.601,
+     "p10": 0.602,
+     "median": 0.722
+    },
+    "unanswerable_conf": {
+     "max": 0.627,
+     "median": 0.515
+    }
+   },
+   "extractive": {
+    "threshold": 0.635,
+    "summary": {
+     "answer_accuracy": 89.5,
+     "citation_accuracy": 100.0,
+     "explicit_citation_rate": 100.0,
+     "invalid_marker_rate": 0.0,
+     "refusal_accuracy": 100.0,
+     "false_refusal_rate": 10.5,
+     "latency_p50_ms": 63.0,
+     "latency_p95_ms": 202.6,
+     "n_answerable": 19,
+     "n_unanswerable": 7
+    },
+    "rows": [
+     {
+      "id": "zh-f01",
+      "type": "factual",
+      "question": "正式员工每年有多少天带薪年假？",
+      "answer": "入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1]",
+      "refused": false,
+      "confidence": 0.7995,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 59.7
+     },
+     {
+      "id": "zh-f02",
+      "type": "factual",
+      "question": "新员工试用期多长？",
+      "answer": "新员工试用期为3个月，表现优秀者可申请提前转正。 [1]",
+      "refused": false,
+      "confidence": 0.726,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 58.2
+     },
+     {
+      "id": "zh-f03",
+      "type": "factual",
+      "question": "一线城市出差住宿标准是多少？",
+      "answer": "一线城市住宿标准为每晚600元，其他城市为每晚400元。 [1]",
+      "refused": false,
+      "confidence": 0.7164,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 67.6
+     },
+     {
+      "id": "zh-f04",
+      "type": "factual",
+      "question": "出差餐补每天多少钱？",
+      "answer": "出差期间的餐补为每天100元。 [1]",
+      "refused": false,
+      "confidence": 0.8642,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 65.8
+     },
+     {
+      "id": "zh-f05",
+      "type": "factual",
+      "question": "S7的电池容量是多少？",
+      "answer": "S7 的电池容量为5200毫安时，标准模式下续航时间约为180分钟。 [1]",
+      "refused": false,
+      "confidence": 0.7821,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 59.0
+     },
+     {
+      "id": "zh-f06",
+      "type": "factual",
+      "question": "S7的最大吸力是多少？",
+      "answer": "最大吸力为4000帕，机身高度为9.8厘米，可以进入大多数床底和沙发底部。 [1]",
+      "refused": false,
+      "confidence": 0.6907,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 61.7
+     },
+     {
+      "id": "zh-f07",
+      "type": "factual",
+      "question": "账号密码最少需要多少位？",
+      "answer": "所有账号密码长度不得少于12位，并且必须包含大小写字母、数字和特殊字符。 [1]",
+      "refused": false,
+      "confidence": 0.7653,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 63.1
+     },
+     {
+      "id": "zh-f08",
+      "type": "factual",
+      "question": "S7整机保修期多久？",
+      "answer": "整机保修期为2年，电池和滚刷属于易耗品，保修期为6个月。 [1]",
+      "refused": false,
+      "confidence": 0.7524,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 53.6
+     },
+     {
+      "id": "zh-f09",
+      "type": "factual",
+      "question": "招待客户的人均标准是多少？",
+      "answer": "招待客户需提前申请，人均标准不超过300元。 [1]",
+      "refused": false,
+      "confidence": 0.7857,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 81.0
+     },
+     {
+      "id": "zh-p01",
+      "type": "paraphrase",
+      "question": "今年没休完的假期能留到明年吗？",
+      "answer": "当年未休完的年假可以顺延到次年3月31日，逾期作废。 [1]",
+      "refused": false,
+      "confidence": 0.6933,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 59.5
+     },
+     {
+      "id": "zh-p02",
+      "type": "paraphrase",
+      "question": "扫地机充满一次电能扫多久？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.6006,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": false,
+      "citation_correct": null,
+      "evidence_coverage": 0.0,
+      "latency_ms": 73.5
+     },
+     {
+      "id": "zh-p03",
+      "type": "paraphrase",
+      "question": "机器人连不上家里的无线网怎么办？",
+      "answer": "如果机器人无法连接Wi-Fi，请确认路由器使用的是2.4GHz频段，S7不支持5GHz网络。 [1]",
+      "refused": false,
+      "confidence": 0.6842,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 58.5
+     },
+     {
+      "id": "zh-p04",
+      "type": "paraphrase",
+      "question": "机器怎么恢复成刚买时的状态？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.602,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": false,
+      "citation_correct": null,
+      "evidence_coverage": 0.0,
+      "latency_ms": 60.3
+     },
+     {
+      "id": "zh-p05",
+      "type": "paraphrase",
+      "question": "报销的钱多久能到账？",
+      "answer": "费用发生后30天内需要在报销系统中提交申请，并上传发票照片。 [1] 超过90天未提交的费用不予报销。 [1] 报销款一般在审批通过后7个工作日内打到工资卡。 [1]",
+      "refused": false,
+      "confidence": 0.7218,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 65.8
+     },
+     {
+      "id": "zh-p06",
+      "type": "paraphrase",
+      "question": "女员工生孩子能休多久？",
+      "answer": "员工结婚可享受婚假10天，产假为158天，陪产假为15天。 [1]",
+      "refused": false,
+      "confidence": 0.6612,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 55.4
+     },
+     {
+      "id": "zh-p07",
+      "type": "paraphrase",
+      "question": "发现黑客入侵后多久之内要上报？",
+      "answer": "发现安全事件后，必须在2小时内向信息安全部报告，邮箱为 security@xinghe.example。 [1]",
+      "refused": false,
+      "confidence": 0.6641,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 70.5
+     },
+     {
+      "id": "zh-p08",
+      "type": "paraphrase",
+      "question": "买书和上网课公司能给多少钱？",
+      "answer": "单笔金额超过5000元的报销需要部门负责人和财务总监双重审批。 [1] 居家办公的员工可以一次性申请800元的办公设备补贴，用于购买椅子、显示器支架或耳机。 [1] 每位员工每年有3000元的学习经费，可用于购买课程、书籍或参加行业会议。 [2]",
+      "refused": false,
+      "confidence": 0.6435,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt",
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 58.9
+     },
+     {
+      "id": "zh-c01",
+      "type": "cross",
+      "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+      "answer": "员工每周最多可以居家办公两天，需提前在系统中报备。 [1] 居家办公的员工可以一次性申请800元的办公设备补贴，用于购买椅子、显示器支架或耳机。 [2]",
+      "refused": false,
+      "confidence": 0.7658,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md",
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 209.7
+     },
+     {
+      "id": "zh-c02",
+      "type": "cross",
+      "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+      "answer": "笔记本电脑丢失需要在当天通知IT部门，以便远程锁定和擦除数据。 [1] 新员工入职当天领取笔记本电脑和工牌。 [2]",
+      "refused": false,
+      "confidence": 0.7455,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md",
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 202.6
+     },
+     {
+      "id": "zh-u01",
+      "type": "unanswerable",
+      "question": "公司的CEO是谁？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5079,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 83.1
+     },
+     {
+      "id": "zh-u02",
+      "type": "unanswerable",
+      "question": "S7扫地机器人的售价是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.4974,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 69.3
+     },
+     {
+      "id": "zh-u03",
+      "type": "unanswerable",
+      "question": "公司有没有年终奖？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5618,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 62.9
+     },
+     {
+      "id": "zh-u04",
+      "type": "unanswerable",
+      "question": "S7能越过多高的门槛？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5149,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 63.1
+     },
+     {
+      "id": "zh-u05",
+      "type": "unanswerable",
+      "question": "公司食堂几点开饭？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5493,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 62.2
+     },
+     {
+      "id": "zh-u06",
+      "type": "unanswerable",
+      "question": "员工的公积金缴纳比例是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5138,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 62.0
+     },
+     {
+      "id": "zh-u07",
+      "type": "unanswerable",
+      "question": "S8扫地机器人的续航是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.6271,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 68.1
+     }
+    ]
+   },
+   "llm": [
+    {
+     "model": "qwen2.5:0.5b",
+     "gated": true,
+     "threshold": 0.64,
+     "summary": {
+      "answer_accuracy": 52.6,
+      "citation_accuracy": 94.1,
+      "explicit_citation_rate": 5.9,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "latency_p50_ms": 486.2,
+      "latency_p95_ms": 2129.1,
+      "n_answerable": 19,
+      "n_unanswerable": 7
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "question": "正式员工每年有多少天带薪年假？",
+       "answer": "入职满一年的正式员工每年享有15天带薪年假。 [1]",
+       "refused": false,
+       "confidence": 0.7995,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 498.7
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "question": "新员工试用期多长？",
+       "answer": "新员工试用期为3个月。 [1]",
+       "refused": false,
+       "confidence": 0.726,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1551.8
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "question": "一线城市出差住宿标准是多少？",
+       "answer": "一线城市住宿标准为每晚600元。 [1]",
+       "refused": false,
+       "confidence": 0.7164,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1956.8
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "question": "出差餐补每天多少钱？",
+       "answer": "单笔金额超过5000元的报销需要部门负责人和财务总监双重审批。 [1]",
+       "refused": false,
+       "confidence": 0.8642,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1219.2
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "question": "S7的电池容量是多少？",
+       "answer": "S7的电池容量为5200毫安时。 [1]",
+       "refused": false,
+       "confidence": 0.7821,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2031.6
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "question": "S7的最大吸力是多少？",
+       "answer": "S7的最大吸力为4000帕。 [1]",
+       "refused": false,
+       "confidence": 0.6907,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 473.8
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "question": "账号密码最少需要多少位？",
+       "answer": "The account password length must be at least 12.",
+       "refused": false,
+       "confidence": 0.7653,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md",
+        "报销制度.txt",
+        "员工手册.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2129.1
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "question": "S7整机保修期多久？",
+       "answer": "S7整机保修期为2年。 [1]",
+       "refused": false,
+       "confidence": 0.7524,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1290.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "question": "招待客户的人均标准是多少？",
+       "answer": "人均标准不超过300元。 [1]",
+       "refused": false,
+       "confidence": 0.7857,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 515.2
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "question": "今年没休完的假期能留到明年吗？",
+       "answer": "入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1] 当年未休完的年假可以顺延到次年3月31日，逾期作废。 [1]",
+       "refused": false,
+       "confidence": 0.6933,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 996.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "question": "扫地机充满一次电能扫多久？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6006,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 232.2
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "question": "机器人连不上家里的无线网怎么办？",
+       "answer": "滤网建议每2周清洗一次，每3个月更换一次。 [1]",
+       "refused": false,
+       "confidence": 0.6842,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1136.2
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "question": "机器怎么恢复成刚买时的状态？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.602,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 234.1
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "question": "报销的钱多久能到账？",
+       "answer": "单笔金额超过5000元的报销需要部门负责人和财务总监双重审批。 [1]",
+       "refused": false,
+       "confidence": 0.7218,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 438.6
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "question": "女员工生孩子能休多久？",
+       "answer": "新员工试用期为3个月，表现优秀者可申请提前转正。 [1] 新员工入职当天领取笔记本电脑和工牌。 [1]",
+       "refused": false,
+       "confidence": 0.6612,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 698.4
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "question": "发现黑客入侵后多久之内要上报？",
+       "answer": "2小时内 [1]",
+       "refused": false,
+       "confidence": 0.6641,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 353.7
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "question": "买书和上网课公司能给多少钱？",
+       "answer": "员工手册.md [3]",
+       "refused": false,
+       "confidence": 0.6435,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 419.8
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+       "answer": "每周最多可以居家办公两天，出差时的餐补为每天100元。 [2]",
+       "refused": false,
+       "confidence": 0.7658,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 852.6
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+       "answer": "新员工试用期为3个月，入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [2] 当年未休完的年假可以顺延到次年3月31日，逾期作废。 [2]",
+       "refused": false,
+       "confidence": 0.7455,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 2806.8
+      },
+      {
+       "id": "zh-u01",
+       "type": "unanswerable",
+       "question": "公司的CEO是谁？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5079,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 253.0
+      },
+      {
+       "id": "zh-u02",
+       "type": "unanswerable",
+       "question": "S7扫地机器人的售价是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6375,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 86.5
+      },
+      {
+       "id": "zh-u03",
+       "type": "unanswerable",
+       "question": "公司有没有年终奖？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5618,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 74.4
+      },
+      {
+       "id": "zh-u04",
+       "type": "unanswerable",
+       "question": "S7能越过多高的门槛？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5149,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 70.9
+      },
+      {
+       "id": "zh-u05",
+       "type": "unanswerable",
+       "question": "公司食堂几点开饭？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5493,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 90.6
+      },
+      {
+       "id": "zh-u06",
+       "type": "unanswerable",
+       "question": "员工的公积金缴纳比例是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5138,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 90.0
+      },
+      {
+       "id": "zh-u07",
+       "type": "unanswerable",
+       "question": "S8扫地机器人的续航是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6271,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 88.5
+      }
+     ]
+    },
+    {
+     "model": "qwen2.5:0.5b",
+     "gated": false,
+     "threshold": null,
+     "summary": {
+      "answer_accuracy": 52.6,
+      "citation_accuracy": 89.5,
+      "explicit_citation_rate": 5.3,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "latency_p50_ms": 611.3,
+      "latency_p95_ms": 1708.7,
+      "n_answerable": 19,
+      "n_unanswerable": 7
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "question": "正式员工每年有多少天带薪年假？",
+       "answer": "入职满一年的正式员工每年享有15天带薪年假。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 328.9
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "question": "新员工试用期多长？",
+       "answer": "新员工试用期为3个月。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 211.4
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "question": "一线城市出差住宿标准是多少？",
+       "answer": "一线城市住宿标准为每晚600元。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1108.1
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "question": "出差餐补每天多少钱？",
+       "answer": "单笔金额超过5000元的报销需要部门负责人和财务总监双重审批。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1101.4
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "question": "S7的电池容量是多少？",
+       "answer": "S7的电池容量为5200毫安时。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 330.1
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "question": "S7的最大吸力是多少？",
+       "answer": "S7的最大吸力为4000帕。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 308.6
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "question": "账号密码最少需要多少位？",
+       "answer": "The password length must be at least 12 characters.",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md",
+        "报销制度.txt",
+        "员工手册.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2087.2
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "question": "S7整机保修期多久？",
+       "answer": "S7整机保修期为2年。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1593.3
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "question": "招待客户的人均标准是多少？",
+       "answer": "人均标准不超过300元。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 269.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "question": "今年没休完的假期能留到明年吗？",
+       "answer": "入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1] 当年未休完的年假可以顺延到次年3月31日，逾期作废。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1080.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "question": "扫地机充满一次电能扫多久？",
+       "answer": "4小时",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt",
+        "员工手册.md",
+        "信息安全制度.md",
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1327.1
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "question": "机器人连不上家里的无线网怎么办？",
+       "answer": "滤网建议每2周清洗一次，每3个月更换一次。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1646.3
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "question": "机器怎么恢复成刚买时的状态？",
+       "answer": "员工出差后，需在系统中提交申请，并上传发票照片。 [2]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 1608.3
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "question": "报销的钱多久能到账？",
+       "answer": "单笔金额超过5000元的报销需要部门负责人和财务总监双重审批。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 369.6
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "question": "女员工生孩子能休多久？",
+       "answer": "新员工试用期为3个月，表现优秀者可申请提前转正。 [1] 新员工入职当天领取笔记本电脑和工牌。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 520.8
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "question": "发现黑客入侵后多久之内要上报？",
+       "answer": "2小时内 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 143.2
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "question": "买书和上网课公司能给多少钱？",
+       "answer": "员工手册.md [3]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 224.6
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+       "answer": "每周最多可以居家办公两天，每月折算为15天。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 382.6
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+       "answer": "新员工试用期为3个月，入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [2] 当年未休完的年假可以顺延到次年3月31日，逾期作废。 [2]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 969.2
+      },
+      {
+       "id": "zh-u01",
+       "type": "unanswerable",
+       "question": "公司的CEO是谁？",
+       "answer": "星河科技的CEO是张三。",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md",
+        "员工手册.md",
+        "扫地机器人S7说明书.txt",
+        "报销制度.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 989.2
+      },
+      {
+       "id": "zh-u02",
+       "type": "unanswerable",
+       "question": "S7扫地机器人的售价是多少？",
+       "answer": "S7扫地机器人的电池容量为5200毫安时，标准模式下续航时间约为180分钟。 [1] 尘盒容量为400毫升，水箱容量为250毫升。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 1708.7
+      },
+      {
+       "id": "zh-u03",
+       "type": "unanswerable",
+       "question": "公司有没有年终奖？",
+       "answer": "公司每年享有15天带薪年假，入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 559.4
+      },
+      {
+       "id": "zh-u04",
+       "type": "unanswerable",
+       "question": "S7能越过多高的门槛？",
+       "answer": "S7的电池容量为5200毫安时，标准模式下续航时间约为180分钟。 [1] 尘盒容量为400毫升，水箱容量为250毫升。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 663.3
+      },
+      {
+       "id": "zh-u05",
+       "type": "unanswerable",
+       "question": "公司食堂几点开饭？",
+       "answer": "入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1] 当年未休完的年假可以顺延到次年3月31日，逾期作废。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 806.2
+      },
+      {
+       "id": "zh-u06",
+       "type": "unanswerable",
+       "question": "员工的公积金缴纳比例是多少？",
+       "answer": "员工的公积金缴纳比例是3000元。",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md",
+        "报销制度.txt",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 383.2
+      },
+      {
+       "id": "zh-u07",
+       "type": "unanswerable",
+       "question": "S8扫地机器人的续航是多少？",
+       "answer": "S8扫地机器人的续航时间约为180分钟。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 376.8
+      }
+     ]
+    },
+    {
+     "model": "qwen2.5:1.5b",
+     "gated": true,
+     "threshold": 0.64,
+     "summary": {
+      "answer_accuracy": 68.4,
+      "citation_accuracy": 81.2,
+      "explicit_citation_rate": 25.0,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "latency_p50_ms": 698.9,
+      "latency_p95_ms": 3947.2,
+      "n_answerable": 19,
+      "n_unanswerable": 7
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "question": "正式员工每年有多少天带薪年假？",
+       "answer": "正式员工每年享有15天带薪年假。 [1]",
+       "refused": false,
+       "confidence": 0.7995,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 678.2
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "question": "新员工试用期多长？",
+       "answer": "新员工试用期为3个月。 [1]",
+       "refused": false,
+       "confidence": 0.726,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1953.8
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "question": "一线城市出差住宿标准是多少？",
+       "answer": "一线城市住宿标准为每晚600元。 [1]",
+       "refused": false,
+       "confidence": 0.7164,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 4078.5
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "question": "出差餐补每天多少钱？",
+       "answer": "每天100元 [3]",
+       "refused": false,
+       "confidence": 0.8642,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 1323.7
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "question": "S7的电池容量是多少？",
+       "answer": "星河 S7 智能扫地机器人 产品说明书 [1] 表示，S7 的电池容量为5200毫安时。",
+       "refused": false,
+       "confidence": 0.7821,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 3947.2
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "question": "S7的最大吸力是多少？",
+       "answer": "最大吸力为4000帕。 [1]",
+       "refused": false,
+       "confidence": 0.6907,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 836.7
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "question": "账号密码最少需要多少位？",
+       "answer": "账号密码长度不得少于12位。 [1]",
+       "refused": false,
+       "confidence": 0.7653,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2984.1
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "question": "S7整机保修期多久？",
+       "answer": "整机保修期为2年 [3].",
+       "refused": false,
+       "confidence": 0.7524,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 2070.6
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "question": "招待客户的人均标准是多少？",
+       "answer": "人均标准不超过300元。 [1]",
+       "refused": false,
+       "confidence": 0.7857,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 705.5
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "question": "今年没休完的假期能留到明年吗？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": 0.6933,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 653.9
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "question": "扫地机充满一次电能扫多久？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6006,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 239.9
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "question": "机器人连不上家里的无线网怎么办？",
+       "answer": "如果机器人无法连接Wi-Fi，请确认路由器使用的是2.4GHz频段，S7不支持5GHz网络。 [1]",
+       "refused": false,
+       "confidence": 0.6842,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2220.3
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "question": "机器怎么恢复成刚买时的状态？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.602,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 210.9
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "question": "报销的钱多久能到账？",
+       "answer": "The reimbursement usually takes 7 working days after approval.",
+       "refused": false,
+       "confidence": 0.7218,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt",
+        "员工手册.md",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 543.5
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "question": "女员工生孩子能休多久？",
+       "answer": "女员工生孩子可以休10天的婚假。",
+       "refused": false,
+       "confidence": 0.6612,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md",
+        "报销制度.txt",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 692.3
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "question": "发现黑客入侵后多久之内要上报？",
+       "answer": "发现黑客入侵后，必须在2小时内向信息安全部报告。 [1]",
+       "refused": false,
+       "confidence": 0.6641,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 753.9
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "question": "买书和上网课公司能给多少钱？",
+       "answer": "The employee handbook mentions that each employee has 3000 yuan for learning expenses, which can be used for courses, books, or industry conferences.",
+       "refused": false,
+       "confidence": 0.6435,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt",
+        "员工手册.md",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1326.1
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+       "answer": "公司实行弹性工作制，核心工作时间为上午10点至下午4点。 [1] 员工每周最多可以居家办公两天，需提前在系统中报备。 [1] 居家办公的设备补贴为800元。 [2]",
+       "refused": false,
+       "confidence": 0.7658,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md",
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1825.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+       "answer": "入职当天。[3]",
+       "refused": false,
+       "confidence": 0.7455,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 2762.5
+      },
+      {
+       "id": "zh-u01",
+       "type": "unanswerable",
+       "question": "公司的CEO是谁？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5079,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 223.3
+      },
+      {
+       "id": "zh-u02",
+       "type": "unanswerable",
+       "question": "S7扫地机器人的售价是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6375,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 70.0
+      },
+      {
+       "id": "zh-u03",
+       "type": "unanswerable",
+       "question": "公司有没有年终奖？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5618,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 90.3
+      },
+      {
+       "id": "zh-u04",
+       "type": "unanswerable",
+       "question": "S7能越过多高的门槛？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5149,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 90.3
+      },
+      {
+       "id": "zh-u05",
+       "type": "unanswerable",
+       "question": "公司食堂几点开饭？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5493,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 81.1
+      },
+      {
+       "id": "zh-u06",
+       "type": "unanswerable",
+       "question": "员工的公积金缴纳比例是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.5138,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 70.8
+      },
+      {
+       "id": "zh-u07",
+       "type": "unanswerable",
+       "question": "S8扫地机器人的续航是多少？",
+       "answer": "在已上传的文档中没有找到相关信息。",
+       "refused": true,
+       "confidence": 0.6271,
+       "backend": "openai(gated)",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 72.9
+      }
+     ]
+    },
+    {
+     "model": "qwen2.5:1.5b",
+     "gated": false,
+     "threshold": null,
+     "summary": {
+      "answer_accuracy": 57.9,
+      "citation_accuracy": 82.4,
+      "explicit_citation_rate": 23.5,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 42.9,
+      "false_refusal_rate": 10.5,
+      "latency_p50_ms": 645.9,
+      "latency_p95_ms": 2417.6,
+      "n_answerable": 19,
+      "n_unanswerable": 7
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "question": "正式员工每年有多少天带薪年假？",
+       "answer": "正式员工每年享有15天带薪年假。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 450.9
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "question": "新员工试用期多长？",
+       "answer": "新员工试用期为3个月。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 355.5
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "question": "一线城市出差住宿标准是多少？",
+       "answer": "一线城市住宿标准为每晚600元。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 1337.6
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "question": "出差餐补每天多少钱？",
+       "answer": "每天100元 [3]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 1215.6
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "question": "S7的电池容量是多少？",
+       "answer": "星河 S7 智能扫地机器人 产品说明书 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 665.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "question": "S7的最大吸力是多少？",
+       "answer": "最大吸力为4000帕 [3].",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 552.8
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "question": "账号密码最少需要多少位？",
+       "answer": "账号密码长度不得少于12位。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 563.2
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "question": "S7整机保修期多久？",
+       "answer": "整机保修期为2年 [3].",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 1576.3
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "question": "招待客户的人均标准是多少？",
+       "answer": "人均标准不超过300元。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 394.2
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "question": "今年没休完的假期能留到明年吗？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 328.6
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "question": "扫地机充满一次电能扫多久？",
+       "answer": "整机保修期为2年，电池和滚刷属于易耗品，保修期为6个月。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2336.2
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "question": "机器人连不上家里的无线网怎么办？",
+       "answer": "如果机器人无法连接Wi-Fi，请确认路由器使用的是2.4GHz频段，S7不支持5GHz网络。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2417.6
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "question": "机器怎么恢复成刚买时的状态？",
+       "answer": "The document states that to restore the factory settings, you should simultaneously press the power button and the recharging button for 5 seconds, and then wait for the prompt to release.",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt",
+        "报销制度.txt",
+        "员工手册.md",
+        "信息安全制度.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 2745.2
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "question": "报销的钱多久能到账？",
+       "answer": "The reimbursement money is typically deposited into the employee's salary card after the approval process is completed, which usually takes 7 working days.",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "报销制度.txt",
+        "员工手册.md",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 905.1
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "question": "女员工生孩子能休多久？",
+       "answer": "女员工生孩子可以休10天的婚假。",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "context",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md",
+        "报销制度.txt",
+        "信息安全制度.md",
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 534.7
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "question": "发现黑客入侵后多久之内要上报？",
+       "answer": "发现黑客入侵后，必须在2小时内向信息安全部报告。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 626.7
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "question": "买书和上网课公司能给多少钱？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 320.7
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+       "answer": "根据文档，每周最多可以居家办公两天。 [1] 居家办公的设备补贴为800元。 [2]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md",
+        "报销制度.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 780.9
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+       "answer": "入职当天。 [2] 当天。 [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md",
+        "员工手册.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 239.9
+      },
+      {
+       "id": "zh-u01",
+       "type": "unanswerable",
+       "question": "公司的CEO是谁？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 1174.0
+      },
+      {
+       "id": "zh-u02",
+       "type": "unanswerable",
+       "question": "S7扫地机器人的售价是多少？",
+       "answer": "The warranty is 2 years [3].",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "信息安全制度.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 1330.4
+      },
+      {
+       "id": "zh-u03",
+       "type": "unanswerable",
+       "question": "公司有没有年终奖？",
+       "answer": "年终奖是15天带薪年假。[1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "员工手册.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 516.4
+      },
+      {
+       "id": "zh-u04",
+       "type": "unanswerable",
+       "question": "S7能越过多高的门槛？",
+       "answer": "The maximum suction force of S7 is 4000 Pa, which can enter most bed bottoms and sofa bottoms. [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 1020.5
+      },
+      {
+       "id": "zh-u05",
+       "type": "unanswerable",
+       "question": "公司食堂几点开饭？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 282.0
+      },
+      {
+       "id": "zh-u06",
+       "type": "unanswerable",
+       "question": "员工的公积金缴纳比例是多少？",
+       "answer": "The documents do not say.",
+       "refused": true,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 357.1
+      },
+      {
+       "id": "zh-u07",
+       "type": "unanswerable",
+       "question": "S8扫地机器人的续航是多少？",
+       "answer": "The battery capacity of S8 is 5200毫安时. [1]",
+       "refused": false,
+       "confidence": null,
+       "backend": "openai",
+       "citation_mode": "attributed",
+       "invalid_markers": [],
+       "citations": [
+        "扫地机器人S7说明书.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 1068.3
+      }
+     ]
+    }
+   ]
+  },
+  "200": {
+   "n_chunks": 10,
+   "ingest_seconds": 0.08,
+   "retrieval": {
+    "vector": {
+     "overall": {
+      "hit@1": 84.2,
+      "hit@3": 100.0,
+      "hit@5": 100.0,
+      "mrr": 0.912,
+      "evidence_recall@5": 100.0,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 50.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.75,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 88.9,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.944,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 87.5,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.917,
+       "evidence_recall@5": 100.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": 3,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    },
+    "bm25": {
+     "overall": {
+      "hit@1": 89.5,
+      "hit@3": 100.0,
+      "hit@5": 100.0,
+      "mrr": 0.939,
+      "evidence_recall@5": 100.0,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 75.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.854,
+       "evidence_recall@5": 100.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": 3,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    },
+    "hybrid": {
+     "overall": {
+      "hit@1": 89.5,
+      "hit@3": 100.0,
+      "hit@5": 100.0,
+      "mrr": 0.947,
+      "evidence_recall@5": 100.0,
+      "n": 19
+     },
+     "by_type": {
+      "cross": {
+       "hit@1": 100.0,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 1.0,
+       "evidence_recall@5": 100.0,
+       "n": 2
+      },
+      "factual": {
+       "hit@1": 88.9,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.944,
+       "evidence_recall@5": 100.0,
+       "n": 9
+      },
+      "paraphrase": {
+       "hit@1": 87.5,
+       "hit@3": 100.0,
+       "hit@5": 100.0,
+       "mrr": 0.938,
+       "evidence_recall@5": 100.0,
+       "n": 8
+      }
+     },
+     "rows": [
+      {
+       "id": "zh-f01",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f02",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f03",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f04",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f05",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f06",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f07",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f08",
+       "type": "factual",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-f09",
+       "type": "factual",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p01",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p02",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p03",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p04",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p05",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p06",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p07",
+       "type": "paraphrase",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-p08",
+       "type": "paraphrase",
+       "rank": 2,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c01",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      },
+      {
+       "id": "zh-c02",
+       "type": "cross",
+       "rank": 1,
+       "evidence_recall@5": 1.0
+      }
+     ]
+    }
+   },
+   "calibration": {
+    "best": {
+     "threshold": 0.635,
+     "refusal_accuracy": 100.0,
+     "false_refusal_rate": 10.5,
+     "balanced_accuracy": 94.7
+    },
+    "sweep": [
+     {
+      "threshold": 0.4,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.405,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.41,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.415,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.42,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.425,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.43,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.435,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.44,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.445,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.45,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.455,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.46,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.465,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.47,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.475,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.48,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.485,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.49,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.495,
+      "refusal_accuracy": 0.0,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.5,
+      "refusal_accuracy": 14.3,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 57.1
+     },
+     {
+      "threshold": 0.505,
+      "refusal_accuracy": 28.6,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 64.3
+     },
+     {
+      "threshold": 0.51,
+      "refusal_accuracy": 42.9,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 71.4
+     },
+     {
+      "threshold": 0.515,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.52,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.525,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.53,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.535,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.54,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.545,
+      "refusal_accuracy": 57.1,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 78.6
+     },
+     {
+      "threshold": 0.55,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.555,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.56,
+      "refusal_accuracy": 71.4,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 85.7
+     },
+     {
+      "threshold": 0.565,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.57,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.575,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.58,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.585,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.59,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.595,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.6,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 0.0,
+      "balanced_accuracy": 92.9
+     },
+     {
+      "threshold": 0.605,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 5.3,
+      "balanced_accuracy": 90.2
+     },
+     {
+      "threshold": 0.61,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 5.3,
+      "balanced_accuracy": 90.2
+     },
+     {
+      "threshold": 0.615,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 5.3,
+      "balanced_accuracy": 90.2
+     },
+     {
+      "threshold": 0.62,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 5.3,
+      "balanced_accuracy": 90.2
+     },
+     {
+      "threshold": 0.625,
+      "refusal_accuracy": 85.7,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 87.6
+     },
+     {
+      "threshold": 0.63,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.635,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.64,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 10.5,
+      "balanced_accuracy": 94.7
+     },
+     {
+      "threshold": 0.645,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.65,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.655,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.66,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 15.8,
+      "balanced_accuracy": 92.1
+     },
+     {
+      "threshold": 0.665,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.67,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.675,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.68,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 26.3,
+      "balanced_accuracy": 86.8
+     },
+     {
+      "threshold": 0.685,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 31.6,
+      "balanced_accuracy": 84.2
+     },
+     {
+      "threshold": 0.69,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 31.6,
+      "balanced_accuracy": 84.2
+     },
+     {
+      "threshold": 0.695,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.7,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.705,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.71,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.715,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 42.1,
+      "balanced_accuracy": 78.9
+     },
+     {
+      "threshold": 0.72,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 47.4,
+      "balanced_accuracy": 76.3
+     },
+     {
+      "threshold": 0.725,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 52.6,
+      "balanced_accuracy": 73.7
+     },
+     {
+      "threshold": 0.73,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.735,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.74,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.745,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 57.9,
+      "balanced_accuracy": 71.1
+     },
+     {
+      "threshold": 0.75,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 63.2,
+      "balanced_accuracy": 68.4
+     },
+     {
+      "threshold": 0.755,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.76,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.765,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 68.4,
+      "balanced_accuracy": 65.8
+     },
+     {
+      "threshold": 0.77,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.775,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.78,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 78.9,
+      "balanced_accuracy": 60.5
+     },
+     {
+      "threshold": 0.785,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 84.2,
+      "balanced_accuracy": 57.9
+     },
+     {
+      "threshold": 0.79,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 89.5,
+      "balanced_accuracy": 55.3
+     },
+     {
+      "threshold": 0.795,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 89.5,
+      "balanced_accuracy": 55.3
+     },
+     {
+      "threshold": 0.8,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.805,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.81,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.815,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.82,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.825,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.83,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.835,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.84,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.845,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.85,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.855,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.86,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 94.7,
+      "balanced_accuracy": 52.6
+     },
+     {
+      "threshold": 0.865,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.87,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.875,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.88,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.885,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.89,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.895,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     },
+     {
+      "threshold": 0.9,
+      "refusal_accuracy": 100.0,
+      "false_refusal_rate": 100.0,
+      "balanced_accuracy": 50.0
+     }
+    ],
+    "answerable_conf": {
+     "min": 0.602,
+     "p10": 0.62,
+     "median": 0.722
+    },
+    "unanswerable_conf": {
+     "max": 0.627,
+     "median": 0.514
+    }
+   },
+   "extractive": {
+    "threshold": 0.635,
+    "summary": {
+     "answer_accuracy": 89.5,
+     "citation_accuracy": 100.0,
+     "explicit_citation_rate": 100.0,
+     "invalid_marker_rate": 0.0,
+     "refusal_accuracy": 100.0,
+     "false_refusal_rate": 10.5,
+     "latency_p50_ms": 33.2,
+     "latency_p95_ms": 115.1,
+     "n_answerable": 19,
+     "n_unanswerable": 7
+    },
+    "rows": [
+     {
+      "id": "zh-f01",
+      "type": "factual",
+      "question": "正式员工每年有多少天带薪年假？",
+      "answer": "入职满一年的正式员工每年享有15天带薪年假，入职不满一年的按月折算。 [1]",
+      "refused": false,
+      "confidence": 0.7995,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 27.9
+     },
+     {
+      "id": "zh-f02",
+      "type": "factual",
+      "question": "新员工试用期多长？",
+      "answer": "新员工试用期为3个月，表现优秀者可申请提前转正。 [1]",
+      "refused": false,
+      "confidence": 0.726,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 28.0
+     },
+     {
+      "id": "zh-f03",
+      "type": "factual",
+      "question": "一线城市出差住宿标准是多少？",
+      "answer": "一线城市住宿标准为每晚600元，其他城市为每晚400元。 [1]",
+      "refused": false,
+      "confidence": 0.7164,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 28.2
+     },
+     {
+      "id": "zh-f04",
+      "type": "factual",
+      "question": "出差餐补每天多少钱？",
+      "answer": "出差期间的餐补为每天100元。 [1] 出差期间的餐补为每天100元。 [2]",
+      "refused": false,
+      "confidence": 0.8642,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt",
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 30.7
+     },
+     {
+      "id": "zh-f05",
+      "type": "factual",
+      "question": "S7的电池容量是多少？",
+      "answer": "S7 的电池容量为5200毫安时，标准模式下续航时间约为180分钟。 [1]",
+      "refused": false,
+      "confidence": 0.7821,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 36.1
+     },
+     {
+      "id": "zh-f06",
+      "type": "factual",
+      "question": "S7的最大吸力是多少？",
+      "answer": "最大吸力为4000帕，机身高度为9.8厘米，可以进入大多数床底和沙发底部。 [1]",
+      "refused": false,
+      "confidence": 0.6907,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 32.4
+     },
+     {
+      "id": "zh-f07",
+      "type": "factual",
+      "question": "账号密码最少需要多少位？",
+      "answer": "所有账号密码长度不得少于12位，并且必须包含大小写字母、数字和特殊字符。 [1]",
+      "refused": false,
+      "confidence": 0.7653,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 33.7
+     },
+     {
+      "id": "zh-f08",
+      "type": "factual",
+      "question": "S7整机保修期多久？",
+      "answer": "整机保修期为2年，电池和滚刷属于易耗品，保修期为6个月。 [1]",
+      "refused": false,
+      "confidence": 0.7524,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 23.4
+     },
+     {
+      "id": "zh-f09",
+      "type": "factual",
+      "question": "招待客户的人均标准是多少？",
+      "answer": "招待客户需提前申请，人均标准不超过300元。 [2]",
+      "refused": false,
+      "confidence": 0.7857,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 25.3
+     },
+     {
+      "id": "zh-p01",
+      "type": "paraphrase",
+      "question": "今年没休完的假期能留到明年吗？",
+      "answer": "当年未休完的年假可以顺延到次年3月31日，逾期作废。 [1]",
+      "refused": false,
+      "confidence": 0.6933,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 29.9
+     },
+     {
+      "id": "zh-p02",
+      "type": "paraphrase",
+      "question": "扫地机充满一次电能扫多久？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.6204,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": false,
+      "citation_correct": null,
+      "evidence_coverage": 0.0,
+      "latency_ms": 53.2
+     },
+     {
+      "id": "zh-p03",
+      "type": "paraphrase",
+      "question": "机器人连不上家里的无线网怎么办？",
+      "answer": "如果机器人无法连接Wi-Fi，请确认路由器使用的是2.4GHz频段，S7不支持5GHz网络。 [1]",
+      "refused": false,
+      "confidence": 0.6842,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "扫地机器人S7说明书.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 45.4
+     },
+     {
+      "id": "zh-p04",
+      "type": "paraphrase",
+      "question": "机器怎么恢复成刚买时的状态？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.602,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": false,
+      "citation_correct": null,
+      "evidence_coverage": 0.0,
+      "latency_ms": 26.8
+     },
+     {
+      "id": "zh-p05",
+      "type": "paraphrase",
+      "question": "报销的钱多久能到账？",
+      "answer": "费用发生后30天内需要在报销系统中提交申请，并上传发票照片。 [1] 超过90天未提交的费用不予报销。 [1] 报销款一般在审批通过后7个工作日内打到工资卡。 [1]",
+      "refused": false,
+      "confidence": 0.7218,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 40.6
+     },
+     {
+      "id": "zh-p06",
+      "type": "paraphrase",
+      "question": "女员工生孩子能休多久？",
+      "answer": "员工结婚可享受婚假10天，产假为158天，陪产假为15天。 [1]",
+      "refused": false,
+      "confidence": 0.6612,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 31.7
+     },
+     {
+      "id": "zh-p07",
+      "type": "paraphrase",
+      "question": "发现黑客入侵后多久之内要上报？",
+      "answer": "发现安全事件后，必须在2小时内向信息安全部报告，邮箱为 security@xinghe.example。 [1]",
+      "refused": false,
+      "confidence": 0.6641,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 33.8
+     },
+     {
+      "id": "zh-p08",
+      "type": "paraphrase",
+      "question": "买书和上网课公司能给多少钱？",
+      "answer": "每位员工每年有3000元的学习经费，可用于购买课程、书籍或参加行业会议。 [2]",
+      "refused": false,
+      "confidence": 0.6435,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 32.9
+     },
+     {
+      "id": "zh-c01",
+      "type": "cross",
+      "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？",
+      "answer": "居家办公的员工可以一次性申请800元的办公设备补贴，用于购买椅子、显示器支架或耳机。 [1] 员工每周最多可以居家办公两天，需提前在系统中报备。 [2]",
+      "refused": false,
+      "confidence": 0.7658,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "报销制度.txt",
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 123.6
+     },
+     {
+      "id": "zh-c02",
+      "type": "cross",
+      "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？",
+      "answer": "笔记本电脑丢失需要在当天通知IT部门，以便远程锁定和擦除数据。 [1] 丢失需要在当天通知IT部门，以便远程锁定和擦除数据。 [2] 新员工入职当天领取笔记本电脑和工牌。 [3]",
+      "refused": false,
+      "confidence": 0.7455,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [
+       "信息安全制度.md",
+       "信息安全制度.md",
+       "员工手册.md"
+      ],
+      "answer_correct": true,
+      "citation_correct": true,
+      "evidence_coverage": 1.0,
+      "latency_ms": 115.1
+     },
+     {
+      "id": "zh-u01",
+      "type": "unanswerable",
+      "question": "公司的CEO是谁？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5079,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 46.1
+     },
+     {
+      "id": "zh-u02",
+      "type": "unanswerable",
+      "question": "S7扫地机器人的售价是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.4974,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 27.5
+     },
+     {
+      "id": "zh-u03",
+      "type": "unanswerable",
+      "question": "公司有没有年终奖？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5618,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 44.9
+     },
+     {
+      "id": "zh-u04",
+      "type": "unanswerable",
+      "question": "S7能越过多高的门槛？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5038,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 33.6
+     },
+     {
+      "id": "zh-u05",
+      "type": "unanswerable",
+      "question": "公司食堂几点开饭？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5493,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 36.3
+     },
+     {
+      "id": "zh-u06",
+      "type": "unanswerable",
+      "question": "员工的公积金缴纳比例是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.5138,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 43.3
+     },
+     {
+      "id": "zh-u07",
+      "type": "unanswerable",
+      "question": "S8扫地机器人的续航是多少？",
+      "answer": "在已上传的文档中没有找到相关信息。",
+      "refused": true,
+      "confidence": 0.6271,
+      "backend": "extractive",
+      "citation_mode": "explicit",
+      "invalid_markers": [],
+      "citations": [],
+      "answer_correct": null,
+      "citation_correct": null,
+      "evidence_coverage": null,
+      "latency_ms": 29.7
+     }
+    ]
+   },
+   "llm": []
+  }
+ }
+}

@@ -1,0 +1,12 @@
+# Template for importing a Qwen2.5-Instruct GGUF (Q4_K_M) into Ollama; __GGUF__ is filled in by scripts/ollama.sh
+# Source: https://huggingface.co/Qwen (Apache-2.0)
+FROM __GGUF__
+TEMPLATE """{{- if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{- range .Messages }}<|im_start|>{{ .Role }}
+{{ .Content }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER num_ctx 4096

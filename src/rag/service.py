@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import time
 import uuid
 from dataclasses import asdict
 
@@ -40,8 +41,11 @@ class RAGService:
         self.store.add_document(doc_id, filename, sha, len(pages), chunks, emb)
         return {"doc_id": doc_id, "name": filename, "pages": len(pages), "n_chunks": len(chunks), "duplicate": False}
 
-    def ask(self, question: str, top_k: int | None = None) -> dict:
-        hits = self.retriever.retrieve(question, k=top_k or self.settings.top_k)
+    def ask(self, question: str, top_k: int | None = None, mode: str = "hybrid") -> dict:
+        t0 = time.perf_counter()
+        hits = self.retriever.retrieve(question, k=top_k or self.settings.top_k, mode=mode)
         ans: Answer = self.answerer.answer(question, hits)
-        return {"question": question, "answer": ans.answer, "backend": ans.backend,
+        return {"question": question, "answer": ans.answer, "backend": ans.backend, "refused": ans.refused,
+                "confidence": ans.confidence, "citation_mode": ans.citation_mode,
+                "latency_ms": round((time.perf_counter() - t0) * 1000, 1),
                 "citations": [asdict(c) for c in ans.citations]}

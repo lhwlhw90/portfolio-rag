@@ -67,7 +67,7 @@ def test_openai_backend_parses_citations(loaded_service):
     hits = loaded_service.retriever.retrieve("payload", k=3)
     out = ans.answer("payload?", hits)
     assert out.backend == "openai" and [c.index for c in out.citations] == [1]
-    assert "[1] (" in seen["body"] and "Question: payload?" in seen["body"]
+    assert '<source id=\\"1\\" file=' in seen["body"] and "Question: payload?" in seen["body"]
 
 
 def test_openai_backend_falls_back_on_error(loaded_service):
@@ -104,3 +104,62 @@ def test_min_score_returns_not_found():
     ch = StoredChunk("d:0", "d", "faq.txt", 0, None, "The warranty lasts three years for parts and labour.")
     out = ExtractiveAnswerer(min_score=0.9).answer("warranty years", [Hit(ch, 1.0)])
     assert out.answer == NO_ANSWER and out.citations == []
+
+
+def test_retrieval_modes(loaded_service):
+    import pytest
+    for mode in ("vector", "bm25", "hybrid"):
+        hits = loaded_service.retriever.retrieve("RoboArm payload", k=2, mode=mode)
+        assert 1 <= len(hits) <= 2
+    with pytest.raises(ValueError):
+        loaded_service.retriever.retrieve("x", mode="nope")
+
+
+def test_parse_markers_variants():
+    from rag.answerer import parse_markers
+    assert parse_markers("a [1] b [2][3] c [1, 4] d 【5】") == [1, 2, 3, 4, 5]
+
+
+def _llm(handler, **kw):
+    return OpenAICompatAnswerer("http://llm/v1", "m", client=_mock_client(handler), **kw)
+
+
+def _reply(text):
+    return lambda req: httpx.Response(200, json={"choices": [{"message": {"content": text}}]})
+
+
+def test_llm_attributes_citations_when_model_omits_markers(loaded_service):
+    hits = loaded_service.retriever.retrieve("maximum payload RoboArm", k=3)
+    out = _llm(_reply("The RoboArm X2 can lift a maximum payload of 7.5 kg."), fallback=ExtractiveAnswerer()
+               ).answer("payload?", hits)
+    assert out.citation_mode == "attributed" and out.answer.endswith("]")
+    assert out.citations and out.citations[0].doc_name == "product_faq.txt"
+
+
+def test_llm_refusal_detected(loaded_service):
+    hits = loaded_service.retriever.retrieve("CEO", k=3)
+    out = _llm(_reply("I don't know based on the documents.")).answer("Who is the CEO?", hits)
+    assert out.refused and out.citations == []
+
+
+def test_llm_invalid_markers_recorded(loaded_service):
+    hits = loaded_service.retriever.retrieve("payload", k=2)
+    out = _llm(_reply("7.5 kg [1] [9]")).answer("payload?", hits)
+    assert out.invalid_markers == [9] and [c.index for c in out.citations] == [1]
+
+
+def test_llm_gate_refuses_without_calling_model(loaded_service):
+    calls = []
+
+    def handler(req):
+        calls.append(1)
+        return httpx.Response(200, json={"choices": [{"message": {"content": "x [1]"}}]})
+
+    gate = ExtractiveAnswerer(min_score=99.0)  # impossible threshold -> always refuse
+    out = _llm(handler, gate=gate).answer("payload?", loaded_service.retriever.retrieve("payload", k=2))
+    assert out.refused and out.backend == "openai(gated)" and calls == []
+
+
+def test_api_exposes_refusal_and_confidence(loaded_service):
+    res = loaded_service.ask("How long is the warranty?")
+    assert res["refused"] is False and res["confidence"] is not None and res["latency_ms"] >= 0

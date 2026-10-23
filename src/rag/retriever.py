@@ -5,7 +5,8 @@ from dataclasses import dataclass
 
 from rank_bm25 import BM25Okapi
 
-from .embeddings import Embedder, tokenize
+from .embeddings import Embedder
+from .text import content_tokens
 from .store import StoredChunk, VectorStore
 
 
@@ -25,14 +26,27 @@ class HybridRetriever:
 
     def _bm25_index(self) -> BM25Okapi | None:
         if self._bm25_n != len(self.store.chunks):  # rebuild lazily when the corpus changes
-            corpus = [tokenize(c.text) or ["<empty>"] for c in self.store.chunks]
+            corpus = [content_tokens(c.text) or ["<empty>"] for c in self.store.chunks]
             self._bm25 = BM25Okapi(corpus) if corpus else None
             self._bm25_n = len(self.store.chunks)
         return self._bm25
 
-    def retrieve(self, query: str, k: int = 4) -> list[Hit]:
+    def retrieve(self, query: str, k: int = 4, mode: str = "hybrid") -> list[Hit]:
+        """mode: 'hybrid' (weighted RRF), 'vector' (dense only) or 'bm25' (lexical only)."""
+        if mode not in ("hybrid", "vector", "bm25"):
+            raise ValueError(f"unknown retrieval mode {mode!r}")
         if not self.store.chunks or not query.strip():
             return []
+        if mode == "vector":
+            return [Hit(self.store.chunks[i], s, vector_score=s)
+                    for i, s in self.store.vector_search(self.embedder.embed_query(query), k)]
+        if mode == "bm25":
+            bm25, q = self._bm25_index(), content_tokens(query)
+            if bm25 is None or not q:
+                return []
+            scores = bm25.get_scores(q)
+            ranked = [i for i in sorted(range(len(scores)), key=lambda i: -scores[i])[:k] if scores[i] > 0]
+            return [Hit(self.store.chunks[i], float(scores[i]), bm25_score=float(scores[i])) for i in ranked]
         pool = max(k * 4, 20)
         dense = self.store.vector_search(self.embedder.embed_query(query), pool)
         fused: dict[int, float] = {}
@@ -42,7 +56,7 @@ class HybridRetriever:
             fused[i] = fused.get(i, 0.0) + self.alpha / (self.rrf_k + rank + 1)
             vs[i] = s
         bm25 = self._bm25_index()
-        q_tokens = tokenize(query)
+        q_tokens = content_tokens(query)
         if bm25 is not None and q_tokens and self.alpha < 1.0:
             scores = bm25.get_scores(q_tokens)
             ranked = sorted(range(len(scores)), key=lambda i: -scores[i])[:pool]

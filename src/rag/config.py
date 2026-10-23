@@ -12,6 +12,16 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
+# Refusal thresholds calibrated on eval/ (see eval/results/REPORT.md). Cosine
+# similarity scales differ per model, so the threshold is model-specific.
+DEFAULT_MIN_SCORE = 0.64
+MODEL_MIN_SCORES: dict[str, float] = {
+    "BAAI/bge-small-en-v1.5": 0.64,
+    "BAAI/bge-small-zh-v1.5": 0.64,
+    "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": 0.49,  # en 0.425 / zh 0.545 -> midpoint
+}
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
@@ -27,9 +37,9 @@ class Settings(BaseSettings):
     top_k: int = 4
     hybrid_alpha: float = 0.5    # weight of vector vs BM25 in RRF fusion (0..1)
     max_upload_mb: int = 20
-    # extractive answerer: minimum sentence score (0.5*lexical + cosine) to answer at all.
-    # 0.58 is calibrated for bge-small; unrelated questions score ~0.5.
-    answer_min_score: float = 0.58
+    # extractive answerer: minimum best-sentence score (0.5*lexical + cosine) to answer at all.
+    # None -> per-model default calibrated by `make eval` (see MODEL_MIN_SCORES).
+    answer_min_score: float | None = None
 
     # answerer: "extractive" (default, no model) or "openai" (any OpenAI-compatible
     # endpoint: Ollama, llama.cpp server, vLLM, LM Studio ...)
@@ -38,6 +48,15 @@ class Settings(BaseSettings):
     llm_model: str = "qwen2.5:0.5b"
     llm_api_key: str = "not-needed"
     llm_timeout: float = 60.0
+    llm_gate: bool = True  # refuse before calling the LLM when extractive confidence < threshold
+
+    @property
+    def resolved_min_score(self) -> float:
+        if self.answer_min_score is not None:
+            return self.answer_min_score
+        if self.embedding_backend == "hash":
+            return 0.0
+        return MODEL_MIN_SCORES.get(self.embedding_model, DEFAULT_MIN_SCORE)
 
     @property
     def db_path(self) -> Path:

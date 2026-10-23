@@ -1,0 +1,34 @@
+Acme RoboArm X2 - Frequently Asked Questions
+
+What is the maximum payload of the RoboArm X2?
+The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm.
+
+How heavy is the arm itself?
+The RoboArm X2 weighs 21 kg without the controller. The controller box weighs an additional 6 kg.
+
+How long is the warranty?
+The RoboArm X2 comes with a 3-year limited warranty covering parts and labour. Batteries are covered for 12 months.
+
+Which programming languages are supported?
+The X2 SDK supports Python and C++. A ROS 2 driver is available as an open-source package.
+
+How do I reset the controller?
+Hold the blue reset button on the controller for 10 seconds until the status LED blinks orange.
+
+What power supply does the X2 need?
+The controller requires a 100-240 V AC single-phase supply and draws at most 350 W during operation.
+
+Is the arm safe to use next to people?
+Yes. The X2 is a collaborative robot certified to ISO 10218. It stops automatically when a collision force
+above 150 N is detected, and an emergency stop button is included with every unit.
+
+Can the X2 be used outdoors or in wet environments?
+The arm has an IP54 rating. It is protected against dust and water splashes but must not be submerged or
+cleaned with a pressure washer.
+
+How are firmware updates installed?
+Firmware updates are installed from the web dashboard. Download the update package, upload it under
+Settings > Firmware, and keep the controller powered on until the update finishes (about 8 minutes).
+
+How accurate is the arm?
+The repeatability of the X2 is plus or minus 0.03 mm.

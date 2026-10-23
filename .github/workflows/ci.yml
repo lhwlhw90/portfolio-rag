@@ -9,7 +9,11 @@ jobs:
         with: {python-version: "3.12"}
       - run: pip install -r requirements.lock && pip install -e ".[dev]"
       - run: pytest -q                       # fast, offline (hash embedder)
-      - run: pytest -q -m slow               # downloads bge-small (~65 MB) into ./models
+      - run: PYTHONPATH=src python -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 && PYTHONPATH=src python -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5
+        env: {MODEL_DIR: "${{ github.workspace }}/models", HF_HOME: "${{ github.workspace }}/models"}
+      - run: PYTHONPATH=src python scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5
+        env: {MODEL_DIR: "${{ github.workspace }}/models", HF_HOME: "${{ github.workspace }}/models"}
+      - run: pytest -q -m slow               # real embeddings (LLM test auto-skips without a local server)
         env: {MODEL_DIR: "${{ github.workspace }}/models", HF_HOME: "${{ github.workspace }}/models"}
   docker:
     runs-on: ubuntu-latest

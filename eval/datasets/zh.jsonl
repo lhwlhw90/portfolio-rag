@@ -1,0 +1,26 @@
+{"id": "zh-f01", "type": "factual", "question": "正式员工每年有多少天带薪年假？", "evidence": [{"doc": "员工手册.md", "text": "每年享有15天带薪年假"}], "answer_contains": ["15"]}
+{"id": "zh-f02", "type": "factual", "question": "新员工试用期多长？", "evidence": [{"doc": "员工手册.md", "text": "试用期为3个月"}], "answer_contains": ["3个月"]}
+{"id": "zh-f03", "type": "factual", "question": "一线城市出差住宿标准是多少？", "evidence": [{"doc": "报销制度.txt", "text": "一线城市住宿标准为每晚600元"}], "answer_contains": ["600"]}
+{"id": "zh-f04", "type": "factual", "question": "出差餐补每天多少钱？", "evidence": [{"doc": "报销制度.txt", "text": "餐补为每天100元"}], "answer_contains": ["100"]}
+{"id": "zh-f05", "type": "factual", "question": "S7的电池容量是多少？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "电池容量为5200毫安时"}], "answer_contains": ["5200"]}
+{"id": "zh-f06", "type": "factual", "question": "S7的最大吸力是多少？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "最大吸力为4000帕"}], "answer_contains": ["4000"]}
+{"id": "zh-f07", "type": "factual", "question": "账号密码最少需要多少位？", "evidence": [{"doc": "信息安全制度.md", "text": "密码长度不得少于12位"}], "answer_contains": ["12"]}
+{"id": "zh-f08", "type": "factual", "question": "S7整机保修期多久？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "整机保修期为2年"}], "answer_contains": ["2年"]}
+{"id": "zh-f09", "type": "factual", "question": "招待客户的人均标准是多少？", "evidence": [{"doc": "报销制度.txt", "text": "人均标准不超过300元"}], "answer_contains": ["300"]}
+{"id": "zh-p01", "type": "paraphrase", "question": "今年没休完的假期能留到明年吗？", "evidence": [{"doc": "员工手册.md", "text": "顺延到次年3月31日"}], "answer_contains": ["3月31日"]}
+{"id": "zh-p02", "type": "paraphrase", "question": "扫地机充满一次电能扫多久？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "续航时间约为180分钟"}], "answer_contains": ["180"]}
+{"id": "zh-p03", "type": "paraphrase", "question": "机器人连不上家里的无线网怎么办？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "2.4GHz频段"}], "answer_contains": ["2.4"]}
+{"id": "zh-p04", "type": "paraphrase", "question": "机器怎么恢复成刚买时的状态？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "同时按住电源键和回充键5秒"}], "answer_contains": ["回充键"]}
+{"id": "zh-p05", "type": "paraphrase", "question": "报销的钱多久能到账？", "evidence": [{"doc": "报销制度.txt", "text": "7个工作日内打到工资卡"}], "answer_contains": ["7个工作日"]}
+{"id": "zh-p06", "type": "paraphrase", "question": "女员工生孩子能休多久？", "evidence": [{"doc": "员工手册.md", "text": "产假为158天"}], "answer_contains": ["158"]}
+{"id": "zh-p07", "type": "paraphrase", "question": "发现黑客入侵后多久之内要上报？", "evidence": [{"doc": "信息安全制度.md", "text": "必须在2小时内向信息安全部报告"}], "answer_contains": ["2小时"]}
+{"id": "zh-p08", "type": "paraphrase", "question": "买书和上网课公司能给多少钱？", "evidence": [{"doc": "员工手册.md", "text": "3000元的学习经费"}], "answer_contains": ["3000"]}
+{"id": "zh-c01", "type": "cross", "question": "每周最多能在家办公几天？在家办公的设备补贴有多少？", "evidence": [{"doc": "员工手册.md", "text": "每周最多可以居家办公两天"}, {"doc": "报销制度.txt", "text": "800元的办公设备补贴"}], "answer_contains": ["两天", "800"]}
+{"id": "zh-c02", "type": "cross", "question": "公司的笔记本电脑什么时候领？丢了要多久内通知IT部门？", "evidence": [{"doc": "员工手册.md", "text": "入职当天领取笔记本电脑"}, {"doc": "信息安全制度.md", "text": "笔记本电脑丢失需要在当天通知IT部门"}], "answer_contains": ["入职当天", "当天通知"]}
+{"id": "zh-u01", "type": "unanswerable", "question": "公司的CEO是谁？", "evidence": [], "answer_contains": []}
+{"id": "zh-u02", "type": "unanswerable", "question": "S7扫地机器人的售价是多少？", "evidence": [], "answer_contains": []}
+{"id": "zh-u03", "type": "unanswerable", "question": "公司有没有年终奖？", "evidence": [], "answer_contains": []}
+{"id": "zh-u04", "type": "unanswerable", "question": "S7能越过多高的门槛？", "evidence": [], "answer_contains": []}
+{"id": "zh-u05", "type": "unanswerable", "question": "公司食堂几点开饭？", "evidence": [], "answer_contains": []}
+{"id": "zh-u06", "type": "unanswerable", "question": "员工的公积金缴纳比例是多少？", "evidence": [], "answer_contains": []}
+{"id": "zh-u07", "type": "unanswerable", "question": "S8扫地机器人的续航是多少？", "evidence": [], "answer_contains": []}

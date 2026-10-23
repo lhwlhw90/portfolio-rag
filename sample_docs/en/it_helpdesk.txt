@@ -1,0 +1,27 @@
+Acme IT Helpdesk Guide
+
+Contacting the helpdesk
+The IT helpdesk is open Monday to Friday from 8:00 to 18:00. Urgent issues outside these hours can be reported
+by calling the on-call number +49 30 1234 5678. Non-urgent requests should be filed as tickets in the service portal.
+
+Response times
+Priority 1 tickets (complete outage, security issue) receive a response within 30 minutes. Priority 2 tickets
+receive a response within 4 business hours, and all other tickets within 2 business days.
+
+VPN
+Remote access requires the company VPN client. Install it from the self-service software center and sign in with
+your company account. The VPN disconnects automatically after 12 hours and you must log in again.
+
+Setting up a new laptop
+On your first day, sign in with the temporary password from your welcome e-mail and change it immediately.
+Then enrol your phone in the authenticator app, because multi-factor authentication is required before e-mail
+and VPN access are activated.
+
+Laptop replacement
+Laptops are replaced every three years. A broken laptop is swapped for a loaner device within one business day.
+
+Printing
+Printers on every floor support secure printing: jobs are released only after you tap your badge on the printer.
+
+Guest Wi-Fi
+Visitors can use the "Acme-Guest" network. Guest access codes are valid for 24 hours and are issued at reception.

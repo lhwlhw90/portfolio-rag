@@ -75,7 +75,7 @@ def split_text(text: str, chunk_size: int, overlap: int) -> list[tuple[int, str]
         if end < n:
             window = text[start:end]
             cut = -1
-            for sep in ("\n\n", "\n", ". ", "? ", "! ", "。", " "):
+            for sep in ("\n\n", "\n", ". ", "? ", "! ", "。", "！", "？", "；", " "):
                 idx = window.rfind(sep)
                 if idx > chunk_size * 0.5:
                     cut = idx + len(sep)
@@ -89,7 +89,7 @@ def split_text(text: str, chunk_size: int, overlap: int) -> list[tuple[int, str]
             break
         nxt = end - overlap
         # snap overlap start to a sentence boundary if one is inside the overlap, else a word boundary
-        sent = max(text.rfind(". ", nxt, end), text.rfind("\n", nxt, end))
+        sent = max(text.rfind(". ", nxt, end), text.rfind("\n", nxt, end), text.rfind("。", nxt, end))
         if sent != -1 and sent + 1 < end:
             start = sent + 1
             while start < end and text[start] in " \n":

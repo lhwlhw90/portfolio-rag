@@ -1,0 +1,65 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 415 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Acme Robotics - Security Policy \(2026\)) Tj T* () Tj T* (Section 1. Passwords) Tj T* (All employee passwords must be at least 14 characters long.) Tj T* (Passwords must be rotated every 180 days and may not be reused.) Tj T* (Multi-factor authentication \(MFA\) is mandatory for VPN and email access.) Tj T* (Accounts are locked for 15 minutes after 5 failed login attempts.) Tj T* ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 429 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Section 2. Incident response) Tj T* (Security incidents must be reported to security@acme.example within 1 hour of discovery.) Tj T* (The on-call security engineer triages incidents and opens a post-mortem within 5 business days.) Tj T* (Customer data breaches are escalated to the legal team immediately.) Tj T* (Lost or stolen laptops must be reported to the IT helpdesk on the same day.) Tj T* ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 459 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Section 3. Devices and data) Tj T* (All laptops must use full-disk encryption and lock the screen after 5 minutes of inactivity.) Tj T* (Confidential data may only be stored on company-managed devices and approved cloud storage.) Tj T* (USB storage devices are blocked on company laptops unless an exception is approved by security.) Tj T* (Data is classified as Public, Internal, Confidential or Strictly Confidential.) Tj T* ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 384 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Section 4. Backups and vendors) Tj T* (Production databases are backed up every 6 hours and backups are kept for 35 days.) Tj T* (Backup restore tests are performed every quarter.) Tj T* (Vendors receive time-limited access accounts that expire after 90 days.) Tj T* (Vendor access to production systems requires approval from the system owner.) Tj T* ET
+endstream
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000133 00000 n 
+0000000260 00000 n 
+0000000726 00000 n 
+0000000853 00000 n 
+0000001333 00000 n 
+0000001460 00000 n 
+0000001970 00000 n 
+0000002098 00000 n 
+0000002534 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+2605
+%%EOF
