@@ -15,6 +15,7 @@ document and contains the evidence text (whitespace/case-insensitive).
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import re
 import statistics
@@ -510,7 +511,7 @@ def main(argv=None):
     ap.add_argument("--llm-models", default="qwen2.5:0.5b", help="comma-separated")
     ap.add_argument("--llm-gating", default="gated,ungated", help="gated, ungated or both")
     ap.add_argument("--llm-url", default="http://127.0.0.1:11434/v1")
-    ap.add_argument("--model-dir", default=str(PROJECT_ROOT / "models"))
+    ap.add_argument("--model-dir", default=os.environ.get("MODEL_DIR", str(PROJECT_ROOT / "models")))
     ap.add_argument("--report", action="store_true", help="only rebuild REPORT.md")
     ap.add_argument("--judges", default="", help="answerability judges to compare, e.g. nli,reranker,reranker-m3")
     ap.add_argument("--qe", default="", help="query-expansion configs, e.g. prf,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b")

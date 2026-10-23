@@ -4,6 +4,10 @@ Upload your documents (`.txt`, `.md`, `.pdf`), ask questions, and get answers wh
 
 It runs fully on CPU. It needs no GPU and no paid API, and the default setup doesn't need an LLM at all.
 
+![demo: ask, stream, open the cited PDF page, and a refusal by the answerability judge](docs/img/demo.gif)
+
+<sub>`docs/img/demo.gif` (16 s) was recorded from headless Chrome by `scripts/record_gif.py`: a cited answer with the PDF page highlighted, a warranty question, and a price question that the answerability judge refuses.</sub>
+
 ![demo: click a citation to see the cited sentence highlighted](docs/img/demo_en_pdf.png)
 
 | Chinese PDF + local LLM (streamed) | Refusal with reason |
@@ -23,6 +27,9 @@ It runs fully on CPU. It needs no GPU and no paid API, and the default setup doe
     - **post-hoc citation attribution** for when small models forget `[n]` markers;
     - detection of invalid markers;
     - automatic fallback to extractive if the LLM is unreachable.
+- **Answerability judge (M4)**: a small ONNX model reads the question together with the candidate sentences and decides whether the evidence actually states what is asked. English uses mDeBERTa-v3 XNLI; Chinese uses bge-reranker-v2-m3. It is combined with the cosine threshold, chosen and calibrated on dev only, and refuses with `not_supported`. See [Evaluation](#evaluation) for the honest trade-off.
+- **Query rewriting for paraphrases (M4)**: optional query expansion (`prf`, LLM `rewrite`, or `hyde`) through the local Ollama. Expanded queries are RRF-fused with the original query. The default is chosen on dev: `rewrite`, which falls back silently if the LLM is down.
+- **Heading context (M4)**: chunks remember the section heading they start in. Extractive answers prefix it when it carries the asked-for date, version or terms, for example "Version 2.0 (2025-07-01): First release for the X2 hardware."
 - **Refusal with a reason**: every refusal carries a machine-readable `refusal_reason` (`low_confidence`, `unknown_identifier`, `llm_refused`, `no_context`, …) and a human-readable `refusal_detail`. Besides the confidence threshold, a cheap rule refuses when the question names a model / error code / version (`X3`, `E402`, `v2.4.0`) that occurs nowhere in the retrieved passages.
 - **Evaluation**: 126 English + 122 Chinese questions, split into a frozen **dev** split (used to tune the hybrid weight and the refusal threshold) and a held-out **test** split (headline numbers). `make eval` reports hit@k, MRR, answer/citation accuracy, refusal accuracy and false-refusal rate for dev and test side by side, compares vector/BM25/hybrid, and shows what tuning on test would have given ("oracle"), so the optimism gap is visible. Results go to [`eval/results/REPORT.md`](eval/results/REPORT.md) and JSON.
 - **Persistence**: a single SQLite file holds metadata and float32 vectors, and an in-memory NumPy matrix handles search. A file-hash dedup makes re-uploads idempotent.
@@ -32,8 +39,9 @@ It runs fully on CPU. It needs no GPU and no paid API, and the default setup doe
   - a confidence meter with the refusal threshold, and the refusal reason when the system declines;
   - per-request switches for the answerer (extractive / local LLM) and retrieval mode (hybrid / vector / BM25), and top-k;
   - **streaming** answers over Server-Sent Events (token-by-token for the LLM).
-- **Tests**: 83 fast offline tests use a deterministic hash embedder and a mocked LLM. 4 optional `slow` tests use the real English and Chinese models (including Chinese-PDF page citations) and a live local LLM (including streaming).
-- **Docker**: a CPU image plus `docker-compose`. Models live in a mounted volume and are never stored in `~/.cache`.
+- **Tests**: 108 fast offline tests use a deterministic hash embedder, a mocked LLM and fake judges. 6 optional `slow` tests use the real English and Chinese models (including Chinese-PDF page citations), the real NLI judge, and a live local LLM (streaming and query rewriting).
+- **Docker**: a CPU image plus `docker-compose`. Models live in a mounted volume and are never stored in `~/.cache`. Without a Docker daemon, `scripts/podman.sh` (sudo-free rootless podman) and `scripts/docker_smoke.sh` build the image and smoke-test it.
+- **CI**: `.github/workflows/ci.yml`. `scripts/ci_local.sh` runs the same steps locally on a clean copy of the tree.
 
 ## Architecture
 
@@ -59,8 +67,8 @@ See [`docs/DESIGN.md`](docs/DESIGN.md) for the full design (in Chinese).
 
 ```bash
 make install           # creates .venv inside the project and installs pinned deps
-make test              # 83 offline tests (~3 s)
-make download-models   # bge-small en (~65 MB) + zh (~90 MB) ONNX models -> ./models (MODEL_DIR)
+make test              # 108 offline tests (~3 s)
+make download-models   # bge-small en (~65 MB) + zh (~90 MB) + answerability judges (NLI 1.1 GB, m3 0.55 GB) -> ./models
 make test-slow         # integration tests with the real models (+ live LLM if running)
 make eval              # dev/test retrieval/answer/refusal metrics -> eval/results/REPORT.md
 make run               # http://localhost:8000
@@ -76,6 +84,16 @@ docker compose up -d --build # http://localhost:8000
 ```
 
 To ship a self-contained image, use `docker build --build-arg BAKE_MODEL=1 .`.
+
+With no Docker daemon (and no sudo), use rootless podman inside the project:
+
+```bash
+./scripts/podman.sh install     # podman-static -> tools/ (state, storage and tmp also stay under tools/)
+./scripts/docker_smoke.sh       # build, run with ./models mounted read-only, check /health, upload, /ask
+./scripts/ci_local.sh           # every step of .github/workflows/ci.yml on a clean copy (act needs Docker)
+```
+
+Without the setuid `newuidmap` helper, podman runs in single-UID mode. The image then has to run with `--user 0` (that is the unprivileged host user, not real root), and `chown` during the build falls back to `chmod`. Details in [DESIGN §12.6](docs/DESIGN.md).
 
 ## API
 
@@ -127,7 +145,12 @@ All settings are environment variables. See [`.env.example`](.env.example).
 | `CHUNK_SIZE` / `CHUNK_OVERLAP` | `800` / `120` | Characters |
 | `TOP_K` | `4` | Chunks retrieved per question |
 | `HYBRID_ALPHA` | `0.5` | 1 = vector only, 0 = BM25 only (dev-tuned values vary 0.3–0.6, see report) |
-| `ANSWER_MIN_SCORE` | per model (en 0.67, zh 0.63) | Refusal threshold on max sentence cosine; unset = dev-calibrated per-model default |
+| `ANSWER_MIN_SCORE` | per model | Refusal threshold on max sentence cosine; unset = dev-calibrated default (M3 cosine-only: en 0.67 / zh 0.63; with the M4 judge: en 0.665 / zh 0.575) |
+| `ANSWERABILITY_JUDGE` | `auto` | `auto` (dev-chosen per embedding model: en `nli-t`, zh `reranker-m3`), `none` (M3 behaviour), `nli`, `nli-t`, `reranker`, `reranker-m3` |
+| `ANSWERABILITY_POLICY` / `ANSWERABILITY_MIN` | auto (`and`, dev-calibrated) | `and` = cosine and judge must pass, `or` = either, `replace` = judge only |
+| `QUERY_EXPANSION` | `auto` | `auto` (en: `rewrite` with qwen2.5:1.5b; zh: `rewrite` with 0.5b), `off`, `prf`, `rewrite`, `hyde`; uses `LLM_BASE_URL`, falls back to `off` if unreachable |
+| `QUERY_EXPANSION_MODEL` / `QUERY_EXPANSION_WEIGHT` | auto | LLM tag; RRF weight of the expansions |
+| `HEADING_CONTEXT` | `true` | Prefix section headings in extractive answers when they carry the asked-for date / version |
 | `LLM_GATE` | `true` | Refuse before calling the LLM when confidence < threshold |
 | `LLM_BACKEND` | `extractive` | `openai` to use a local LLM server |
 | `LLM_BASE_URL` / `LLM_MODEL` | Ollama defaults | e.g. `http://localhost:8080/v1` for llama.cpp |
@@ -202,6 +225,48 @@ What the held-out split shows:
 - Ungated `qwen2.5:1.5b` gives the best answer accuracy in both languages but almost never refuses. The gate makes it refuse, but it inherits the gate's false refusals. Extractive remains the only option with 100 % citation accuracy and sub-100 ms latency.
 - The test splits have 57/55 answerable and 19/18 unanswerable questions, so 1 question ≈ 1.8 points of answer accuracy and ≈ 5.3–5.6 points of refusal accuracy.
 
+The tables above are the M3 baseline (cosine threshold). M4 results follow; full tables are in REPORT.md sections 5–7 and [DESIGN §12](docs/DESIGN.md).
+
+**Answerability judge (M4).** Each variant's thresholds are calibrated on dev; the default is the variant with the best dev balanced accuracy.
+
+| lang | refusal rule | dev bal. acc | test refusal acc | test false refusal | test bal. acc | test answer acc | extra latency (p50) |
+|---|---|---|---|---|---|---|---|
+| en | M3: cosine 0.67 + identifier rule | 77.9 | 42.1 | 29.8 | 56.1 | **66.7** | – |
+| en | **M4 default: cosine AND `nli-t` (mDeBERTa XNLI fp32)** | 81.1 | **94.7** | 56.1 | 69.3 | 42.1 | +103 ms |
+| en | cosine AND `reranker-m3` | 79.9 | 78.9 | 38.6 | **70.2** | 57.9 | +155 ms |
+| zh | M3: cosine 0.63 + identifier rule | 79.4 | 66.7 | 16.4 | 75.2 | 81.8 | – |
+| zh | **M4 default: cosine AND `reranker-m3` (bge-reranker-v2-m3 uint8)** | 86.3 | 61.1 | **5.5** | **77.8** | **92.7** | +161 ms |
+
+- The judges separate answerable from unanswerable questions much better than cosine. Test ROC AUC: en cosine 0.59 vs NLI 0.83; zh cosine 0.80 vs NLI 0.88 / m3 0.88.
+- **Chinese: clear win.** Answer accuracy rises from 81.8 to 92.7 and false refusals drop from 16.4 to 5.5.
+- **English: the dev-chosen setting is a bad product trade-off.** It refuses 94.7 % of unanswerable questions but also 56 % of answerable ones, so answer accuracy drops from 66.7 to 42.1. The selection criterion (balanced accuracy on only 13 dev unanswerables) favours refusing. It was not changed after looking at test. `ANSWERABILITY_JUDGE=none` restores the M3 behaviour.
+- One concrete cause: the judge reads the bare sentence without its heading, so "When was the first X2 firmware released?" is refused even though the heading-context answer contains the date. See the roadmap.
+
+**Query rewriting for paraphrases (M4)** (hybrid retrieval, test; the default is chosen on dev MRR)
+
+| lang | expansion | test hit@1 | test MRR | **paraphrase hit@1** | **paraphrase MRR** | extra latency p50 / p95 |
+|---|---|---|---|---|---|---|
+| en | off (M3) | 78.9 | 0.848 | 50.0 | 0.635 | – |
+| en | **`rewrite` qwen2.5:1.5b (default)** | 82.5 | 0.875 | **59.1** | **0.708** | 508 / 1427 ms |
+| en | `hyde` qwen2.5:1.5b | 80.7 | 0.874 | 54.5 | 0.696 | 732 / 1564 ms |
+| en | `prf` (no model) | 63.2 | 0.748 | 45.5 | 0.600 | 5 / 7 ms |
+| zh | off (M3) | 89.1 | 0.941 | 86.4 | 0.932 | – |
+| zh | **`rewrite` qwen2.5:0.5b (default)** | 89.1 | 0.941 | 86.4 | 0.932 | 196 / 311 ms |
+
+For English paraphrases, hit@1 goes from 50 % to 59 % (+2 of 22 questions) at about +0.5 s per question. For Chinese, the dev-chosen rewrite changes nothing on test. `hyde` 1.5b would have been best there (MRR 0.952), but dev didn't pick it.
+
+**Heading context (M4).** English dev answer accuracy goes from 78.4 to 81.1 (the cross-document question about the first X2 firmware now carries `2025-07-01`). English test and Chinese are unchanged (4 and 0 answers gained a heading, none flipped). Few questions depend on headings.
+
+**Optimism bias, M2 → M3 → M4** (extractive answerer, end-to-end with each milestone's defaults)
+
+| | evaluated on | en answer acc / false refusal | zh answer acc / false refusal |
+|---|---|---|---|
+| M2 | 44 en / 26 zh questions, threshold calibrated on the same questions | 88.2 / 5.9 | 89.5 / 10.5 |
+| M3 | held-out test (dev in brackets) | 66.7 / 29.8 (78.4 / 13.5) | 81.8 / 16.4 (81.1 / 16.2) |
+| M4 | held-out test (dev in brackets) | 40.4 / 57.9 (59.5 / 40.5) | 92.7 / 5.5 (89.2 / 10.8) |
+
+M2's numbers were self-calibrated and optimistic. M3 exposed this with a held-out split. M4 shows the gap is still there whenever several knobs are chosen on a small dev set: the English judge's balanced accuracy drops from 81.1 on dev to 69.3 on test. The Chinese improvement does transfer.
+
 ## Project layout
 
 ```
@@ -212,15 +277,18 @@ src/rag/
   embeddings.py  Embedder protocol, FastEmbedEmbedder (ONNX), HashEmbedder (tests)
   store.py       SQLite + NumPy vector store, embedder-signature guard, dedup
   retriever.py   hybrid dense + BM25 retrieval with RRF
-  answerer.py    Answerer protocol, ExtractiveAnswerer, OpenAICompatAnswerer
+  answerer.py    Answerer protocol, ExtractiveAnswerer (+ judge policies, heading context), OpenAICompatAnswerer
+  answerability.py  NLI / cross-encoder answerability judges (ONNX)
+  query.py       query expansion: PRF / LLM rewrite / HyDE with cache + circuit breaker
   service.py     orchestration (ingest / ask / ask_stream, stored files, answerer switch)
   pdfview.py     server-side PDF page rendering + highlight boxes (pypdfium2 + Pillow)
-  eval.py        evaluation harness (python -m rag.eval)
+  eval.py        evaluation harness (python -m rag.eval); eval_ext.py = M4 blocks (judges, expansion, headings)
   api.py         FastAPI app factory
   static/        single-file web UI
 tests/           pytest (offline fast suite + @slow integration)
 scripts/         download_model.py, e2e_demo.sh, make_pdf.py / make_zh_pdf.py (sample PDFs), split_dataset.py,
-                 screenshot.py (headless-Chrome screenshots via DevTools), ollama.sh (local LLM)
+                 screenshot.py / record_gif.py (headless Chrome via DevTools), ollama.sh (local LLM),
+                 podman.sh / docker_smoke.sh (rootless container build + smoke test), ci_local.sh (CI steps locally)
 sample_docs/     en/ (md, txt, 2 PDFs) and zh/ (md, txt, 1 Chinese PDF) demo corpora
 eval/            authoring/ (question sources), datasets/{en,zh}.{dev,test}.jsonl (frozen), results/ (JSON + REPORT.md)
 docs/            DESIGN.md, screenshots
@@ -228,10 +296,13 @@ docs/            DESIGN.md, screenshots
 
 ## Limitations and roadmap
 
-- **Refusal is the weakest part.** The confidence signal (max sentence cosine) can't separate near-miss unanswerable questions from colloquial paraphrases. Next step: an answerability check that compares the question's *asked attribute* with the evidence (a small ONNX NLI/cross-encoder, or a 1.5B LLM used as a judge).
-- English paraphrase retrieval is weak (test hit@1 50 % for paraphrases). Query rewriting with the local LLM, or a stronger embedding model, should help.
+- **English refusal is still the weakest part.** The NLI judge separates the classes far better than cosine (test AUC 0.83 vs 0.59), but the dev-chosen operating point refuses too much. Next steps:
+  - feed the judge the heading-prefixed sentence;
+  - choose thresholds under a false-refusal constraint (for example ≤ the M3 rate on dev);
+  - grow the dev set's unanswerable questions (13 is too few to tune two thresholds).
+- English paraphrase retrieval improved (hit@1 50 → 59 %) but needs the local LLM and adds about 0.5 s. A stronger embedding model is the other route.
+- **int8 ONNX models are unsafe on this AMX VM.** onnxruntime's AMX int8 GEMM returns random results when tile state isn't preserved (onnxruntime #33247), so the judges use fp32 / uint8 weights. The bge-small embedders are unaffected; this was verified bit-for-bit.
 - Scanned PDFs (images) are rejected because there's no OCR yet.
-- The extractive answerer quotes sentences, so context that lives only in headings (for example a release date in a `## Version` heading) is lost.
 - PDF highlight boxes come from text search on the page. If a cited sentence was hyphenated across lines in the PDF, it may not be boxed (the chunk text is still highlighted).
 - Datasets were written by the author for synthetic sample documents. Use them for relative comparisons, not as absolute quality claims.
 

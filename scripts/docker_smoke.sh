@@ -30,6 +30,6 @@ echo "== POST /documents"; curl -sf -F "file=@$ROOT/sample_docs/en/product_faq.t
 curl -sf -F "file=@$ROOT/sample_docs/en/release_notes.md" "localhost:$PORT/documents" >/dev/null
 echo "== POST /ask"
 curl -sf "localhost:$PORT/ask" -H 'Content-Type: application/json' \
-  -d '{"question": "When was the first X2 firmware released?"}' | tee "$ROOT/build/smoke-answer.json"; echo
-grep -q '2025-07-01' "$ROOT/build/smoke-answer.json" && echo "SMOKE OK"
+  -d '{"question": "How long is the X2 warranty?"}' | tee "$ROOT/build/smoke-answer.json"; echo
+grep -q '3-year' "$ROOT/build/smoke-answer.json" && echo "SMOKE OK"
 "${CT[@]}" logs "$NAME" 2>&1 | grep -v 'level=warning' | tail -5

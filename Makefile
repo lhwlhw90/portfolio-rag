@@ -5,8 +5,8 @@ export HF_HOME := $(MODEL_DIR)
 export FASTEMBED_CACHE_PATH := $(MODEL_DIR)
 export PYTHONPATH := $(CURDIR)/src
 
-.PHONY: venv install test test-slow download-model download-models run demo eval eval-llm eval-report datasets sample-pdfs \
-        ollama-install ollama-up ollama-down ollama-pull run-llm docker-build docker-up clean
+.PHONY: venv install test test-slow download-model download-models run demo eval eval-m4 eval-llm eval-report datasets sample-pdfs \
+        ollama-install ollama-up ollama-down ollama-pull run-llm docker-build docker-up podman-smoke ci-local clean
 
 venv:
 	uv venv .venv -p 3.12 || python3 -m venv .venv
@@ -24,8 +24,8 @@ test-slow: download-models
 download-model:
 	$(PY) scripts/download_model.py
 
-download-models:  # English + Chinese embedding models
-	$(PY) scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5
+download-models:  # English + Chinese embedding models + M4 answerability judges
+	$(PY) scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5 nli-t reranker-m3
 
 run:
 	$(PY) -m uvicorn rag.api:app_factory --factory --host 0.0.0.0 --port 8000
@@ -48,6 +48,10 @@ eval-llm: download-models  # requires `make ollama-up`; LLM runs on the test spl
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 --chunk-sizes 800,400 --llm --llm-models $(LLM_MODELS)
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5 --chunk-sizes 800,200 --llm --llm-models $(LLM_MODELS)
 
+eval-m4: download-models  # + answerability judges and query expansion (needs `make ollama-up` and qwen2.5 0.5b/1.5b)
+	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 --chunk-sizes 800,400 --judges nli,nli-t,reranker,reranker-m3 --qe prf,rewrite:qwen2.5:0.5b,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b,hyde:qwen2.5:1.5b
+	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5 --chunk-sizes 800,200 --judges nli,nli-t,reranker-m3 --qe prf,rewrite:qwen2.5:0.5b,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b,hyde:qwen2.5:1.5b
+
 eval-report:
 	$(PY) -m rag.eval --report
 
@@ -69,6 +73,12 @@ ollama-pull:
 
 docker-build:
 	docker compose build
+
+podman-smoke:  # no Docker daemon: rootless podman build + run + /health + /ask
+	./scripts/docker_smoke.sh
+
+ci-local:  # every step of .github/workflows/ci.yml on a clean copy of the tree
+	./scripts/ci_local.sh
 
 docker-up:
 	[ -f .env ] || cp .env.example .env

@@ -1,4 +1,4 @@
-# RAG 知识库问答系统：技术方案 (v0.3，M3 已完成)
+# RAG 知识库问答系统：技术方案 (v0.4，M4 已完成)
 
 > AI 作品集项目 #1。目标是一个**纯 CPU、零付费 API、可离线**的 RAG 问答系统，回答必须带可核验的引用（文档名 + 页码 + 原句）。
 
@@ -112,7 +112,7 @@ class Answerer(Protocol):
 | **M1 骨架** | 模块分层、配置、API、extractive 回答器、SQLite 存储、Dockerfile/compose、Makefile、31 个离线测试和 1 个 slow 集成测试 | ✅ 已完成（本次交付） |
 | **M2 检索与引用** | 评测集和 `make eval`（hit@k/MRR/引用正确率/拒答率）；chunk、alpha、阈值调参；中文（bge-small-zh + CJK bigram BM25）和多语言模型验证；Ollama 实测 qwen2.5:0.5b/1.5b（门控、事后引用归因）；cross-encoder 重排做过探查，结论是不采用（见 §10.4） | ✅ 已完成（见 §10） |
 | **M3 评测可信度 + 前端** | 评测集扩到 en 126 / zh 122 题并固定 dev/test 划分（只在 dev 上调 alpha 和阈值，test 报告）；中文 PDF（Chrome + Noto CJK 生成，康熙部首归一化）；引用点击高亮、服务端渲染 PDF 页并框出原句、置信度条和拒答原因、answerer/检索模式切换、SSE 流式输出；删除重复 GGUF，ollama.sh 改为按需下载并校验 sha256 | ✅ 已完成（见 §11） |
-| **M4 交付** | Docker 镜像实测 build/run（需要有 Docker 的环境）、GitHub Actions 跑通、录屏 GIF、README 完善（评测表、架构图、设计取舍）、可选 HF Spaces（免费 CPU）部署 | ⏳ |
+| **M4 交付** | Docker 镜像实测 build/run（需要有 Docker 的环境）、GitHub Actions 跑通、录屏 GIF、README 完善（评测表、架构图、设计取舍）、可选 HF Spaces（免费 CPU）部署 | ✅（podman 实测 build/run/health/问答；本地脚本化 CI 通过；GIF 已录；不推 GitHub、不部署 HF Spaces）|
 
 ## 9. 风险与应对
 
@@ -126,7 +126,7 @@ class Answerer(Protocol):
 | 扫描版 PDF 无文本 | 上传失败 | 返回 422 并给出明确提示；后续可选 OCR（Tesseract，CPU） |
 | 暴力检索规模上限 | 超过 10 万 chunk 后变慢 | `VectorStore` 接口可替换为 FAISS（`IndexFlatIP`/HNSW） |
 | HF Hub 不可达或限流 | 首次下载失败 | `make download-model` 预取到 `MODEL_DIR`；运行时设 `HF_HUB_OFFLINE=1`；Docker 支持 `BAKE_MODEL=1` 把模型打进镜像 |
-| 当前机器没有 Docker | Dockerfile 未实测 | 已用全新 venv 模拟 Dockerfile 的安装步骤（lock 安装 + 非 editable 安装 + 静态资源打包）并验证通过；CI 中包含 docker build job；M4 在有 Docker 的环境实测 |
+| 当前机器没有 Docker | Dockerfile 未实测 | 已用全新 venv 模拟 Dockerfile 的安装步骤（lock 安装 + 非 editable 安装 + 静态资源打包）并验证通过；CI 中包含 docker build job；M4 已用免 sudo 的 rootless podman 实测（见 §12.6）|
 | 换 embedding 模型导致向量空间混用 | 检索结果错误 | 存储时记录 embedder 签名，不一致时拒绝启动并提示 |
 
 
@@ -213,3 +213,91 @@ class Answerer(Protocol):
 ### 11.6 清理
 - 删除 `models/gguf/` 下两份重复 GGUF（0.5b 491 MB + 1.5b 1.12 GB，**共释放 1534 MiB**）；Ollama blob 中已经有相同内容。顺带清理了 M2 reranker 实验遗留的 refs/lock 小文件。
 - `scripts/ollama.sh pull [0.5b|1.5b]`：tag 已存在则跳过；否则先尝试 `ollama pull`，失败时把 HF GGUF 下载到 `models/.gguf-XXXX` 临时目录，校验 sha256，再用模板 Modelfile 执行 `ollama create`，最后通过 trap 删除临时目录。实测流程：先 `ollama rm qwen2.5:0.5b`，再执行 `pull 0.5b`，registry 被拦截后成功走回退路径，`models/gguf` 不再出现。
+
+
+## 12. M4 实施记录（可答性判别、查询改写、标题上下文、容器、CI）
+
+所有选择仍然只看 dev，test 只报告。数字为 test，括号内为 dev（chunk 800，top_k 4，CPU 8 核）。完整表格见 `eval/results/REPORT.md` 第 5–7 节。
+
+### 12.1 可答性判别（`src/rag/answerability.py`）
+- 候选判别器（都是 ONNX、CPU，模型都在 `models/`）：
+  - `nli` / `nli-t`：mDeBERTa-v3-base XNLI 多语言（Xenova，**fp32** 1.1 GB）。前提是 top-3 候选句，假设分别是问题原文、"The text answers the question: {q}"（中文用"这段文字回答了这个问题：{q}"）。分数取最大 P(entailment)。每次只喂一对句子，不做 padding batch。
+  - `reranker`：ms-marco-MiniLM-L-12（fp32，仅英文）。`reranker-m3`：bge-reranker-v2-m3（**uint8**，多语言）。分数取 sigmoid(max logit)。
+- 策略（`ExtractiveAnswerer(judge=..., judge_policy=...)`）：`replace`（只看判别器）、`and`（余弦和判别器都要过）、`or`（过一个就行）。判别器拒答时的原因码是新增的 `not_supported`（中英文说明），`/ask` 返回 `support_score`。`and` 策略在余弦已经不过时不再调用判别器，省一次推理。
+- 校准：每个变体在 dev 上网格搜索阈值（余弦 0.40–0.90 × 判别器分数的 dev 中点），取 balanced accuracy 最优平台的中点。默认值是 dev 上 balanced accuracy 最高的变体，按 embedding 模型写进 `config.ANSWERABILITY_DEFAULTS`（`ANSWERABILITY_JUDGE=auto`）。设 `ANSWERABILITY_JUDGE=none` 可恢复 M3 行为。
+
+| lang | 变体 | dev bal. | test 拒答准确率 | test 误拒率 | test bal. | test 答对率 | 判别器 p50 | 端到端 p50 |
+|---|---|---|---|---|---|---|---|---|
+| en | M3：余弦 0.67 + 标识符规则 | 77.9 | 42.1 | 29.8 | 56.1 | 66.7 | – | 115 ms |
+| en | **余弦 0.665 AND nli-t 0.606（dev 选中）** | **81.1** | 94.7 | 56.1 | 69.3 | 42.1 | 103 ms | 225 ms |
+| en | nli-t only | 78.6 | 94.7 | 50.9 | 71.9 | 45.6 | 103 ms | 225 ms |
+| en | 余弦 OR reranker（ms-marco） | 77.9 | 42.1 | 24.6 | 58.8 | 71.9 | 21 ms | 138 ms |
+| en | 余弦 AND reranker-m3 | 79.9 | 78.9 | 38.6 | 70.2 | 57.9 | 155 ms | 269 ms |
+| zh | M3：余弦 0.63 + 标识符规则 | 79.4 | 66.7 | 16.4 | 75.2 | 81.8 | – | 109 ms |
+| zh | **余弦 0.575 AND reranker-m3 0.118（dev 选中）** | **86.3** | 61.1 | 5.5 | 77.8 | 92.7 | 161 ms | 264 ms |
+| zh | 余弦 OR nli-t | 80.9 | 77.8 | 14.5 | 81.6 | 83.6 | 111 ms | 213 ms |
+
+- 原始分数的 ROC AUC（可答 vs 不可答，dev / test）：en 余弦 0.731 / 0.593，nli 0.738 / 0.779，nli-t 0.767 / **0.829**，ms-marco 0.689 / 0.654，m3 0.772 / 0.747；zh 余弦 0.775 / 0.795，nli 0.766 / **0.884**，nli-t 0.682 / 0.857，m3 **0.878** / 0.879。**NLI / 交叉编码器确实比余弦更能区分"问的属性在不在证据里"**，在 en test 上尤其明显（0.59 → 0.83）。
+- 结论（如实）：
+  - zh：dev 选出的 AND m3 在 test 上全面不差于 M3：答对率 81.8 → 92.7，误拒率 16.4 → 5.5，balanced 75.2 → 77.8；拒答准确率小降（66.7 → 61.1，约 1 道题）。
+  - en：判别器把 balanced accuracy 从 56.1 提到 69.3，代价是**大量误拒**（29.8 → 56.1），答对率 66.7 → 42.1。原因是 balanced accuracy 给两类同等权重，dev 上只有 13 道不可回答题，最优点落在"宁可多拒"一侧；而且 dev → test 的落差很大（dev 81.1 → test 69.3）。如果产品更看重答对率，应改用"在误拒率不超过 M3 的前提下最大化拒答率"之类的约束准则（列为后续工作，不能事后在 test 上改准则）。
+  - 一个具体的误拒原因：判别器只看候选句本身，看不到 12.3 节补上的标题。"When was the first X2 firmware released?" 的证据句没有日期，NLI 判为不蕴含（0.39 < 0.61）而拒答。后续应把带标题的句子作为前提，然后重新在 dev 上校准。
+- 踩坑一（重要）：本机 CPU 有 AMX，onnxruntime 1.31 的 int8（U8S8）GEMM 走 AMX tile。这台 VM 在上下文切换后不保存 tile 数据（与 onnxruntime issue #33247 现象一致），所以 **int8 模型会静默返回随机结果**。同一对句子重复推理，P(entailment) 在 0.13–0.62 之间跳；bge-reranker-v2-m3-int8 的 logit 在 −6.2 到 +6.4 之间跳。和 fastembed 的 embedding 推理交替执行时最明显。一轮评测里 nli 的 dev AUC 两次运行分别是 0.82 和 0.51，就是这么发现的。改用 uint8（U8U8，走 AVX-512 VNNI）后两次进程间结果逐位一致，embedding 模型不受影响。
+- 踩坑二：mDeBERTa 的 8-bit 导出精度损失严重。uint8 与 fp32 在探针句对上的相关系数只有 0.47，例如 "part-time" 近似题 fp32 给 0.003，uint8 给 0.30。因此 NLI 用 fp32（每题 3 句约 90–120 ms）。m3 的 uint8 与 fp32 差异在 0.05 内，所以保留 uint8（545 MB）。实验用的 int8 / uint8 NLI 和 fp32 m3（2.2 GB）已从 models/ 删除。
+
+### 12.2 改写题检索（`src/rag/query.py`）
+- 模式（`QUERY_EXPANSION`）：`off`；`prf`（无模型伪相关反馈：取首轮 top-3 chunk 的 tf-idf 高分词）；`rewrite`（本地 Ollama 把问题改写成文档用语的检索式，最多 3 条）；`hyde`（让 LLM 写一段假想答案作查询）。原查询与扩展查询各自做 hybrid 检索，再按加权 RRF 融合：原查询权重 1，扩展共享 `QUERY_EXPANSION_WEIGHT`（dev 上在 0.5 / 1.0 中选）。回答器始终看原问题。
+- 稳健性：LLM 失败或超时时不扩展，并熔断 60 s，避免每次请求都等超时（Docker 内没有 Ollama 时实测只多一条 warning）。结果按 `(mode, model, question)` 缓存；评测把缓存和首次生成耗时持久化在 `eval/results/qe_cache_{lang}.json`，重跑不需要再调 LLM，报告的延迟是首次生成的真实耗时。
+- 结果（hybrid，test）：
+
+| lang | 扩展 | dev MRR | test hit@1 | test MRR | test 改写题 hit@1 | test 改写题 MRR | 额外延迟 p50 / p95 |
+|---|---|---|---|---|---|---|---|
+| en | off（M3） | 0.892 | 78.9 | 0.848 | 50.0 | 0.635 | – |
+| en | prf | 0.848 | 63.2 | 0.748 | 45.5 | 0.600 | 5 / 7 ms |
+| en | rewrite 0.5b | 0.913 | 80.7 | 0.864 | 54.5 | 0.679 | 232 / 426 ms |
+| en | **rewrite 1.5b（dev 选中）** | **0.917** | **82.5** | **0.875** | **59.1** | **0.708** | 508 / 1427 ms |
+| en | hyde 0.5b | 0.906 | 78.9 | 0.854 | 50.0 | 0.645 | 277 / 627 ms |
+| en | hyde 1.5b | 0.900 | 80.7 | 0.874 | 54.5 | 0.696 | 732 / 1564 ms |
+| zh | off（M3） | 0.943 | 89.1 | 0.941 | 86.4 | 0.932 | – |
+| zh | **rewrite 0.5b（dev 选中）** | **0.951** | 89.1 | 0.941 | 86.4 | 0.932 | 196 / 311 ms |
+| zh | hyde 1.5b | 0.946 | 90.9 | 0.952 | 90.9 | 0.955 | 658 / 1841 ms |
+
+- 英文改写题 test hit@1 50.0 → 59.1（+2 题，n=22），MRR 0.635 → 0.708，每题多约 0.5 s（p95 1.4 s）。中文 dev 选中的 rewrite 0.5b 在 test 上没有变化，只增加约 0.2 s。中文 test 上最好的是 hyde 1.5b，但 dev 没选它，不能事后换。PRF 在两种语言上都变差，扩展词把 BM25 带偏了。
+- 默认值写在 `config.QUERY_EXPANSION_DEFAULTS`（`QUERY_EXPANSION=auto`）：en → rewrite qwen2.5:1.5b，zh → rewrite qwen2.5:0.5b；其他模型为 off。
+
+### 12.3 标题上下文
+- 入库时每个 chunk 的 `meta.heading` 记录它起始处生效的章节标题，可以跨 chunk、跨 PDF 页继承；chunk 恰好切在标题行中间时取完整标题行。`StoredChunk.heading` 从 meta 读出。`text.sentences_with_headings` 给每句配上最近的标题。
+- 摘句时满足以下任一条件就前置标题，例如 "Version 2.0 (2025-07-01): First release for the X2 hardware."：(a) 标题含句子和问题里都没有的数字（日期、版本），且问题是时间/版本类或与标题共享词项；(b) 标题补上 ≥2 个问题词。引用 snippet 仍是原句，方便高亮。同时修了重叠 chunk 导致同一句重复出现的问题。
+- 效果：en dev 答对率 78.4 → 81.1（修好 en-c002："when was the first X2 firmware released" → 带上 2025-07-01）；en test 有 4 条答案多了标题，正确性不变（66.7）；zh dev 2 条答案多了标题，答对率不变。数据集里依赖标题的题很少，所以总体提升有限；`tests/test_m4_features.py` 覆盖了这些规则和 chunk 继承。
+
+### 12.4 端到端 M4 系统（dev 选中的判别器 + 查询扩展 + 标题）
+- en：test 答对率 40.4（dev 59.5），误拒率 57.9（40.5），拒答准确率 94.7（100），p50 0.70 s。
+- zh：test 答对率 92.7（89.2），误拒率 5.5（10.8），拒答准确率 61.1（83.3），p50 0.47 s。
+
+### 12.5 乐观偏差：M2 → M3 → M4（extractive，test）
+| | 评测方式 | en 答对率 / 误拒率 | zh 答对率 / 误拒率 |
+|---|---|---|---|
+| M2 | 44 / 26 题，阈值在同一集合上校准 | 88.2 / 5.9 | 89.5 / 10.5 |
+| M3 | held-out test，dev 校准 | 66.7 / 29.8（dev 78.4 / 13.5） | 81.8 / 16.4（dev 81.1 / 16.2） |
+| M4 | held-out test，dev 选择判别器 + 扩展 | 40.4 / 57.9（dev 59.5 / 40.5） | 92.7 / 5.5（dev 89.2 / 10.8） |
+
+dev → test 的落差在 M4 的英文上依然很大（判别器 balanced accuracy dev 81.1 → test 69.3）：dev 只有 13 道不可回答题，任何多参数选择都会过拟合。
+
+### 12.6 容器（无 Docker 守护进程，免 sudo）
+- 机器上没有 docker、podman 或 act。用 podman-static v6.1.4 解压到 `tools/podman-linux-amd64`；`scripts/podman.sh` 把 HOME、XDG_*、TMPDIR、graphroot、runroot 全部放到 `tools/podman-state`，存储用 overlay + fuse-overlayfs，运行时用 crun，网络用 pasta，`cgroups="disabled"`。
+- 环境限制和对应处理：
+  - 非特权 user namespace 可用，`/etc/subuid` 有 box 的 65536 个子 ID。但没有 setuid 的 `newuidmap` / `newgidmap`（uidmap 包需要 root 安装），podman 报错：`command required for rootless mode with multiple IDs: exec: "newuidmap": executable file not found in $PATH`。处理方式：让 podman 以没有 subuid 记录的用户名运行，走官方的**单 UID 映射**模式（只映射容器 UID 0 → 宿主 box）。
+  - 首次报错 `could not find a working conmon binary`：在 containers.conf 中显式设置 `conmon_path` 后解决。
+  - 单 UID 映射下 `chown` 会失败：原 Dockerfile 构建时报 `chown: changing ownership of '/data': Invalid argument`。Dockerfile 改成 chown 失败时回退到 `chmod a+rwX`。
+  - 单 UID 映射下也不能以镜像的 `USER 1000` 运行，报错 `potentially insufficient UIDs or GIDs available in user namespace (requested 1000:1000 ...)`。本地验证用 `--user 0`，它对应宿主的普通用户 box，不是真 root。有 Docker 的机器上不受影响。
+  - OCI 格式会忽略 HEALTHCHECK，所以用 `--format docker` 构建。
+- 实测（`scripts/docker_smoke.sh`）：build 成功（镜像 397 MB）。run 时把 `models/` 只读挂载，`/health` 返回 200（judge=nli-t，expansion=rewrite）。上传 2 篇文档后，`/ask "How long is the X2 warranty?"` 返回带 [1] 引用的答案，support_score 0.97，延迟约 200 ms；容器内没有 Ollama，改写自动熔断。
+- `.dockerignore` 排除了 tools/（其中有 podman 自身的存储，否则构建上下文会递归包含自己）、models、eval 数据和测试。
+
+### 12.7 本地 CI
+- `act` 需要 Docker 守护进程，不可行。`scripts/ci_local.sh` 在 `build/ci/workspace` 用 `git ls-files` 复制一份干净工作树，然后逐步等价执行 ci.yml：uv 建 Python 3.12 venv → `pip install -r requirements.lock && pip install -e .[dev]` → `pytest -q` → `rag.eval` en/zh → `download_model.py`（增加 nli-t、reranker-m3）→ `pytest -m slow` → docker job（无守护进程时用 podman build）。日志在 `build/ci/ci.log`。
+- 修复：`rag.eval --model-dir` 默认值改为读取 `MODEL_DIR` 环境变量（ci.yml 设置了该变量，原来被忽略）。
+- 结果（2026-10-23 23:28）：**CI (local) PASSED**。fast 108 passed；eval en/zh 通过（101 s）；download 通过；slow 6 passed；podman build 通过（23 s，有层缓存）。第一次运行时 slow 测试 `test_real_nli_judge_and_heading_context` 失败：默认 en 判别器只看裸句、不看标题，所以拒答了"When was the first X2 firmware released?"（即已知局限）。现在该测试显式关掉判别器（`answerability_judge="none"`）来测标题上下文，局限记入 README。
+
+### 12.8 演示 GIF
+`scripts/record_gif.py` 通过 DevTools 协议驱动 headless Chrome：模拟逐字输入，在流式回答期间每 200 ms 截一帧，打开 PDF 引用，最后演示判别器拒答；相同帧合并，用 Pillow 量化成 128 色 GIF，输出 `docs/img/demo.gif`（41 帧，16 s，约 0.8 MB）。

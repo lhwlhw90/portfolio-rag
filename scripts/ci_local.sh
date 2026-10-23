@@ -22,13 +22,17 @@ checkout() {
   (cd "$ROOT" && git ls-files -co --exclude-standard -z | xargs -0 -I{} cp --parents {} "$WS/")
   echo "copied $(cd "$WS" && find . -type f | wc -l) files at $(cd "$ROOT" && git rev-parse --short HEAD)+worktree"
 }
-setup_python() { "$PY" -m venv "$WS/.venv" && "$WS/.venv/bin/python" --version; }
+setup_python() {  # python 3.12 like setup-python; uv provides it if the system python differs
+  if command -v uv >/dev/null; then uv venv -q -p 3.12 --seed "$WS/.venv"; else "$PY" -m venv "$WS/.venv"; fi
+  "$WS/.venv/bin/python" --version
+}
 install() { cd "$WS" && .venv/bin/pip install -q -r requirements.lock && .venv/bin/pip install -q -e ".[dev]"; }
 export MODEL_DIR="$ROOT/models" HF_HOME="$ROOT/models"   # = ${{ github.workspace }}/models
+unset HF_HUB_OFFLINE  # like the hosted runner (models already present are reused, missing ones downloaded)
 run_tests() { cd "$WS" && env -u MODEL_DIR -u HF_HOME .venv/bin/pytest -q; }
 run_eval() { cd "$WS" && PYTHONPATH=src .venv/bin/python -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 \
              && PYTHONPATH=src .venv/bin/python -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5; }
-download() { cd "$WS" && PYTHONPATH=src .venv/bin/python scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5 nli; }
+download() { cd "$WS" && PYTHONPATH=src .venv/bin/python scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5 nli-t reranker-m3; }
 slow_tests() { cd "$WS" && .venv/bin/pytest -q -m slow; }
 docker_build() {
   cd "$WS"

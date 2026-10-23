@@ -24,7 +24,7 @@ from PIL import Image
 # answer, and a refusal
 SCENES = [
     ("Whom do I notify after a security incident and how quickly?", "extractive", 1),
-    ("When was the first X2 firmware released?", "extractive", 0),
+    ("How long is the X2 warranty?", "extractive", 0),
     ("What is the price of the RoboArm X2?", "extractive", 0),
 ]
 DONE = "(()=>!!document.querySelector('#out .chips .chip')&&!document.querySelector('#live')&&!document.querySelector('#go').disabled)()"
@@ -51,7 +51,7 @@ class Recorder:
         shot = await self.call("Page.captureScreenshot", format="png")
         img = Image.open(io.BytesIO(base64.b64decode(shot["data"]))).convert("RGB")
         img = img.resize((self.width, round(img.height * self.width / img.width)), Image.LANCZOS)
-        if self.frames and list(img.getdata()) == list(self.frames[-1][0].getdata()):
+        if self.frames and img.tobytes() == self.frames[-1][0].tobytes():
             self.frames[-1] = (self.frames[-1][0], self.frames[-1][1] + ms)  # merge identical frames
         else:
             self.frames.append((img, ms))
