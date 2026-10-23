@@ -1,4 +1,4 @@
-# RAG 知识库问答系统：技术方案 (v0.2，M2 已完成)
+# RAG 知识库问答系统：技术方案 (v0.3，M3 已完成)
 
 > AI 作品集项目 #1。目标是一个**纯 CPU、零付费 API、可离线**的 RAG 问答系统，回答必须带可核验的引用（文档名 + 页码 + 原句）。
 
@@ -9,7 +9,7 @@
 | 功能 | 上传 txt/md/pdf；问答结果带引用（文档名、页码、chunk id、支撑原句）；网页 demo；REST API |
 | 工程 | Docker（CPU）、pytest、CI 配置、英文 README |
 | 约束 | 不用 GPU；不用付费 API；模型只放 `MODEL_DIR`（默认 `./models`），不进 `~/.cache`；虚拟环境在项目内 `.venv` |
-| 非目标（v0.1） | OCR、多租户和鉴权、海量（>100 万 chunk）检索、流式输出 |
+| 非目标 | OCR、多租户和鉴权、海量（>100 万 chunk）检索（流式输出已在 M3 实现） |
 
 ## 2. 架构
 
@@ -111,7 +111,7 @@ class Answerer(Protocol):
 |---|---|---|
 | **M1 骨架** | 模块分层、配置、API、extractive 回答器、SQLite 存储、Dockerfile/compose、Makefile、31 个离线测试和 1 个 slow 集成测试 | ✅ 已完成（本次交付） |
 | **M2 检索与引用** | 评测集和 `make eval`（hit@k/MRR/引用正确率/拒答率）；chunk、alpha、阈值调参；中文（bge-small-zh + CJK bigram BM25）和多语言模型验证；Ollama 实测 qwen2.5:0.5b/1.5b（门控、事后引用归因）；cross-encoder 重排做过探查，结论是不采用（见 §10.4） | ✅ 已完成（见 §10） |
-| **M3 前端 demo** | 引用点击高亮原文和 PDF 页预览、拖拽上传、上传进度、对话历史、LLM/extractive 切换开关；可选流式输出（SSE） | ⏳ |
+| **M3 评测可信度 + 前端** | 评测集扩到 en 126 / zh 122 题并固定 dev/test 划分（只在 dev 上调 alpha 和阈值，test 报告）；中文 PDF（Chrome + Noto CJK 生成，康熙部首归一化）；引用点击高亮、服务端渲染 PDF 页并框出原句、置信度条和拒答原因、answerer/检索模式切换、SSE 流式输出；删除重复 GGUF，ollama.sh 改为按需下载并校验 sha256 | ✅ 已完成（见 §11） |
 | **M4 交付** | Docker 镜像实测 build/run（需要有 Docker 的环境）、GitHub Actions 跑通、录屏 GIF、README 完善（评测表、架构图、设计取舍）、可选 HF Spaces（免费 CPU）部署 | ⏳ |
 
 ## 9. 风险与应对
@@ -121,7 +121,7 @@ class Answerer(Protocol):
 | Extractive 只能摘句，不能跨文档综合 | 答案不够流畅 | 定位为"零成本、可核验"的基线；LLM 后端可选；README 中明确说明 |
 | 小 embedding 模型对改写问题召回不足 | 答非所问 | 混合 BM25；M2 加重排；评测驱动调参 |
 | 拒答阈值依赖具体模型 | 换模型后误答或误拒 | 已实现：`MODEL_MIN_SCORES` 按模型给默认值，由 `make eval` 校准；`ANSWER_MIN_SCORE` 可覆盖 |
-| 评测集小，阈值在同一数据上校准 | 指标偏乐观（过拟合） | M3/M4 扩充题目并划分 dev/test；报告中注明 1 题 ≈ 2.9（en）或 5.3（zh）个百分点 |
+| 评测集小，阈值在同一数据上校准 | 指标偏乐观（过拟合） | M3 已解决：dev/test 划分，test 不参与任何调参，报告同时给出 test-oracle 显示乐观偏差；M2 的 88.2 在 held-out test 上降到 66.7 |
 | sub-1B LLM 质量差、几乎不会自行拒答 | 幻觉，或出现 "costs [3]" 这类空答案 | 默认仍用 extractive；LLM 必须配合置信度门控；文档建议至少使用 1.5B |
 | 扫描版 PDF 无文本 | 上传失败 | 返回 422 并给出明确提示；后续可选 OCR（Tesseract，CPU） |
 | 暴力检索规模上限 | 超过 10 万 chunk 后变慢 | `VectorStore` 接口可替换为 FAISS（`IndexFlatIP`/HNSW） |
@@ -175,3 +175,41 @@ class Answerer(Protocol):
 - 分句：支持 `。！？；`（后面不需要空格），硬换行拼接时中文之间不插空格。
 - 拒答提示语按问题语言切换（"在已上传的文档中没有找到相关信息。"）。
 - 指标（bge-small-zh，chunk=200）：混合检索 hit@1 89.5、hit@3 100、MRR 0.947；extractive 答案准确率 89.5、引用正确率 100、拒答准确率 100、误拒率 10.5（2 道改写题："充满一次电能扫多久"、"恢复成刚买时的状态"）。
+
+
+## 11. M3 实施记录（评测可信度、前端、清理）
+
+### 11.1 评测集与 dev/test 协议
+- 语料：英文新增 `benefits_and_wellbeing.md`、`office_guide.txt`、`customer_support_policy.md`、`x2_installation_manual.pdf`（4 页），共 9 篇；中文新增 `IT服务台指南.txt`、`办公室与会议室管理.md`、`S7固件更新日志.md`、`福利制度.md`、`S7快速入门指南.pdf`（4 页），共 9 篇。
+- 题目：en 126 题（factual 42 / paraphrase 36 / cross 16 / unanswerable 32），zh 122 题（42 / 36 / 14 / 30）。不可回答题大多是**近似题**（near-miss）：提到真实实体，但问的属性文档里没有，比如"X2 的售价""兼职员工年假""E402 是什么"。M2 中部分不可回答题因语料扩充变得可回答（养老金、吊装），已经重写。
+- 题目源在 `eval/authoring/{lang}_questions.py`，`scripts/split_dataset.py` 按题型分层，按 id 的 sha1 确定性地切成 40% dev / 60% test，写入 `eval/datasets/{lang}.{dev,test}.jsonl`。文件已冻结：脚本默认拒绝覆盖，测试会校验文件与脚本输出一致、两份 split 不相交、每种题型在两边都有。
+- 协议：alpha（混合权重）和拒答阈值**只在 dev 上选**；test 只用来报告。报告里同时给出 dev 指标（看 dev→test 落差）和 "test-oracle"（假如在 test 上调参会得到的阈值和指标），用来量化乐观偏差。LLM 只在 test 上跑（它没有需要调的参数）。
+
+### 11.2 结论（test，括号内为 dev；chunk 800，top_k 4）
+- 检索：zh hybrid MRR 0.941 (0.943)，hit@5 100，明显优于 vector 0.851 和 BM25 0.930。en 的 hybrid 0.848 (0.892) 在 test 上不如纯向量 0.858：dev 选出的 α=0.3 没有迁移到 test，alpha 曲线在 ±0.02 MRR 内基本是平的，所以产品默认仍为 0.5。
+- 回答（extractive）：en 答案准确率 66.7 (78.4)，引用准确率 100，拒答准确率 42.1 (69.2)，误拒率 29.8 (13.5)。zh 分别为 81.8 (81.1)、100、66.7 (75.0)、16.4 (16.2)。
+- LLM（test）：未门控的 qwen2.5:1.5b 答案准确率最高（en 75.4、zh 85.5），但几乎不拒答（31.6 / 22.2）。加门控后能拒答，但会继承门控的误拒。0.5b 在两种语言上都弱于 extractive。
+- M2 的 88.2 / 5.9% 是在同一个 44 题集上校准并评测得到的，偏乐观。held-out 之后英文误拒主要来自口语化改写题："Can I charge my electric car at the office?" 的最佳句余弦只有 0.55–0.66，反而低于近似不可回答题的 0.67–0.85。
+
+### 11.3 拒答阈值结论
+- dev 校准：bge-small-en 0.67，bge-small-zh 0.63（chunk 200 时 0.625），多语言 MiniLM en 0.59 / zh 0.555（默认取 0.57）。已写入 `MODEL_MIN_SCORES`。
+- 在 test 上，en balanced accuracy 为 56.1（dev 77.9）；即使用 test-oracle 阈值 0.745 也只有 68.4。zh 为 75.2（dev 79.4），oracle 82.6。**结论：单一余弦阈值无法区分近似题和改写题，这是信号本身的上限，再怎么调阈值也解决不了。** M4 需要引入"问的属性是否被证据覆盖"的判别器（小型 NLI/cross-encoder ONNX，或 1.5B LLM 作为裁判）。
+- 新增规则 `unknown_identifier`：问题里出现型号、错误码或版本号（含字母和数字的 token，或带小数点的数字，例如 X3、E402、v2.4.0；纯整数不算），而检索片段里没有对应项（允许前缀匹配，5G 可以匹配 5GHz），就拒答。消融：en test balanced accuracy 50.9 → 56.1，误拒不变；zh 77.0 → 75.2，处在噪声范围内（1 道不可回答题约等于 5.6 个百分点）。
+- 拒答原因现在是结构化字段：`refusal_reason` 取值为 no_context / no_candidates / low_confidence / unknown_identifier / llm_refused，`refusal_detail` 按问题语言给出中文或英文说明。校准时，被规则拒答的样本按"任何阈值下都拒答"计算（`effective_conf`）。
+
+### 11.4 中文 PDF
+- 生成：`scripts/make_zh_pdf.py` 用 headless Chrome `--print-to-pdf` 加开源字体 Noto Sans CJK SC（SIL OFL），以 CSS 分页生成 4 页 PDF，字体子集嵌入，文件约 300 KB，并提交到仓库；运行时不依赖 Chrome。
+- 坑：pypdf 抽取 Skia/Chrome 生成的 CJK PDF 时，部分字被映射成康熙部首或部首补充码位（"⼊⻔""⽤""⻓"）。肉眼看不出区别，但 BM25 bigram、embedding 和引用匹配都会因此失效。修复：`ingest.fold_cjk_radicals` 把 U+2F00–2FDF（康熙部首）和 U+F900–FAFF（兼容汉字）做逐字 NFKC，并用一张小表把部首补充区的简化部首（⻔→门、⻓→长、⻉→贝……）映射回常用字。没有做全量 NFKC，因为它会把全角标点（，？）折成半角，破坏中文分句和证据匹配。
+- 覆盖：zh 数据集里有 15 道题的证据在 PDF 中；slow 测试校验"S7 安静模式噪音"引用第 3 页、"E7"引用第 4 页、"E5"以 unknown_identifier 拒答。
+
+### 11.5 前端与 API
+- 原始文件保存到 `DATA_DIR/files/{doc_id}{ext}`，删除文档时一并删除。新增接口：`/documents/{id}/file`、`/documents/{id}/pages/{n}.png?highlight=`、`/chunks/{chunk_id}`、`/ask/stream`（SSE 事件 retrieval → token* → (reset) → done）。`/ask` 新增 `answerer`（default/extractive/llm）字段，返回值新增 `refusal_reason`、`refusal_detail`、`min_score`、`mode`。
+- PDF 预览在服务端渲染（pypdfium2 + Pillow，免费，不需要打包 pdf.js）。高亮方式：从 pdfium 逐字文本层构造去空白串，在其中查找引用句（按"…"切成多段），把命中字符的 charbox 按行合并成矩形，画成半透明黄框。可以跨行，中文同样有效。
+- LLM 引用的 snippet 改为"被引 chunk 中与答案重叠最多的那句"（`best_supporting_sentence`），点击后能精确高亮，不再是 240 字截断。
+- 流式：`OpenAICompatAnswerer.stream` 使用 OpenAI `stream: true`，逐 token 转发；结束后执行与非流式完全相同的后处理（标记去重、归因、拒答检测）。中途出错时先发 `reset`，再回退到 extractive。extractive 按句子分段推送。
+- UI（单文件 HTML）：引用卡片或行内 [n] 可点击，右侧是 source viewer（PDF 页图加黄框、上/下一页、chunk 原文 `<mark>` 高亮）；置信度条带阈值刻度；拒答原因卡片；answerer、检索模式、top-k、stream 开关；`/?q=&answerer=&mode=&cite=` 深链用于截图。
+- 截图：`scripts/screenshot.py` 通过 DevTools 协议驱动 headless Chrome，等待"流式结束、页图加载完成"等真实条件后再截图，产出 `docs/img/demo_en_pdf.png`、`demo_zh_pdf_llm.png`、`demo_refusal.png`、`demo_refusal_low_conf.png`、`demo.png`。
+
+### 11.6 清理
+- 删除 `models/gguf/` 下两份重复 GGUF（0.5b 491 MB + 1.5b 1.12 GB，**共释放 1534 MiB**）；Ollama blob 中已经有相同内容。顺带清理了 M2 reranker 实验遗留的 refs/lock 小文件。
+- `scripts/ollama.sh pull [0.5b|1.5b]`：tag 已存在则跳过；否则先尝试 `ollama pull`，失败时把 HF GGUF 下载到 `models/.gguf-XXXX` 临时目录，校验 sha256，再用模板 Modelfile 执行 `ollama create`，最后通过 trap 删除临时目录。实测流程：先 `ollama rm qwen2.5:0.5b`，再执行 `pull 0.5b`，registry 被拦截后成功走回退路径，`models/gguf` 不再出现。

@@ -94,6 +94,14 @@ class VectorStore:
             "SELECT doc_id, name, pages, n_chunks, created_at FROM documents ORDER BY created_at").fetchall()
         return [dict(zip(("doc_id", "name", "pages", "n_chunks", "created_at"), r)) for r in rows]
 
+    def get_document(self, doc_id: str) -> dict | None:
+        r = self._conn.execute("SELECT doc_id, name, pages, n_chunks, created_at FROM documents WHERE doc_id=?",
+                               (doc_id,)).fetchone()
+        return None if r is None else dict(zip(("doc_id", "name", "pages", "n_chunks", "created_at"), r))
+
+    def get_chunk(self, chunk_id: str) -> StoredChunk | None:
+        return next((c for c in self.chunks if c.chunk_id == chunk_id), None)
+
     def delete_document(self, doc_id: str) -> bool:
         with self._lock:
             n = self._conn.execute("DELETE FROM documents WHERE doc_id=?", (doc_id,)).rowcount

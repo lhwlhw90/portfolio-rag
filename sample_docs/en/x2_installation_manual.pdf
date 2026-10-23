@@ -1,0 +1,65 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 418 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (RoboArm X2 Installation Manual) Tj T* () Tj T* (Chapter 1. Site requirements) Tj T* (The mounting surface must support a static load of at least 2,000 N.) Tj T* (The operating temperature range is 0 to 45 degrees Celsius.) Tj T* (Relative humidity must stay below 85 percent, non-condensing.) Tj T* (Keep a free safety zone of at least 1.2 m around the arm during commissioning.) Tj T* ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 364 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Chapter 2. Mounting) Tj T* (The base is fixed with four M10 bolts tightened to a torque of 45 Nm.) Tj T* (The X2 can be mounted on the floor, on a table or on a wall.) Tj T* (Ceiling mounting is not supported because the joint brakes are not rated for it.) Tj T* (The controller cable between arm and controller is 5 m long.) Tj T* ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 408 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Chapter 3. Commissioning) Tj T* (After power-on, run the joint calibration wizard in the web dashboard.) Tj T* (The calibration wizard takes about 20 minutes and must be repeated after every collision above 150 N.) Tj T* (Set the tool weight and center of gravity before running any program.) Tj T* (The default dashboard password must be changed during commissioning.) Tj T* ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 423 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Chapter 4. Maintenance and error codes) Tj T* (Re-grease the joint gearboxes every 5,000 operating hours.) Tj T* (Inspect the cable harness every 6 months for wear.) Tj T* (Error code E101 indicates overcurrent in a joint motor.) Tj T* (Error code E204 indicates that the emergency stop circuit is open.) Tj T* (Error code E310 indicates a lost connection between controller and arm.) Tj T* ET
+endstream
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000133 00000 n 
+0000000260 00000 n 
+0000000729 00000 n 
+0000000856 00000 n 
+0000001271 00000 n 
+0000001398 00000 n 
+0000001857 00000 n 
+0000001985 00000 n 
+0000002460 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+2531
+%%EOF

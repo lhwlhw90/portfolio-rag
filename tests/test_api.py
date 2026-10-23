@@ -54,4 +54,4 @@ def test_ask_modes_and_fields(settings, service):
         assert "3-year" in body["answer"] and body["refused"] is False and "confidence" in body
     assert c.post("/ask", json={"question": "x", "mode": "magic"}).status_code == 422
     h = c.get("/health").json()
-    assert h["min_score"] == 0.0 and h["llm_model"] is None
+    assert h["min_score"] == 0.0 and h["answerer"] == "extractive" and "llm_available" in h

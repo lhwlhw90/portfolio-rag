@@ -2,1317 +2,2559 @@
  "lang": "en",
  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
  "top_k": 4,
- "n_questions": 44,
- "date": "2026-10-23 21:43 CST",
+ "n_questions": {
+  "dev": 50,
+  "test": 76
+ },
+ "n_docs": 9,
+ "date": "2026-10-23 21:53 CST",
  "chunking": {
   "800": {
-   "n_chunks": 14,
-   "ingest_seconds": 0.2,
+   "n_chunks": 25,
+   "ingest_seconds": 0.36,
+   "alpha": {
+    "chosen": 0.2,
+    "sweep": [
+     {
+      "alpha": 0.2,
+      "dev_mrr": 0.884,
+      "test_mrr": 0.848
+     },
+     {
+      "alpha": 0.3,
+      "dev_mrr": 0.848,
+      "test_mrr": 0.843
+     },
+     {
+      "alpha": 0.4,
+      "dev_mrr": 0.839,
+      "test_mrr": 0.806
+     },
+     {
+      "alpha": 0.5,
+      "dev_mrr": 0.861,
+      "test_mrr": 0.792
+     },
+     {
+      "alpha": 0.6,
+      "dev_mrr": 0.859,
+      "test_mrr": 0.779
+     },
+     {
+      "alpha": 0.7,
+      "dev_mrr": 0.855,
+      "test_mrr": 0.759
+     },
+     {
+      "alpha": 0.8,
+      "dev_mrr": 0.85,
+      "test_mrr": 0.746
+     }
+    ]
+   },
    "retrieval": {
-    "vector": {
-     "overall": {
-      "hit@1": 55.9,
-      "hit@3": 91.2,
-      "hit@5": 100.0,
-      "mrr": 0.726,
-      "evidence_recall@5": 97.1,
-      "n": 34
+    "dev": {
+     "vector": {
+      "overall": {
+       "hit@1": 64.9,
+       "hit@3": 91.9,
+       "hit@5": 94.6,
+       "mrr": 0.791,
+       "evidence_recall@5": 91.9,
+       "n": 37
+      },
+      "by_type": {
+       "cross": {
+        "hit@1": 66.7,
+        "hit@3": 83.3,
+        "hit@5": 83.3,
+        "mrr": 0.778,
+        "evidence_recall@5": 66.7,
+        "n": 6
+       },
+       "factual": {
+        "hit@1": 70.6,
+        "hit@3": 94.1,
+        "hit@5": 100.0,
+        "mrr": 0.828,
+        "evidence_recall@5": 100.0,
+        "n": 17
+       },
+       "paraphrase": {
+        "hit@1": 57.1,
+        "hit@3": 92.9,
+        "hit@5": 92.9,
+        "mrr": 0.75,
+        "evidence_recall@5": 92.9,
+        "n": 14
+       }
+      },
+      "rows": [
+       {
+        "id": "en-f001",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f003",
+        "type": "factual",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f004",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f008",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f010",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f011",
+        "type": "factual",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f016",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f017",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f020",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f022",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f023",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f025",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f028",
+        "type": "factual",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f029",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f032",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f037",
+        "type": "factual",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f038",
+        "type": "factual",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p003",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p005",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p007",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p009",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p011",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p014",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p015",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p020",
+        "type": "paraphrase",
+        "rank": 6,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p021",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p025",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p026",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p032",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p033",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p035",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c002",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 0.5
+       },
+       {
+        "id": "en-c003",
+        "type": "cross",
+        "rank": 2,
+        "evidence_recall@5": 0.5
+       },
+       {
+        "id": "en-c004",
+        "type": "cross",
+        "rank": 6,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-c005",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c011",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c016",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
      },
-     "by_type": {
-      "cross": {
-       "hit@1": 66.7,
-       "hit@3": 83.3,
-       "hit@5": 100.0,
-       "mrr": 0.792,
-       "evidence_recall@5": 83.3,
-       "n": 6
+     "bm25": {
+      "overall": {
+       "hit@1": 81.1,
+       "hit@3": 89.2,
+       "hit@5": 91.9,
+       "mrr": 0.856,
+       "evidence_recall@5": 91.9,
+       "n": 37
       },
-      "factual": {
-       "hit@1": 53.3,
-       "hit@3": 93.3,
-       "hit@5": 100.0,
-       "mrr": 0.706,
-       "evidence_recall@5": 100.0,
-       "n": 15
+      "by_type": {
+       "cross": {
+        "hit@1": 100.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 1.0,
+        "evidence_recall@5": 100.0,
+        "n": 6
+       },
+       "factual": {
+        "hit@1": 100.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 1.0,
+        "evidence_recall@5": 100.0,
+        "n": 17
+       },
+       "paraphrase": {
+        "hit@1": 50.0,
+        "hit@3": 71.4,
+        "hit@5": 78.6,
+        "mrr": 0.62,
+        "evidence_recall@5": 78.6,
+        "n": 14
+       }
       },
-      "paraphrase": {
-       "hit@1": 53.8,
-       "hit@3": 92.3,
-       "hit@5": 100.0,
-       "mrr": 0.721,
-       "evidence_recall@5": 100.0,
-       "n": 13
-      }
+      "rows": [
+       {
+        "id": "en-f001",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f003",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f004",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f008",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f010",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f011",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f016",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f017",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f020",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f022",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f023",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f025",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f028",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f029",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f032",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f037",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f038",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p003",
+        "type": "paraphrase",
+        "rank": 7,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p005",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p007",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p009",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p011",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p014",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p015",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p020",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p021",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p025",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p026",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p032",
+        "type": "paraphrase",
+        "rank": 5,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p033",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p035",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c002",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c003",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c004",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c005",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c011",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c016",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
      },
-     "rows": [
-      {
-       "id": "en-f01",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
+     "hybrid": {
+      "overall": {
+       "hit@1": 83.8,
+       "hit@3": 91.9,
+       "hit@5": 97.3,
+       "mrr": 0.884,
+       "evidence_recall@5": 97.3,
+       "n": 37
       },
-      {
-       "id": "en-f02",
-       "type": "factual",
-       "rank": 2,
-       "evidence_recall@5": 1.0
+      "by_type": {
+       "cross": {
+        "hit@1": 83.3,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 0.917,
+        "evidence_recall@5": 100.0,
+        "n": 6
+       },
+       "factual": {
+        "hit@1": 100.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 1.0,
+        "evidence_recall@5": 100.0,
+        "n": 17
+       },
+       "paraphrase": {
+        "hit@1": 64.3,
+        "hit@3": 78.6,
+        "hit@5": 92.9,
+        "mrr": 0.73,
+        "evidence_recall@5": 92.9,
+        "n": 14
+       }
       },
-      {
-       "id": "en-f03",
-       "type": "factual",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f04",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f05",
-       "type": "factual",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f06",
-       "type": "factual",
-       "rank": 4,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f07",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f08",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f09",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f10",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f11",
-       "type": "factual",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f12",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f13",
-       "type": "factual",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f14",
-       "type": "factual",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f15",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p01",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p02",
-       "type": "paraphrase",
-       "rank": 5,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p03",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p04",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p05",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p06",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p07",
-       "type": "paraphrase",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p08",
-       "type": "paraphrase",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p09",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p10",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p11",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p12",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p13",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c01",
-       "type": "cross",
-       "rank": 2,
-       "evidence_recall@5": 0.5
-      },
-      {
-       "id": "en-c02",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c03",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c04",
-       "type": "cross",
-       "rank": 4,
-       "evidence_recall@5": 0.5
-      },
-      {
-       "id": "en-c05",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c06",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      }
-     ]
+      "rows": [
+       {
+        "id": "en-f001",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f003",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f004",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f008",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f010",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f011",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f016",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f017",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f020",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f022",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f023",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f025",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f028",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f029",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f032",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f037",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f038",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p003",
+        "type": "paraphrase",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p005",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p007",
+        "type": "paraphrase",
+        "rank": 5,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p009",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p011",
+        "type": "paraphrase",
+        "rank": 10,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p014",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p015",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p020",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p021",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p025",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p026",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p032",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p033",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p035",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c002",
+        "type": "cross",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c003",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c004",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c005",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c011",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c016",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
+     }
     },
-    "bm25": {
-     "overall": {
-      "hit@1": 76.5,
-      "hit@3": 85.3,
-      "hit@5": 88.2,
-      "mrr": 0.811,
-      "evidence_recall@5": 88.2,
-      "n": 34
+    "test": {
+     "vector": {
+      "overall": {
+       "hit@1": 54.4,
+       "hit@3": 80.7,
+       "hit@5": 89.5,
+       "mrr": 0.689,
+       "evidence_recall@5": 88.6,
+       "n": 57
+      },
+      "by_type": {
+       "cross": {
+        "hit@1": 70.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 0.833,
+        "evidence_recall@5": 95.0,
+        "n": 10
+       },
+       "factual": {
+        "hit@1": 60.0,
+        "hit@3": 84.0,
+        "hit@5": 92.0,
+        "mrr": 0.726,
+        "evidence_recall@5": 92.0,
+        "n": 25
+       },
+       "paraphrase": {
+        "hit@1": 40.9,
+        "hit@3": 68.2,
+        "hit@5": 81.8,
+        "mrr": 0.583,
+        "evidence_recall@5": 81.8,
+        "n": 22
+       }
+      },
+      "rows": [
+       {
+        "id": "en-f002",
+        "type": "factual",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f005",
+        "type": "factual",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f006",
+        "type": "factual",
+        "rank": 6,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-f007",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f009",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f012",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f013",
+        "type": "factual",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f014",
+        "type": "factual",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f015",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f018",
+        "type": "factual",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f019",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f021",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f024",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f026",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f027",
+        "type": "factual",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f030",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f031",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f033",
+        "type": "factual",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f034",
+        "type": "factual",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f035",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f036",
+        "type": "factual",
+        "rank": 7,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-f039",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f040",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f041",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f042",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p001",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p002",
+        "type": "paraphrase",
+        "rank": 9,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p004",
+        "type": "paraphrase",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p006",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p008",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p010",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p012",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p013",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p016",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p017",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p018",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p019",
+        "type": "paraphrase",
+        "rank": 8,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p022",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p023",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p024",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p027",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p028",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p029",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p030",
+        "type": "paraphrase",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p031",
+        "type": "paraphrase",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p034",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p036",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c001",
+        "type": "cross",
+        "rank": 2,
+        "evidence_recall@5": 0.5
+       },
+       {
+        "id": "en-c006",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c007",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c008",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c009",
+        "type": "cross",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c010",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c012",
+        "type": "cross",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c013",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c014",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c015",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
      },
-     "by_type": {
-      "cross": {
-       "hit@1": 83.3,
-       "hit@3": 100.0,
-       "hit@5": 100.0,
-       "mrr": 0.889,
-       "evidence_recall@5": 100.0,
-       "n": 6
+     "bm25": {
+      "overall": {
+       "hit@1": 78.9,
+       "hit@3": 84.2,
+       "hit@5": 84.2,
+       "mrr": 0.816,
+       "evidence_recall@5": 84.2,
+       "n": 57
       },
-      "factual": {
-       "hit@1": 100.0,
-       "hit@3": 100.0,
-       "hit@5": 100.0,
-       "mrr": 1.0,
-       "evidence_recall@5": 100.0,
-       "n": 15
+      "by_type": {
+       "cross": {
+        "hit@1": 90.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 0.933,
+        "evidence_recall@5": 100.0,
+        "n": 10
+       },
+       "factual": {
+        "hit@1": 100.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 1.0,
+        "evidence_recall@5": 100.0,
+        "n": 25
+       },
+       "paraphrase": {
+        "hit@1": 50.0,
+        "hit@3": 59.1,
+        "hit@5": 59.1,
+        "mrr": 0.554,
+        "evidence_recall@5": 59.1,
+        "n": 22
+       }
       },
-      "paraphrase": {
-       "hit@1": 46.2,
-       "hit@3": 61.5,
-       "hit@5": 69.2,
-       "mrr": 0.556,
-       "evidence_recall@5": 69.2,
-       "n": 13
-      }
+      "rows": [
+       {
+        "id": "en-f002",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f005",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f006",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f007",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f009",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f012",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f013",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f014",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f015",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f018",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f019",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f021",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f024",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f026",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f027",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f030",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f031",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f033",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f034",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f035",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f036",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f039",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f040",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f041",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f042",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p001",
+        "type": "paraphrase",
+        "rank": 9,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p002",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p004",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p006",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p008",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p010",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p012",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p013",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p016",
+        "type": "paraphrase",
+        "rank": 7,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p017",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p018",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p019",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p022",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p023",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p024",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p027",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p028",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p029",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p030",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p031",
+        "type": "paraphrase",
+        "rank": 9,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p034",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p036",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c001",
+        "type": "cross",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c006",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c007",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c008",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c009",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c010",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c012",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c013",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c014",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c015",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
      },
-     "rows": [
-      {
-       "id": "en-f01",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f02",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f03",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f04",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f05",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f06",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f07",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f08",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f09",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f10",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f11",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f12",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f13",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f14",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f15",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p01",
-       "type": "paraphrase",
-       "rank": 4,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p02",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p03",
-       "type": "paraphrase",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p04",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p05",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p06",
-       "type": "paraphrase",
-       "rank": null,
-       "evidence_recall@5": 0.0
-      },
-      {
-       "id": "en-p07",
-       "type": "paraphrase",
-       "rank": null,
-       "evidence_recall@5": 0.0
-      },
-      {
-       "id": "en-p08",
-       "type": "paraphrase",
-       "rank": null,
-       "evidence_recall@5": 0.0
-      },
-      {
-       "id": "en-p09",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p10",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p11",
-       "type": "paraphrase",
-       "rank": 7,
-       "evidence_recall@5": 0.0
-      },
-      {
-       "id": "en-p12",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p13",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c01",
-       "type": "cross",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c02",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c03",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c04",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c05",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c06",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      }
-     ]
-    },
-    "hybrid": {
-     "overall": {
-      "hit@1": 64.7,
-      "hit@3": 94.1,
-      "hit@5": 100.0,
-      "mrr": 0.804,
-      "evidence_recall@5": 100.0,
-      "n": 34
-     },
-     "by_type": {
-      "cross": {
-       "hit@1": 66.7,
-       "hit@3": 100.0,
-       "hit@5": 100.0,
-       "mrr": 0.833,
-       "evidence_recall@5": 100.0,
-       "n": 6
-      },
-      "factual": {
-       "hit@1": 80.0,
-       "hit@3": 100.0,
-       "hit@5": 100.0,
-       "mrr": 0.9,
-       "evidence_recall@5": 100.0,
-       "n": 15
-      },
-      "paraphrase": {
-       "hit@1": 46.2,
-       "hit@3": 84.6,
-       "hit@5": 100.0,
-       "mrr": 0.679,
-       "evidence_recall@5": 100.0,
-       "n": 13
-      }
-     },
-     "rows": [
-      {
-       "id": "en-f01",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f02",
-       "type": "factual",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f03",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f04",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f05",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f06",
-       "type": "factual",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f07",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f08",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f09",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f10",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f11",
-       "type": "factual",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f12",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f13",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f14",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-f15",
-       "type": "factual",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p01",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p02",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p03",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p04",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p05",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p06",
-       "type": "paraphrase",
-       "rank": 3,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p07",
-       "type": "paraphrase",
-       "rank": 4,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p08",
-       "type": "paraphrase",
-       "rank": 4,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p09",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p10",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p11",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p12",
-       "type": "paraphrase",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-p13",
-       "type": "paraphrase",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c01",
-       "type": "cross",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c02",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c03",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c04",
-       "type": "cross",
-       "rank": 2,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c05",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      },
-      {
-       "id": "en-c06",
-       "type": "cross",
-       "rank": 1,
-       "evidence_recall@5": 1.0
-      }
-     ]
+     "hybrid": {
+      "overall": {
+       "hit@1": 80.7,
+       "hit@3": 87.7,
+       "hit@5": 91.2,
+       "mrr": 0.848,
+       "evidence_recall@5": 91.2,
+       "n": 57
+      },
+      "by_type": {
+       "cross": {
+        "hit@1": 90.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 0.933,
+        "evidence_recall@5": 100.0,
+        "n": 10
+       },
+       "factual": {
+        "hit@1": 100.0,
+        "hit@3": 100.0,
+        "hit@5": 100.0,
+        "mrr": 1.0,
+        "evidence_recall@5": 100.0,
+        "n": 25
+       },
+       "paraphrase": {
+        "hit@1": 54.5,
+        "hit@3": 68.2,
+        "hit@5": 77.3,
+        "mrr": 0.637,
+        "evidence_recall@5": 77.3,
+        "n": 22
+       }
+      },
+      "rows": [
+       {
+        "id": "en-f002",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f005",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f006",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f007",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f009",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f012",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f013",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f014",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f015",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f018",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f019",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f021",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f024",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f026",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f027",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f030",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f031",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f033",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f034",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f035",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f036",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f039",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f040",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f041",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-f042",
+        "type": "factual",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p001",
+        "type": "paraphrase",
+        "rank": 7,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p002",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p004",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p006",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p008",
+        "type": "paraphrase",
+        "rank": 5,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p010",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p012",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p013",
+        "type": "paraphrase",
+        "rank": 2,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p016",
+        "type": "paraphrase",
+        "rank": 4,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p017",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p018",
+        "type": "paraphrase",
+        "rank": null,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p019",
+        "type": "paraphrase",
+        "rank": 9,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p022",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p023",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p024",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p027",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p028",
+        "type": "paraphrase",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p029",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p030",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p031",
+        "type": "paraphrase",
+        "rank": 7,
+        "evidence_recall@5": 0.0
+       },
+       {
+        "id": "en-p034",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-p036",
+        "type": "paraphrase",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c001",
+        "type": "cross",
+        "rank": 3,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c006",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c007",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c008",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c009",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c010",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c012",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c013",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c014",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       },
+       {
+        "id": "en-c015",
+        "type": "cross",
+        "rank": 1,
+        "evidence_recall@5": 1.0
+       }
+      ]
+     }
     }
    },
    "calibration": {
     "best": {
-     "threshold": 0.425,
-     "refusal_accuracy": 70.0,
-     "false_refusal_rate": 5.9,
-     "balanced_accuracy": 82.1
+     "threshold": 0.59,
+     "refusal_accuracy": 84.6,
+     "false_refusal_rate": 32.4,
+     "balanced_accuracy": 76.1
     },
     "sweep": [
      {
       "threshold": 0.4,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 23.1,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 58.8
      },
      {
       "threshold": 0.405,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 23.1,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 58.8
      },
      {
       "threshold": 0.41,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 23.1,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 58.8
      },
      {
       "threshold": 0.415,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 30.8,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 62.7
      },
      {
       "threshold": 0.42,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 30.8,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 62.7
      },
      {
       "threshold": 0.425,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 66.5
      },
      {
       "threshold": 0.43,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 66.5
      },
      {
       "threshold": 0.435,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 66.5
      },
      {
       "threshold": 0.44,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 66.5
      },
      {
       "threshold": 0.445,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 5.9,
-      "balanced_accuracy": 82.1
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 5.4,
+      "balanced_accuracy": 66.5
      },
      {
       "threshold": 0.45,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.455,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.46,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.465,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.47,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.475,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.48,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.485,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.49,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.495,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 38.5,
+      "false_refusal_rate": 8.1,
+      "balanced_accuracy": 65.2
      },
      {
       "threshold": 0.5,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 8.8,
-      "balanced_accuracy": 80.6
+      "refusal_accuracy": 46.2,
+      "false_refusal_rate": 10.8,
+      "balanced_accuracy": 67.7
      },
      {
       "threshold": 0.505,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 11.8,
-      "balanced_accuracy": 79.1
+      "refusal_accuracy": 46.2,
+      "false_refusal_rate": 13.5,
+      "balanced_accuracy": 66.3
      },
      {
       "threshold": 0.51,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 14.7,
-      "balanced_accuracy": 77.6
+      "refusal_accuracy": 46.2,
+      "false_refusal_rate": 18.9,
+      "balanced_accuracy": 63.6
      },
      {
       "threshold": 0.515,
-      "refusal_accuracy": 70.0,
-      "false_refusal_rate": 17.6,
-      "balanced_accuracy": 76.2
+      "refusal_accuracy": 46.2,
+      "false_refusal_rate": 21.6,
+      "balanced_accuracy": 62.3
      },
      {
       "threshold": 0.52,
-      "refusal_accuracy": 80.0,
-      "false_refusal_rate": 20.6,
-      "balanced_accuracy": 79.7
+      "refusal_accuracy": 53.8,
+      "false_refusal_rate": 21.6,
+      "balanced_accuracy": 66.1
      },
      {
       "threshold": 0.525,
-      "refusal_accuracy": 80.0,
-      "false_refusal_rate": 20.6,
-      "balanced_accuracy": 79.7
+      "refusal_accuracy": 53.8,
+      "false_refusal_rate": 21.6,
+      "balanced_accuracy": 66.1
      },
      {
       "threshold": 0.53,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 26.5,
-      "balanced_accuracy": 81.8
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 21.6,
+      "balanced_accuracy": 70.0
      },
      {
       "threshold": 0.535,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 29.4,
-      "balanced_accuracy": 80.3
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 24.3,
+      "balanced_accuracy": 68.6
      },
      {
       "threshold": 0.54,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 29.4,
-      "balanced_accuracy": 80.3
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 24.3,
+      "balanced_accuracy": 68.6
      },
      {
       "threshold": 0.545,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 27.0,
+      "balanced_accuracy": 67.3
      },
      {
       "threshold": 0.55,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 27.0,
+      "balanced_accuracy": 67.3
      },
      {
       "threshold": 0.555,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 27.0,
+      "balanced_accuracy": 67.3
      },
      {
       "threshold": 0.56,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "refusal_accuracy": 61.5,
+      "false_refusal_rate": 29.7,
+      "balanced_accuracy": 65.9
      },
      {
       "threshold": 0.565,
-      "refusal_accuracy": 90.0,
+      "refusal_accuracy": 61.5,
       "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "balanced_accuracy": 64.6
      },
      {
       "threshold": 0.57,
-      "refusal_accuracy": 90.0,
+      "refusal_accuracy": 69.2,
       "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "balanced_accuracy": 68.4
      },
      {
       "threshold": 0.575,
-      "refusal_accuracy": 90.0,
+      "refusal_accuracy": 84.6,
       "false_refusal_rate": 32.4,
-      "balanced_accuracy": 78.8
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.58,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 35.3,
-      "balanced_accuracy": 77.4
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.585,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 35.3,
-      "balanced_accuracy": 77.4
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.59,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 35.3,
-      "balanced_accuracy": 77.4
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.595,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 35.3,
-      "balanced_accuracy": 77.4
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.6,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 38.2,
-      "balanced_accuracy": 75.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.605,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 38.2,
-      "balanced_accuracy": 75.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "balanced_accuracy": 76.1
      },
      {
       "threshold": 0.61,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 35.1,
+      "balanced_accuracy": 74.7
      },
      {
       "threshold": 0.615,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 35.1,
+      "balanced_accuracy": 74.7
      },
      {
       "threshold": 0.62,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 37.8,
+      "balanced_accuracy": 73.4
      },
      {
       "threshold": 0.625,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 37.8,
+      "balanced_accuracy": 73.4
      },
      {
       "threshold": 0.63,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 37.8,
+      "balanced_accuracy": 73.4
      },
      {
       "threshold": 0.635,
-      "refusal_accuracy": 90.0,
-      "false_refusal_rate": 44.1,
-      "balanced_accuracy": 72.9
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 37.8,
+      "balanced_accuracy": 73.4
      },
      {
       "threshold": 0.64,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 50.0,
-      "balanced_accuracy": 75.0
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 37.8,
+      "balanced_accuracy": 73.4
      },
      {
       "threshold": 0.645,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 52.9,
-      "balanced_accuracy": 73.5
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.65,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 52.9,
-      "balanced_accuracy": 73.5
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.655,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 52.9,
-      "balanced_accuracy": 73.5
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.66,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 55.9,
-      "balanced_accuracy": 72.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.665,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 55.9,
-      "balanced_accuracy": 72.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.67,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 55.9,
-      "balanced_accuracy": 72.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.675,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 55.9,
-      "balanced_accuracy": 72.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 45.9,
+      "balanced_accuracy": 69.3
      },
      {
       "threshold": 0.68,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 61.8,
-      "balanced_accuracy": 69.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 54.1,
+      "balanced_accuracy": 65.3
      },
      {
       "threshold": 0.685,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 61.8,
-      "balanced_accuracy": 69.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 56.8,
+      "balanced_accuracy": 63.9
      },
      {
       "threshold": 0.69,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 61.8,
-      "balanced_accuracy": 69.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 59.5,
+      "balanced_accuracy": 62.6
      },
      {
       "threshold": 0.695,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 61.8,
-      "balanced_accuracy": 69.1
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 59.5,
+      "balanced_accuracy": 62.6
      },
      {
       "threshold": 0.7,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 64.7,
-      "balanced_accuracy": 67.6
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 62.2,
+      "balanced_accuracy": 61.2
      },
      {
       "threshold": 0.705,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 64.7,
-      "balanced_accuracy": 67.6
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 64.9,
+      "balanced_accuracy": 59.9
      },
      {
       "threshold": 0.71,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 67.6,
-      "balanced_accuracy": 66.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.715,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 67.6,
-      "balanced_accuracy": 66.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.72,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 70.6,
-      "balanced_accuracy": 64.7
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.725,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 73.5,
-      "balanced_accuracy": 63.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.73,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 73.5,
-      "balanced_accuracy": 63.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.735,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 73.5,
-      "balanced_accuracy": 63.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.74,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 73.5,
-      "balanced_accuracy": 63.2
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 70.3,
+      "balanced_accuracy": 57.2
      },
      {
       "threshold": 0.745,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 76.5,
-      "balanced_accuracy": 61.8
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 73.0,
+      "balanced_accuracy": 55.8
      },
      {
       "threshold": 0.75,
-      "refusal_accuracy": 100.0,
-      "false_refusal_rate": 76.5,
-      "balanced_accuracy": 61.8
+      "refusal_accuracy": 92.3,
+      "false_refusal_rate": 75.7,
+      "balanced_accuracy": 58.3
      },
      {
       "threshold": 0.755,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 82.4,
-      "balanced_accuracy": 58.8
+      "false_refusal_rate": 78.4,
+      "balanced_accuracy": 60.8
      },
      {
       "threshold": 0.76,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 85.3,
-      "balanced_accuracy": 57.4
+      "false_refusal_rate": 78.4,
+      "balanced_accuracy": 60.8
      },
      {
       "threshold": 0.765,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 88.2,
-      "balanced_accuracy": 55.9
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.77,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 91.2,
-      "balanced_accuracy": 54.4
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.775,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 91.2,
-      "balanced_accuracy": 54.4
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.78,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 91.2,
-      "balanced_accuracy": 54.4
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.785,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 91.2,
-      "balanced_accuracy": 54.4
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.79,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 91.2,
-      "balanced_accuracy": 54.4
+      "false_refusal_rate": 81.1,
+      "balanced_accuracy": 59.5
      },
      {
       "threshold": 0.795,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 94.1,
-      "balanced_accuracy": 52.9
+      "false_refusal_rate": 89.2,
+      "balanced_accuracy": 55.4
      },
      {
       "threshold": 0.8,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 94.1,
-      "balanced_accuracy": 52.9
+      "false_refusal_rate": 91.9,
+      "balanced_accuracy": 54.1
      },
      {
       "threshold": 0.805,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 97.1,
-      "balanced_accuracy": 51.5
+      "false_refusal_rate": 91.9,
+      "balanced_accuracy": 54.1
      },
      {
       "threshold": 0.81,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 94.6,
+      "balanced_accuracy": 52.7
      },
      {
       "threshold": 0.815,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 94.6,
+      "balanced_accuracy": 52.7
      },
      {
       "threshold": 0.82,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 94.6,
+      "balanced_accuracy": 52.7
      },
      {
       "threshold": 0.825,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 94.6,
+      "balanced_accuracy": 52.7
      },
      {
       "threshold": 0.83,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.835,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.84,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.845,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.85,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.855,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.86,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.865,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.87,
       "refusal_accuracy": 100.0,
-      "false_refusal_rate": 100.0,
-      "balanced_accuracy": 50.0
+      "false_refusal_rate": 97.3,
+      "balanced_accuracy": 51.4
      },
      {
       "threshold": 0.875,
@@ -1352,817 +2594,2372 @@
      }
     ],
     "answerable_conf": {
-     "min": 0.324,
-     "p10": 0.504,
-     "median": 0.64
+     "min": 0.325,
+     "p10": 0.495,
+     "median": 0.678
     },
     "unanswerable_conf": {
-     "max": 0.637,
-     "median": 0.324
+     "max": 0.753,
+     "median": 0.52
+    },
+    "dev": {
+     "threshold": 0.59,
+     "refusal_accuracy": 84.6,
+     "false_refusal_rate": 32.4,
+     "balanced_accuracy": 76.1
+    },
+    "test_at_dev_threshold": {
+     "threshold": 0.59,
+     "refusal_accuracy": 57.9,
+     "false_refusal_rate": 45.6,
+     "balanced_accuracy": 56.1
+    },
+    "test_oracle": {
+     "threshold": 0.69,
+     "refusal_accuracy": 94.7,
+     "false_refusal_rate": 63.2,
+     "balanced_accuracy": 65.8
+    }
+   },
+   "ablation_no_identifier_rule": {
+    "threshold": 0.59,
+    "dev": {
+     "threshold": 0.59,
+     "refusal_accuracy": 76.9,
+     "false_refusal_rate": 32.4,
+     "balanced_accuracy": 72.2
+    },
+    "test": {
+     "threshold": 0.59,
+     "refusal_accuracy": 52.6,
+     "false_refusal_rate": 45.6,
+     "balanced_accuracy": 53.5
     }
    },
    "extractive": {
-    "threshold": 0.425,
-    "summary": {
-     "answer_accuracy": 79.4,
-     "citation_accuracy": 93.8,
-     "explicit_citation_rate": 100.0,
-     "invalid_marker_rate": 0.0,
-     "refusal_accuracy": 70.0,
-     "false_refusal_rate": 5.9,
-     "latency_p50_ms": 87.5,
-     "latency_p95_ms": 230.2,
-     "n_answerable": 34,
-     "n_unanswerable": 10
+    "threshold": 0.59,
+    "dev": {
+     "summary": {
+      "answer_accuracy": 59.5,
+      "citation_accuracy": 96.0,
+      "explicit_citation_rate": 100.0,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 84.6,
+      "false_refusal_rate": 32.4,
+      "latency_p50_ms": 83.0,
+      "latency_p95_ms": 202.6,
+      "n_answerable": 37,
+      "n_unanswerable": 13
+     },
+     "rows": [
+      {
+       "id": "en-f001",
+       "type": "factual",
+       "question": "How many days of paid vacation do full-time employees get?",
+       "answer": "Full-time employees receive 25 days of paid vacation per year. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7607,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 77.6
+      },
+      {
+       "id": "en-f003",
+       "type": "factual",
+       "question": "How long is parental leave?",
+       "answer": "Parental leave is 16 weeks at full pay for all parents. [1] In addition to parental leave, parents can take up to ten paid days per year to care for a sick child. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6401,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md",
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 74.4
+      },
+      {
+       "id": "en-f004",
+       "type": "factual",
+       "question": "What is the maximum payload of the RoboArm X2?",
+       "answer": "The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7514,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 57.8
+      },
+      {
+       "id": "en-f008",
+       "type": "factual",
+       "question": "How often are production databases backed up?",
+       "answer": "Production databases are backed up every 6 hours and backups are kept for 35 days. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6788,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 67.6
+      },
+      {
+       "id": "en-f010",
+       "type": "factual",
+       "question": "When does the VPN disconnect automatically?",
+       "answer": "The VPN disconnects automatically after 12 hours and you must log in again. [1] The VPN disconnects automatically after 12 hours and you must log in again. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7905,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt",
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 75.5
+      },
+      {
+       "id": "en-f011",
+       "type": "factual",
+       "question": "Which ROS 2 distribution was added in firmware version 2.2?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5619,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 76.8
+      },
+      {
+       "id": "en-f016",
+       "type": "factual",
+       "question": "How much does the RoboArm X2 weigh without the controller?",
+       "answer": "The RoboArm X2 weighs 21 kg without the controller. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8721,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 85.3
+      },
+      {
+       "id": "en-f017",
+       "type": "factual",
+       "question": "How long is the probation period for new employees?",
+       "answer": "New employees have a probation period of six months. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8279,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 87.9
+      },
+      {
+       "id": "en-f020",
+       "type": "factual",
+       "question": "How much does Acme contribute to the company pension plan?",
+       "answer": "Acme contributes 5% of the gross salary to the company pension plan. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7929,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 84.6
+      },
+      {
+       "id": "en-f022",
+       "type": "factual",
+       "question": "How much is the childcare allowance?",
+       "answer": "Employees with children under six receive a childcare allowance of 150 EUR per month. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7443,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 100.1
+      },
+      {
+       "id": "en-f023",
+       "type": "factual",
+       "question": "What is the address of the Berlin headquarters?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.506,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 86.9
+      },
+      {
+       "id": "en-f025",
+       "type": "factual",
+       "question": "How many parking spaces does the underground garage have?",
+       "answer": "The underground garage has 40 parking spaces, including 8 spaces with electric vehicle chargers. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7487,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "office_guide.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 81.7
+      },
+      {
+       "id": "en-f028",
+       "type": "factual",
+       "question": "How long are spare parts guaranteed to be available?",
+       "answer": "Spare parts are guaranteed to be available for at least seven years after the end of production. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.709,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "customer_support_policy.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 78.5
+      },
+      {
+       "id": "en-f029",
+       "type": "factual",
+       "question": "What torque are the X2 base bolts tightened to?",
+       "answer": "The base is fixed with four M10 bolts tightened to a torque of 45 Nm. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6843,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.2"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 53.3
+      },
+      {
+       "id": "en-f032",
+       "type": "factual",
+       "question": "How often should the joint gearboxes be re-greased?",
+       "answer": "Re-grease the joint gearboxes every 5,000 operating hours. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6981,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 68.2
+      },
+      {
+       "id": "en-f037",
+       "type": "factual",
+       "question": "How many counselling sessions per year does the employee assistance program cover?",
+       "answer": "Up to six counselling sessions per year are covered. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7998,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 93.1
+      },
+      {
+       "id": "en-f038",
+       "type": "factual",
+       "question": "What is the referral bonus?",
+       "answer": "A successful employee referral is rewarded with a bonus of 2,000 EUR, paid after the new hire completes probation. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6449,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 93.0
+      },
+      {
+       "id": "en-p003",
+       "type": "paraphrase",
+       "question": "Do I need a medical certificate if I'm off ill for two days?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5427,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 151.9
+      },
+      {
+       "id": "en-p005",
+       "type": "paraphrase",
+       "question": "Is it OK to hose down the arm with a pressure washer?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5317,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 116.6
+      },
+      {
+       "id": "en-p007",
+       "type": "paraphrase",
+       "question": "Somebody stole my work notebook computer. What should I do?",
+       "answer": "A broken laptop is swapped for a loaner device within one business day. [3]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6422,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": false,
+       "evidence_coverage": 0.0,
+       "latency_ms": 109.0
+      },
+      {
+       "id": "en-p009",
+       "type": "paraphrase",
+       "question": "For how long do we retain database backups?",
+       "answer": "Production databases are backed up every 6 hours and backups are kept for 35 days. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7091,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 65.5
+      },
+      {
+       "id": "en-p011",
+       "type": "paraphrase",
+       "question": "How long does installing new software on the arm take?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3252,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 77.5
+      },
+      {
+       "id": "en-p014",
+       "type": "paraphrase",
+       "question": "Will the company add money if I pay extra into my retirement savings?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4952,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 90.8
+      },
+      {
+       "id": "en-p015",
+       "type": "paraphrase",
+       "question": "Does my health insurance start right away when I join?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5065,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 83.3
+      },
+      {
+       "id": "en-p020",
+       "type": "paraphrase",
+       "question": "Can I reserve a conference room for the whole day?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5563,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 80.1
+      },
+      {
+       "id": "en-p021",
+       "type": "paraphrase",
+       "question": "What happens if I book a room but never show up?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4469,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 74.2
+      },
+      {
+       "id": "en-p025",
+       "type": "paraphrase",
+       "question": "Can I make phone calls from the silent rooms?",
+       "answer": "Phone calls are not allowed in the quiet rooms. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7045,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "office_guide.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 72.4
+      },
+      {
+       "id": "en-p026",
+       "type": "paraphrase",
+       "question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5004,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 66.2
+      },
+      {
+       "id": "en-p032",
+       "type": "paraphrase",
+       "question": "Does the robot need recalibrating after it crashes into something?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3903,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 61.2
+      },
+      {
+       "id": "en-p033",
+       "type": "paraphrase",
+       "question": "How often should the cables be checked for damage?",
+       "answer": "Inspect the cable harness every 6 months for wear. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6782,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 76.1
+      },
+      {
+       "id": "en-p035",
+       "type": "paraphrase",
+       "question": "How soon must I hand in receipts after a trip?",
+       "answer": "Expense reports must be submitted within 30 days, together with receipts. [1] Expense reports must be submitted within 30 days, together with receipts. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6186,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md",
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 71.6
+      },
+      {
+       "id": "en-c002",
+       "type": "cross",
+       "question": "How long is the X2 warranty and when was the first X2 firmware released?",
+       "answer": "The RoboArm X2 comes with a 3-year limited warranty covering parts and labour. [2] First release for the X2 hardware. [4]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.677,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt",
+        "release_notes.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 201.7
+      },
+      {
+       "id": "en-c003",
+       "type": "cross",
+       "question": "At what collision force does the X2 stop, and can that limit be configured?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5106,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 71.7
+      },
+      {
+       "id": "en-c004",
+       "type": "cross",
+       "question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
+       "answer": "Python SDK 2.x released; the legacy Python 1.x SDK is deprecated and will stop receiving updates in 2027. [1] The X2 SDK supports Python and C++. [3]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8082,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "release_notes.md",
+        "product_faq.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 236.5
+      },
+      {
+       "id": "en-c005",
+       "type": "cross",
+       "question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
+       "answer": "A broken laptop is swapped for a loaner device within one business day. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6058,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 187.8
+      },
+      {
+       "id": "en-c011",
+       "type": "cross",
+       "question": "When is the referral bonus paid and how long is probation?",
+       "answer": "A successful employee referral is rewarded with a bonus of 2,000 EUR, paid after the new hire completes probation. [1] New employees have a probation period of six months. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.685,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md",
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 210.7
+      },
+      {
+       "id": "en-c016",
+       "type": "cross",
+       "question": "How long must passwords be, and after how many days must they be rotated?",
+       "answer": "All employee passwords must be at least 14 characters long. [1] Passwords must be rotated every 180 days and may not be reused. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7921,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.1"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 202.6
+      },
+      {
+       "id": "en-u001",
+       "type": "unanswerable",
+       "question": "Who is the CEO of Acme Robotics?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3397,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 94.1
+      },
+      {
+       "id": "en-u002",
+       "type": "unanswerable",
+       "question": "What is the purchase price of the RoboArm X2?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5254,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 69.3
+      },
+      {
+       "id": "en-u007",
+       "type": "unanswerable",
+       "question": "How do I print in color from a Mac?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.1902,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 82.8
+      },
+      {
+       "id": "en-u008",
+       "type": "unanswerable",
+       "question": "What was Acme's revenue last year?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.496,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 89.5
+      },
+      {
+       "id": "en-u011",
+       "type": "unanswerable",
+       "question": "What is the maximum payload of the RoboArm X2 at half reach?",
+       "answer": "The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7531,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 63.8
+      },
+      {
+       "id": "en-u014",
+       "type": "unanswerable",
+       "question": "What does error code E402 mean?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "unknown_identifier",
+       "confidence": 0.6945,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 105.9
+      },
+      {
+       "id": "en-u016",
+       "type": "unanswerable",
+       "question": "How many sick days per year are employees entitled to?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5706,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 118.1
+      },
+      {
+       "id": "en-u018",
+       "type": "unanswerable",
+       "question": "Where is the Munich office?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4116,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 98.5
+      },
+      {
+       "id": "en-u020",
+       "type": "unanswerable",
+       "question": "Is there a discount for buying more than ten robots?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5741,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 133.4
+      },
+      {
+       "id": "en-u021",
+       "type": "unanswerable",
+       "question": "How long is the warranty on the gripper accessory?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5692,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 59.0
+      },
+      {
+       "id": "en-u024",
+       "type": "unanswerable",
+       "question": "Who approves vacation requests shorter than two weeks?",
+       "answer": "Vacation requests longer than two weeks must be submitted at least 30 days in advance. [1] Vacation requests longer than two weeks must be submitted at least 30 days in advance. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7492,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md",
+        "employee_handbook.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 112.2
+      },
+      {
+       "id": "en-u029",
+       "type": "unanswerable",
+       "question": "Can the controller run on a 24 V DC battery?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5199,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 71.2
+      },
+      {
+       "id": "en-u030",
+       "type": "unanswerable",
+       "question": "What antivirus software is installed on company laptops?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4206,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 87.5
+      }
+     ]
     },
-    "rows": [
-     {
-      "id": "en-f01",
-      "type": "factual",
-      "question": "How many days of paid vacation do full-time employees get?",
-      "answer": "Full-time employees receive 25 days of paid vacation per year. [1]",
-      "refused": false,
-      "confidence": 0.7607,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 93.8
+    "test": {
+     "summary": {
+      "answer_accuracy": 49.1,
+      "citation_accuracy": 100.0,
+      "explicit_citation_rate": 100.0,
+      "invalid_marker_rate": 0.0,
+      "refusal_accuracy": 57.9,
+      "false_refusal_rate": 45.6,
+      "latency_p50_ms": 88.4,
+      "latency_p95_ms": 275.8,
+      "n_answerable": 57,
+      "n_unanswerable": 19
      },
-     {
-      "id": "en-f02",
-      "type": "factual",
-      "question": "What is the daily meal allowance during business trips?",
-      "answer": "The daily meal allowance during business trips is 45 EUR. [2]",
-      "refused": false,
-      "confidence": 0.7682,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 95.4
-     },
-     {
-      "id": "en-f03",
-      "type": "factual",
-      "question": "How long is parental leave?",
-      "answer": "Parental leave is 16 weeks at full pay for all parents. [1]",
-      "refused": false,
-      "confidence": 0.6375,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 94.1
-     },
-     {
-      "id": "en-f04",
-      "type": "factual",
-      "question": "What is the maximum payload of the RoboArm X2?",
-      "answer": "The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm. [1]",
-      "refused": false,
-      "confidence": 0.7514,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 82.8
-     },
-     {
-      "id": "en-f05",
-      "type": "factual",
-      "question": "What is the repeatability of the X2?",
-      "answer": "The repeatability of the X2 is plus or minus 0.03 mm. [1]",
-      "refused": false,
-      "confidence": 0.7563,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 86.2
-     },
-     {
-      "id": "en-f06",
-      "type": "factual",
-      "question": "What IP rating does the RoboArm X2 have?",
-      "answer": "The arm has an IP54 rating. [2]",
-      "refused": false,
-      "confidence": 0.6057,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 81.5
-     },
-     {
-      "id": "en-f07",
-      "type": "factual",
-      "question": "What is the minimum password length?",
-      "answer": "All employee passwords must be at least 14 characters long. [1]",
-      "refused": false,
-      "confidence": 0.7159,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.1"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 82.0
-     },
-     {
-      "id": "en-f08",
-      "type": "factual",
-      "question": "How often are production databases backed up?",
-      "answer": "Production databases are backed up every 6 hours and backups are kept for 35 days. [1]",
-      "refused": false,
-      "confidence": 0.6788,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.4"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 93.8
-     },
-     {
-      "id": "en-f09",
-      "type": "factual",
-      "question": "What are the IT helpdesk opening hours?",
-      "answer": "The IT helpdesk is open Monday to Friday from 8:00 to 18:00. [1]",
-      "refused": false,
-      "confidence": 0.7433,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 91.3
-     },
-     {
-      "id": "en-f10",
-      "type": "factual",
-      "question": "When does the VPN disconnect automatically?",
-      "answer": "The VPN disconnects automatically after 12 hours and you must log in again. [1] The VPN disconnects automatically after 12 hours and you must log in again. [2]",
-      "refused": false,
-      "confidence": 0.7905,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt",
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 74.1
-     },
-     {
-      "id": "en-f11",
-      "type": "factual",
-      "question": "Which ROS 2 distribution was added in firmware version 2.2?",
-      "answer": "Added support for ROS 2 Jazzy in the open-source driver. [2] A ROS 2 driver is available as an open-source package. [4]",
-      "refused": false,
-      "confidence": 0.5972,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "release_notes.md",
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 81.8
-     },
-     {
-      "id": "en-f12",
-      "type": "factual",
-      "question": "What is the annual learning budget per employee?",
-      "answer": "Each employee has an annual learning budget of 1,200 EUR that can be spent on courses, books and conferences. [1]",
-      "refused": false,
-      "confidence": 0.6988,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 94.5
-     },
-     {
-      "id": "en-f13",
-      "type": "factual",
-      "question": "What happens after 5 failed login attempts?",
-      "answer": "Accounts are locked for 15 minutes after 5 failed login attempts. [1]",
-      "refused": false,
-      "confidence": 0.6384,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.1"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 64.9
-     },
-     {
-      "id": "en-f14",
-      "type": "factual",
-      "question": "When do performance reviews take place?",
-      "answer": "Performance reviews take place twice a year, in March and September. [1]",
-      "refused": false,
-      "confidence": 0.7201,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 70.6
-     },
-     {
-      "id": "en-f15",
-      "type": "factual",
-      "question": "How long are guest Wi-Fi access codes valid?",
-      "answer": "Guest access codes are valid for 24 hours and are issued at reception. [1]",
-      "refused": false,
-      "confidence": 0.6576,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 89.9
-     },
-     {
-      "id": "en-p01",
-      "type": "paraphrase",
-      "question": "How much weight can the robot arm carry?",
-      "answer": "The arm has an IP54 rating. [1] The RoboArm X2 weighs 21 kg without the controller. [2] The controller box weighs an additional 6 kg. [2]",
-      "refused": false,
-      "confidence": 0.5274,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt",
-       "product_faq.txt"
-      ],
-      "answer_correct": false,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 74.2
-     },
-     {
-      "id": "en-p02",
-      "type": "paraphrase",
-      "question": "Can I bring leftover holiday into next year?",
-      "answer": "Unused vacation days can be carried over to the next year, up to a maximum of 5 days. [2]",
-      "refused": false,
-      "confidence": 0.5195,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 94.8
-     },
-     {
-      "id": "en-p03",
-      "type": "paraphrase",
-      "question": "Do I need a medical certificate if I'm off ill for two days?",
-      "answer": "Sick leave does not require a doctor's note for absences shorter than three days. [2]",
-      "refused": false,
-      "confidence": 0.5427,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 96.1
-     },
-     {
-      "id": "en-p04",
-      "type": "paraphrase",
-      "question": "What happens if the robot bumps into a person?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3237,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": false,
-      "citation_correct": null,
-      "evidence_coverage": 0.0,
-      "latency_ms": 82.4
-     },
-     {
-      "id": "en-p05",
-      "type": "paraphrase",
-      "question": "Is it OK to hose down the arm with a pressure washer?",
-      "answer": "It is protected against dust and water splashes but must not be submerged or cleaned with a pressure washer. [1] It is protected against dust and water splashes but must not be submerged or cleaned with a pressure washer. [2]",
-      "refused": false,
-      "confidence": 0.5317,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt",
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 75.3
-     },
-     {
-      "id": "en-p06",
-      "type": "paraphrase",
-      "question": "How quickly do I have to tell someone about a hacking attempt?",
-      "answer": "Accounts are locked for 15 minutes after 5 failed login attempts. [1] Security incidents must be reported to security@acme.example within 1 hour of discovery. [3]",
-      "refused": false,
-      "confidence": 0.5761,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.1",
-       "security_policy.pdf p.2"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 84.1
-     },
-     {
-      "id": "en-p07",
-      "type": "paraphrase",
-      "question": "Somebody stole my work notebook computer. What should I do?",
-      "answer": "A broken laptop is swapped for a loaner device within one business day. [2]",
-      "refused": false,
-      "confidence": 0.6422,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": false,
-      "citation_correct": false,
-      "evidence_coverage": 0.0,
-      "latency_ms": 70.9
-     },
-     {
-      "id": "en-p08",
-      "type": "paraphrase",
-      "question": "Can I plug a thumb drive into my work computer?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3892,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": false,
-      "citation_correct": null,
-      "evidence_coverage": 0.0,
-      "latency_ms": 83.0
-     },
-     {
-      "id": "en-p09",
-      "type": "paraphrase",
-      "question": "For how long do we retain database backups?",
-      "answer": "Production databases are backed up every 6 hours and backups are kept for 35 days. [1]",
-      "refused": false,
-      "confidence": 0.7091,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.4"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 62.5
-     },
-     {
-      "id": "en-p10",
-      "type": "paraphrase",
-      "question": "How much electricity does the robot controller consume?",
-      "answer": "The controller requires a 100-240 V AC single-phase supply and draws at most 350 W during operation. [1] The RoboArm X2 weighs 21 kg without the controller. [2] The controller box weighs an additional 6 kg. [2]",
-      "refused": false,
-      "confidence": 0.5044,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt",
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 77.0
-     },
-     {
-      "id": "en-p11",
-      "type": "paraphrase",
-      "question": "How long does installing new software on the arm take?",
-      "answer": "Download the update package, upload it under Settings > Firmware, and keep the controller powered on until the update finishes (about 8 minutes). [1]",
-      "refused": false,
-      "confidence": 0.4491,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 70.8
-     },
-     {
-      "id": "en-p12",
-      "type": "paraphrase",
-      "question": "Which seat class may I book on a long-haul flight?",
-      "answer": "Economy class is the default for flights shorter than six hours; premium economy is allowed for longer flights. [1]",
-      "refused": false,
-      "confidence": 0.5299,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 82.2
-     },
-     {
-      "id": "en-p13",
-      "type": "paraphrase",
-      "question": "How often do I get a new computer?",
-      "answer": "Every new employee receives a laptop and a 27-inch monitor. [1]",
-      "refused": false,
-      "confidence": 0.5086,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "employee_handbook.md"
-      ],
-      "answer_correct": false,
-      "citation_correct": false,
-      "evidence_coverage": 0.0,
-      "latency_ms": 92.8
-     },
-     {
-      "id": "en-c01",
-      "type": "cross",
-      "question": "What is required to connect to the company VPN from home?",
-      "answer": "Remote access requires the company VPN client. [2]",
-      "refused": false,
-      "confidence": 0.8024,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 0.5,
-      "latency_ms": 90.4
-     },
-     {
-      "id": "en-c02",
-      "type": "cross",
-      "question": "How long is the X2 warranty and when was the first X2 firmware released?",
-      "answer": "First release for the X2 hardware. [1] The RoboArm X2 comes with a 3-year limited warranty covering parts and labour. [3]",
-      "refused": false,
-      "confidence": 0.677,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "release_notes.md",
-       "product_faq.txt"
-      ],
-      "answer_correct": false,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 220.5
-     },
-     {
-      "id": "en-c03",
-      "type": "cross",
-      "question": "At what collision force does the X2 stop, and can that limit be configured?",
-      "answer": "It stops automatically when a collision force above 150 N is detected, and an emergency stop button is included with every unit. [1]",
-      "refused": false,
-      "confidence": 0.5106,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": false,
-      "citation_correct": true,
-      "evidence_coverage": 0.5,
-      "latency_ms": 244.2
-     },
-     {
-      "id": "en-c04",
-      "type": "cross",
-      "question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
-      "answer": "Python SDK 2.x released; the legacy Python 1.x SDK is deprecated and will stop receiving updates in 2027. [2] The X2 SDK supports Python and C++. [4]",
-      "refused": false,
-      "confidence": 0.8082,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "release_notes.md",
-       "product_faq.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 251.0
-     },
-     {
-      "id": "en-c05",
-      "type": "cross",
-      "question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
-      "answer": "A broken laptop is swapped for a loaner device within one business day. [1] Lost or stolen laptops must be reported to the IT helpdesk on the same day. [4]",
-      "refused": false,
-      "confidence": 0.6058,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "it_helpdesk.txt",
-       "security_policy.pdf p.2"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 230.2
-     },
-     {
-      "id": "en-c06",
-      "type": "cross",
-      "question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
-      "answer": "Security incidents must be reported to security@acme.example within 1 hour of discovery. [1] Urgent issues outside these hours can be reported by calling the on-call number +49 30 1234 5678. [2]",
-      "refused": false,
-      "confidence": 0.7521,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "security_policy.pdf p.2",
-       "it_helpdesk.txt"
-      ],
-      "answer_correct": true,
-      "citation_correct": true,
-      "evidence_coverage": 1.0,
-      "latency_ms": 169.5
-     },
-     {
-      "id": "en-u01",
-      "type": "unanswerable",
-      "question": "Who is the CEO of Acme Robotics?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.2689,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 74.7
-     },
-     {
-      "id": "en-u02",
-      "type": "unanswerable",
-      "question": "What is the price of the RoboArm X2?",
-      "answer": "The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm. [1] The RoboArm X2 weighs 21 kg without the controller. [1] The RoboArm X2 comes with a 3-year limited warranty covering parts and labour. [1]",
-      "refused": false,
-      "confidence": 0.5266,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt"
-      ],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 97.0
-     },
-     {
-      "id": "en-u03",
-      "type": "unanswerable",
-      "question": "Does the company offer a pension plan?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3283,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 110.8
-     },
-     {
-      "id": "en-u04",
-      "type": "unanswerable",
-      "question": "What is the maximum speed of the RoboArm X3?",
-      "answer": "The RoboArm X2 can lift a maximum payload of 7.5 kg at full reach of 900 mm. [1] Maximum speed raised to 1.2 m/s at the tool flange. [2]",
-      "refused": false,
-      "confidence": 0.6375,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt",
-       "release_notes.md"
-      ],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 109.5
-     },
-     {
-      "id": "en-u05",
-      "type": "unanswerable",
-      "question": "How many employees does Acme have?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3047,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 88.7
-     },
-     {
-      "id": "en-u06",
-      "type": "unanswerable",
-      "question": "Is there a dress code in the office?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3199,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 99.1
-     },
-     {
-      "id": "en-u07",
-      "type": "unanswerable",
-      "question": "Can the X2 be mounted on the ceiling?",
-      "answer": "The X2 is a collaborative robot certified to ISO 10218. [1] First release for the X2 hardware. [3]",
-      "refused": false,
-      "confidence": 0.5183,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [
-       "product_faq.txt",
-       "release_notes.md"
-      ],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 79.3
-     },
-     {
-      "id": "en-u08",
-      "type": "unanswerable",
-      "question": "What is on the cafeteria menu on Fridays?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.3573,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 104.5
-     },
-     {
-      "id": "en-u09",
-      "type": "unanswerable",
-      "question": "How do I print in color from a Mac?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.174,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 72.9
-     },
-     {
-      "id": "en-u10",
-      "type": "unanswerable",
-      "question": "What was Acme's revenue last year?",
-      "answer": "I couldn't find relevant information in the uploaded documents.",
-      "refused": true,
-      "confidence": 0.2574,
-      "backend": "extractive",
-      "citation_mode": "explicit",
-      "invalid_markers": [],
-      "citations": [],
-      "answer_correct": null,
-      "citation_correct": null,
-      "evidence_coverage": null,
-      "latency_ms": 68.2
-     }
-    ]
+     "rows": [
+      {
+       "id": "en-f002",
+       "type": "factual",
+       "question": "What is the daily meal allowance during business trips?",
+       "answer": "The daily meal allowance during business trips is 45 EUR. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7682,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 101.3
+      },
+      {
+       "id": "en-f005",
+       "type": "factual",
+       "question": "What is the repeatability of the X2?",
+       "answer": "The repeatability of the X2 is plus or minus 0.03 mm. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7563,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 75.6
+      },
+      {
+       "id": "en-f006",
+       "type": "factual",
+       "question": "What IP rating does the RoboArm X2 have?",
+       "answer": "The arm has an IP54 rating. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6057,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "product_faq.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 73.2
+      },
+      {
+       "id": "en-f007",
+       "type": "factual",
+       "question": "What is the minimum password length?",
+       "answer": "All employee passwords must be at least 14 characters long. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7159,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.1"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 64.5
+      },
+      {
+       "id": "en-f009",
+       "type": "factual",
+       "question": "What are the IT helpdesk opening hours?",
+       "answer": "The IT helpdesk is open Monday to Friday from 8:00 to 18:00. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7433,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 111.3
+      },
+      {
+       "id": "en-f012",
+       "type": "factual",
+       "question": "What is the annual learning budget per employee?",
+       "answer": "Each employee has an annual learning budget of 1,200 EUR that can be spent on courses, books and conferences. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6988,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 116.3
+      },
+      {
+       "id": "en-f013",
+       "type": "factual",
+       "question": "What happens after 5 failed login attempts?",
+       "answer": "Accounts are locked for 15 minutes after 5 failed login attempts. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6384,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.1"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 53.0
+      },
+      {
+       "id": "en-f014",
+       "type": "factual",
+       "question": "When do performance reviews take place?",
+       "answer": "Performance reviews take place twice a year, in March and September. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7201,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 81.9
+      },
+      {
+       "id": "en-f015",
+       "type": "factual",
+       "question": "How long are guest Wi-Fi access codes valid?",
+       "answer": "Guest access codes are valid for 24 hours and are issued at reception. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6576,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 67.3
+      },
+      {
+       "id": "en-f018",
+       "type": "factual",
+       "question": "What is the home office allowance?",
+       "answer": "Employees working from home can claim a one-time home office allowance of 500 EUR for a chair, desk or headset. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7652,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 114.7
+      },
+      {
+       "id": "en-f019",
+       "type": "factual",
+       "question": "What is the maximum speed of the X2 at the tool flange?",
+       "answer": "Maximum speed raised to 1.2 m/s at the tool flange. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8255,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "release_notes.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 65.1
+      },
+      {
+       "id": "en-f021",
+       "type": "factual",
+       "question": "How much is the monthly fitness subsidy?",
+       "answer": "Employees receive a fitness subsidy of 30 EUR per month for gym or sports club memberships. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7648,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 89.9
+      },
+      {
+       "id": "en-f024",
+       "type": "factual",
+       "question": "When does the cafeteria serve lunch?",
+       "answer": "The cafeteria on the ground floor serves lunch from 11:30 to 14:00. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8203,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "office_guide.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 89.1
+      },
+      {
+       "id": "en-f026",
+       "type": "factual",
+       "question": "How much does the Premium support plan cost?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5137,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 96.3
+      },
+      {
+       "id": "en-f027",
+       "type": "factual",
+       "question": "Where is the service center for warranty repairs?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4351,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 65.7
+      },
+      {
+       "id": "en-f030",
+       "type": "factual",
+       "question": "What is the operating temperature range of the X2?",
+       "answer": "The operating temperature range is 0 to 45 degrees Celsius. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.597,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.1"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 77.2
+      },
+      {
+       "id": "en-f031",
+       "type": "factual",
+       "question": "What does error code E204 mean?",
+       "answer": "Error code E204 indicates that the emergency stop circuit is open. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7237,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 92.1
+      },
+      {
+       "id": "en-f033",
+       "type": "factual",
+       "question": "How long is the controller cable?",
+       "answer": "The controller cable between arm and controller is 5 m long. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7889,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.2"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 63.2
+      },
+      {
+       "id": "en-f034",
+       "type": "factual",
+       "question": "What data classification levels exist?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5499,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 67.6
+      },
+      {
+       "id": "en-f035",
+       "type": "factual",
+       "question": "When do vendor access accounts expire?",
+       "answer": "Vendors receive time-limited access accounts that expire after 90 days. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7049,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "security_policy.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 78.7
+      },
+      {
+       "id": "en-f036",
+       "type": "factual",
+       "question": "How long does the operator training last?",
+       "answer": "Acme offers a two-day operator training and a three-day programming training. [1] Up to two operator training seats are included with every new RoboArm X2. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.5972,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "customer_support_policy.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 82.9
+      },
+      {
+       "id": "en-f039",
+       "type": "factual",
+       "question": "Which industrial protocol for PLC integration was added in version 2.1?",
+       "answer": "Added Modbus TCP support for PLC integration. [1] Added Modbus TCP support for PLC integration. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6035,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "release_notes.md",
+        "release_notes.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 72.2
+      },
+      {
+       "id": "en-f040",
+       "type": "factual",
+       "question": "What does error code E101 indicate?",
+       "answer": "Error code E101 indicates overcurrent in a joint motor. [1] Error code E204 indicates that the emergency stop circuit is open. [1] Error code E310 indicates a lost connection between controller and arm. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6976,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.4"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 94.0
+      },
+      {
+       "id": "en-f041",
+       "type": "factual",
+       "question": "How much is the public transport ticket subsidy?",
+       "answer": "The public transport ticket is subsidised with 49 EUR per month. [1] The public transport ticket is subsidised with 49 EUR per month. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.716,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md",
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 88.4
+      },
+      {
+       "id": "en-f042",
+       "type": "factual",
+       "question": "How long does the joint calibration wizard take?",
+       "answer": "The calibration wizard takes about 20 minutes and must be repeated after every collision above 150 N. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7692,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.3"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 67.7
+      },
+      {
+       "id": "en-p001",
+       "type": "paraphrase",
+       "question": "How much weight can the robot arm carry?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4639,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 59.3
+      },
+      {
+       "id": "en-p002",
+       "type": "paraphrase",
+       "question": "Can I bring leftover holiday into next year?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5195,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 91.7
+      },
+      {
+       "id": "en-p004",
+       "type": "paraphrase",
+       "question": "What happens if the robot bumps into a person?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3237,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 57.4
+      },
+      {
+       "id": "en-p006",
+       "type": "paraphrase",
+       "question": "How quickly do I have to tell someone about a hacking attempt?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5761,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 69.3
+      },
+      {
+       "id": "en-p008",
+       "type": "paraphrase",
+       "question": "Can I plug a thumb drive into my work computer?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3892,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 81.8
+      },
+      {
+       "id": "en-p010",
+       "type": "paraphrase",
+       "question": "How much electricity does the robot controller consume?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5337,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 80.8
+      },
+      {
+       "id": "en-p012",
+       "type": "paraphrase",
+       "question": "Which seat class may I book on a long-haul flight?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5299,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 77.8
+      },
+      {
+       "id": "en-p013",
+       "type": "paraphrase",
+       "question": "How often do I get a new computer?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5086,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 94.4
+      },
+      {
+       "id": "en-p016",
+       "type": "paraphrase",
+       "question": "My kid has a fever. Can I stay home to look after them?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.431,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 93.7
+      },
+      {
+       "id": "en-p017",
+       "type": "paraphrase",
+       "question": "Is there someone I can talk to confidentially about personal problems at night?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.516,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 101.6
+      },
+      {
+       "id": "en-p018",
+       "type": "paraphrase",
+       "question": "Do I get more holiday if I've been with the company for a long time?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3391,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 102.0
+      },
+      {
+       "id": "en-p019",
+       "type": "paraphrase",
+       "question": "A customer is coming to see me tomorrow. What do I have to do beforehand?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4629,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 75.3
+      },
+      {
+       "id": "en-p022",
+       "type": "paraphrase",
+       "question": "Can I charge my electric car at the office?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3366,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 94.8
+      },
+      {
+       "id": "en-p023",
+       "type": "paraphrase",
+       "question": "Where do we gather when the fire alarm goes off?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5145,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 74.4
+      },
+      {
+       "id": "en-p024",
+       "type": "paraphrase",
+       "question": "Is there something meat-free for lunch?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4527,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 85.7
+      },
+      {
+       "id": "en-p027",
+       "type": "paraphrase",
+       "question": "How do I send a broken robot back for repair?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3815,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": true,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 90.8
+      },
+      {
+       "id": "en-p028",
+       "type": "paraphrase",
+       "question": "How quickly do replacement components get shipped?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5262,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 86.3
+      },
+      {
+       "id": "en-p029",
+       "type": "paraphrase",
+       "question": "Can the robot be hung upside down from the ceiling?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4051,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 64.6
+      },
+      {
+       "id": "en-p030",
+       "type": "paraphrase",
+       "question": "How much space should be kept free around the robot during setup?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5001,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 68.7
+      },
+      {
+       "id": "en-p031",
+       "type": "paraphrase",
+       "question": "How strong does the floor have to be for the arm?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4313,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 117.6
+      },
+      {
+       "id": "en-p034",
+       "type": "paraphrase",
+       "question": "Can I get my print job without walking to the printer with my card?",
+       "answer": "Printers on every floor support secure printing: jobs are released only after you tap your badge on the printer. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6837,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 132.4
+      },
+      {
+       "id": "en-p036",
+       "type": "paraphrase",
+       "question": "How long can my screen stay unlocked when I walk away?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.491,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 59.6
+      },
+      {
+       "id": "en-c001",
+       "type": "cross",
+       "question": "What is required to connect to the company VPN from home?",
+       "answer": "Remote access requires the company VPN client. [3]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.8024,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 169.3
+      },
+      {
+       "id": "en-c006",
+       "type": "cross",
+       "question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
+       "answer": "Urgent issues outside these hours can be reported by calling the on-call number +49 30 1234 5678. [1] Security incidents must be reported to security@acme.example within 1 hour of discovery. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7521,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "it_helpdesk.txt",
+        "security_policy.pdf p.2"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 199.3
+      },
+      {
+       "id": "en-c007",
+       "type": "cross",
+       "question": "How much is the fitness subsidy and how much is the home office allowance?",
+       "answer": "Employees working from home can claim a one-time home office allowance of 500 EUR for a chair, desk or headset. [1] Employees receive a fitness subsidy of 30 EUR per month for gym or sports club memberships. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.672,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md",
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 316.5
+      },
+      {
+       "id": "en-c008",
+       "type": "cross",
+       "question": "How long is parental leave and how many sick-child days can parents take?",
+       "answer": "In addition to parental leave, parents can take up to ten paid days per year to care for a sick child. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7582,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 296.5
+      },
+      {
+       "id": "en-c009",
+       "type": "cross",
+       "question": "How long is the warranty, and how long do warranty repairs take?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.4271,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 80.7
+      },
+      {
+       "id": "en-c010",
+       "type": "cross",
+       "question": "What does error code E310 mean and how long is the controller cable?",
+       "answer": "Error code E310 indicates a lost connection between controller and arm. [1] The controller cable between arm and controller is 5 m long. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6778,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "x2_installation_manual.pdf p.4",
+        "x2_installation_manual.pdf p.2"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 208.6
+      },
+      {
+       "id": "en-c012",
+       "type": "cross",
+       "question": "What is the collision limit for recalibration, and what is the default collision stop force?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5763,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": false,
+       "citation_correct": null,
+       "evidence_coverage": 0.0,
+       "latency_ms": 81.0
+      },
+      {
+       "id": "en-c013",
+       "type": "cross",
+       "question": "What are the IT helpdesk hours and the Standard customer support hours?",
+       "answer": "Standard support is available by e-mail and the customer portal on working days from 8:00 to 17:00 CET. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6538,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "customer_support_policy.md"
+       ],
+       "answer_correct": false,
+       "citation_correct": true,
+       "evidence_coverage": 0.5,
+       "latency_ms": 69.7
+      },
+      {
+       "id": "en-c014",
+       "type": "cross",
+       "question": "When is the building open, and when does the cafeteria serve lunch?",
+       "answer": "The cafeteria on the ground floor serves lunch from 11:30 to 14:00. [1] The building is open from 6:00 to 22:00 on working days. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7643,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "office_guide.txt",
+        "office_guide.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 369.0
+      },
+      {
+       "id": "en-c015",
+       "type": "cross",
+       "question": "How quickly are Priority 1 IT tickets answered and how quickly does Premium customer support answer outage tickets?",
+       "answer": "Premium support answers production-outage tickets within two hours and all other tickets within four business hours. [1] Priority 1 tickets (complete outage, security issue) receive a response within 30 minutes. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7429,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "customer_support_policy.md",
+        "it_helpdesk.txt"
+       ],
+       "answer_correct": true,
+       "citation_correct": true,
+       "evidence_coverage": 1.0,
+       "latency_ms": 275.8
+      },
+      {
+       "id": "en-u003",
+       "type": "unanswerable",
+       "question": "What is the maximum speed of the RoboArm X3?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "unknown_identifier",
+       "confidence": 0.6375,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 99.9
+      },
+      {
+       "id": "en-u004",
+       "type": "unanswerable",
+       "question": "How many employees does Acme have?",
+       "answer": "Employees can add up to 4% of their own salary, and Acme matches employee contributions up to an additional 2%. [3]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6399,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 218.1
+      },
+      {
+       "id": "en-u005",
+       "type": "unanswerable",
+       "question": "Is there a dress code in the office?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3103,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 101.5
+      },
+      {
+       "id": "en-u006",
+       "type": "unanswerable",
+       "question": "What is on the cafeteria menu on Fridays?",
+       "answer": "The cafeteria on the ground floor serves lunch from 11:30 to 14:00. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6742,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "office_guide.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 97.5
+      },
+      {
+       "id": "en-u009",
+       "type": "unanswerable",
+       "question": "Does Acme pay for glasses or contact lenses?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.331,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 122.5
+      },
+      {
+       "id": "en-u010",
+       "type": "unanswerable",
+       "question": "How much does the bike leasing cost per month?",
+       "answer": "Acme offers bike leasing through a partner; the leasing rate is deducted from the gross salary. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6099,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 113.0
+      },
+      {
+       "id": "en-u012",
+       "type": "unanswerable",
+       "question": "Which Linux distributions does the X2 SDK officially support?",
+       "answer": "First release for the X2 hardware. [1] The X2 SDK supports Python and C++. [4]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6682,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "release_notes.md",
+        "product_faq.txt"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 78.4
+      },
+      {
+       "id": "en-u013",
+       "type": "unanswerable",
+       "question": "When will firmware version 2.4 be released?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "unknown_identifier",
+       "confidence": 0.5223,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 66.7
+      },
+      {
+       "id": "en-u015",
+       "type": "unanswerable",
+       "question": "Is the X2 certified for use in food production?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5364,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 77.1
+      },
+      {
+       "id": "en-u017",
+       "type": "unanswerable",
+       "question": "Can I bring my dog to the office?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.3286,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 97.7
+      },
+      {
+       "id": "en-u019",
+       "type": "unanswerable",
+       "question": "How much does the three-day programming training cost?",
+       "answer": "Acme offers a two-day operator training and a three-day programming training. [3]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6053,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "customer_support_policy.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 95.0
+      },
+      {
+       "id": "en-u022",
+       "type": "unanswerable",
+       "question": "What is the Wi-Fi password for employees?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5011,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 70.3
+      },
+      {
+       "id": "en-u023",
+       "type": "unanswerable",
+       "question": "How much is the daily meal allowance for trips abroad in the USA?",
+       "answer": "The daily meal allowance during business trips is 45 EUR. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.6523,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 88.9
+      },
+      {
+       "id": "en-u025",
+       "type": "unanswerable",
+       "question": "How many people can the largest meeting room hold?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.536,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 67.9
+      },
+      {
+       "id": "en-u026",
+       "type": "unanswerable",
+       "question": "What is the noise level of the X2 during operation?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.415,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 53.7
+      },
+      {
+       "id": "en-u027",
+       "type": "unanswerable",
+       "question": "Does Acme offer stock options to employees?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5445,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 94.0
+      },
+      {
+       "id": "en-u028",
+       "type": "unanswerable",
+       "question": "What is the deadline for the annual bonus payment?",
+       "answer": "I couldn't find relevant information in the uploaded documents.",
+       "refused": true,
+       "refusal_reason": "low_confidence",
+       "confidence": 0.5237,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 88.4
+      },
+      {
+       "id": "en-u031",
+       "type": "unanswerable",
+       "question": "How many days of paid vacation do part-time employees get?",
+       "answer": "Full-time employees receive 25 days of paid vacation per year. [1] Employees receive one extra vacation day after five years of service. [2]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.7573,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md",
+        "benefits_and_wellbeing.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 111.9
+      },
+      {
+       "id": "en-u032",
+       "type": "unanswerable",
+       "question": "Which hotel chains are preferred for business travel?",
+       "answer": "Business travel must be booked through the company travel portal. [1]",
+       "refused": false,
+       "refusal_reason": null,
+       "confidence": 0.68,
+       "backend": "extractive",
+       "citation_mode": "explicit",
+       "invalid_markers": [],
+       "citations": [
+        "employee_handbook.md"
+       ],
+       "answer_correct": null,
+       "citation_correct": null,
+       "evidence_coverage": null,
+       "latency_ms": 90.3
+      }
+     ]
+    }
    },
    "llm": []
   }

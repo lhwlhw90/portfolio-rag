@@ -59,7 +59,37 @@ SAMPLE_PAGES = [
      "Vendor access to production systems requires approval from the system owner."],
 ]
 
+INSTALL_PAGES = [
+    ["RoboArm X2 Installation Manual", "",
+     "Chapter 1. Site requirements",
+     "The mounting surface must support a static load of at least 2,000 N.",
+     "The operating temperature range is 0 to 45 degrees Celsius.",
+     "Relative humidity must stay below 85 percent, non-condensing.",
+     "Keep a free safety zone of at least 1.2 m around the arm during commissioning."],
+    ["Chapter 2. Mounting",
+     "The base is fixed with four M10 bolts tightened to a torque of 45 Nm.",
+     "The X2 can be mounted on the floor, on a table or on a wall.",
+     "Ceiling mounting is not supported because the joint brakes are not rated for it.",
+     "The controller cable between arm and controller is 5 m long."],
+    ["Chapter 3. Commissioning",
+     "After power-on, run the joint calibration wizard in the web dashboard.",
+     "The calibration wizard takes about 20 minutes and must be repeated after every collision above 150 N.",
+     "Set the tool weight and center of gravity before running any program.",
+     "The default dashboard password must be changed during commissioning."],
+    ["Chapter 4. Maintenance and error codes",
+     "Re-grease the joint gearboxes every 5,000 operating hours.",
+     "Inspect the cable harness every 6 months for wear.",
+     "Error code E101 indicates overcurrent in a joint motor.",
+     "Error code E204 indicates that the emergency stop circuit is open.",
+     "Error code E310 indicates a lost connection between controller and arm."],
+]
+
+DOCS = {
+    "sample_docs/en/security_policy.pdf": SAMPLE_PAGES,
+    "sample_docs/en/x2_installation_manual.pdf": INSTALL_PAGES,
+}
+
 if __name__ == "__main__":
-    out = Path(sys.argv[1] if len(sys.argv) > 1 else "sample_docs/en/security_policy.pdf")
-    out.write_bytes(make_pdf(SAMPLE_PAGES))
-    print(f"wrote {out}")
+    for path, pages in DOCS.items():
+        Path(path).write_bytes(make_pdf(pages))
+        print(f"wrote {path}")

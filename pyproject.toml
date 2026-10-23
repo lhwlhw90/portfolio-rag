@@ -13,6 +13,8 @@ dependencies = [
   "rank-bm25>=0.2.2",
   "httpx>=0.27",
   "fastembed>=0.3",
+  "pypdfium2>=4.30",  # server-side PDF page previews + highlight boxes
+  "pillow>=10",
 ]
 
 [project.optional-dependencies]

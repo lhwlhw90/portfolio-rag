@@ -1,16 +1,33 @@
 {
-    "question": "Whom should security incidents be reported to, and how fast?",
-    "answer": "Security incidents must be reported to security@acme.example within 1 hour of discovery. [1]",
+    "question": "Whom do I notify after a security incident and how quickly?",
+    "answer": "Security incidents must be reported to security@acme.example within 1 hour of discovery. [1] The on-call security engineer triages incidents and opens a post-mortem within 5 business days. [1] Priority 1 tickets (complete outage, security issue) receive a response within 30 minutes. [2]",
     "backend": "extractive",
+    "refused": false,
+    "refusal_reason": null,
+    "refusal_detail": null,
+    "confidence": 0.7424,
+    "min_score": 0.67,
+    "citation_mode": "explicit",
+    "mode": "hybrid",
+    "latency_ms": 361.7,
     "citations": [
         {
             "index": 1,
-            "doc_id": "fdaa0ec62cac",
+            "doc_id": "c88464f8e46b",
             "doc_name": "security_policy.pdf",
-            "chunk_id": "fdaa0ec62cac:1",
+            "chunk_id": "c88464f8e46b:1",
             "page": 2,
-            "snippet": "Security incidents must be reported to security@acme.example within 1 hour of discovery.",
+            "snippet": "Security incidents must be reported to security@acme.example within 1 hour of discovery. … The on-call security engineer triages incidents and opens a post-mortem within 5 business days.",
             "score": 0.016393
+        },
+        {
+            "index": 2,
+            "doc_id": "c6e02d18344a",
+            "doc_name": "it_helpdesk.txt",
+            "chunk_id": "c6e02d18344a:0",
+            "page": null,
+            "snippet": "Priority 1 tickets (complete outage, security issue) receive a response within 30 minutes.",
+            "score": 0.015877
         }
     ]
 }

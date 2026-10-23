@@ -1,0 +1,49 @@
+{"id": "zh-f001", "type": "factual", "question": "入职满一年的员工每年有多少天带薪年假？", "evidence": [{"doc": "员工手册.md", "text": "每年享有15天带薪年假"}], "answer_contains": ["15天"]}
+{"id": "zh-f002", "type": "factual", "question": "公司的核心工作时间是几点到几点？", "evidence": [{"doc": "员工手册.md", "text": "核心工作时间为上午10点至下午4点"}], "answer_contains": ["10点"]}
+{"id": "zh-f006", "type": "factual", "question": "绩效考核在哪几个月进行？", "evidence": [{"doc": "员工手册.md", "text": "分别在1月和7月"}], "answer_contains": ["1月"]}
+{"id": "zh-f010", "type": "factual", "question": "居家办公设备补贴是多少钱？", "evidence": [{"doc": "报销制度.txt", "text": "800元的办公设备补贴"}], "answer_contains": ["800元"]}
+{"id": "zh-f011", "type": "factual", "question": "S7的电池容量是多少？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "电池容量为5200毫安时"}], "answer_contains": ["5200"]}
+{"id": "zh-f013", "type": "factual", "question": "S7的尘盒容量是多少？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "尘盒容量为400毫升"}], "answer_contains": ["400毫升"]}
+{"id": "zh-f016", "type": "factual", "question": "密码多久必须更换一次？", "evidence": [{"doc": "信息安全制度.md", "text": "每90天必须更换一次"}], "answer_contains": ["90天"]}
+{"id": "zh-f021", "type": "factual", "question": "生产服务器访问权限的有效期是多久？", "evidence": [{"doc": "IT服务台指南.txt", "text": "权限有效期为6个月"}], "answer_contains": ["6个月"]}
+{"id": "zh-f022", "type": "factual", "question": "正版办公软件许可证每人最多可以激活几台设备？", "evidence": [{"doc": "IT服务台指南.txt", "text": "每人最多可以激活3台设备"}], "answer_contains": ["3台"]}
+{"id": "zh-f023", "type": "factual", "question": "公司总部的地址在哪里？", "evidence": [{"doc": "办公室与会议室管理.md", "text": "文三路199号"}], "answer_contains": ["文三路199号"]}
+{"id": "zh-f025", "type": "factual", "question": "会议室单次最长可以预订多久？", "evidence": [{"doc": "办公室与会议室管理.md", "text": "单次预订最长为3小时"}], "answer_contains": ["3小时"]}
+{"id": "zh-f028", "type": "factual", "question": "住房公积金的缴存比例是多少？", "evidence": [{"doc": "福利制度.md", "text": "缴存比例为12%"}], "answer_contains": ["12%"]}
+{"id": "zh-f030", "type": "factual", "question": "每月的健身补贴是多少？", "evidence": [{"doc": "福利制度.md", "text": "每月提供150元健身补贴"}], "answer_contains": ["150元"]}
+{"id": "zh-f034", "type": "factual", "question": "v2.2.0之后回充成功率是多少？", "evidence": [{"doc": "S7固件更新日志.md", "text": "回充成功率提升到98%"}], "answer_contains": ["98%"]}
+{"id": "zh-f038", "type": "factual", "question": "S7安静模式下的噪音是多少分贝？", "evidence": [{"doc": "S7快速入门指南.pdf", "text": "噪音约为55分贝"}], "answer_contains": ["55分贝"]}
+{"id": "zh-f040", "type": "factual", "question": "S7的配套App叫什么名字？", "evidence": [{"doc": "S7快速入门指南.pdf", "text": "星河智家"}], "answer_contains": ["星河智家"]}
+{"id": "zh-f042", "type": "factual", "question": "安全事件上报的邮箱是什么？", "evidence": [{"doc": "信息安全制度.md", "text": "security@xinghe.example"}], "answer_contains": ["security@xinghe.example"]}
+{"id": "zh-p003", "type": "paraphrase", "question": "老婆生孩子，男员工可以休几天假？", "evidence": [{"doc": "员工手册.md", "text": "陪产假为15天"}], "answer_contains": ["15天"]}
+{"id": "zh-p005", "type": "paraphrase", "question": "飞很远的航班能坐更好的舱位吗？", "evidence": [{"doc": "报销制度.txt", "text": "超过6小时的航班可以申请升级为超级经济舱"}], "answer_contains": ["超级经济舱"]}
+{"id": "zh-p013", "type": "paraphrase", "question": "机器人的电池坏了，保修多久？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "保修期为6个月"}], "answer_contains": ["6个月"]}
+{"id": "zh-p015", "type": "paraphrase", "question": "可以把客户资料存到自己的百度网盘吗？", "evidence": [{"doc": "信息安全制度.md", "text": "禁止上传到个人网盘"}], "answer_contains": ["禁止"]}
+{"id": "zh-p016", "type": "paraphrase", "question": "发现被黑客攻击后多长时间内要上报？", "evidence": [{"doc": "信息安全制度.md", "text": "必须在2小时内向信息安全部报告"}], "answer_contains": ["2小时"]}
+{"id": "zh-p018", "type": "paraphrase", "question": "员工走人那天账号什么时候被关掉？", "evidence": [{"doc": "IT服务台指南.txt", "text": "离职当天下午6点"}], "answer_contains": ["6点"]}
+{"id": "zh-p021", "type": "paraphrase", "question": "全公司断网了半夜找谁？", "evidence": [{"doc": "IT服务台指南.txt", "text": "24小时值班电话"}], "answer_contains": ["24小时"]}
+{"id": "zh-p023", "type": "paraphrase", "question": "订了会议室但是没去会怎样？", "evidence": [{"doc": "办公室与会议室管理.md", "text": "15分钟内未签到"}], "answer_contains": ["15分钟"]}
+{"id": "zh-p024", "type": "paraphrase", "question": "开电动车上班能在公司充电吗？", "evidence": [{"doc": "办公室与会议室管理.md", "text": "10个配有新能源汽车充电桩"}], "answer_contains": ["10个"]}
+{"id": "zh-p026", "type": "paraphrase", "question": "孩子能一起买公司的商业医疗保险吗？", "evidence": [{"doc": "福利制度.md", "text": "子女可以按半价加入"}], "answer_contains": ["半价"]}
+{"id": "zh-p029", "type": "paraphrase", "question": "怎么防止小孩乱按扫地机器人的按钮？", "evidence": [{"doc": "S7固件更新日志.md", "text": "新增儿童锁功能"}], "answer_contains": ["儿童锁"]}
+{"id": "zh-p030", "type": "paraphrase", "question": "扫地机器人能说广东话吗？", "evidence": [{"doc": "S7固件更新日志.md", "text": "支持普通话和粤语两种语音"}], "answer_contains": ["粤语"]}
+{"id": "zh-p035", "type": "paraphrase", "question": "扫地机器人怎么进入联网模式？", "evidence": [{"doc": "S7快速入门指南.pdf", "text": "长按主机上的Wi-Fi键3秒"}], "answer_contains": ["3秒"]}
+{"id": "zh-p036", "type": "paraphrase", "question": "长时间出差不用扫地机，电池要怎么保养？", "evidence": [{"doc": "S7快速入门指南.pdf", "text": "每3个月补充一次电量"}], "answer_contains": ["3个月"]}
+{"id": "zh-c002", "type": "cross", "question": "S7不支持5GHz网络，双频路由器配网失败应该怎么办？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "S7不支持5GHz网络"}, {"doc": "S7固件更新日志.md", "text": "建议为2.4GHz网络单独设置名称"}], "answer_contains": ["5GHz", "单独设置名称"]}
+{"id": "zh-c007", "type": "cross", "question": "S7滤网多久更换一次？边刷多久更换一次？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "每3个月更换一次"}, {"doc": "S7快速入门指南.pdf", "text": "边刷建议每3个月更换一次"}], "answer_contains": ["3个月"]}
+{"id": "zh-c008", "type": "cross", "question": "S7充满电要多久？首次使用前要充多久？", "evidence": [{"doc": "扫地机器人S7说明书.txt", "text": "充满电大约需要4小时"}, {"doc": "S7快速入门指南.pdf", "text": "充电至少6小时"}], "answer_contains": ["4小时", "6小时"]}
+{"id": "zh-c009", "type": "cross", "question": "登录VPN有什么要求？申请生产服务器权限需要谁审批？", "evidence": [{"doc": "信息安全制度.md", "text": "登录公司邮箱和VPN必须开启双因素认证"}, {"doc": "IT服务台指南.txt", "text": "直属主管和信息安全部共同审批"}], "answer_contains": ["双因素", "信息安全部"]}
+{"id": "zh-c013", "type": "cross", "question": "安全事件要在多久内上报？普通IT工单多久首次响应？", "evidence": [{"doc": "信息安全制度.md", "text": "必须在2小时内向信息安全部报告"}, {"doc": "IT服务台指南.txt", "text": "普通工单的首次响应时间为4个工作小时"}], "answer_contains": ["2小时", "4个工作小时"]}
+{"id": "zh-c014", "type": "cross", "question": "会议室单次最长订多久？30人以上大会议室要提前多久申请？", "evidence": [{"doc": "办公室与会议室管理.md", "text": "单次预订最长为3小时"}, {"doc": "办公室与会议室管理.md", "text": "需要提前两个工作日向行政部申请"}], "answer_contains": ["3小时", "两个工作日"]}
+{"id": "zh-u001", "type": "unanswerable", "question": "公司的CEO是谁？", "evidence": [], "answer_contains": []}
+{"id": "zh-u003", "type": "unanswerable", "question": "公司有多少名员工？", "evidence": [], "answer_contains": []}
+{"id": "zh-u004", "type": "unanswerable", "question": "S9扫地机器人的吸力是多少？", "evidence": [], "answer_contains": []}
+{"id": "zh-u005", "type": "unanswerable", "question": "公司年终奖一般发几个月？", "evidence": [], "answer_contains": []}
+{"id": "zh-u007", "type": "unanswerable", "question": "S7支持拖地自动烘干吗？", "evidence": [], "answer_contains": []}
+{"id": "zh-u010", "type": "unanswerable", "question": "S7的电池可以单独购买吗？", "evidence": [], "answer_contains": []}
+{"id": "zh-u012", "type": "unanswerable", "question": "S7固件v2.4.0什么时候发布？", "evidence": [], "answer_contains": []}
+{"id": "zh-u014", "type": "unanswerable", "question": "体检可以带家属一起去吗？", "evidence": [], "answer_contains": []}
+{"id": "zh-u020", "type": "unanswerable", "question": "停车位每月收费多少？", "evidence": [], "answer_contains": []}
+{"id": "zh-u024", "type": "unanswerable", "question": "病假超过5天后工资怎么算？", "evidence": [], "answer_contains": []}
+{"id": "zh-u026", "type": "unanswerable", "question": "VPN每次连接多久后会自动断开？", "evidence": [], "answer_contains": []}
+{"id": "zh-u030", "type": "unanswerable", "question": "会议室可以提前多少天预订？", "evidence": [], "answer_contains": []}

@@ -94,3 +94,19 @@ def is_heading_like(line: str) -> bool:
     """Title/heading lines: no sentence-final punctuation and short (few words, or <= 24 chars
     for CJK where bigram counts overstate length)."""
     return not is_terminal(line) and (len(tokenize(line)) < 8 or (is_cjk(line) and len(line) <= 24))
+
+
+_IDENT = re.compile(r"(?<![A-Za-z0-9.])[A-Za-z]*\d[A-Za-z0-9]*(?:[.\-][A-Za-z0-9]+)*")
+
+
+def identifiers(text: str) -> set[str]:
+    """Model numbers, error codes, versions: alphanumeric tokens that contain a digit and at
+    least one letter or dot ("X3", "E402", "v2.4.0", "S9", "2.4"). Plain integers are
+    excluded: questions like "after 5 failed attempts" legitimately use numbers that are
+    phrased differently in the source ("five")."""
+    out = set()
+    for m in _IDENT.findall(text):
+        m = m.lower().rstrip(".-")
+        if any(c.isdigit() for c in m) and (any(c.isalpha() for c in m) or "." in m):
+            out.add(m)
+    return out

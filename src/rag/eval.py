@@ -3,6 +3,9 @@ correctness and refusal calibration.
 
     python -m rag.eval --lang en --model BAAI/bge-small-en-v1.5
     python -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5 --llm
+
+Datasets are split into a frozen dev split (used to tune alpha and the refusal threshold)
+and a held-out test split (headline numbers).
     python -m rag.eval --report          # rebuild eval/results/REPORT.md from all JSON results
 
 Gold labels are (doc name, evidence substring) pairs, so they survive any change
@@ -108,7 +111,8 @@ def run_answers(svc: RAGService, items: list[dict], answerer, top_k: int) -> lis
                   if it["evidence"] else None)
         out.append({
             "id": it["id"], "type": it["type"], "question": it["question"], "answer": ans.answer,
-            "refused": ans.refused, "confidence": ans.confidence, "backend": ans.backend,
+            "refused": ans.refused, "refusal_reason": ans.refusal_reason, "confidence": ans.confidence,
+            "backend": ans.backend,
             "citation_mode": ans.citation_mode, "invalid_markers": ans.invalid_markers,
             "citations": [f"{c.doc_name}{'' if c.page is None else f' p.{c.page}'}" for c in ans.citations],
             "answer_correct": (answer_correct(ans.answer, it["answer_contains"]) if it["answer_contains"] else None),
@@ -138,10 +142,18 @@ def summarize_answers(rows: list[dict]) -> dict:
     }
 
 
+def effective_conf(r: dict) -> float:
+    """Confidence as seen by the threshold; rows refused by a rule (no context, unknown
+    identifier) are refused at any threshold, so they count as 0."""
+    if r.get("refused") and r.get("refusal_reason") not in (None, "low_confidence"):
+        return 0.0
+    return r["confidence"] or 0.0
+
+
 def calibrate(rows: list[dict]) -> dict:
     """Sweep the refusal threshold over extractive confidences (computed with min_score=0)."""
-    ans = [r["confidence"] or 0.0 for r in rows if r["type"] != "unanswerable"]
-    una = [r["confidence"] or 0.0 for r in rows if r["type"] == "unanswerable"]
+    ans = [effective_conf(r) for r in rows if r["type"] != "unanswerable"]
+    una = [effective_conf(r) for r in rows if r["type"] == "unanswerable"]
     sweep = []
     for i in range(80, 181):
         t = i / 200
@@ -160,17 +172,46 @@ def calibrate(rows: list[dict]) -> dict:
 
 
 # ----------------------------------------------------------------- main
+SPLITS = ("dev", "test")
+ALPHAS = (0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8)
+
+
+def load_split(lang: str, split: str) -> list[dict]:
+    return load_dataset(EVAL_DIR / "datasets" / f"{lang}.{split}.jsonl")
+
+
+def tune_alpha(svc: RAGService, dev: list[dict], test: list[dict]) -> dict:
+    """Pick the hybrid weight on dev (best MRR, ties -> closest to 0.5); test is reported only."""
+    sweep = []
+    for a in ALPHAS:
+        svc.retriever.alpha = a
+        sweep.append({"alpha": a, "dev_mrr": eval_retrieval(svc, dev, "hybrid")["overall"]["mrr"],
+                      "test_mrr": eval_retrieval(svc, test, "hybrid")["overall"]["mrr"]})
+    best = max(sweep, key=lambda x: (x["dev_mrr"], -abs(x["alpha"] - 0.5)))
+    return {"chosen": best["alpha"], "sweep": sweep}
+
+
+def threshold_metrics(rows: list[dict], t: float) -> dict:
+    ans = [effective_conf(r) for r in rows if r["type"] != "unanswerable"]
+    una = [effective_conf(r) for r in rows if r["type"] == "unanswerable"]
+    ra, fr = sum(c < t for c in una) / len(una), sum(c < t for c in ans) / len(ans)
+    return {"threshold": t, "refusal_accuracy": pct(ra), "false_refusal_rate": pct(fr),
+            "balanced_accuracy": pct((ra + 1 - fr) / 2)}
+
+
 def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: list[str], llm_url: str,
         top_k: int, model_dir: Path, llm_gating: tuple[bool, ...] = (True, False)) -> dict:
-    items = load_dataset(EVAL_DIR / "datasets" / f"{lang}.jsonl")
+    data = {sp: load_split(lang, sp) for sp in SPLITS}
     docs_dir = PROJECT_ROOT / "sample_docs" / lang
-    errs = validate_dataset(items, docs_dir)
+    errs = [e for sp in SPLITS for e in validate_dataset(data[sp], docs_dir)]
     if errs:
         raise SystemExit("Dataset errors:\n" + "\n".join(errs))
     apply_model_cache_env(model_dir)
-    result = {"lang": lang, "model": model, "top_k": top_k, "n_questions": len(items),
+    result = {"lang": lang, "model": model, "top_k": top_k, "n_questions": {sp: len(data[sp]) for sp in SPLITS},
+              "n_docs": len([p for p in docs_dir.iterdir() if p.is_file()]),
               "date": time.strftime("%Y-%m-%d %H:%M %Z"), "chunking": {}}
     embedder = None
+    dev, test = data["dev"], data["test"]
     for cs in chunk_sizes:
         with tempfile.TemporaryDirectory() as tmp:
             s = Settings(data_dir=Path(tmp), model_dir=model_dir, embedding_backend="fastembed",
@@ -181,107 +222,154 @@ def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: li
             t0 = time.perf_counter()
             for p in sorted(docs_dir.iterdir()):
                 svc.ingest(p.name, p.read_bytes())
-            ingest_s = time.perf_counter() - t0
-            entry = {"n_chunks": len(svc.store.chunks), "ingest_seconds": round(ingest_s, 2),
-                     "retrieval": {m: eval_retrieval(svc, items, m) for m in MODES}}
+            entry = {"n_chunks": len(svc.store.chunks), "ingest_seconds": round(time.perf_counter() - t0, 2)}
+            # 1) hybrid weight: tuned on dev only
+            entry["alpha"] = tune_alpha(svc, dev, test)
+            svc.retriever.alpha = entry["alpha"]["chosen"]
+            entry["retrieval"] = {sp: {m: eval_retrieval(svc, data[sp], m) for m in MODES} for sp in SPLITS}
+            # 2) refusal threshold: calibrated on dev only, then frozen and applied to test
             ext0 = ExtractiveAnswerer(embedder=embedder, min_score=0.0)
-            rows0 = run_answers(svc, items, ext0, top_k)
-            cal = calibrate(rows0)
-            entry["calibration"] = cal
+            rows0 = {sp: run_answers(svc, data[sp], ext0, top_k) for sp in SPLITS}
+            cal = calibrate(rows0["dev"])
             thr = cal["best"]["threshold"]
+            oracle = calibrate(rows0["test"])["best"]  # what we'd pick if we (illegally) tuned on test
+            entry["calibration"] = {**cal, "dev": cal["best"], "test_at_dev_threshold": threshold_metrics(rows0["test"], thr),
+                                    "test_oracle": oracle}
+            # ablation: same protocol without the unknown-identifier rule
+            abl0 = ExtractiveAnswerer(embedder=embedder, min_score=0.0, check_identifiers=False)
+            abl_rows0 = {sp: run_answers(svc, data[sp], abl0, top_k) for sp in SPLITS}
+            abl_thr = calibrate(abl_rows0["dev"])["best"]["threshold"]
+            entry["ablation_no_identifier_rule"] = {"threshold": abl_thr, **{
+                sp: threshold_metrics(abl_rows0[sp], abl_thr) for sp in SPLITS}}
             ext = ExtractiveAnswerer(embedder=embedder, min_score=thr)
-            rows = run_answers(svc, items, ext, top_k)
-            entry["extractive"] = {"threshold": thr, "summary": summarize_answers(rows), "rows": rows}
+            entry["extractive"] = {"threshold": thr}
+            for sp in SPLITS:
+                rows = run_answers(svc, data[sp], ext, top_k)
+                entry["extractive"][sp] = {"summary": summarize_answers(rows), "rows": rows}
+            # 3) LLM: held-out test split only, default chunk size only (slow on CPU)
             entry["llm"] = []
-            if llm and cs == chunk_sizes[0]:  # LLM runs are slow: default chunk size only
+            if llm and cs == chunk_sizes[0]:
                 for llm_model in llm_models:
+                    run_answers(svc, test[:1], OpenAICompatAnswerer(llm_url, llm_model, timeout=180), top_k)  # warm-up
                     for gated in llm_gating:
                         llm_ans = OpenAICompatAnswerer(llm_url, llm_model, timeout=180, fallback=ext,
                                                        gate=ext if gated else None)
-                        run_answers(svc, items[:1], OpenAICompatAnswerer(llm_url, llm_model, timeout=180), top_k)  # warm-up
-                        lrows = run_answers(svc, items, llm_ans, top_k)
+                        lrows = run_answers(svc, test, llm_ans, top_k)
                         entry["llm"].append({"model": llm_model, "gated": gated, "threshold": thr if gated else None,
-                                             "summary": summarize_answers(lrows), "rows": lrows})
+                                             "split": "test", "summary": summarize_answers(lrows), "rows": lrows})
             result["chunking"][str(cs)] = entry
-            print(f"[{lang}] {model} chunk={cs}: chunks={entry['n_chunks']} "
-                  f"hybrid={entry['retrieval']['hybrid']['overall']} thr={thr} "
-                  f"extractive={entry['extractive']['summary']}")
+            print(f"[{lang}] {model} chunk={cs}: chunks={entry['n_chunks']} alpha={entry['alpha']['chosen']} thr={thr}")
+            for sp in SPLITS:
+                print(f"   {sp}: hybrid={entry['retrieval'][sp]['hybrid']['overall']}")
+                print(f"   {sp}: extractive={entry['extractive'][sp]['summary']}")
             for le in entry["llm"]:
-                print(f"   LLM {le['model']} gated={le['gated']}: {le['summary']}")
+                print(f"   LLM {le['model']} gated={le['gated']} (test): {le['summary']}")
     RESULTS.mkdir(parents=True, exist_ok=True)
     out = RESULTS / f"{lang}__{model.replace('/', '_')}.json"
     if out.exists():  # keep previously recorded LLM results for (model, gating) pairs not re-run now
         old = json.loads(out.read_text())
-        for cs, e in result["chunking"].items():
-            done = {(x["model"], x["gated"]) for x in e["llm"]}
-            e["llm"] += [x for x in old.get("chunking", {}).get(cs, {}).get("llm", [])
-                         if (x["model"], x["gated"]) not in done]
+        if isinstance(old.get("n_questions"), dict):  # only merge results produced on the same split format
+            for cs, e in result["chunking"].items():
+                done = {(x["model"], x["gated"]) for x in e["llm"]}
+                prev = old.get("chunking", {}).get(cs, {})
+                if prev.get("extractive", {}).get("threshold") == e["extractive"]["threshold"]:
+                    e["llm"] += [x for x in prev.get("llm", []) if (x["model"], x["gated"]) not in done]
     out.write_text(json.dumps(result, ensure_ascii=False, indent=1))
     print(f"wrote {out}")
     return result
 
 
-def _fmt(v):
-    return "–" if v is None else (f"{v:.3f}" if isinstance(v, float) and v < 1.0001 and v != 0 and not float(v).is_integer() and v < 1 else str(v))
+def short(r: dict) -> str:
+    return f"`{r['model'].split('/')[-1]}`"
 
 
 def report() -> Path:
-    results = [json.loads(p.read_text()) for p in sorted(RESULTS.glob("*.json"))]
+    results = [r for r in (json.loads(p.read_text()) for p in sorted(RESULTS.glob("*.json")))
+               if isinstance(r.get("n_questions"), dict)]
     L = ["# Evaluation report", "",
-         "Generated by `make eval` (`python -m rag.eval`). Datasets: `eval/datasets/{en,zh}.jsonl`; corpora: "
-         "`sample_docs/{en,zh}/`. Retrieval metrics are computed on answerable questions; a retrieved chunk is a "
-         "hit if it comes from the gold document and contains the gold evidence text. Answer metrics use hybrid "
+         "Generated by `make eval` (`python -m rag.eval`). Datasets: `eval/datasets/{lang}.{dev,test}.jsonl` "
+         "(frozen, stratified by question type; built by `scripts/split_dataset.py`); corpora: `sample_docs/{lang}/`.",
+         "",
+         "**Protocol.** The hybrid weight (alpha) and the refusal threshold are tuned on **dev only** and then frozen. "
+         "**test** is the held-out split and gives the headline numbers; dev is shown next to it so the dev→test gap "
+         "(optimism from tuning) is visible. Retrieval metrics are computed on answerable questions; a retrieved chunk "
+         "is a hit if it comes from the gold document and contains the gold evidence text. Answers use hybrid "
          "retrieval with top_k chunks.", ""]
-    L += ["## 1. Retrieval: vector vs BM25 vs hybrid", "",
-          "| lang | embedding model | chunk | #chunks | mode | hit@1 | hit@3 | hit@5 | MRR | evidence recall@5 |",
+    L += ["| lang | embedding | docs | dev questions | test questions |", "|---|---|---|---|---|"]
+    for r in results:
+        L.append(f"| {r['lang']} | `{r['model']}` | {r.get('n_docs', '–')} | {r['n_questions']['dev']} | {r['n_questions']['test']} |")
+    L += ["", "## 1. Retrieval: vector vs BM25 vs hybrid (test, with dev in brackets)", "",
+          "| lang | embedding | chunk | #chunks | mode | hit@1 | hit@3 | hit@5 | MRR | evidence recall@5 |",
           "|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         for cs, e in r["chunking"].items():
             for m in MODES:
-                o = e["retrieval"][m]["overall"]
-                L.append(f"| {r['lang']} | `{r['model']}` | {cs} | {e['n_chunks']} | {m} | {o['hit@1']} | {o['hit@3']} "
-                         f"| {o['hit@5']} | {o['mrr']} | {o['evidence_recall@5']} |")
-    L += ["", "### Hybrid retrieval by question type (hit@1 / hit@3 / MRR)", "",
-          "| lang | model | chunk | factual | paraphrase | cross-document |", "|---|---|---|---|---|---|"]
+                t, d = e["retrieval"]["test"][m]["overall"], e["retrieval"]["dev"][m]["overall"]
+                c = lambda k: f"{t[k]} ({d[k]})"
+                L.append(f"| {r['lang']} | {short(r)} | {cs} | {e['n_chunks']} | {m} | {c('hit@1')} | {c('hit@3')} | {c('hit@5')} "
+                         f"| {c('mrr')} | {c('evidence_recall@5')} |")
+    L += ["", "### Hybrid weight (alpha = weight of the dense ranking in RRF), chosen on dev MRR", "",
+          "| lang | embedding | chunk | " + " | ".join(f"α={a}" for a in ALPHAS) + " | chosen |",
+          "|---|---|---|" + "---|" * (len(ALPHAS) + 1)]
     for r in results:
         for cs, e in r["chunking"].items():
-            bt = e["retrieval"]["hybrid"]["by_type"]
+            sw = {x["alpha"]: x for x in e["alpha"]["sweep"]}
+            L.append(f"| {r['lang']} | {short(r)} | {cs} | " + " | ".join(
+                f"{sw[a]['dev_mrr']} / {sw[a]['test_mrr']}" for a in ALPHAS) + f" | **{e['alpha']['chosen']}** |")
+    L += ["", "Cells: dev MRR / test MRR.", "",
+          "### Hybrid retrieval by question type, test (hit@1 / hit@3 / MRR)", "",
+          "| lang | embedding | chunk | factual | paraphrase | cross-document |", "|---|---|---|---|---|---|"]
+    for r in results:
+        for cs, e in r["chunking"].items():
+            bt = e["retrieval"]["test"]["hybrid"]["by_type"]
             cell = lambda t: (f"{bt[t]['hit@1']} / {bt[t]['hit@3']} / {bt[t]['mrr']} (n={bt[t]['n']})" if t in bt else "–")
-            L.append(f"| {r['lang']} | `{r['model']}` | {cs} | {cell('factual')} | {cell('paraphrase')} | {cell('cross')} |")
+            L.append(f"| {r['lang']} | {short(r)} | {cs} | {cell('factual')} | {cell('paraphrase')} | {cell('cross')} |")
     L += ["", "## 2. Answers: extractive vs local LLM", "",
           "answer acc = answerable questions answered (not refused) with the expected fact; citation acc = answered "
           "questions where at least one cited chunk is a gold evidence chunk; refusal acc = unanswerable questions "
           "correctly refused; false refusal = answerable questions wrongly refused. Latency is end-to-end per question "
-          "(retrieval + answer) on CPU.", "",
-          "| lang | embedding | chunk | answerer | threshold | answer acc | citation acc | explicit [n] | invalid [n] "
-          "| refusal acc | false refusal | p50 ms | p95 ms |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+          "(retrieval + answer) on CPU. The threshold is the dev-calibrated one. LLM runs are on test only.", "",
+          "| lang | embedding | chunk | answerer | split | threshold | answer acc | citation acc | explicit [n] | invalid [n] "
+          "| refusal acc | false refusal | p50 ms | p95 ms |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         for cs, e in r["chunking"].items():
-            runs = [("extractive", e["extractive"])] + [
-                (f"LLM `{x['model']}` {'+ gate' if x['gated'] else '(no gate)'}", x) for x in e.get("llm", [])]
-            for name, run_ in runs:
-                s = run_["summary"]
-                L.append(f"| {r['lang']} | `{r['model']}` | {cs} | {name} | {run_.get('threshold') or '–'} "
+            runs = [("extractive", sp, e["extractive"]["threshold"], e["extractive"][sp]["summary"]) for sp in ("test", "dev")]
+            runs += [(f"LLM `{x['model']}` {'+ gate' if x['gated'] else '(no gate)'}", x.get("split", "test"),
+                      x.get("threshold"), x["summary"]) for x in e.get("llm", [])]
+            for name, sp, thr, s in runs:
+                L.append(f"| {r['lang']} | {short(r)} | {cs} | {name} | {sp} | {thr or '–'} "
                          f"| {s['answer_accuracy']} | {s['citation_accuracy']} | {s['explicit_citation_rate']} "
                          f"| {s['invalid_marker_rate']} | {s['refusal_accuracy']} | {s['false_refusal_rate']} "
                          f"| {s['latency_p50_ms']} | {s['latency_p95_ms']} |")
     L += ["", "## 3. Refusal threshold calibration (extractive confidence)", "",
-          "Confidence = max cosine(sentence, question) over sentences of the retrieved chunks. "
-          "The chosen threshold is the midpoint of the plateau with the best balanced accuracy.", "",
-          "| lang | model | chunk | answerable conf (min / p10 / median) | unanswerable conf (median / max) "
-          "| chosen threshold | refusal acc | false refusal | balanced acc |", "|---|---|---|---|---|---|---|---|---|"]
+          "Confidence = max cosine(sentence, question) over sentences of the retrieved chunks. The threshold is the "
+          "midpoint of the best balanced-accuracy plateau **on dev**; it is then applied unchanged to test. "
+          "\"test oracle\" is what tuning on test would have picked — the gap between the two rows is the optimism "
+          "you would report if you calibrated on the evaluation set.", "",
+          "| lang | embedding | chunk | dev threshold | dev refusal / false-refusal / bal. | test @ dev threshold | test-oracle threshold | test-oracle bal. |",
+          "|---|---|---|---|---|---|---|---|"]
     for r in results:
         for cs, e in r["chunking"].items():
             c = e["calibration"]
-            a, u, b = c["answerable_conf"], c["unanswerable_conf"], c["best"]
-            L.append(f"| {r['lang']} | `{r['model']}` | {cs} | {a['min']} / {a['p10']} / {a['median']} | {u['median']} / {u['max']} "
-                     f"| **{b['threshold']}** | {b['refusal_accuracy']} | {b['false_refusal_rate']} | {b['balanced_accuracy']} |")
-    L += ["", "## 4. Failures (extractive, first chunk size per run)", ""]
+            d, t, o = c["dev"], c["test_at_dev_threshold"], c["test_oracle"]
+            L.append(f"| {r['lang']} | {short(r)} | {cs} | **{d['threshold']}** | {d['refusal_accuracy']} / {d['false_refusal_rate']} / "
+                     f"{d['balanced_accuracy']} | {t['refusal_accuracy']} / {t['false_refusal_rate']} / {t['balanced_accuracy']} "
+                     f"| {o['threshold']} | {o['balanced_accuracy']} |")
+    L += ["", "Ablation — same dev-calibration protocol without the unknown-identifier refusal rule "
+          "(refusal acc / false refusal / balanced acc):", "",
+          "| lang | embedding | chunk | threshold | dev | test |", "|---|---|---|---|---|---|"]
+    for r in results:
+        for cs, e in r["chunking"].items():
+            a = e.get("ablation_no_identifier_rule")
+            if a:
+                f = lambda m: f"{m['refusal_accuracy']} / {m['false_refusal_rate']} / {m['balanced_accuracy']}"
+                L.append(f"| {r['lang']} | {short(r)} | {cs} | {a['threshold']} | {f(a['dev'])} | {f(a['test'])} |")
+    L += ["", "## 4. Failures (extractive, test split, first chunk size per run)", ""]
     for r in results:
         cs, e = next(iter(r["chunking"].items()))
-        bad = [x for x in e["extractive"]["rows"] if (x["type"] == "unanswerable") != x["refused"]
-               or (x["answer_correct"] is False)]
-        L.append(f"**{r['lang']} / `{r['model']}` / chunk {cs}** — {len(bad)} of {len(e['extractive']['rows'])}")
+        rows = e["extractive"]["test"]["rows"]
+        bad = [x for x in rows if (x["type"] == "unanswerable") != x["refused"] or (x["answer_correct"] is False)]
+        L.append(f"**{r['lang']} / `{r['model']}` / chunk {cs}** — {len(bad)} of {len(rows)}")
         L.append("")
         for x in bad:
             L.append(f"- `{x['id']}` ({x['type']}, conf {x['confidence']}): {x['question']} → "

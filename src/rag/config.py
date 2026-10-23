@@ -12,13 +12,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
-# Refusal thresholds calibrated on eval/ (see eval/results/REPORT.md). Cosine
-# similarity scales differ per model, so the threshold is model-specific.
-DEFAULT_MIN_SCORE = 0.64
+# Refusal thresholds calibrated on the eval *dev* split only (chunk 800; see
+# eval/results/REPORT.md, section 3). Cosine scales differ per model, so the
+# threshold is model-specific. Test-split numbers are reported, never tuned on.
+DEFAULT_MIN_SCORE = 0.65
 MODEL_MIN_SCORES: dict[str, float] = {
-    "BAAI/bge-small-en-v1.5": 0.64,
-    "BAAI/bge-small-zh-v1.5": 0.64,
-    "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": 0.49,  # en 0.425 / zh 0.545 -> midpoint
+    "BAAI/bge-small-en-v1.5": 0.67,
+    "BAAI/bge-small-zh-v1.5": 0.63,
+    "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": 0.57,  # dev: en 0.59 / zh 0.555 -> midpoint
 }
 
 

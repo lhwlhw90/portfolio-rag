@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import io
 import re
+import unicodedata
 from dataclasses import dataclass, field
 
 SUPPORTED_EXTS = {".txt", ".md", ".markdown", ".pdf"}
@@ -38,6 +39,25 @@ def ext_of(filename: str) -> str:
     return m.group(1).lower() if m else ""
 
 
+# PDF fonts (e.g. Noto CJK via Chrome/Skia) often map glyphs to *radical* code points in their
+# ToUnicode tables: "⼊⻔" instead of "入门". Fold them back to the unified ideographs, otherwise
+# BM25/embeddings and citation matching silently break on Chinese PDFs.
+_RADICAL_SUPPLEMENT = dict(zip(
+    "⺰⻅⻆⻈⻉⻋⻐⻓⻔⻙⻚⻛⻜⻠⻢⻥⻦⻧⻨⻩⻪⻬⻮⻰⻳⺠⺟",
+    "纟见角讠贝车钅长门韦页风飞饣马鱼鸟卤麦黄黾齐齿龙龟民母"))
+
+
+def fold_cjk_radicals(text: str) -> str:
+    out = []
+    for ch in text:
+        o = ord(ch)
+        if 0x2F00 <= o <= 0x2FDF or 0xF900 <= o <= 0xFAFF:  # Kangxi radicals, compatibility ideographs
+            out.append(unicodedata.normalize("NFKC", ch))
+        else:
+            out.append(_RADICAL_SUPPLEMENT.get(ch, ch))
+    return "".join(out)
+
+
 def parse_document(filename: str, data: bytes) -> list[Page]:
     ext = ext_of(filename)
     if ext not in SUPPORTED_EXTS:
@@ -46,9 +66,9 @@ def parse_document(filename: str, data: bytes) -> list[Page]:
         from pypdf import PdfReader
 
         reader = PdfReader(io.BytesIO(data))
-        return [Page(text=(p.extract_text() or ""), page=i + 1) for i, p in enumerate(reader.pages)]
-    text = data.decode("utf-8", errors="replace")
-    return [Page(text=text, page=None)]
+        return [Page(text=fold_cjk_radicals(p.extract_text() or ""), page=i + 1) for i, p in enumerate(reader.pages)]
+    text = data.decode("utf-8-sig", errors="replace")
+    return [Page(text=fold_cjk_radicals(text), page=None)]
 
 
 def _normalize(text: str) -> str:

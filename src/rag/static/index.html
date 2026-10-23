@@ -4,34 +4,62 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portfolio RAG — cited answers from your documents</title>
 <style>
-  :root{--fg:#1d2330;--mut:#667085;--bd:#e4e7ec;--ac:#3b5bdb;--bg:#f8f9fb}
-  *{box-sizing:border-box}body{font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;margin:0;color:var(--fg);background:var(--bg)}
-  main{max-width:880px;margin:0 auto;padding:28px 20px}h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);margin:0 0 20px}
-  section{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin-bottom:16px}
-  h2{font-size:15px;margin:0 0 10px}button{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
-  button:disabled{opacity:.5}input[type=text]{flex:1;padding:9px 10px;border:1px solid var(--bd);border-radius:6px;font:inherit}
-  .row{display:flex;gap:8px;align-items:center}ul{padding-left:18px;margin:6px 0}.mut{color:var(--mut);font-size:13px}
-  .answer{white-space:pre-wrap;margin:10px 0}.cit{border-left:3px solid var(--ac);padding:6px 10px;margin:8px 0;background:#f4f6ff;border-radius:0 6px 6px 0}
-  .cit b{font-size:13px}.cit p{margin:4px 0 0;font-size:13px;color:#344054}sup{color:var(--ac);font-weight:600}
+  :root{--fg:#1d2330;--mut:#667085;--bd:#e4e7ec;--ac:#3b5bdb;--bg:#f8f9fb;--hl:#ffe066;--warn:#b54708;--ok:#067647}
+  *{box-sizing:border-box}body{font:15px/1.55 system-ui,-apple-system,"Segoe UI","Noto Sans CJK SC",sans-serif;margin:0;color:var(--fg);background:var(--bg)}
+  .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;max-width:1360px;margin:0 auto;padding:22px 20px}
+  @media(max-width:980px){.wrap{grid-template-columns:1fr}}
+  header{grid-column:1/-1}h1{font-size:22px;margin:0 0 2px}.sub{color:var(--mut);margin:0}
+  section{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+  h2{font-size:15px;margin:0 0 10px}button{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:8px 14px;cursor:pointer;font:inherit}
+  button.ghost{background:#fff;color:var(--ac);border:1px solid var(--bd);padding:4px 10px}button:disabled{opacity:.5;cursor:default}
+  input[type=text]{flex:1;padding:9px 10px;border:1px solid var(--bd);border-radius:6px;font:inherit;min-width:0}
+  select,input[type=number]{padding:5px 6px;border:1px solid var(--bd);border-radius:6px;font:inherit;background:#fff}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.opts{margin-top:10px;font-size:13px;color:var(--mut)}.opts label{display:inline-flex;gap:4px;align-items:center}
+  ul{padding-left:18px;margin:6px 0}.mut{color:var(--mut);font-size:13px}
+  .answer{white-space:pre-wrap;margin:6px 0 10px;font-size:15.5px}.answer.streaming::after{content:"▍";color:var(--ac);animation:b 1s steps(2) infinite}@keyframes b{50%{opacity:0}}
+  .mk{border:0;background:#e8edff;color:var(--ac);font-weight:600;border-radius:4px;padding:0 4px;font-size:12px;vertical-align:super;cursor:pointer}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px}.chip{font-size:12px;border:1px solid var(--bd);border-radius:999px;padding:2px 9px;background:#fff;color:#344054}
+  .meter{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#344054}.bar{position:relative;width:120px;height:8px;background:#eef0f4;border-radius:4px}
+  .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}.bar i.low{background:var(--warn)}.bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:#101828}
+  .refusal{border:1px solid #fedf89;background:#fffaeb;border-radius:8px;padding:8px 12px;margin:8px 0;font-size:13.5px}.refusal b{color:var(--warn)}
+  .cit{border:1px solid var(--bd);border-left:3px solid var(--ac);padding:7px 10px;margin:8px 0;background:#f8f9ff;border-radius:0 8px 8px 0;cursor:pointer}
+  .cit:hover{background:#eef2ff}.cit.active{outline:2px solid var(--ac);background:#eef2ff}.cit b{font-size:13px}.cit p{margin:4px 0 0;font-size:13px;color:#344054}
+  .viewer{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+  .page{width:100%;border:1px solid var(--bd);border-radius:6px;display:block;background:#fff;min-height:120px}
+  .ctx{white-space:pre-wrap;font-size:13.5px;background:#fbfbfc;border:1px solid var(--bd);border-radius:6px;padding:10px 12px;max-height:340px;overflow:auto}
+  mark{background:var(--hl);border-radius:2px;padding:0 1px}.empty{color:var(--mut);font-size:14px;padding:30px 4px;text-align:center}
 </style>
 </head>
-<body><main>
-<h1>Portfolio RAG</h1><p class="sub">Upload .txt / .md / .pdf, then ask questions. Every answer cites its sources. Runs fully on CPU.</p>
+<body><div class="wrap">
+<header><h1>Portfolio RAG</h1><p class="sub">Upload .txt / .md / .pdf, ask questions, and check every answer against the highlighted source. Runs fully on CPU.</p></header>
+<div>
 <section><h2>1. Documents</h2>
   <div class="row"><input id="file" type="file" accept=".txt,.md,.markdown,.pdf" multiple><button id="up">Upload</button></div>
   <p id="upmsg" class="mut"></p><ul id="docs"></ul></section>
 <section><h2>2. Ask</h2>
   <form id="askf" class="row"><input id="q" type="text" placeholder="e.g. How many vacation days do employees get?" autocomplete="off"><button id="go">Ask</button></form>
+  <div class="row opts">
+    <label>Answerer <select id="answerer"><option value="default">server default</option><option value="extractive">extractive (no LLM)</option><option value="llm">local LLM</option></select></label>
+    <label>Retrieval <select id="mode"><option>hybrid</option><option>vector</option><option>bm25</option></select></label>
+    <label>top-k <input id="topk" type="number" min="1" max="20" value="4" style="width:56px"></label>
+    <label><input id="stream" type="checkbox" checked> stream</label>
+  </div>
   <div id="out"></div></section>
 <p class="mut" id="health"></p>
-</main>
+</div>
+<div><section class="viewer" id="viewer"><h2>Source viewer</h2><div class="empty">Click a citation card or an inline marker like <span class="mk">[1]</span> to see the cited passage highlighted in its document.</div></section></div>
+</div>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const REASONS={no_context:'No matching passages',no_candidates:'No usable sentences',low_confidence:'Low confidence',unknown_identifier:'Unknown model / code / version',llm_refused:'The LLM declined'};
+let last=null,health={};
 async function refresh(){
   const docs=await (await fetch('/documents')).json();
   $('#docs').innerHTML=docs.length?docs.map(d=>`<li>${esc(d.name)} <span class="mut">— ${d.n_chunks} chunk${d.n_chunks===1?'':'s'}${d.pages>1?`, ${d.pages} pages`:''}</span> <a href="#" data-id="${d.doc_id}" class="mut del">delete</a></li>`).join(''):'<li class="mut">No documents yet.</li>';
-  const h=await (await fetch('/health')).json();$('#health').textContent=`embedder: ${h.embedder} · answerer: ${h.answerer}${h.llm_model?' ('+h.llm_model+')':''} · refusal threshold: ${h.min_score} · ${h.chunks} chunks indexed`;
+  health=await (await fetch('/health')).json();
+  $('#health').textContent=`embedder: ${health.embedder} · default answerer: ${health.answerer} · LLM ${health.llm_model}: ${health.llm_available?'online':'offline (falls back to extractive)'} · refusal threshold: ${health.min_score} · ${health.chunks} chunks indexed`;
+  $('#answerer option[value=llm]').textContent=`local LLM (${health.llm_model}${health.llm_available?'':', offline'})`;
 }
 $('#docs').onclick=async e=>{if(!e.target.classList.contains('del'))return;e.preventDefault();await fetch('/documents/'+e.target.dataset.id,{method:'DELETE'});refresh();};
 $('#up').onclick=async()=>{
@@ -40,16 +68,83 @@ $('#up').onclick=async()=>{
     msgs.push(r.ok?`${f.name}: ${j.duplicate?'already indexed':j.n_chunks+' chunks'}`:`${f.name}: ${j.detail}`);}
   $('#upmsg').textContent=msgs.join(' · ');$('#up').disabled=false;$('#file').value='';refresh();
 };
+const markers=t=>esc(t).replace(/\[(\d+)\]/g,'<button class="mk" data-n="$1" type="button">[$1]</button>');
+function meter(j){
+  if(j.confidence==null)return '';const c=Math.max(0,Math.min(1,j.confidence)),t=j.min_score??0;
+  return `<span class="meter" title="max cosine(sentence, question); refusal threshold ${t}">confidence <span class="bar"><i class="${c<t?'low':''}" style="width:${c*100}%"></i><b style="left:${t*100}%"></b></span>${c.toFixed(3)} / thr ${t}</span>`;
+}
+function render(j){
+  last=j;
+  let h=`<div class="chips"><span class="chip">${esc(j.backend)}</span><span class="chip">${esc(j.mode)}</span>${meter(j)}<span class="chip">${j.latency_ms} ms</span>${j.citation_mode!=='explicit'?`<span class="chip">citations: ${esc(j.citation_mode)}</span>`:''}</div>`;
+  if(j.refused)h+=`<div class="refusal"><b>Refused — ${esc(REASONS[j.refusal_reason]||j.refusal_reason||'not answerable')}.</b> ${esc(j.refusal_detail||'')}</div>`;
+  h+=`<div class="answer">${markers(j.answer)}</div>`;
+  h+=j.citations.map(c=>`<div class="cit" data-n="${c.index}"><b>[${c.index}] ${esc(c.doc_name)}${c.page!=null?`, p. ${c.page}`:''}</b> <span class="mut">${esc(c.chunk_id)} · score ${c.score}</span><p>${esc(c.snippet)}</p></div>`).join('');
+  $('#out').innerHTML=h;
+}
+$('#out').onclick=e=>{const el=e.target.closest('[data-n]');if(el)openCitation(+el.dataset.n);};
+// whitespace-insensitive highlighter: the snippet is a sentence that may span hard line breaks in the chunk
+function highlight(text,snippet){
+  let html=esc(text);
+  for(const part of snippet.split('…').map(s=>s.replace(/\s+/g,'')).filter(s=>s.length>=4)){
+    const re=new RegExp([...esc(part)].map(ch=>ch.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('\\s*'));
+    html=html.replace(re,m=>`<mark>${m}</mark>`);
+  }
+  return html;
+}
+async function openCitation(n){
+  if(!last)return;const c=last.citations.find(x=>x.index===n);if(!c)return;
+  document.querySelectorAll('.cit').forEach(el=>el.classList.toggle('active',+el.dataset.n===n));
+  const ch=await (await fetch('/chunks/'+encodeURIComponent(c.chunk_id))).json();
+  const v=$('#viewer');let h=`<h2>Source viewer — [${n}] ${esc(c.doc_name)}${c.page!=null?`, page ${c.page}${ch.pages?' of '+ch.pages:''}`:''}</h2>`;
+  if(c.page!=null&&ch.has_file){
+    h+=`<div class="row mut" style="margin-bottom:6px"><button class="ghost" id="pprev">‹ prev</button><span id="pinfo"></span><button class="ghost" id="pnext">next ›</button><a class="mut" target="_blank" href="/documents/${c.doc_id}/file#page=${c.page}">open PDF</a></div><img class="page" id="pimg" alt="PDF page preview">`;
+  }
+  h+=`<p class="mut" style="margin:10px 0 4px">Retrieved chunk <code>${esc(c.chunk_id)}</code> — cited sentence highlighted:</p><div class="ctx" id="ctx">${highlight(ch.text,c.snippet)}</div>`;
+  v.innerHTML=h;
+  const m=v.querySelector('#ctx mark');if(m)m.scrollIntoView({block:'center'});
+  if(c.page!=null&&ch.has_file){
+    let p=c.page;
+    const show=()=>{const img=$('#pimg');const q=new URLSearchParams({scale:'1.6'});if(p===c.page)q.append('highlight',c.snippet);
+      img.src=`/documents/${c.doc_id}/pages/${p}.png?${q}`;$('#pinfo').textContent=`page ${p} / ${ch.pages}${p===c.page?' (cited, highlighted)':''}`;
+      $('#pprev').disabled=p<=1;$('#pnext').disabled=p>=ch.pages;};
+    $('#pprev').onclick=()=>{p--;show();};$('#pnext').onclick=()=>{p++;show();};show();
+  }
+}
+async function askStream(body){
+  const r=await fetch('/ask/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const j=await r.json();throw new Error(JSON.stringify(j.detail));}
+  const reader=r.body.getReader(),dec=new TextDecoder();let buf='',text='';
+  $('#out').innerHTML='<div class="chips"><span class="chip">retrieving…</span></div><div class="answer streaming" id="live"></div>';
+  for(;;){
+    const {value,done}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});
+    let i;while((i=buf.indexOf('\n\n'))>=0){
+      const block=buf.slice(0,i);buf=buf.slice(i+2);
+      const ev=(block.match(/^event: (.*)$/m)||[])[1],data=JSON.parse((block.match(/^data: (.*)$/m)||[])[1]||'null');
+      if(ev==='retrieval')$('#out .chips').innerHTML=`<span class="chip">${data.length} passages retrieved · generating…</span>`;
+      else if(ev==='token'){text+=data;$('#live').innerHTML=markers(text);}
+      else if(ev==='reset'){text='';$('#live').textContent='';}
+      else if(ev==='done')render(data);
+    }
+  }
+}
 $('#askf').onsubmit=async e=>{
-  e.preventDefault();const q=$('#q').value.trim();if(!q)return;$('#go').disabled=true;$('#out').innerHTML='<p class="mut">Thinking…</p>';
-  const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();$('#go').disabled=false;
-  if(!r.ok){$('#out').innerHTML=`<p>${esc(JSON.stringify(j.detail))}</p>`;return;}
-  const ans=esc(j.answer).replace(/\[(\d+)\]/g,'<sup>[$1]</sup>');
-  $('#out').innerHTML=`<div class="answer">${ans}</div><div class="mut">backend: ${esc(j.backend)} · confidence: ${j.confidence??'–'} · ${j.latency_ms} ms${j.refused?' · refused (below threshold or not in documents)':''}${j.citation_mode!=='explicit'?' · citations '+esc(j.citation_mode):''}</div>`+
-    j.citations.map(c=>`<div class="cit"><b>[${c.index}] ${esc(c.doc_name)}${c.page!=null?`, p. ${c.page}`:''}</b> <span class="mut">${esc(c.chunk_id)}</span><p>${esc(c.snippet)}</p></div>`).join('');
+  e.preventDefault();const q=$('#q').value.trim();if(!q)return;$('#go').disabled=true;
+  const body={question:q,mode:$('#mode').value,answerer:$('#answerer').value,top_k:+$('#topk').value||null};
+  try{
+    if($('#stream').checked)await askStream(body);
+    else{$('#out').innerHTML='<p class="mut">Thinking…</p>';const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json();
+      if(!r.ok)throw new Error(JSON.stringify(j.detail));render(j);}
+  }catch(err){$('#out').innerHTML=`<p>${esc(err.message)}</p>`;}
+  $('#go').disabled=false;
 };
-refresh();
-// deep link: /?q=your+question auto-asks (handy for demos/screenshots)
-const q0=new URLSearchParams(location.search).get('q');if(q0){$('#q').value=q0;$('#askf').requestSubmit();}
+// deep links for demos/screenshots: /?q=...&answerer=llm&mode=bm25&stream=0&cite=1
+(async()=>{
+  await refresh();const P=new URLSearchParams(location.search);
+  for(const k of ['answerer','mode'])if(P.get(k))$('#'+k).value=P.get(k);
+  if(P.get('stream')==='0')$('#stream').checked=false;
+  const q0=P.get('q');if(!q0)return;$('#q').value=q0;
+  const cite=+P.get('cite');if(cite){await new Promise(res=>{new MutationObserver((_,o)=>{if(last){o.disconnect();res();}}).observe($('#out'),{childList:true,subtree:true});$('#askf').requestSubmit();});openCitation(cite);}
+  else $('#askf').requestSubmit();
+})();
 </script>
 </body></html>

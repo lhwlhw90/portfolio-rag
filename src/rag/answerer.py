@@ -10,17 +10,18 @@
 """
 from __future__ import annotations
 
+import json
 import logging
 import math
 import re
 import time
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Iterator, Protocol
 
 import httpx
 
 from .retriever import Hit
-from .text import content_tokens, is_cjk, is_heading_like, split_sentences
+from .text import content_tokens, identifiers, is_cjk, is_heading_like, split_sentences
 
 log = logging.getLogger(__name__)
 
@@ -62,6 +63,55 @@ class Answer:
     citation_mode: str = "explicit"      # explicit = answer has [n] markers; context = LLM gave none
     invalid_markers: list[int] = field(default_factory=list)  # [n] that don't map to a source
     latency_ms: float | None = None
+    refusal_reason: str | None = None    # machine-readable code, see REFUSAL_REASONS
+    refusal_detail: str | None = None    # human-readable explanation shown in the UI
+
+
+REFUSAL_REASONS = {
+    "no_context": "No documents matched the question.",
+    "no_candidates": "The retrieved passages contain no usable sentences.",
+    "low_confidence": "The best matching sentence is not similar enough to the question.",
+    "unknown_identifier": "The question names a model / code / version that does not occur in the retrieved passages.",
+    "llm_refused": "The language model said the sources do not answer the question.",
+}
+
+
+REFUSAL_REASONS_ZH = {
+    "no_context": "没有检索到与问题相关的文档片段。",
+    "no_candidates": "检索到的片段中没有可用的句子。",
+    "low_confidence": "最相关的句子与问题的相似度不足。",
+    "unknown_identifier": "问题中的型号 / 代码 / 版本号没有出现在检索到的片段中。",
+    "llm_refused": "语言模型判断这些来源无法回答该问题。",
+}
+
+
+def refusal(question: str, backend: str, reason: str, detail: str | None = None, confidence: float | None = 0.0,
+            latency_ms: float | None = None, text: str | None = None) -> Answer:
+    base = (REFUSAL_REASONS_ZH if is_cjk(question) else REFUSAL_REASONS)[reason]
+    return Answer(text or no_answer_text(question), [], backend, refused=True, confidence=confidence,
+                  latency_ms=latency_ms, refusal_reason=reason, refusal_detail=f"{base} {detail}" if detail else base)
+
+
+def best_supporting_sentence(answer: str, chunk_text: str) -> str | None:
+    """The chunk sentence sharing the most content tokens with the answer, used as the
+    citation snippet for LLM answers so the UI can highlight the exact evidence."""
+    a = set(content_tokens(answer))
+    best, best_ov = None, 0
+    for sent in split_sentences(chunk_text):
+        if is_heading_like(sent):
+            continue
+        ov = len(a & set(content_tokens(sent)))
+        if ov > best_ov:
+            best, best_ov = sent, ov
+    return best
+
+
+def missing_identifiers(question: str, context: str) -> list[str]:
+    """Identifiers in the question (e.g. 'X3', 'E402', 'v2.4.0') with no counterpart in the
+    context. Prefix matches count ('5G' ~ '5GHz') so that only clear mismatches trigger."""
+    have = identifiers(context)
+    return sorted(q for q in identifiers(question)
+                  if not any(h.startswith(q) or q.startswith(h) for h in have))
 
 
 def build_citations(hits: list[Hit], snippet_chars: int = 240) -> list[Citation]:
@@ -135,9 +185,10 @@ class ExtractiveAnswerer:
     name = "extractive"
 
     def __init__(self, max_sentences: int = 3, embedder=None, keep_ratio: float = 0.85, min_score: float = 0.0,
-                 lex_weight: float = 0.5):
+                 lex_weight: float = 0.5, check_identifiers: bool = True):
         self.max_sentences, self.embedder, self.keep_ratio = max_sentences, embedder, keep_ratio
         self.min_score, self.lex_weight = min_score, lex_weight
+        self.check_identifiers = check_identifiers
 
     def score_sentences(self, question: str, hits: list[Hit]) -> list[tuple[float, int, int, str, float]]:
         """Returns candidates (score, hit_rank, order, sentence, cosine), best first."""
@@ -181,16 +232,21 @@ class ExtractiveAnswerer:
         return max(c[4] for c in cands) if self.embedder is not None else cands[0][0]
 
     def answer(self, question: str, hits: list[Hit]) -> Answer:
-        refuse = Answer(no_answer_text(question), [], self.name, refused=True, confidence=0.0)
         if not hits:
-            return refuse
+            return refusal(question, self.name, "no_context")
         cands = self.score_sentences(question, hits)
         if not cands:
-            return refuse
+            return refusal(question, self.name, "no_candidates")
         best, conf = cands[0][0], self.confidence(cands)
+        if self.check_identifiers:
+            missing = missing_identifiers(question, " ".join(h.chunk.text for h in hits))
+            if missing:
+                return refusal(question, self.name, "unknown_identifier", confidence=round(conf, 4),
+                               detail=("未找到：" if is_cjk(question) else "Not found: ") + ", ".join(missing))
         if conf < self.min_score:
-            refuse.confidence = round(conf, 4)
-            return refuse
+            return refusal(question, self.name, "low_confidence", confidence=round(conf, 4),
+                           detail=(f"（{conf:.3f} < 阈值 {self.min_score:.3f}）" if is_cjk(question) else
+                                   f"(similarity {conf:.3f} < threshold {self.min_score:.3f})"))
         picked = [c for c in cands if c[0] >= best * self.keep_ratio][: self.max_sentences]
         subs = split_subquestions(question)
         if len(subs) > 1:  # multi-part question: make sure every part gets its best sentence
@@ -236,50 +292,116 @@ class OpenAICompatAnswerer:
         ctx = "\n".join(f'<source id="{c.index}" file="{format_source(c)}">\n{text}\n</source>' for c, text in pairs)
         return f"{ctx}\n\nQuestion: {question}"
 
-    def answer(self, question: str, hits: list[Hit]) -> Answer:
-        t0 = time.perf_counter()
+    def _prepare(self, question: str, hits: list[Hit]):
+        """Returns (early_answer, citations, (citation, text) pairs, gate confidence)."""
         if not hits:
-            return Answer(no_answer_text(question), [], self.name, refused=True)
+            return refusal(question, self.name, "no_context", confidence=None), [], [], None
         confidence = None
         if self.gate is not None:
             g = self.gate.answer(question, hits)
             confidence = g.confidence
             if g.refused:
                 g.backend = f"{self.name}(gated)"
-                return g
+                return g, [], [], confidence
         cits = build_citations(hits)
-        pairs = [(c, h.chunk.text) for c, h in zip(cits, hits)]
-        try:
-            r = self.client.post(f"{self.base_url}/chat/completions",
-                                 headers={"Authorization": f"Bearer {self.api_key}"},
-                                 json={"model": self.model, "temperature": 0.0, "max_tokens": self.max_tokens,
-                                       "messages": [{"role": "system", "content": SYSTEM_PROMPT},
-                                                    {"role": "user", "content": self.build_prompt(question, pairs)}]})
-            r.raise_for_status()
-            text = r.json()["choices"][0]["message"]["content"].strip()
-            text = re.sub(r"(\[\d+\])(\s*\1)+", r"\1", text)  # "[3] [3]" -> "[3]"
-        except Exception as e:  # network / model errors -> graceful fallback
-            log.warning("LLM backend failed (%s); falling back to extractive", e)
-            ans = self.fallback.answer(question, hits)
-            ans.backend = f"{self.name}->fallback:{ans.backend}"
-            return ans
-        latency = (time.perf_counter() - t0) * 1000
+        return None, cits, [(c, h.chunk.text) for c, h in zip(cits, hits)], confidence
+
+    def _payload(self, question: str, pairs, stream: bool = False) -> dict:
+        return {"model": self.model, "temperature": 0.0, "max_tokens": self.max_tokens, "stream": stream,
+                "messages": [{"role": "system", "content": SYSTEM_PROMPT},
+                             {"role": "user", "content": self.build_prompt(question, pairs)}]}
+
+    def _fallback(self, question: str, hits: list[Hit], err: Exception) -> Answer:
+        log.warning("LLM backend failed (%s); falling back to extractive", err)
+        ans = self.fallback.answer(question, hits)
+        ans.backend = f"{self.name}->fallback:{ans.backend}"
+        return ans
+
+    def _finalize(self, question: str, text: str, cits, pairs, confidence, latency: float) -> Answer:
+        text = re.sub(r"(\[\d+\])(\s*\1)+", r"\1", text.strip())  # "[3] [3]" -> "[3]"
         markers = parse_markers(text)
         valid = {c.index for c in cits}
         invalid = [m for m in markers if m not in valid]
         if looks_like_refusal(text) and not [m for m in markers if m in valid]:
-            return Answer(text, [], self.name, refused=True, confidence=confidence, latency_ms=latency)
+            return refusal(question, self.name, "llm_refused", confidence=confidence, latency_ms=latency, text=text)
+        full = {c.index: t for c, t in pairs}
+
+        def sharpen(used):  # snippet = the chunk sentence that best supports the answer
+            for c in used:
+                c.snippet = best_supporting_sentence(text, full[c.index]) or c.snippet
+            return used
         used = [c for c in cits if c.index in markers]
         if used:
-            return Answer(text, used, self.name, confidence=confidence, invalid_markers=invalid, latency_ms=latency)
+            return Answer(text, sharpen(used), self.name, confidence=confidence, invalid_markers=invalid,
+                          latency_ms=latency)
         # Small models often forget markers: attribute each answer sentence to the source it overlaps most.
         text2, attributed = attribute_citations(text, pairs)
         if attributed:
-            return Answer(text2, [c for c in cits if c.index in attributed], self.name, confidence=confidence,
+            return Answer(text2, sharpen([c for c in cits if c.index in attributed]), self.name, confidence=confidence,
                           citation_mode="attributed", invalid_markers=invalid, latency_ms=latency)
         # nothing attributable: expose retrieved sources as context, flagged as such
         return Answer(text, cits, self.name, confidence=confidence, citation_mode="context",
                       invalid_markers=invalid, latency_ms=latency)
+
+    def answer(self, question: str, hits: list[Hit]) -> Answer:
+        t0 = time.perf_counter()
+        early, cits, pairs, confidence = self._prepare(question, hits)
+        if early is not None:
+            return early
+        try:
+            r = self.client.post(f"{self.base_url}/chat/completions", headers={"Authorization": f"Bearer {self.api_key}"},
+                                 json=self._payload(question, pairs))
+            r.raise_for_status()
+            text = r.json()["choices"][0]["message"]["content"]
+        except Exception as e:  # network / model errors -> graceful fallback
+            return self._fallback(question, hits, e)
+        return self._finalize(question, text, cits, pairs, confidence, (time.perf_counter() - t0) * 1000)
+
+    def stream(self, question: str, hits: list[Hit]) -> Iterator[tuple[str, object]]:
+        """Yields ("token", str) as the model generates, then ("answer", Answer) after the same
+        post-processing as answer(). A ("reset", None) event means: discard streamed tokens."""
+        t0 = time.perf_counter()
+        early, cits, pairs, confidence = self._prepare(question, hits)
+        if early is not None:
+            yield "answer", early
+            return
+        parts: list[str] = []
+        try:
+            with self.client.stream("POST", f"{self.base_url}/chat/completions",
+                                    headers={"Authorization": f"Bearer {self.api_key}"},
+                                    json=self._payload(question, pairs, stream=True)) as r:
+                r.raise_for_status()
+                for line in r.iter_lines():
+                    if not line.startswith("data:"):
+                        continue
+                    data = line[5:].strip()
+                    if data == "[DONE]":
+                        break
+                    delta = (json.loads(data).get("choices") or [{}])[0].get("delta", {}).get("content")
+                    if delta:
+                        parts.append(delta)
+                        yield "token", delta
+        except Exception as e:
+            if parts:
+                yield "reset", None
+            yield "answer", self._fallback(question, hits, e)
+            return
+        yield "answer", self._finalize(question, "".join(parts), cits, pairs, confidence,
+                                       (time.perf_counter() - t0) * 1000)
+
+
+def stream_answer(answerer, question: str, hits: list[Hit]) -> Iterator[tuple[str, object]]:
+    """Uniform streaming interface: native token streaming if the answerer supports it,
+    otherwise the finished answer is emitted sentence by sentence."""
+    if hasattr(answerer, "stream"):
+        yield from answerer.stream(question, hits)
+        return
+    ans = answerer.answer(question, hits)
+    if not ans.refused:
+        for piece in re.findall(r".+?(?:\[\d+\]\s*|$)", ans.answer):
+            if piece:
+                yield "token", piece
+    yield "answer", ans
 
 
 def build_answerer(settings, embedder=None) -> Answerer:
