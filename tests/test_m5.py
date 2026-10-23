@@ -153,3 +153,21 @@ def test_dev_extension_is_new_unanswerable_and_not_leaked(lang, minimum):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     assert mod.build(lang) == extra
+
+
+# ---------------------------------------------------------------- determinism (M5 bug fix)
+def test_chunk_order_is_ingestion_order_not_random_doc_id(tmp_path, monkeypatch):
+    """Documents ingested in the same second used to be ordered by their random uuid doc_id, so
+    tie-breaks in retrieval changed between processes. Order must be ingestion order."""
+    import uuid
+    from rag.service import RAGService
+    ids = iter(["ffff0000aaaa", "00000000bbbb", "88888888cccc"])
+    monkeypatch.setattr(uuid, "uuid4", lambda: type("U", (), {"hex": next(ids) + "0" * 20})())
+    s = Settings(data_dir=tmp_path, embedding_backend="hash", _env_file=None)
+    svc = RAGService(s)
+    for n in ("b.txt", "a.txt", "c.txt"):
+        svc.ingest(n, f"Document {n} talks about topic {n} in some detail here.".encode())
+    assert [c.doc_name for c in svc.store.chunks] == ["b.txt", "a.txt", "c.txt"]
+    assert [d["name"] for d in svc.store.list_documents()] == ["b.txt", "a.txt", "c.txt"]
+    svc.store._reload()
+    assert [c.doc_name for c in svc.store.chunks] == ["b.txt", "a.txt", "c.txt"]

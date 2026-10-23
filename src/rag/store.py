@@ -64,7 +64,10 @@ class VectorStore:
     def _reload(self) -> None:
         rows = self._conn.execute(
             "SELECT c.chunk_id, c.doc_id, d.name, c.chunk_index, c.page, c.text, c.embedding, c.meta "
-            "FROM chunks c JOIN documents d USING(doc_id) ORDER BY d.created_at, c.doc_id, c.chunk_index"
+            # ingestion order (rowid), not the random doc_id: several documents ingested within the same
+            # second share created_at, and chunk order decides RRF / BM25 tie-breaks (found in M5: the
+            # same eval gave different answers across processes)
+            "FROM chunks c JOIN documents d USING(doc_id) ORDER BY d.created_at, d.rowid, c.chunk_index"
         ).fetchall()
         self.chunks = [StoredChunk(r[0], r[1], r[2], r[3], r[4], r[5], json.loads(r[7] or "{}").get("heading"))
                        for r in rows]
@@ -93,7 +96,7 @@ class VectorStore:
 
     def list_documents(self) -> list[dict]:
         rows = self._conn.execute(
-            "SELECT doc_id, name, pages, n_chunks, created_at FROM documents ORDER BY created_at").fetchall()
+            "SELECT doc_id, name, pages, n_chunks, created_at FROM documents ORDER BY created_at, rowid").fetchall()
         return [dict(zip(("doc_id", "name", "pages", "n_chunks", "created_at"), r)) for r in rows]
 
     def get_document(self, doc_id: str) -> dict | None:

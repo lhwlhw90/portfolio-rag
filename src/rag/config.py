@@ -32,7 +32,16 @@ M4_ANSWERABILITY_DEFAULTS: dict[str, tuple] = {
     "BAAI/bge-small-en-v1.5": ("nli-t", "and", 0.665, 0.6058, "plain"),       # dev bal. acc 77.9 -> 81.1
     "BAAI/bge-small-zh-v1.5": ("reranker-m3", "and", 0.575, 0.1182, "plain"),  # dev bal. acc 79.4 -> 86.3
 }
-ANSWERABILITY_DEFAULTS: dict[str, tuple] = dict(M4_ANSWERABILITY_DEFAULTS)
+# M5 (python -m rag.eval_m5; REPORT.md section 8, docs/DESIGN.md section 13): chosen on an extended dev
+# split under "dev false refusal <= M3", judge reads heading-context sentences, test evaluated once.
+# en: the dev choice (nli[section] OR cosine) was still worse than M3 on test (answer acc 61.4 < 66.7,
+#     false refusal 35.1 > 29.8) -> pre-registered fallback: no judge, M3 cosine threshold 0.67.
+# zh: reranker-m3 on heading-context sentences replaces the cosine threshold (test answer acc 94.5,
+#     false refusal 3.6). cosine threshold 0.0 = exactly the evaluated system (replace policy).
+ANSWERABILITY_DEFAULTS: dict[str, tuple] = {
+    "BAAI/bge-small-en-v1.5": ("none", None, 0.67, None, None),
+    "BAAI/bge-small-zh-v1.5": ("reranker-m3", "replace", 0.0, 0.4024, "heading"),
+}
 # query expansion: embedding model -> (mode, LLM, expansion weight)
 QUERY_EXPANSION_DEFAULTS: dict[str, tuple[str, str, float]] = {
     "BAAI/bge-small-en-v1.5": ("rewrite", "qwen2.5:1.5b", 1.0),  # dev MRR 0.892 -> 0.917

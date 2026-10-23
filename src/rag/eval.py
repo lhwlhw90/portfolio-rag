@@ -424,6 +424,8 @@ def report() -> Path:
                      f"{x['answer'][:140].replace('|', '/')}{'…' if len(x['answer']) > 140 else ''}")
         L.append("")
     L += m4_report(results)
+    from .eval_m5 import report_lines
+    L += report_lines()
     out = RESULTS / "REPORT.md"
     out.write_text("\n".join(L), encoding="utf-8")
     print(f"wrote {out}")

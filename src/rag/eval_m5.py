@@ -272,3 +272,55 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+
+
+# ------------------------------------------------------------------ REPORT.md section
+def report_lines() -> list[str]:
+    files = [RESULTS / f"m5_{lang}.json" for lang in ("en", "zh")]
+    res = [json.loads(p.read_text()) for p in files if p.exists()]
+    if not res:
+        return []
+    L = ["## 8. M5: answerability re-selected on an extended dev set under a false-refusal cap", "",
+         "Protocol (docs/DESIGN.md section 13, fixed before the single test run): dev = M3/M4 dev + new "
+         "leakage-checked unanswerable questions (`eval/datasets/{lang}.dev_extra.jsonl`); judges read the candidate "
+         "sentence *with its heading context*; thresholds/variant chosen on dev under *dev false refusal <= M3's*; "
+         "test evaluated once (`python -m rag.eval_m5 --final`). Test was already seen in M4, so the M5 test numbers "
+         "may carry a slight selection bias. Systems are end-to-end (retrieval with the deployed query expansion, "
+         "extractive answer, refusal); latency = CPU wall time incl. the expansion LLM cost.", ""]
+    L += ["| lang | system | split | answer acc | false refusal | refusal acc | balanced acc | latency p50 / p95 ms |",
+          "|---|---|---|---|---|---|---|---|"]
+    for r in res:
+        for sp in ("dev", "test"):
+            for name in ("M3", "M4", "M5", "M5-fallback (judge none)"):
+                s = r["systems"].get(sp, {}).get(name, {}).get("summary")
+                if s:
+                    L.append(f"| {r['lang']} | {name} | {sp} (n={r['n_questions'][sp]}) | {s['answer_accuracy']} | "
+                             f"{s['false_refusal_rate']} | {s['refusal_accuracy']} | {s['balanced_accuracy']} | "
+                             f"{s['latency_p50_ms']} / {s['latency_p95_ms']} |")
+    L += ["", "Chosen on dev (FR cap = M3's dev false refusal) and the pre-registered English fallback:", ""]
+    for r in res:
+        c, fb = r["chosen_config"], r.get("fallback", {})
+        L.append(f"- **{r['lang']}**: `{c['name']}` (cos {c['t_cos']}, judge {c['t_judge']}), dev FR cap "
+                 f"{r['selection']['fr_cap']}; test evaluations: {r.get('test_evaluations')}; fallback rule "
+                 + ("not applicable (zh)" if fb.get("applies") is False else
+                    f"**{'triggered' if fb.get('triggered') else 'not triggered'}** (M5 test {fb.get('m5')} vs M3 {fb.get('m3')})"))
+    L += ["", "Top variants by dev balanced accuracy (admissible = meets the FR cap; plain input = M4 ablation, "
+          "not eligible). Test columns are reported only:", "",
+          "| lang | variant | thresholds (cos / judge) | dev bal. | dev FR | test bal. | test FR | test refusal acc |",
+          "|---|---|---|---|---|---|---|---|"]
+    for r in res:
+        vs = sorted([v for v in r["selection"]["variants"] if v["admissible"]], key=lambda v: -v["dev"]["balanced_accuracy"])
+        for v in vs[:8]:
+            t = v.get("test") or {}
+            nm = f"**{v['name']}**" if v["name"] == r["selection"]["chosen"] else v["name"] + ("" if v["eligible"] else " (ablation)")
+            L.append(f"| {r['lang']} | {nm} | {v.get('t_cos', '–')} / {v.get('t_judge', '–')} | {v['dev']['balanced_accuracy']} "
+                     f"| {v['dev']['false_refusal_rate']} | {t.get('balanced_accuracy', '–')} | {t.get('false_refusal_rate', '–')} "
+                     f"| {t.get('refusal_accuracy', '–')} |")
+    L += ["", "ROC AUC of each raw score by judge input (dev / test):", "",
+          "| lang | score | plain | heading | section |", "|---|---|---|---|---|"]
+    for r in res:
+        a, b = r["selection"]["auc_dev"], r["selection"].get("auc_test", {})
+        L.append(f"| {r['lang']} | cos | {a['cos']} / {b.get('cos', '–')} | | |")
+        for j in JUDGES[r["lang"]]:
+            L.append(f"| {r['lang']} | {j} | " + " | ".join(f"{a[f'{j}|{i}']} / {b.get(f'{j}|{i}', '–')}" for i in INPUTS) + " |")
+    return L + [""]

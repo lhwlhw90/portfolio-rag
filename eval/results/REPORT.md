@@ -307,3 +307,66 @@ Changed answers:
 - `en-f039` (en test, same): Which industrial protocol for PLC integration was added in version 2.1? → Version 2.1 (2025-10-30): Added Modbus TCP support for PLC integration. [1]
 - `zh-f034` (zh dev, same): v2.2.0之后回充成功率是多少？ → v2.2.0（2024年6月）：回充成功率提升到98%。 [1]
 - `zh-f042` (zh dev, same): 安全事件上报的邮箱是什么？ → 安全事件上报：发现安全事件后，必须在2小时内向信息安全部报告，邮箱为 security@xinghe.example。 [1]
+
+## 8. M5: answerability re-selected on an extended dev set under a false-refusal cap
+
+Protocol (docs/DESIGN.md section 13, fixed before the single test run): dev = M3/M4 dev + new leakage-checked unanswerable questions (`eval/datasets/{lang}.dev_extra.jsonl`); judges read the candidate sentence *with its heading context*; thresholds/variant chosen on dev under *dev false refusal <= M3's*; test evaluated once (`python -m rag.eval_m5 --final`). Test was already seen in M4, so the M5 test numbers may carry a slight selection bias. Systems are end-to-end (retrieval with the deployed query expansion, extractive answer, refusal); latency = CPU wall time incl. the expansion LLM cost.
+
+| lang | system | split | answer acc | false refusal | refusal acc | balanced acc | latency p50 / p95 ms |
+|---|---|---|---|---|---|---|---|
+| en | M3 | dev (n=97) | 78.4 | 13.5 | 68.3 | 77.4 | 71.9 / 203.2 |
+| en | M4 | dev (n=97) | 59.5 | 40.5 | 91.7 | 75.6 | 693.2 / 1703.9 |
+| en | M5 | dev (n=97) | 83.8 | 8.1 | 76.7 | 84.3 | 741.3 / 1720.6 |
+| en | M5-fallback (judge none) | dev (n=97) | 81.1 | 10.8 | 66.7 | 77.9 | 560.1 / 1553.8 |
+| en | M3 | test (n=76) | 66.7 | 29.8 | 42.1 | 56.1 | 77.6 / 185.0 |
+| en | M4 | test (n=76) | 40.4 | 57.9 | 94.7 | 68.4 | 685.8 / 1596.6 |
+| en | M5 | test (n=76) | 61.4 | 35.1 | 47.4 | 56.2 | 702.4 / 1664.9 |
+| en | M5-fallback (judge none) | test (n=76) | 64.9 | 29.8 | 36.8 | 53.5 | 544.1 / 1494.4 |
+| zh | M3 | dev (n=70) | 81.1 | 16.2 | 60.6 | 72.2 | 64.8 / 191.7 |
+| zh | M4 | dev (n=70) | 89.2 | 10.8 | 63.6 | 76.4 | 479.6 / 1082.4 |
+| zh | M5 | dev (n=70) | 83.8 | 16.2 | 84.8 | 84.3 | 488.9 / 1139.4 |
+| zh | M5-fallback (judge none) | dev (n=70) | 81.1 | 16.2 | 60.6 | 72.2 | 251.8 / 763.8 |
+| zh | M3 | test (n=73) | 81.8 | 16.4 | 66.7 | 75.1 | 68.8 / 219.5 |
+| zh | M4 | test (n=73) | 92.7 | 5.5 | 61.1 | 77.8 | 481.8 / 761.4 |
+| zh | M5 | test (n=73) | 94.5 | 3.6 | 61.1 | 78.8 | 503.7 / 719.6 |
+| zh | M5-fallback (judge none) | test (n=73) | 81.8 | 16.4 | 66.7 | 75.1 | 254.9 / 479.5 |
+
+Chosen on dev (FR cap = M3's dev false refusal) and the pre-registered English fallback:
+
+- **en**: `nli[section] OR cosine` (cos 0.695, judge 0.8881), dev FR cap 13.5; test evaluations: 1; fallback rule **triggered** (M5 test {'answer_accuracy': 61.4, 'false_refusal_rate': 35.1} vs M3 {'answer_accuracy': 66.7, 'false_refusal_rate': 29.8})
+- **zh**: `reranker-m3[heading] only` (cos None, judge 0.4024), dev FR cap 16.2; test evaluations: 1; fallback rule not applicable (zh)
+
+Top variants by dev balanced accuracy (admissible = meets the FR cap; plain input = M4 ablation, not eligible). Test columns are reported only:
+
+| lang | variant | thresholds (cos / judge) | dev bal. | dev FR | test bal. | test FR | test refusal acc |
+|---|---|---|---|---|---|---|---|
+| en | **nli[section] OR cosine** | 0.695 / 0.8881 | 84.3 | 8.1 | 56.1 | 35.1 | 47.4 |
+| en | nli-t[section] OR cosine | 0.695 / 0.9224 | 84.3 | 8.1 | 55.3 | 36.8 | 47.4 |
+| en | nli[plain] OR cosine (ablation) | 0.695 / 0.9361 | 83.8 | 10.8 | 54.4 | 38.6 | 47.4 |
+| en | nli[heading] OR cosine | 0.695 / 0.9478 | 83.8 | 10.8 | 55.3 | 36.8 | 47.4 |
+| en | nli-t[plain] OR cosine (ablation) | 0.695 / 0.9862 | 83.8 | 10.8 | 54.4 | 38.6 | 47.4 |
+| en | nli-t[heading] OR cosine | 0.695 / 0.9862 | 83.8 | 10.8 | 54.4 | 38.6 | 47.4 |
+| en | nli-t[section] AND cosine | 0.695 / 0.0016 | 83.2 | 13.5 | 53.5 | 40.4 | 47.4 |
+| en | cosine + identifier rule (re-calibrated) | 0.695 / None | 82.4 | 13.5 | 53.5 | 40.4 | 47.4 |
+| zh | reranker-m3[plain] only (ablation) | None / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | reranker-m3[plain] AND cosine (ablation) | 0.43 / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | reranker-m3[plain] OR cosine (ablation) | 0.815 / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | **reranker-m3[heading] only** | None / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | reranker-m3[heading] AND cosine | 0.43 / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | reranker-m3[heading] OR cosine | 0.815 / 0.4024 | 84.3 | 16.2 | 78.7 | 3.6 | 61.1 |
+| zh | nli[plain] OR cosine (ablation) | 0.72 / 0.7224 | 81.3 | 16.2 | 80.8 | 21.8 | 83.3 |
+| zh | nli[heading] OR cosine | 0.72 / 0.5805 | 79.8 | 16.2 | 82.5 | 12.7 | 77.8 |
+
+ROC AUC of each raw score by judge input (dev / test):
+
+| lang | score | plain | heading | section |
+|---|---|---|---|---|
+| en | cos | 0.832 / 0.561 | | |
+| en | nli | 0.734 / 0.788 | 0.744 / 0.809 | 0.768 / 0.794 |
+| en | nli-t | 0.746 / 0.855 | 0.765 / 0.861 | 0.811 / 0.809 |
+| en | reranker | 0.782 / 0.646 | 0.786 / 0.643 | 0.804 / 0.637 |
+| en | reranker-m3 | 0.83 / 0.743 | 0.831 / 0.74 | 0.861 / 0.738 |
+| zh | cos | 0.787 / 0.795 | | |
+| zh | nli | 0.778 / 0.88 | 0.788 / 0.882 | 0.817 / 0.891 |
+| zh | nli-t | 0.708 / 0.871 | 0.73 / 0.872 | 0.722 / 0.839 |
+| zh | reranker-m3 | 0.896 / 0.879 | 0.897 / 0.882 | 0.868 / 0.846 |
