@@ -195,6 +195,25 @@ def with_heading(sentence: str, heading: str | None, question: str) -> str:
     return sentence
 
 
+JUDGE_INPUTS = ("plain", "heading", "section")
+
+
+def judge_text(sentence: str, heading: str | None, question: str, mode: str) -> str:
+    """What the answerability judge reads for one candidate sentence (M5).
+    plain   = the bare sentence (M4);
+    heading = the sentence as shown in the answer, i.e. with the heading prefixed by the
+              `with_heading` rule (so a release date that only lives in '## Version 2.0 (2025-07-01)'
+              is visible to the judge, exactly as it is to the user);
+    section = always prefix the section heading when there is one."""
+    if mode == "plain" or not heading:
+        return sentence
+    if mode == "heading":
+        return with_heading(sentence, heading, question)
+    if mode == "section":
+        return sentence if heading in sentence else f"{heading}{'：' if is_cjk(heading + sentence) else ': '}{sentence}"
+    raise ValueError(f"unknown judge input {mode!r} (use one of {JUDGE_INPUTS})")
+
+
 class Answerer(Protocol):
     name: str
 
@@ -213,7 +232,8 @@ class ExtractiveAnswerer:
 
     def __init__(self, max_sentences: int = 3, embedder=None, keep_ratio: float = 0.85, min_score: float = 0.0,
                  lex_weight: float = 0.5, check_identifiers: bool = True, heading_context: bool = True,
-                 judge=None, judge_min: float = 0.5, judge_policy: str = "and", judge_top: int = 3):
+                 judge=None, judge_min: float = 0.5, judge_policy: str = "and", judge_top: int = 3,
+                 judge_input: str = "heading"):
         self.max_sentences, self.embedder, self.keep_ratio = max_sentences, embedder, keep_ratio
         self.min_score, self.lex_weight = min_score, lex_weight
         self.check_identifiers = check_identifiers
@@ -223,6 +243,18 @@ class ExtractiveAnswerer:
         if judge_policy not in ("replace", "and", "or"):
             raise ValueError(f"unknown judge policy {judge_policy!r}")
         self.judge, self.judge_min, self.judge_policy, self.judge_top = judge, judge_min, judge_policy, judge_top
+        if judge_input not in JUDGE_INPUTS:
+            raise ValueError(f"unknown judge input {judge_input!r} (use one of {JUDGE_INPUTS})")
+        self.judge_input = judge_input
+
+    def judge_sentences(self, question: str, hits: list[Hit], cands) -> list[str]:
+        """Texts of the top candidate sentences as given to the answerability judge."""
+        top = cands[: self.judge_top]
+        if self.judge_input == "plain":
+            return [c[3] for c in top]
+        heads = {r: sentences_with_headings(hits[r].chunk.text, getattr(hits[r].chunk, "heading", None))
+                 for r in {c[1] for c in top}}
+        return [judge_text(c[3], heads[c[1]][c[2]][1], question, self.judge_input) for c in top]
 
     def score_sentences(self, question: str, hits: list[Hit]) -> list[tuple[float, int, int, str, float]]:
         """Returns candidates (score, hit_rank, order, sentence, cosine), best first."""
@@ -280,7 +312,7 @@ class ExtractiveAnswerer:
         zh = is_cjk(question)
         cos_ok, jscore = conf >= self.min_score, None
         if self.judge is not None and not (self.judge_policy == "and" and not cos_ok):  # "and": skip if cos fails
-            jscore = round(self.judge.score(question, [c[3] for c in cands[: self.judge_top]]), 4)
+            jscore = round(self.judge.score(question, self.judge_sentences(question, hits, cands)), 4)
         judge_ok = jscore is not None and jscore >= self.judge_min
         cos_detail = (f"（{conf:.3f} < 阈值 {self.min_score:.3f}）" if zh else
                       f"(similarity {conf:.3f} < threshold {self.min_score:.3f})")

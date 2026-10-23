@@ -69,6 +69,7 @@ def create_app(settings: Settings | None = None, service: RAGService | None = No
                 "llm_available": s.llm_available(), "min_score": s.settings.resolved_min_score,
                 "answerability_judge": s.settings.resolved_judge, "answerability_policy": s.settings.resolved_policy,
                 "judge_min": s.settings.resolved_judge_min if s.judge else None,
+                "judge_input": s.settings.resolved_judge_input if s.judge else None,
                 "query_expansion": s.expander.mode, "query_expansion_model": s.expander.model if s.expander.mode in ("rewrite", "hyde") else None,
                 "heading_context": s.settings.heading_context,
                 "documents": len(s.store.list_documents()), "chunks": len(s.store.chunks)}

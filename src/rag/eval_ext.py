@@ -181,7 +181,7 @@ def eval_system(svc, data: dict, embedder, entry: dict, judges: dict, top_k: int
     ext = ExtractiveAnswerer(embedder=embedder, min_score=a["t_cos"] if a.get("t_cos") is not None else 0.0,
                              check_identifiers=a["rule"], heading_context=True, judge=judge,
                              judge_min=a["t_judge"] if a.get("t_judge") is not None else 0.5,
-                             judge_policy=a["policy"] if a["policy"] != "cosine" else "and")
+                             judge_policy=a["policy"] if a["policy"] != "cosine" else "and", judge_input="plain")
     qe = (QueryExpander(q["mode"], model=q.get("model") or "", weight=q["weight"] or 1.0, cache_path=cache_path,
                         timeout=60) if q["mode"] != "off" else None)
     out = {"answerability": a["name"], "query_expansion": q["name"]}

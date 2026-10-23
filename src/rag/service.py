@@ -39,7 +39,8 @@ class RAGService:
         self.extractive = ExtractiveAnswerer(embedder=self.embedder, min_score=settings.resolved_min_score,
                                              heading_context=settings.heading_context, judge=self.judge,
                                              judge_min=settings.resolved_judge_min,
-                                             judge_policy=settings.resolved_policy)
+                                             judge_policy=settings.resolved_policy,
+                                             judge_input=settings.resolved_judge_input)
         qe_mode, qe_model, qe_weight = settings.resolved_expansion
         self.expander = QueryExpander(qe_mode, settings.llm_base_url, qe_model, timeout=settings.query_expansion_timeout,
                                       weight=qe_weight)

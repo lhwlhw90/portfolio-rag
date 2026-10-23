@@ -26,11 +26,13 @@ MODEL_MIN_SCORES: dict[str, float] = {
 # M4 defaults chosen on the eval *dev* split by `python -m rag.eval --judges ... --qe ...`
 # (REPORT.md sections 5 and 6). ANSWERABILITY_JUDGE=auto / QUERY_EXPANSION=auto resolve to these
 # per embedding model; models not listed get the M3 behaviour (cosine threshold, no expansion).
-# answerability: embedding model -> (judge, policy, cosine threshold, judge threshold)
-ANSWERABILITY_DEFAULTS: dict[str, tuple[str, str, float, float]] = {
-    "BAAI/bge-small-en-v1.5": ("nli-t", "and", 0.665, 0.6058),       # dev bal. acc 77.9 -> 81.1
-    "BAAI/bge-small-zh-v1.5": ("reranker-m3", "and", 0.575, 0.1182),  # dev bal. acc 79.4 -> 86.3
+# answerability: embedding model -> (judge, policy, cosine threshold, judge threshold, judge input)
+# M4 values (judge input "plain"), kept for reference / M4_ANSWERABILITY in rag.eval_m5:
+M4_ANSWERABILITY_DEFAULTS: dict[str, tuple] = {
+    "BAAI/bge-small-en-v1.5": ("nli-t", "and", 0.665, 0.6058, "plain"),       # dev bal. acc 77.9 -> 81.1
+    "BAAI/bge-small-zh-v1.5": ("reranker-m3", "and", 0.575, 0.1182, "plain"),  # dev bal. acc 79.4 -> 86.3
 }
+ANSWERABILITY_DEFAULTS: dict[str, tuple] = dict(M4_ANSWERABILITY_DEFAULTS)
 # query expansion: embedding model -> (mode, LLM, expansion weight)
 QUERY_EXPANSION_DEFAULTS: dict[str, tuple[str, str, float]] = {
     "BAAI/bge-small-en-v1.5": ("rewrite", "qwen2.5:1.5b", 1.0),  # dev MRR 0.892 -> 0.917
@@ -74,6 +76,8 @@ class Settings(BaseSettings):
     answerability_judge: str = "auto"
     answerability_policy: str | None = None    # replace | and | or  (see ExtractiveAnswerer); None -> auto/"and"
     answerability_min: float | None = None     # judge threshold; None -> auto / DEFAULT_JUDGE_MIN
+    # what the judge reads per candidate sentence: plain | heading (as shown in the answer) | section
+    answerability_input: str | None = None     # None -> auto / "heading"
     # query expansion for paraphrased questions: auto | off | prf | rewrite | hyde (rewrite/hyde call
     # the OpenAI-compatible LLM at LLM_BASE_URL, e.g. Ollama; failures fall back to no expansion)
     query_expansion: str = "auto"
@@ -81,7 +85,7 @@ class Settings(BaseSettings):
     query_expansion_weight: float | None = None
     query_expansion_timeout: float = 20.0
 
-    def _auto_judge(self) -> tuple[str, str, float, float] | None:
+    def _auto_judge(self) -> tuple | None:
         if self.answerability_judge != "auto" or self.embedding_backend == "hash":
             return None
         return ANSWERABILITY_DEFAULTS.get(self.embedding_model)
@@ -94,14 +98,19 @@ class Settings(BaseSettings):
     @property
     def resolved_policy(self) -> str:
         auto = self._auto_judge()
-        return self.answerability_policy or (auto[1] if auto else "and")
+        return self.answerability_policy or (auto[1] if auto and auto[1] else "and")
 
     @property
     def resolved_judge_min(self) -> float:
         auto = self._auto_judge()
         if self.answerability_min is not None:
             return self.answerability_min
-        return auto[3] if auto else DEFAULT_JUDGE_MIN
+        return auto[3] if auto and auto[3] is not None else DEFAULT_JUDGE_MIN
+
+    @property
+    def resolved_judge_input(self) -> str:
+        auto = self._auto_judge()
+        return self.answerability_input or (auto[4] if auto and len(auto) > 4 and auto[4] else "heading")
 
     @property
     def resolved_min_score(self) -> float:
@@ -110,7 +119,9 @@ class Settings(BaseSettings):
         if self.embedding_backend == "hash":
             return 0.0
         auto = self._auto_judge()  # the cosine threshold is calibrated jointly with the judge
-        return auto[2] if auto else MODEL_MIN_SCORES.get(self.embedding_model, DEFAULT_MIN_SCORE)
+        if auto and auto[2] is not None:
+            return auto[2]
+        return MODEL_MIN_SCORES.get(self.embedding_model, DEFAULT_MIN_SCORE)
 
     @property
     def resolved_expansion(self) -> tuple[str, str, float]:
