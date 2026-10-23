@@ -390,7 +390,7 @@ M4 在英文上按 dev 平衡准确率选出的"余弦 AND nli-t"在 test 上误
 ### 13.6 发布前清理
 - `.gitignore` 排除 `models/`、`tools/`、`build/`、`data/`、`.venv/`、`.env`，以及 `*.onnx`、`*.gguf`、`*.safetensors`、`*.bin`、`*.tar` 等。
 - `scripts/check_repo.sh`（`make check-repo`）检查这些目录没有被跟踪，并检查当前树和全部历史中没有超过 2 MB 的 blob、没有模型或 .env 类文件。
-  - 结果：当前树 100 余个文件，约 5 MB；`.git` 约 6 MB；最大 blob 是 `docs/img/demo.gif`（787 KB）和评测 JSON（< 0.8 MB）。
+  - 结果：当前树 107 个文件，约 7.2 MB；`.git` 约 5.8 MB（9 个 commit）；最大 blob 是 `docs/img/demo.gif`（787 KB）和评测 JSON（< 0.8 MB）。
 - 模型下载 `scripts/download_model.py`：
   - 三个档位：minimal 约 163 MB、default 约 0.75 GB（en/zh 嵌入 + zh 判别器）、full 约 2.2 GB（全部评测模型），可选 `--ollama 0.5b,1.5b`（491 MB / 1.1 GB）。
   - `--list` 列出已有模型和大小；`--export` 打包成 tar，用于离线机器。
