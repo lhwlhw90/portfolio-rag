@@ -1,0 +1,14 @@
+services:
+  rag:
+    build: .
+    image: portfolio-rag:latest
+    ports: ["8000:8000"]
+    env_file: [.env]
+    environment:
+      MODEL_DIR: /models
+      DATA_DIR: /data
+    volumes:
+      - ./models:/models   # reuse models downloaded on the host with `make download-model`
+      - ./data:/data
+    extra_hosts: ["host.docker.internal:host-gateway"]  # reach a host Ollama/llama.cpp if LLM_BACKEND=openai
+    restart: unless-stopped

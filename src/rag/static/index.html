@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio RAG — cited answers from your documents</title>
+<style>
+  :root{--fg:#1d2330;--mut:#667085;--bd:#e4e7ec;--ac:#3b5bdb;--bg:#f8f9fb}
+  *{box-sizing:border-box}body{font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;margin:0;color:var(--fg);background:var(--bg)}
+  main{max-width:880px;margin:0 auto;padding:28px 20px}h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);margin:0 0 20px}
+  section{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+  h2{font-size:15px;margin:0 0 10px}button{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+  button:disabled{opacity:.5}input[type=text]{flex:1;padding:9px 10px;border:1px solid var(--bd);border-radius:6px;font:inherit}
+  .row{display:flex;gap:8px;align-items:center}ul{padding-left:18px;margin:6px 0}.mut{color:var(--mut);font-size:13px}
+  .answer{white-space:pre-wrap;margin:10px 0}.cit{border-left:3px solid var(--ac);padding:6px 10px;margin:8px 0;background:#f4f6ff;border-radius:0 6px 6px 0}
+  .cit b{font-size:13px}.cit p{margin:4px 0 0;font-size:13px;color:#344054}sup{color:var(--ac);font-weight:600}
+</style>
+</head>
+<body><main>
+<h1>Portfolio RAG</h1><p class="sub">Upload .txt / .md / .pdf, then ask questions. Every answer cites its sources. Runs fully on CPU.</p>
+<section><h2>1. Documents</h2>
+  <div class="row"><input id="file" type="file" accept=".txt,.md,.markdown,.pdf" multiple><button id="up">Upload</button></div>
+  <p id="upmsg" class="mut"></p><ul id="docs"></ul></section>
+<section><h2>2. Ask</h2>
+  <form id="askf" class="row"><input id="q" type="text" placeholder="e.g. How many vacation days do employees get?" autocomplete="off"><button id="go">Ask</button></form>
+  <div id="out"></div></section>
+<p class="mut" id="health"></p>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function refresh(){
+  const docs=await (await fetch('/documents')).json();
+  $('#docs').innerHTML=docs.length?docs.map(d=>`<li>${esc(d.name)} <span class="mut">— ${d.n_chunks} chunk${d.n_chunks===1?'':'s'}${d.pages>1?`, ${d.pages} pages`:''}</span> <a href="#" data-id="${d.doc_id}" class="mut del">delete</a></li>`).join(''):'<li class="mut">No documents yet.</li>';
+  const h=await (await fetch('/health')).json();$('#health').textContent=`embedder: ${h.embedder} · answerer: ${h.answerer} · ${h.chunks} chunks indexed`;
+}
+$('#docs').onclick=async e=>{if(!e.target.classList.contains('del'))return;e.preventDefault();await fetch('/documents/'+e.target.dataset.id,{method:'DELETE'});refresh();};
+$('#up').onclick=async()=>{
+  const files=[...$('#file').files];if(!files.length)return;$('#up').disabled=true;const msgs=[];
+  for(const f of files){const fd=new FormData();fd.append('file',f);const r=await fetch('/documents',{method:'POST',body:fd});const j=await r.json();
+    msgs.push(r.ok?`${f.name}: ${j.duplicate?'already indexed':j.n_chunks+' chunks'}`:`${f.name}: ${j.detail}`);}
+  $('#upmsg').textContent=msgs.join(' · ');$('#up').disabled=false;$('#file').value='';refresh();
+};
+$('#askf').onsubmit=async e=>{
+  e.preventDefault();const q=$('#q').value.trim();if(!q)return;$('#go').disabled=true;$('#out').innerHTML='<p class="mut">Thinking…</p>';
+  const r=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();$('#go').disabled=false;
+  if(!r.ok){$('#out').innerHTML=`<p>${esc(JSON.stringify(j.detail))}</p>`;return;}
+  const ans=esc(j.answer).replace(/\[(\d+)\]/g,'<sup>[$1]</sup>');
+  $('#out').innerHTML=`<div class="answer">${ans}</div><div class="mut">backend: ${esc(j.backend)}</div>`+
+    j.citations.map(c=>`<div class="cit"><b>[${c.index}] ${esc(c.doc_name)}${c.page!=null?`, p. ${c.page}`:''}</b> <span class="mut">${esc(c.chunk_id)}</span><p>${esc(c.snippet)}</p></div>`).join('');
+};
+refresh();
+// deep link: /?q=your+question auto-asks (handy for demos/screenshots)
+const q0=new URLSearchParams(location.search).get('q');if(q0){$('#q').value=q0;$('#askf').requestSubmit();}
+</script>
+</body></html>

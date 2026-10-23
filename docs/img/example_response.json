@@ -1,0 +1,16 @@
+{
+    "question": "Whom should security incidents be reported to, and how fast?",
+    "answer": "Security incidents must be reported to security@acme.example within 1 hour of discovery. [1]",
+    "backend": "extractive",
+    "citations": [
+        {
+            "index": 1,
+            "doc_id": "fdaa0ec62cac",
+            "doc_name": "security_policy.pdf",
+            "chunk_id": "fdaa0ec62cac:1",
+            "page": 2,
+            "snippet": "Security incidents must be reported to security@acme.example within 1 hour of discovery.",
+            "score": 0.016393
+        }
+    ]
+}

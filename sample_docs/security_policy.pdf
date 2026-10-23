@@ -1,0 +1,43 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 341 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Acme Robotics - Security Policy \(2026\)) Tj T* () Tj T* (Section 1. Passwords) Tj T* (All employee passwords must be at least 14 characters long.) Tj T* (Passwords must be rotated every 180 days and may not be reused.) Tj T* (Multi-factor authentication \(MFA\) is mandatory for VPN and email access.) Tj T* ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 345 >>
+stream
+BT /F1 11 Tf 14 TL 50 740 Td (Section 2. Incident response) Tj T* (Security incidents must be reported to security@acme.example within 1 hour of discovery.) Tj T* (The on-call security engineer triages incidents and opens a post-mortem within 5 business days.) Tj T* (Customer data breaches are escalated to the legal team immediately.) Tj T* ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000639 00000 n 
+0000000765 00000 n 
+0000001161 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1231
+%%EOF
