@@ -1,0 +1,3682 @@
+[
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "A customer is coming to see me tomorrow. What do I have to do beforehand?",
+"expansions": [
+"Beforehand, please ensure your laptop is fully charged and all necessary software is installed."
+],
+"ms": 354.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "At what collision force does the X2 stop, and can that limit be configured?",
+"expansions": [
+"At a collision force of 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+],
+"ms": 1374.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I bring leftover holiday into next year?",
+"expansions": [
+"Yes, you can bring leftover holiday into next year."
+],
+"ms": 194.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I charge my electric car at the office?",
+"expansions": [
+"Yes, you can charge your electric car at the office."
+],
+"ms": 261.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I get my print job without walking to the printer with my card?",
+"expansions": [
+"Yes, you can get your print job without walking to the printer with your card."
+],
+"ms": 292.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I make phone calls from the silent rooms?",
+"expansions": [
+"Yes, you can make phone calls from the silent rooms."
+],
+"ms": 235.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I plug a thumb drive into my work computer?",
+"expansions": [
+"No, you cannot plug a thumb drive into your work computer."
+],
+"ms": 260.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can I reserve a conference room for the whole day?",
+"expansions": [
+"Yes, you can reserve a conference room for the whole day."
+],
+"ms": 279.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Can the robot be hung upside down from the ceiling?",
+"expansions": [
+"No, the robot cannot be hung upside down from the ceiling."
+],
+"ms": 227.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Do I get more holiday if I've been with the company for a long time?",
+"expansions": [
+"Yes, you may be eligible for more holiday if you've been with the company for a long time."
+],
+"ms": 334.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Do I need a medical certificate if I'm off ill for two days?",
+"expansions": [
+"Yes, you may need a medical certificate if you are off ill for two days."
+],
+"ms": 283.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Does my health insurance start right away when I join?",
+"expansions": [
+"Yes, your health insurance coverage typically begins immediately upon joining your employer's health insurance plan."
+],
+"ms": 286.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Does the robot need recalibrating after it crashes into something?",
+"expansions": [
+"If the robot crashes into something, it is recommended to recalibrate its sensors and software to ensure accurate data collection and prevent future crashes."
+],
+"ms": 453.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "For how long do we retain database backups?",
+"expansions": [
+"We retain database backups for a period of 30 days."
+],
+"ms": 236.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How do I send a broken robot back for repair?",
+"expansions": [
+"If your robot is broken, you should contact the manufacturer for repair instructions."
+],
+"ms": 232.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
+"expansions": [
+"Acme will get back to the customer within 24 hours if they pay for the better plan."
+],
+"ms": 345.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long are guest Wi-Fi access codes valid?",
+"expansions": [
+"Guest Wi-Fi access codes are valid for 7 days from the date of purchase."
+],
+"ms": 278.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long are spare parts guaranteed to be available?",
+"expansions": [
+"Spare parts are guaranteed to be available for a period of 30 days from the date of purchase."
+],
+"ms": 316.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long can my screen stay unlocked when I walk away?",
+"expansions": [
+"Your screen can stay unlocked for up to 24 hours when you walk away."
+],
+"ms": 339.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long does installing new software on the arm take?",
+"expansions": [
+"Installing new software on the arm typically takes several days, depending on the complexity of the installation and the specific requirements of the software."
+],
+"ms": 386.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long does the joint calibration wizard take?",
+"expansions": [
+"The joint calibration wizard typically takes approximately 10 minutes to complete."
+],
+"ms": 222.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long does the operator training last?",
+"expansions": [
+"The operator training lasts for 12 months."
+],
+"ms": 164.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is parental leave and how many sick-child days can parents take?",
+"expansions": [
+"Parents are entitled to 12 weeks of parental leave, and they can take up to 10 sick-child days."
+],
+"ms": 342.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is parental leave?",
+"expansions": [
+"Parents are entitled to 12 weeks of paid parental leave."
+],
+"ms": 235.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is the X2 warranty and when was the first X2 firmware released?",
+"expansions": [
+"The X2 warranty is 2 years, and the first firmware was released in 2010."
+],
+"ms": 342.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is the controller cable?",
+"expansions": [
+"The controller cable should be no longer than 10 meters."
+],
+"ms": 208.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is the probation period for new employees?",
+"expansions": [
+"New employees must be given a probation period of at least 30 days before they can start their regular work."
+],
+"ms": 380.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long is the warranty, and how long do warranty repairs take?",
+"expansions": [
+"The warranty period is 2 years, and warranty repairs typically take 1-2 days."
+],
+"ms": 288.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How long must passwords be, and after how many days must they be rotated?",
+"expansions": [
+"Passwords must be at least 12 characters long and rotated every 30 days."
+],
+"ms": 309.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How many counselling sessions per year does the employee assistance program cover?",
+"expansions": [
+"The employee assistance program covers up to 10 counselling sessions per year."
+],
+"ms": 259.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How many days of paid vacation do full-time employees get?",
+"expansions": [
+"Full-time employees are entitled to 10 days of paid vacation."
+],
+"ms": 385.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How many parking spaces does the underground garage have?",
+"expansions": [
+"The underground garage has 10 parking spaces."
+],
+"ms": 207.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much does Acme contribute to the company pension plan?",
+"expansions": [
+"Acme contributes $500 to the company pension plan annually."
+],
+"ms": 250.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much does the Premium support plan cost?",
+"expansions": [
+"The Premium support plan costs $100 per month."
+],
+"ms": 204.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much does the RoboArm X2 weigh without the controller?",
+"expansions": [
+"The RoboArm X2 weighs approximately 1.5 kg without the controller."
+],
+"ms": 290.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much electricity does the robot controller consume?",
+"expansions": [
+"The robot controller consumes approximately 100 watts of electricity per hour."
+],
+"ms": 236.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much is the childcare allowance?",
+"expansions": [
+"The childcare allowance is $50 per week."
+],
+"ms": 184.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much is the fitness subsidy and how much is the home office allowance?",
+"expansions": [
+"The fitness subsidy is $500 and the home office allowance is $200."
+],
+"ms": 304.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much is the monthly fitness subsidy?",
+"expansions": [
+"The monthly fitness subsidy is $50."
+],
+"ms": 215.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much is the public transport ticket subsidy?",
+"expansions": [
+"The public transport ticket subsidy is $10."
+],
+"ms": 198.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much space should be kept free around the robot during setup?",
+"expansions": [
+"It is recommended to keep the robot free of clutter around it during setup to ensure a smooth and efficient operation."
+],
+"ms": 314.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How much weight can the robot arm carry?",
+"expansions": [
+"The robot arm can carry up to 500 pounds."
+],
+"ms": 213.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How often are production databases backed up?",
+"expansions": [
+"Production databases should be backed up at least quarterly to ensure data integrity and prevent data loss."
+],
+"ms": 295.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How often do I get a new computer?",
+"expansions": [
+"You should get a new computer every two years."
+],
+"ms": 182.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How often should the cables be checked for damage?",
+"expansions": [
+"Cables should be checked for damage every six months."
+],
+"ms": 221.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How often should the joint gearboxes be re-greased?",
+"expansions": [
+"The joint gearboxes should be re-greased every 6 months."
+],
+"ms": 249.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How quickly are Priority 1 IT tickets answered and how quickly does Premium customer support answer outage tickets?",
+"expansions": [
+"Priority 1 IT tickets are answered within 24 hours, while Premium customer support answers outage tickets within 48 hours."
+],
+"ms": 396.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How quickly do I have to tell someone about a hacking attempt?",
+"expansions": [
+"You must report the hacking attempt within 24 hours."
+],
+"ms": 209.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How quickly do replacement components get shipped?",
+"expansions": [
+"Replacement components are typically shipped within 24 hours of purchase."
+],
+"ms": 217.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How soon must I hand in receipts after a trip?",
+"expansions": [
+"You must hand in receipts within 7 days of the trip."
+],
+"ms": 233.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "How strong does the floor have to be for the arm?",
+"expansions": [
+"The floor must be at least 1.5 inches thick for the arm to be able to safely pass through."
+],
+"ms": 349.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Is it OK to hose down the arm with a pressure washer?",
+"expansions": [
+"Yes, it is generally acceptable to use a pressure washer to clean the arm, but it is important to follow the manufacturer's instructions and to avoid overpressure."
+],
+"ms": 573.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Is there someone I can talk to confidentially about personal problems at night?",
+"expansions": [
+"Yes, you can talk to HR or IT helpdesk about personal problems at night."
+],
+"ms": 257.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Is there something meat-free for lunch?",
+"expansions": [
+"Yes, there is a meat-free option available for lunch."
+],
+"ms": 213.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "My kid has a fever. Can I stay home to look after them?",
+"expansions": [
+"Yes, you can stay home to look after your child with a fever."
+],
+"ms": 246.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
+"expansions": [
+"I should contact my IT support team or the company's HR department to get a replacement device."
+],
+"ms": 322.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Somebody stole my work notebook computer. What should I do?",
+"expansions": [
+"If someone steals your work notebook computer, you should immediately contact your IT support team or HR department to report the theft and request a replacement or assistance in recovering your lost items."
+],
+"ms": 495.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What IP rating does the RoboArm X2 have?",
+"expansions": [
+"The RoboArm X2 has an IP rating of IP65, which means it is designed to withstand dust and water."
+],
+"ms": 363.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What are the IT helpdesk hours and the Standard customer support hours?",
+"expansions": [
+"The IT helpdesk hours are from 9:00 AM to 5:00 PM, Monday through Friday. The Standard customer support hours are from 9:00 AM to 5:00 PM, Monday through Friday."
+],
+"ms": 626.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What are the IT helpdesk opening hours?",
+"expansions": [
+"The IT helpdesk is open from 9:00 AM to 5:00 PM, Monday through Friday."
+],
+"ms": 380.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What data classification levels exist?",
+"expansions": [
+"Data classification levels exist based on the sensitivity of the information and the level of confidentiality required."
+],
+"ms": 269.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E101 indicate?",
+"expansions": [
+"Error code E101 indicates an error in the system's configuration or data."
+],
+"ms": 255.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E204 mean?",
+"expansions": [
+"Error code E204 indicates an internal error in the system."
+],
+"ms": 225.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E310 mean and how long is the controller cable?",
+"expansions": [
+"Error code E310 indicates a communication failure between the controller and the network. The controller cable should be at least 10 meters long to ensure reliable communication."
+],
+"ms": 492.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What happens after 5 failed login attempts?",
+"expansions": [
+"The system will lock the account and prompt the user to try again."
+],
+"ms": 232.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What happens if I book a room but never show up?",
+"expansions": [
+"If you book a room but never show up, you may be required to pay a late fee or face additional charges."
+],
+"ms": 384.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What happens if the robot bumps into a person?",
+"expansions": [
+"If the robot bumps into a person, it should immediately stop and assess the situation. If the person is injured, the robot should provide first aid. If the person is not injured, the robot should continue to operate without further intervention."
+],
+"ms": 555.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is required to connect to the company VPN from home?",
+"expansions": [
+"To connect to the company's VPN from home, you will need to enter your company's login credentials and select the appropriate network connection."
+],
+"ms": 435.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the address of the Berlin headquarters?",
+"expansions": [
+"The address of the Berlin headquarters is 1000 Berliner Strasse 10, 10177 Berlin, Germany."
+],
+"ms": 372.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the annual learning budget per employee?",
+"expansions": [
+"The annual learning budget per employee is $500."
+],
+"ms": 204.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the collision limit for recalibration, and what is the default collision stop force?",
+"expansions": [
+"The collision limit for recalibration is 100 Newtons, and the default collision stop force is 50 Newtons."
+],
+"ms": 387.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the daily meal allowance during business trips?",
+"expansions": [
+"During business trips, employees are entitled to a daily meal allowance of $50."
+],
+"ms": 276.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the home office allowance?",
+"expansions": [
+"The home office allowance is a tax-free allowance for employees who reside in the United States and work in their home office."
+],
+"ms": 339.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the maximum payload of the RoboArm X2?",
+"expansions": [
+"The RoboArm X2 can carry a maximum payload of 1000 kg."
+],
+"ms": 301.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the maximum speed of the X2 at the tool flange?",
+"expansions": [
+"The maximum speed of the X2 at the tool flange is 1000 RPM."
+],
+"ms": 319.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the minimum password length?",
+"expansions": [
+"The minimum password length is 8 characters."
+],
+"ms": 182.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the operating temperature range of the X2?",
+"expansions": [
+"The operating temperature range for the X2 is -40°C to 85°C."
+],
+"ms": 277.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the referral bonus?",
+"expansions": [
+"The referral bonus is a reward given to employees who refer new customers to your business."
+],
+"ms": 281.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What is the repeatability of the X2?",
+"expansions": [
+"The repeatability of the X2 is designed to ensure consistent performance and accuracy in its operations."
+],
+"ms": 284.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "What torque are the X2 base bolts tightened to?",
+"expansions": [
+"The X2 base bolts are tightened to 100% torque."
+],
+"ms": 244.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When do performance reviews take place?",
+"expansions": [
+"Performance reviews are typically scheduled at the end of the fiscal year or at the end of a specific project."
+],
+"ms": 330.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When do vendor access accounts expire?",
+"expansions": [
+"Vendor access accounts expire after 30 days of inactivity."
+],
+"ms": 200.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When does the VPN disconnect automatically?",
+"expansions": [
+"The VPN disconnects automatically when the user logs out of the system."
+],
+"ms": 265.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When does the cafeteria serve lunch?",
+"expansions": [
+"The cafeteria serves lunch every weekday from 10:00 AM to 12:00 PM."
+],
+"ms": 298.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When is the building open, and when does the cafeteria serve lunch?",
+"expansions": [
+"The building is open from 8:00 AM to 5:00 PM daily. The cafeteria serves lunch from 12:00 PM to 2:00 PM daily."
+],
+"ms": 631.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "When is the referral bonus paid and how long is probation?",
+"expansions": [
+"The referral bonus is paid at the end of the first quarter of the calendar year. Probation is for a period of six months."
+],
+"ms": 377.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Where do we gather when the fire alarm goes off?",
+"expansions": [
+"We gather in the designated meeting room."
+],
+"ms": 282.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Where is the service center for warranty repairs?",
+"expansions": [
+"The service center for warranty repairs is located at [address]."
+],
+"ms": 185.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Which ROS 2 distribution was added in firmware version 2.2?",
+"expansions": [
+"Which ROS 2 distribution was added in firmware version 2.2?"
+],
+"ms": 271.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Which industrial protocol for PLC integration was added in version 2.1?",
+"expansions": [
+"In version 2.1, the Industrial Protocol for PLC integration was added, which was designed to facilitate communication between industrial control systems and Programmable Logic Controllers (PLCs)."
+],
+"ms": 433.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
+"expansions": [
+"The X2 SDK supports multiple languages, including English, Spanish, French, German, and Italian. The Python SDK version you should use depends on your project requirements and the version of Python you are using."
+],
+"ms": 644.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Which seat class may I book on a long-haul flight?",
+"expansions": [
+"The seat class may be chosen based on the distance and the type of flight."
+],
+"ms": 355.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
+"expansions": [
+"Anyone with information about a security incident should be reported to the IT Helpdesk. After hours, call 1-800-IT-HELP (1-800-448-4455)."
+],
+"ms": 627.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "Will the company add money if I pay extra into my retirement savings?",
+"expansions": [
+"Yes, the company will add money to your retirement savings if you pay extra into your retirement savings."
+],
+"ms": 357.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "A customer is coming to see me tomorrow. What do I have to do beforehand?",
+"expansions": [
+"You should prepare any necessary documents or materials that the customer might need, such as a list of features or a user guide."
+],
+"ms": 908.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "At what collision force does the X2 stop, and can that limit be configured?",
+"expansions": [
+"The X2 stops at a collision force of 1000 Newtons. This limit is not configurable."
+],
+"ms": 944.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I bring leftover holiday into next year?",
+"expansions": [
+"No, bringing leftover holiday decorations into the next year is not allowed. Please use decorations from this year only."
+],
+"ms": 790.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I charge my electric car at the office?",
+"expansions": [
+"Yes, you are permitted to charge your electric vehicle at the office premises. Please ensure that the charging station is operational and follow the provided instructions for safe charging."
+],
+"ms": 1123.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I get my print job without walking to the printer with my card?",
+"expansions": [
+"Yes, you can print your documents directly from your device using the company's wireless network."
+],
+"ms": 820.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I make phone calls from the silent rooms?",
+"expansions": [
+"No, making phone calls is not permitted in the silent rooms."
+],
+"ms": 470.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I plug a thumb drive into my work computer?",
+"expansions": [
+"Yes, you may connect a thumb drive to your work computer for file transfer purposes. Please ensure compliance with our IT policies regarding data storage and usage."
+],
+"ms": 936.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can I reserve a conference room for the whole day?",
+"expansions": [
+"Yes, you can reserve a conference room for the entire day. Please provide your preferred dates and the number of attendees."
+],
+"ms": 760.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Can the robot be hung upside down from the ceiling?",
+"expansions": [
+"No, the robot cannot be hung upside down from the ceiling."
+],
+"ms": 524.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Do I get more holiday if I've been with the company for a long time?",
+"expansions": [
+"Yes, employees with longer service typically accrue more vacation days."
+],
+"ms": 555.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Do I need a medical certificate if I'm off ill for two days?",
+"expansions": [
+"Yes, you typically need a medical certificate if you are off work due to illness for two days or more."
+],
+"ms": 737.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Does my health insurance start right away when I join?",
+"expansions": [
+"Yes, your health insurance typically becomes effective upon your enrollment."
+],
+"ms": 414.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Does the robot need recalibrating after it crashes into something?",
+"expansions": [
+"Yes, the robot should be recalibrated after it crashes into something."
+],
+"ms": 491.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "For how long do we retain database backups?",
+"expansions": [
+"We retain database backups for at least one year from the date of creation."
+],
+"ms": 512.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How do I send a broken robot back for repair?",
+"expansions": [
+"Please contact the customer service department to initiate the return process for a broken robot. Provide your order number and a detailed description of the issue."
+],
+"ms": 951.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
+"expansions": [
+"If a customer's line is down and they pay for the better plan, Acme will restore service within 24 hours."
+],
+"ms": 775.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long are guest Wi-Fi access codes valid?",
+"expansions": [
+"Guest Wi-Fi access codes are valid for 24 hours from the date of issuance."
+],
+"ms": 527.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long are spare parts guaranteed to be available?",
+"expansions": [
+"Spare parts are guaranteed to be available for one year from the date of purchase."
+],
+"ms": 522.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long can my screen stay unlocked when I walk away?",
+"expansions": [
+"The screen will remain unlocked for 10 minutes when you walk away."
+],
+"ms": 687.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long does installing new software on the arm take?",
+"expansions": [
+"Installing new software on the arm typically takes approximately 30 minutes to an hour, depending on the complexity of the installation process and the available network bandwidth."
+],
+"ms": 1066.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long does the joint calibration wizard take?",
+"expansions": [
+"The joint calibration wizard typically takes approximately 5 minutes to complete."
+],
+"ms": 471.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long does the operator training last?",
+"expansions": [
+"The operator training lasts for approximately 10 hours, covering basic skills and best practices for efficient use of the system."
+],
+"ms": 731.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is parental leave and how many sick-child days can parents take?",
+"expansions": [
+"Parental leave is typically 12 weeks, and sick-child days can be taken up to 10 days per year."
+],
+"ms": 959.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is parental leave?",
+"expansions": [
+"Parental leave is typically 12 weeks for new mothers and 12 weeks for new fathers."
+],
+"ms": 692.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is the X2 warranty and when was the first X2 firmware released?",
+"expansions": [
+"The X2 warranty is typically 1 year from the date of purchase. The first X2 firmware was released in 2020."
+],
+"ms": 949.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is the controller cable?",
+"expansions": [
+"The controller cable is 10 feet long."
+],
+"ms": 377.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is the probation period for new employees?",
+"expansions": [
+"The probation period for new employees is typically six months."
+],
+"ms": 488.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long is the warranty, and how long do warranty repairs take?",
+"expansions": [
+"The warranty for this product is valid for one year from the date of purchase. Warranty repairs typically take 7-10 business days to complete."
+],
+"ms": 1106.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How long must passwords be, and after how many days must they be rotated?",
+"expansions": [
+"Passwords must be at least 8 characters long, and they must be rotated every 90 days."
+],
+"ms": 776.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How many counselling sessions per year does the employee assistance program cover?",
+"expansions": [
+"The employee assistance program covers up to 12 counselling sessions per year."
+],
+"ms": 519.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How many days of paid vacation do full-time employees get?",
+"expansions": [
+"Full-time employees are entitled to 20 days of paid vacation per year."
+],
+"ms": 540.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How many parking spaces does the underground garage have?",
+"expansions": [
+"The underground garage has 50 parking spaces."
+],
+"ms": 368.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much does Acme contribute to the company pension plan?",
+"expansions": [
+"Acme contributes 5% of an employee's salary to the company pension plan."
+],
+"ms": 546.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much does the Premium support plan cost?",
+"expansions": [
+"The Premium support plan costs $99 per month."
+],
+"ms": 394.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much does the RoboArm X2 weigh without the controller?",
+"expansions": [
+"The RoboArm X2 weighs approximately 20 pounds without the controller."
+],
+"ms": 542.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much electricity does the robot controller consume?",
+"expansions": [
+"The robot controller consumes approximately 50 watts of electricity."
+],
+"ms": 480.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much is the childcare allowance?",
+"expansions": [
+"The childcare allowance is $50 per week."
+],
+"ms": 384.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much is the fitness subsidy and how much is the home office allowance?",
+"expansions": [
+"The fitness subsidy is $50 per month, and the home office allowance is $20 per month."
+],
+"ms": 827.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much is the monthly fitness subsidy?",
+"expansions": [
+"The monthly fitness subsidy is $50."
+],
+"ms": 673.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much is the public transport ticket subsidy?",
+"expansions": [
+"The public transport ticket subsidy is 50% off the standard fare for eligible employees."
+],
+"ms": 592.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much space should be kept free around the robot during setup?",
+"expansions": [
+"During setup, it is recommended to leave at least 10% of the robot's total storage space free to accommodate any necessary adjustments or additional components."
+],
+"ms": 1286.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How much weight can the robot arm carry?",
+"expansions": [
+"The robot arm can carry up to 50 kilograms."
+],
+"ms": 451.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How often are production databases backed up?",
+"expansions": [
+"Production databases are backed up nightly to ensure data integrity and availability."
+],
+"ms": 479.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How often do I get a new computer?",
+"expansions": [
+"You will receive a new computer every two years as part of our standard IT refresh cycle."
+],
+"ms": 714.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How often should the cables be checked for damage?",
+"expansions": [
+"Cables should be checked for damage at least annually to ensure they are in good condition."
+],
+"ms": 546.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How often should the joint gearboxes be re-greased?",
+"expansions": [
+"Joint gearboxes should be re-greased every 6 months to ensure optimal performance and reduce wear."
+],
+"ms": 631.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How quickly are Priority 1 IT tickets answered and how quickly does Premium customer support answer outage tickets?",
+"expansions": [
+"Priority 1 IT tickets are answered within 24 hours, while Premium customer support responds to outage tickets within 48 hours."
+],
+"ms": 1117.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How quickly do I have to tell someone about a hacking attempt?",
+"expansions": [
+"In the event of a suspected hacking attempt, please inform the IT support team immediately."
+],
+"ms": 631.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How quickly do replacement components get shipped?",
+"expansions": [
+"Replacement components are typically shipped within 2-3 business days after an order is placed."
+],
+"ms": 756.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How soon must I hand in receipts after a trip?",
+"expansions": [
+"You must hand in receipts within 30 days of your trip to ensure they are valid for reimbursement."
+],
+"ms": 694.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "How strong does the floor have to be for the arm?",
+"expansions": [
+"The strength of the floor for the arm is determined by the weight it will support. For safety and stability, the floor must be able to handle the full weight of the arm without any risk of collapse."
+],
+"ms": 1368.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Is it OK to hose down the arm with a pressure washer?",
+"expansions": [
+"No, it is not recommended to hose down the arm with a pressure washer as it could damage the arm and potentially cause safety hazards."
+],
+"ms": 861.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Is there someone I can talk to confidentially about personal problems at night?",
+"expansions": [
+"Employees are encouraged to reach out to the Employee Assistance Program (EAP) for confidential support and guidance."
+],
+"ms": 904.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Is there something meat-free for lunch?",
+"expansions": [
+"Unfortunately, our menu does not offer any meat-free options."
+],
+"ms": 494.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "My kid has a fever. Can I stay home to look after them?",
+"expansions": [
+"We kindly ask that you do not come to work if your child has a fever. Please consult with a healthcare provider for guidance on managing your child's health."
+],
+"ms": 1214.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
+"expansions": [
+"If your laptop is lost, please contact the IT helpdesk immediately. Replacement devices will be provided as soon as possible."
+],
+"ms": 871.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Somebody stole my work notebook computer. What should I do?",
+"expansions": [
+"Please report the incident to the IT helpdesk immediately. They will assist you in securing your device and investigating the theft."
+],
+"ms": 726.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What IP rating does the RoboArm X2 have?",
+"expansions": [
+"The RoboArm X2 has an IP rating of IP67, which means it is protected against dust and water jets up to 15mm in diameter from any direction."
+],
+"ms": 1026.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What are the IT helpdesk hours and the Standard customer support hours?",
+"expansions": [
+"The IT helpdesk is available from 8:00 AM to 5:00 PM, Monday through Friday. Standard customer support hours are 9:00 AM to 5:00 PM, Monday through Friday."
+],
+"ms": 1659.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What are the IT helpdesk opening hours?",
+"expansions": [
+"The IT helpdesk is available from 8:00 AM to 5:00 PM, Monday through Friday."
+],
+"ms": 702.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What data classification levels exist?",
+"expansions": [
+"Data classification levels in our organization include: Confidential (C), Secret (S), and Top Secret (TS)."
+],
+"ms": 658.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E101 indicate?",
+"expansions": [
+"Error code E101 typically indicates a hardware issue with the printer, possibly related to the ink cartridge or the printer's firmware."
+],
+"ms": 926.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E204 mean?",
+"expansions": [
+"Error code E204 typically indicates a problem with the system's memory management, possibly due to insufficient RAM or a conflict with other software processes."
+],
+"ms": 941.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E310 mean and how long is the controller cable?",
+"expansions": [
+"Error code E310 typically indicates a hardware issue with the controller, possibly related to a faulty connection or a problem with the controller's internal components. The length of the controller cable is not specified as it can vary depending on the specific model and design of the controller."
+],
+"ms": 1917.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What happens after 5 failed login attempts?",
+"expansions": [
+"After 5 failed login attempts, the system locks the account for a period of time to prevent unauthorized access."
+],
+"ms": 633.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What happens if I book a room but never show up?",
+"expansions": [
+"If a guest books a room but fails to show up, the hotel reserves the right to charge the booking fee and may cancel the reservation."
+],
+"ms": 826.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What happens if the robot bumps into a person?",
+"expansions": [
+"If a robot bumps into a person, the system will automatically pause the interaction and alert the user to ensure safety. The robot will then attempt to reposition itself safely without causing any harm."
+],
+"ms": 1265.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is required to connect to the company VPN from home?",
+"expansions": [
+"To connect to the company VPN from home, you must obtain a valid login credentials, such as an email address and password, and ensure your device is compatible with the VPN software."
+],
+"ms": 1219.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the address of the Berlin headquarters?",
+"expansions": [
+"The Berlin headquarters is located at Kurfürstend街 10, 10117 Berlin, Germany."
+],
+"ms": 879.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the annual learning budget per employee?",
+"expansions": [
+"The annual learning budget per employee is $500."
+],
+"ms": 378.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the collision limit for recalibration, and what is the default collision stop force?",
+"expansions": [
+"The collision limit for recalibration is set at 100% of the maximum speed, and the default collision stop force is 500 N."
+],
+"ms": 1052.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the daily meal allowance during business trips?",
+"expansions": [
+"During business trips, employees are entitled to a daily meal allowance of $50 per day."
+],
+"ms": 610.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the home office allowance?",
+"expansions": [
+"The home office allowance is a reimbursement for expenses incurred in setting up and maintaining a home office. This includes costs such as equipment, furniture, and utilities."
+],
+"ms": 865.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum payload of the RoboArm X2?",
+"expansions": [
+"The maximum payload of the RoboArm X2 is 5 kilograms."
+],
+"ms": 529.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum speed of the X2 at the tool flange?",
+"expansions": [
+"The maximum speed of the X2 at the tool flange is 12,000 RPM."
+],
+"ms": 664.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the minimum password length?",
+"expansions": [
+"The minimum password length is eight characters."
+],
+"ms": 311.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the operating temperature range of the X2?",
+"expansions": [
+"The operating temperature range of the X2 is typically between 0°C and 40°C (32°F to 104°F)."
+],
+"ms": 889.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the referral bonus?",
+"expansions": [
+"The referral bonus is a financial incentive offered to employees who successfully refer new hires to the company. This bonus is typically structured as a percentage of the new hire's first year's salary and is intended to encourage internal referrals and support the growth of the company."
+],
+"ms": 1582.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What is the repeatability of the X2?",
+"expansions": [
+"The repeatability of the X2 is excellent, with consistent results across multiple measurements."
+],
+"ms": 533.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "What torque are the X2 base bolts tightened to?",
+"expansions": [
+"The X2 base bolts are tightened to a torque of 120 inch-pounds."
+],
+"ms": 583.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When do performance reviews take place?",
+"expansions": [
+"Performance reviews are typically conducted annually, usually in the late spring or early summer."
+],
+"ms": 512.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When do vendor access accounts expire?",
+"expansions": [
+"Vendor access accounts are typically set to expire after six months of continuous use."
+],
+"ms": 480.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When does the VPN disconnect automatically?",
+"expansions": [
+"The VPN disconnects automatically after 30 minutes of inactivity."
+],
+"ms": 447.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When does the cafeteria serve lunch?",
+"expansions": [
+"The cafeteria serves lunch from 11:00 AM to 2:00 PM, Monday through Friday."
+],
+"ms": 1356.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When is the building open, and when does the cafeteria serve lunch?",
+"expansions": [
+"The building is open from 8:00 AM to 6:00 PM, Monday through Friday. The cafeteria serves lunch from 11:00 AM to 2:00 PM daily."
+],
+"ms": 1563.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "When is the referral bonus paid and how long is probation?",
+"expansions": [
+"Referral bonuses are typically paid within 30 days of the referral being accepted. Probationary period lasts for six months."
+],
+"ms": 905.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Where do we gather when the fire alarm goes off?",
+"expansions": [
+"In the nearest meeting room."
+],
+"ms": 310.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Where is the service center for warranty repairs?",
+"expansions": [
+"The service center for warranty repairs is located at 123 Tech Avenue, City, State."
+],
+"ms": 655.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Which ROS 2 distribution was added in firmware version 2.2?",
+"expansions": [
+"ROS 2 Foxy was added in firmware version 2.2."
+],
+"ms": 482.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Which industrial protocol for PLC integration was added in version 2.1?",
+"expansions": [
+"In version 2.1, the Modbus protocol was added for integrating PLCs."
+],
+"ms": 717.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
+"expansions": [
+"The X2 SDK supports multiple languages, including C++, Java, and JavaScript. For Python, the SDK version 3.8 is recommended."
+],
+"ms": 938.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Which seat class may I book on a long-haul flight?",
+"expansions": [
+"For long-haul flights, you may book any seat class available on the itinerary."
+],
+"ms": 668.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
+"expansions": [
+"For a security incident, report it to the IT Security team at 555-1234. For urgent IT issues after hours, call 555-5678."
+],
+"ms": 1351.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "Will the company add money if I pay extra into my retirement savings?",
+"expansions": [
+"No, the company does not add money to your retirement savings if you pay extra."
+],
+"ms": 595.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "A customer is coming to see me tomorrow. What do I have to do beforehand?",
+"expansions": [
+"What should I do before seeing a customer tomorrow?"
+],
+"ms": 207.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "At what collision force does the X2 stop, and can that limit be configured?",
+"expansions": [
+"What collision force does the X2 stop at? Can that limit be configured?"
+],
+"ms": 268.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I bring leftover holiday into next year?",
+"expansions": [],
+"ms": 206.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I charge my electric car at the office?",
+"expansions": [],
+"ms": 204.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I get my print job without walking to the printer with my card?",
+"expansions": [
+"Can I print without a card?"
+],
+"ms": 185.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I make phone calls from the silent rooms?",
+"expansions": [],
+"ms": 190.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I plug a thumb drive into my work computer?",
+"expansions": [
+"Can I use a USB thumb drive on my work computer?"
+],
+"ms": 230.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can I reserve a conference room for the whole day?",
+"expansions": [
+"Can I book a conference room for the whole day?"
+],
+"ms": 202.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Can the robot be hung upside down from the ceiling?",
+"expansions": [
+"Can a robot be hung upside down from the ceiling?"
+],
+"ms": 250.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Do I get more holiday if I've been with the company for a long time?",
+"expansions": [
+"How long is the typical probationary period?"
+],
+"ms": 198.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Do I need a medical certificate if I'm off ill for two days?",
+"expansions": [
+"Medical certificate required for two days off ill."
+],
+"ms": 186.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Does my health insurance start right away when I join?",
+"expansions": [
+"When do my health insurance benefits start upon joining?"
+],
+"ms": 206.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Does the robot need recalibrating after it crashes into something?",
+"expansions": [
+"Is it mandatory to recalibrate a robot after it crashes into something?"
+],
+"ms": 264.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "For how long do we retain database backups?",
+"expansions": [
+"How long are database backups retained?"
+],
+"ms": 161.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How do I send a broken robot back for repair?",
+"expansions": [
+"How to send a broken robot back for repair?"
+],
+"ms": 232.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
+"expansions": [],
+"ms": 366.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long are guest Wi-Fi access codes valid?",
+"expansions": [
+"What are the valid lengths of guest Wi-Fi access codes?"
+],
+"ms": 214.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long are spare parts guaranteed to be available?",
+"expansions": [
+"How long are spare parts guaranteed to be available in a company's inventory?"
+],
+"ms": 239.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long can my screen stay unlocked when I walk away?",
+"expansions": [],
+"ms": 231.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long does installing new software on the arm take?",
+"expansions": [
+"How long does it take to install new software on an ARM processor?"
+],
+"ms": 224.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long does the joint calibration wizard take?",
+"expansions": [],
+"ms": 198.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long does the operator training last?",
+"expansions": [],
+"ms": 177.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is parental leave and how many sick-child days can parents take?",
+"expansions": [
+"Parental leave duration and sick-child days allowed are detailed in HR policies."
+],
+"ms": 253.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is parental leave?",
+"expansions": [
+"Parental leave duration in UK is 12 months."
+],
+"ms": 226.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is the X2 warranty and when was the first X2 firmware released?",
+"expansions": [
+"X2 warranty length, first X2 firmware release date"
+],
+"ms": 269.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is the controller cable?",
+"expansions": [
+"What is the length of the controller cable?"
+],
+"ms": 190.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is the probation period for new employees?",
+"expansions": [
+"What is the probation period for new employees?"
+],
+"ms": 183.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long is the warranty, and how long do warranty repairs take?",
+"expansions": [
+"Warranty length, duration of warranty, and warranty repair time."
+],
+"ms": 229.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How long must passwords be, and after how many days must they be rotated?",
+"expansions": [
+"How long are passwords? How often should they be rotated?"
+],
+"ms": 209.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How many counselling sessions per year does the employee assistance program cover?",
+"expansions": [
+"How many counseling sessions are covered by the employee assistance program annually?"
+],
+"ms": 225.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How many days of paid vacation do full-time employees get?",
+"expansions": [
+"How many paid vacation days are available for full-time employees?"
+],
+"ms": 223.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How many parking spaces does the underground garage have?",
+"expansions": [
+"What are the parking space requirements for the underground garage?"
+],
+"ms": 224.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much does Acme contribute to the company pension plan?",
+"expansions": [
+"Acme contributes to the company pension plan."
+],
+"ms": 181.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much does the Premium support plan cost?",
+"expansions": [
+"Premium support plan cost, cost of Premium support plan, cost of Premium support plan plan."
+],
+"ms": 290.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much does the RoboArm X2 weigh without the controller?",
+"expansions": [
+"RoboArm X2 weight without controller, weight, weight of RoboArm X2"
+],
+"ms": 314.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much electricity does the robot controller consume?",
+"expansions": [
+"What are the robot controller's power consumption specifications?"
+],
+"ms": 195.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much is the childcare allowance?",
+"expansions": [
+"childcare allowance, childcare, child care allowance"
+],
+"ms": 190.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much is the fitness subsidy and how much is the home office allowance?",
+"expansions": [
+"What is the fitness subsidy? What is the home office allowance?"
+],
+"ms": 246.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much is the monthly fitness subsidy?",
+"expansions": [
+"Monthly fitness subsidy for employees?"
+],
+"ms": 172.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much is the public transport ticket subsidy?",
+"expansions": [
+"public transport subsidies, transport subsidies, public transport ticket subsidy"
+],
+"ms": 223.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much space should be kept free around the robot during setup?",
+"expansions": [
+"robot setup space usage guidelines"
+],
+"ms": 156.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How much weight can the robot arm carry?",
+"expansions": [
+"robot arm weight capacity, weight capacity of robot arm, robot arm weight limit"
+],
+"ms": 262.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How often are production databases backed up?",
+"expansions": [
+"What is the frequency of backing up production databases?"
+],
+"ms": 197.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How often do I get a new computer?",
+"expansions": [
+"What is the frequency of computer replacements?"
+],
+"ms": 206.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How often should the cables be checked for damage?",
+"expansions": [
+"When checking cables for damage, how often should they be inspected?"
+],
+"ms": 238.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How often should the joint gearboxes be re-greased?",
+"expansions": [
+"When should the joint gearboxes be re-greased?"
+],
+"ms": 225.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How quickly are Priority 1 IT tickets answered and how quickly does Premium customer support answer outage tickets?",
+"expansions": [
+"How quickly are Priority 1 IT tickets answered? How quickly does Premium customer support answer outage tickets?"
+],
+"ms": 364.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How quickly do I have to tell someone about a hacking attempt?",
+"expansions": [
+"How quickly must I inform someone about a hacking attempt?"
+],
+"ms": 300.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How quickly do replacement components get shipped?",
+"expansions": [
+"How quickly are replacement components shipped?"
+],
+"ms": 193.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How soon must I hand in receipts after a trip?",
+"expansions": [
+"When should I hand in receipts after a trip?"
+],
+"ms": 215.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "How strong does the floor have to be for the arm?",
+"expansions": [
+"What is the minimum floor height required for an arm?"
+],
+"ms": 245.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Is it OK to hose down the arm with a pressure washer?",
+"expansions": [
+"Is it safe to use a pressure washer on the arm?"
+],
+"ms": 238.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Is there someone I can talk to confidentially about personal problems at night?",
+"expansions": [
+"Can I talk to someone confidentially about personal problems at night?"
+],
+"ms": 259.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Is there something meat-free for lunch?",
+"expansions": [
+"Is there a meat-free lunch option available?"
+],
+"ms": 202.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "My kid has a fever. Can I stay home to look after them?",
+"expansions": [
+"Can I stay home to look after my kid with a fever?"
+],
+"ms": 249.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
+"expansions": [
+"who should I contact for a laptop loss? how fast will I get a replacement device?"
+],
+"ms": 300.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Somebody stole my work notebook computer. What should I do?",
+"expansions": [
+"How to report a lost or stolen work notebook computer?"
+],
+"ms": 201.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What IP rating does the RoboArm X2 have?",
+"expansions": [
+"IP rating of RoboArm X2 is 1.5."
+],
+"ms": 257.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What are the IT helpdesk hours and the Standard customer support hours?",
+"expansions": [
+"IT helpdesk hours: 9:00 AM to 5:00 PM, Standard customer support hours: 9:00 AM to 5:00 PM"
+],
+"ms": 501.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What are the IT helpdesk opening hours?",
+"expansions": [
+"IT helpdesk opening hours: 9:00 AM to 5:00 PM."
+],
+"ms": 334.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What data classification levels exist?",
+"expansions": [
+"Data classification levels exist."
+],
+"ms": 182.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E101 indicate?",
+"expansions": [
+"Error code E101 in IT helpdesk refers to a system failure."
+],
+"ms": 298.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E204 mean?",
+"expansions": [
+"Error code E204: This error code indicates an issue with the system's configuration or data."
+],
+"ms": 322.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What does error code E310 mean and how long is the controller cable?",
+"expansions": [
+"Error code E310 indicates a problem with the controller cable. The error lasts for 10 minutes."
+],
+"ms": 426.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What happens after 5 failed login attempts?",
+"expansions": [
+"How do I resolve 5 failed login attempts?"
+],
+"ms": 200.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What happens if I book a room but never show up?",
+"expansions": [
+"What are the consequences of not showing up for a booking?"
+],
+"ms": 244.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What happens if the robot bumps into a person?",
+"expansions": [
+"robot-bump-incident, robot-impact, robot-human-interaction"
+],
+"ms": 266.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is required to connect to the company VPN from home?",
+"expansions": [
+"How to connect to the company's VPN from home?"
+],
+"ms": 224.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the address of the Berlin headquarters?",
+"expansions": [
+"Berlin, Germany, address"
+],
+"ms": 155.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the annual learning budget per employee?",
+"expansions": [
+"annual learning budget per employee, company policies, employee training, HR budget, IT budget, employee training budget"
+],
+"ms": 345.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the collision limit for recalibration, and what is the default collision stop force?",
+"expansions": [
+"Collision limit for recalibration: What is the default collision stop force?"
+],
+"ms": 286.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the daily meal allowance during business trips?",
+"expansions": [
+"Daily meal allowance during business trips - HR policies, IT helpdesk, product manuals"
+],
+"ms": 291.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the home office allowance?",
+"expansions": [
+"What are the home office policies?"
+],
+"ms": 171.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the maximum payload of the RoboArm X2?",
+"expansions": [
+"RoboArm X2 maximum payload: 1000kg"
+],
+"ms": 228.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the maximum speed of the X2 at the tool flange?",
+"expansions": [
+"X2 tool flange speed, maximum speed, X2 tool flange speed"
+],
+"ms": 263.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the minimum password length?",
+"expansions": [
+"What is the minimum password length in a company knowledge base?"
+],
+"ms": 238.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the operating temperature range of the X2?",
+"expansions": [
+"Operating temperature range of the X2 is 0°C to 50°C."
+],
+"ms": 286.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the referral bonus?",
+"expansions": [
+"What are the referral bonus policies?"
+],
+"ms": 159.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What is the repeatability of the X2?",
+"expansions": [
+"X2 repeatability, repeatability of the X2, X2 repeatability, repeatability of X2"
+],
+"ms": 386.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "What torque are the X2 base bolts tightened to?",
+"expansions": [
+"What torque is the X2 base bolt tightened to?"
+],
+"ms": 202.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When do performance reviews take place?",
+"expansions": [],
+"ms": 153.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When do vendor access accounts expire?",
+"expansions": [],
+"ms": 310.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When does the VPN disconnect automatically?",
+"expansions": [],
+"ms": 151.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When does the cafeteria serve lunch?",
+"expansions": [],
+"ms": 220.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When is the building open, and when does the cafeteria serve lunch?",
+"expansions": [
+"When is the building open? When does the cafeteria serve lunch?"
+],
+"ms": 254.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "When is the referral bonus paid and how long is probation?",
+"expansions": [
+"When is the referral bonus paid? How long is probation?"
+],
+"ms": 211.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Where do we gather when the fire alarm goes off?",
+"expansions": [
+"Where is the fire alarm typically raised?"
+],
+"ms": 202.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Where is the service center for warranty repairs?",
+"expansions": [
+"What is the location of the warranty service center?"
+],
+"ms": 199.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Which ROS 2 distribution was added in firmware version 2.2?",
+"expansions": [
+"What ROS 2 distribution was added in firmware version 2.2?"
+],
+"ms": 253.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Which industrial protocol for PLC integration was added in version 2.1?",
+"expansions": [
+"What is the industrial protocol for PLC integration added in version 2.1?"
+],
+"ms": 280.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
+"expansions": [
+"X2 SDK supports multiple languages, and the Python SDK version you should use depends on your project's requirements."
+],
+"ms": 367.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Which seat class may I book on a long-haul flight?",
+"expansions": [
+"Long-haul flight seat class options"
+],
+"ms": 195.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
+"expansions": [
+"Security incident should be reported to the IT support team. For urgent IT issues after hours, call the IT helpdesk."
+],
+"ms": 426.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "Will the company add money if I pay extra into my retirement savings?",
+"expansions": [
+"Can I deduct my retirement savings contributions from my gross income?"
+],
+"ms": 209.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "A customer is coming to see me tomorrow. What do I have to do beforehand?",
+"expansions": [
+"What documents do I need to prepare for the customer visit?",
+"What are the steps I should take to ensure a smooth customer experience?",
+"What information should I gather before the customer's visit?"
+],
+"ms": 1374.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "At what collision force does the X2 stop, and can that limit be configured?",
+"expansions": [
+"What is the stopping force for the X2 model, and is it possible to configure this limit?"
+],
+"ms": 724.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I bring leftover holiday into next year?",
+"expansions": [
+"Is it permissible to carry over holiday leave to the next year?"
+],
+"ms": 488.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I bring my dog to the office?",
+"expansions": [
+"What are the company's policies regarding bringing a dog to work?"
+],
+"ms": 440.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I charge my electric car at the office?",
+"expansions": [
+"What are the charging policies for electric vehicles at work?"
+],
+"ms": 482.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I get my print job without walking to the printer with my card?",
+"expansions": [
+"Can I print without physically going to the printer with my card?"
+],
+"ms": 542.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I make phone calls from the silent rooms?",
+"expansions": [
+"Are silent rooms allowed to make phone calls?",
+"Can I use the phone in silent rooms?",
+"What are the rules for making phone calls in silent rooms?"
+],
+"ms": 960.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I plug a thumb drive into my work computer?",
+"expansions": [
+"Is it permissible to connect a USB drive to my office computer?"
+],
+"ms": 478.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can I reserve a conference room for the whole day?",
+"expansions": [
+"How can I book a conference room for the entire day?"
+],
+"ms": 432.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can the controller run on a 24 V DC battery?",
+"expansions": [
+"Is it possible for a controller to function on a 24 V DC battery?",
+"Can a controller be powered by a 24 V DC battery?",
+"Can a controller operate on a 24 V DC battery?"
+],
+"ms": 1310.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Can the robot be hung upside down from the ceiling?",
+"expansions": [
+"Is it possible to hang a robot upside down from the ceiling?"
+],
+"ms": 685.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Do I get more holiday if I've been with the company for a long time?",
+"expansions": [
+"What are the company's policies regarding holiday entitlement based on tenure?"
+],
+"ms": 571.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Do I need a medical certificate if I'm off ill for two days?",
+"expansions": [
+"Can I obtain a medical certificate for being absent from work for two days?"
+],
+"ms": 550.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does Acme offer stock options to employees?",
+"expansions": [
+"What are the HR policies regarding stock options at Acme?"
+],
+"ms": 396.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does Acme pay for glasses or contact lenses?",
+"expansions": [
+"What are the company's policies regarding the reimbursement of glasses and contact lenses?"
+],
+"ms": 592.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does my health insurance start right away when I join?",
+"expansions": [
+"What is the immediate effect of joining health insurance?"
+],
+"ms": 430.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Does the robot need recalibrating after it crashes into something?",
+"expansions": [
+"Is there a need to recalibrate a robot after it has crashed into an obstacle?"
+],
+"ms": 599.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "For how long do we retain database backups?",
+"expansions": [
+"What is the retention period for database backups?"
+],
+"ms": 380.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How do I print in color from a Mac?",
+"expansions": [
+"What are the steps to print in color on a Mac?",
+"How can I configure my Mac to print in color?",
+"What are the procedures for printing in color on a Mac?"
+],
+"ms": 1037.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How do I send a broken robot back for repair?",
+"expansions": [
+"What is the procedure for returning a malfunctioning robot for repair?"
+],
+"ms": 531.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How fast will Acme get back to a customer whose line is down if they pay for the better plan?",
+"expansions": [
+"What is the customer service response time for Acme's better plan?",
+"What is the recovery time for Acme's better service plan?",
+"What are the customer support procedures for Acme's better service plan?"
+],
+"ms": 1289.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long are guest Wi-Fi access codes valid?",
+"expansions": [
+"What is the duration of validity for guest Wi-Fi access codes?"
+],
+"ms": 471.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long are spare parts guaranteed to be available?",
+"expansions": [
+"What is the warranty period for spare parts?"
+],
+"ms": 322.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long can my screen stay unlocked when I walk away?",
+"expansions": [
+"What is the policy on screen lock duration when leaving my device unattended?"
+],
+"ms": 565.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long does installing new software on the arm take?",
+"expansions": [
+"What is the time required to install new software on the ARM?"
+],
+"ms": 469.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long does the joint calibration wizard take?",
+"expansions": [
+"What is the duration of the joint calibration wizard process?"
+],
+"ms": 464.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long does the operator training last?",
+"expansions": [
+"What is the duration of the operator training program?"
+],
+"ms": 419.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is parental leave and how many sick-child days can parents take?",
+"expansions": [
+"What is the duration of parental leave and how many sick-child days are available for employees?"
+],
+"ms": 645.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is parental leave?",
+"expansions": [
+"What is the duration of parental leave policy?"
+],
+"ms": 356.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is the X2 warranty and when was the first X2 firmware released?",
+"expansions": [
+"What is the duration of the X2 warranty and when was the initial X2 firmware update launched?"
+],
+"ms": 744.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is the controller cable?",
+"expansions": [
+"What is the length of the controller cable?"
+],
+"ms": 731.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is the probation period for new employees?",
+"expansions": [
+"What is the duration of the probationary period for new hires?"
+],
+"ms": 460.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is the warranty on the gripper accessory?",
+"expansions": [
+"What is the duration of the warranty for the gripper accessory?"
+],
+"ms": 456.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long is the warranty, and how long do warranty repairs take?",
+"expansions": [
+"What is the duration of the warranty offered by the company? How long does it take to repair a warranty issue?"
+],
+"ms": 732.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How long must passwords be, and after how many days must they be rotated?",
+"expansions": [
+"What are the password length requirements and rotation policy?"
+],
+"ms": 499.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many counselling sessions per year does the employee assistance program cover?",
+"expansions": [
+"What is the annual limit on counseling sessions provided by the employee assistance program?"
+],
+"ms": 477.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many days of paid vacation do full-time employees get?",
+"expansions": [
+"What is the typical number of paid vacation days offered to full-time employees?"
+],
+"ms": 599.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many days of paid vacation do part-time employees get?",
+"expansions": [
+"What are the vacation days offered to part-time employees?"
+],
+"ms": 413.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many employees does Acme have?",
+"expansions": [
+"What is the total number of workers employed by Acme?"
+],
+"ms": 562.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many parking spaces does the underground garage have?",
+"expansions": [
+"What is the capacity of the parking garage?"
+],
+"ms": 346.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many people can the largest meeting room hold?",
+"expansions": [
+"What is the maximum capacity of the largest meeting room?"
+],
+"ms": 380.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How many sick days per year are employees entitled to?",
+"expansions": [
+"What are the annual sick leave entitlements for employees?"
+],
+"ms": 418.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much does Acme contribute to the company pension plan?",
+"expansions": [
+"What is the contribution rate to Acme's pension plan?"
+],
+"ms": 420.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much does the Premium support plan cost?",
+"expansions": [
+"What is the price of the Premium support plan?"
+],
+"ms": 391.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much does the RoboArm X2 weigh without the controller?",
+"expansions": [
+"What is the weight of the RoboArm X2 without the controller?",
+"What is the weight of the RoboArm X2 model without the controller?",
+"What is the weight of the RoboArm X2 without the controller component?"
+],
+"ms": 1378.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much does the bike leasing cost per month?",
+"expansions": [
+"What is the monthly cost for renting a bike?"
+],
+"ms": 446.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much does the three-day programming training cost?",
+"expansions": [
+"What is the price for a three-day programming training course?"
+],
+"ms": 398.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much electricity does the robot controller consume?",
+"expansions": [
+"What is the power consumption of the robot controller?"
+],
+"ms": 387.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much is the childcare allowance?",
+"expansions": [
+"What is the childcare allowance amount?"
+],
+"ms": 269.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much is the daily meal allowance for trips abroad in the USA?",
+"expansions": [
+"What is the daily meal allowance for trips abroad in the USA?"
+],
+"ms": 434.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much is the fitness subsidy and how much is the home office allowance?",
+"expansions": [
+"What is the amount of the fitness subsidy offered by the company? What is the allowance for home office expenses? What are the details of the company's HR policies regarding these benefits?"
+],
+"ms": 1324.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much is the monthly fitness subsidy?",
+"expansions": [
+"What is the monthly fitness subsidy amount?"
+],
+"ms": 334.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much is the public transport ticket subsidy?",
+"expansions": [
+"What is the cost of the public transport ticket subsidy?",
+"What is the amount of the public transport ticket subsidy?",
+"What is the subsidy for public transport tickets?"
+],
+"ms": 1160.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much space should be kept free around the robot during setup?",
+"expansions": [
+"What is the recommended buffer space required around the robot during installation?",
+"What is the standard buffer space needed around the robot during setup?",
+"What is the optimal buffer space needed around the robot during the setup process?"
+],
+"ms": 1524.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How much weight can the robot arm carry?",
+"expansions": [
+"What is the maximum payload capacity of the robot arm?"
+],
+"ms": 460.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How often are production databases backed up?",
+"expansions": [
+"What is the frequency of database backups for production systems?"
+],
+"ms": 362.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How often do I get a new computer?",
+"expansions": [
+"What is the frequency of receiving a new computer?"
+],
+"ms": 403.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How often should the cables be checked for damage?",
+"expansions": [
+"What is the frequency for inspecting cables for signs of damage?"
+],
+"ms": 549.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How often should the joint gearboxes be re-greased?",
+"expansions": [
+"What is the recommended frequency for re-greasing joint gearboxes?"
+],
+"ms": 531.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How quickly are Priority 1 IT tickets answered and how quickly does Premium customer support answer outage tickets?",
+"expansions": [
+"What is the average response time for Priority 1 IT tickets?",
+"What is the response time for Premium customer support for outage tickets?",
+"What are the response times for Priority 1 IT tickets and Premium customer support for outage tickets?"
+],
+"ms": 1326.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How quickly do I have to tell someone about a hacking attempt?",
+"expansions": [
+"What is the procedure for reporting a hacking incident?"
+],
+"ms": 457.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How quickly do replacement components get shipped?",
+"expansions": [
+"What is the shipping time for replacement components?"
+],
+"ms": 388.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How soon must I hand in receipts after a trip?",
+"expansions": [
+"What is the policy on receipt submission after travel?",
+"What is the procedure for submitting receipts after a trip?",
+"What are the guidelines for submitting receipts for a trip?"
+],
+"ms": 1078.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "How strong does the floor have to be for the arm?",
+"expansions": [
+"What is the minimum floor strength required for an arm?",
+"What are the minimum floor strength requirements for an arm?",
+"What are the specifications for the minimum floor strength needed for an arm?"
+],
+"ms": 1428.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is it OK to hose down the arm with a pressure washer?",
+"expansions": [
+"Is it permissible to use a pressure washer to clean an arm?"
+],
+"ms": 488.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is the X2 certified for use in food production?",
+"expansions": [
+"Is the X2 device approved for food processing applications?"
+],
+"ms": 393.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is there a discount for buying more than ten robots?",
+"expansions": [
+"Do you qualify for a robot purchase discount?"
+],
+"ms": 371.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is there a dress code in the office?",
+"expansions": [
+"What are the dress code policies for the workplace?"
+],
+"ms": 485.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is there someone I can talk to confidentially about personal problems at night?",
+"expansions": [
+"Is there a confidential night shift for personal issues?"
+],
+"ms": 398.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Is there something meat-free for lunch?",
+"expansions": [
+"What are the vegetarian options available for lunch?"
+],
+"ms": 350.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "My kid has a fever. Can I stay home to look after them?",
+"expansions": [
+"Can I stay home to care for my child with a fever?"
+],
+"ms": 520.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "My laptop is lost: whom do I tell, and how fast will I get a replacement device?",
+"expansions": [
+"What is the procedure for reporting a lost laptop and requesting a replacement?"
+],
+"ms": 576.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Somebody stole my work notebook computer. What should I do?",
+"expansions": [
+"What are the HR policies regarding lost or stolen work equipment?"
+],
+"ms": 466.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What IP rating does the RoboArm X2 have?",
+"expansions": [
+"What is the IP rating for the RoboArm X2?"
+],
+"ms": 538.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What antivirus software is installed on company laptops?",
+"expansions": [
+"What is the antivirus software currently installed on the company's laptop computers?"
+],
+"ms": 532.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What are the IT helpdesk hours and the Standard customer support hours?",
+"expansions": [
+"What are the hours for the IT helpdesk and the standard customer support?"
+],
+"ms": 559.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What are the IT helpdesk opening hours?",
+"expansions": [
+"What are the hours for the IT helpdesk?"
+],
+"ms": 433.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What data classification levels exist?",
+"expansions": [
+"What are the different data classification levels?"
+],
+"ms": 431.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E101 indicate?",
+"expansions": [
+"What does the error code E101 signify?"
+],
+"ms": 439.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E204 mean?",
+"expansions": [
+"What is the meaning of error code E204?"
+],
+"ms": 909.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E310 mean and how long is the controller cable?",
+"expansions": [
+"What is the meaning of error code E310? What is the length of the controller cable?"
+],
+"ms": 641.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What does error code E402 mean?",
+"expansions": [
+"What is the meaning of error code E402?"
+],
+"ms": 406.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What happens after 5 failed login attempts?",
+"expansions": [
+"What are the consequences of exceeding five failed login attempts?"
+],
+"ms": 413.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What happens if I book a room but never show up?",
+"expansions": [
+"What are the consequences of booking a room but not showing up?",
+"What are the policies regarding no-show bookings?",
+"What are the procedures for handling non-attendance in room reservations?"
+],
+"ms": 1262.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What happens if the robot bumps into a person?",
+"expansions": [
+"What are the policies regarding robot-human interactions?",
+"What are the procedures for handling robot-human collisions?"
+],
+"ms": 721.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is on the cafeteria menu on Fridays?",
+"expansions": [
+"What is the cafeteria menu on Fridays?"
+],
+"ms": 387.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is required to connect to the company VPN from home?",
+"expansions": [
+"What are the necessary steps to access the company's virtual private network (VPN) from my home?"
+],
+"ms": 697.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the Wi-Fi password for employees?",
+"expansions": [
+"What is the Wi-Fi password for accessing company networks?"
+],
+"ms": 377.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the address of the Berlin headquarters?",
+"expansions": [
+"Where is the headquarters located?"
+],
+"ms": 256.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the annual learning budget per employee?",
+"expansions": [
+"What is the annual budget allocated for employee training?"
+],
+"ms": 425.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the collision limit for recalibration, and what is the default collision stop force?",
+"expansions": [
+"What is the recalibration collision limit and default collision stop force?"
+],
+"ms": 465.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the daily meal allowance during business trips?",
+"expansions": [
+"What is the daily meal allowance for business trips?"
+],
+"ms": 386.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the deadline for the annual bonus payment?",
+"expansions": [
+"What is the policy for annual bonus payments?"
+],
+"ms": 313.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the home office allowance?",
+"expansions": [
+"What are the guidelines for calculating the home office allowance?"
+],
+"ms": 508.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum payload of the RoboArm X2 at half reach?",
+"expansions": [
+"What is the maximum payload capacity of the RoboArm X2 at half reach?"
+],
+"ms": 1346.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum payload of the RoboArm X2?",
+"expansions": [
+"What is the maximum weight that the RoboArm X2 can carry?"
+],
+"ms": 507.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum speed of the RoboArm X3?",
+"expansions": [
+"What is the top speed of the RoboArm X3?"
+],
+"ms": 641.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the maximum speed of the X2 at the tool flange?",
+"expansions": [],
+"ms": 1426.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the minimum password length?",
+"expansions": [
+"What is the minimum password length required by the company?"
+],
+"ms": 416.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the noise level of the X2 during operation?",
+"expansions": [
+"What is the operational noise level of the X2?"
+],
+"ms": 374.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the operating temperature range of the X2?",
+"expansions": [
+"What is the acceptable temperature range for the X2 device?",
+"What is the operating temperature range for the X2 product?",
+"What is the temperature range for the X2 model?"
+],
+"ms": 1151.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the purchase price of the RoboArm X2?",
+"expansions": [
+"What is the cost of the RoboArm X2?"
+],
+"ms": 433.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the referral bonus?",
+"expansions": [
+"What is the policy regarding referral bonuses?"
+],
+"ms": 304.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What is the repeatability of the X2?",
+"expansions": [
+"What is the repeatability of the X2 model?",
+"What is the repeatability of the X2 product?"
+],
+"ms": 1040.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What torque are the X2 base bolts tightened to?",
+"expansions": [
+"What is the tightening torque for the X2 base bolts?"
+],
+"ms": 391.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "What was Acme's revenue last year?",
+"expansions": [
+"What was Acme's annual revenue for the previous fiscal year?"
+],
+"ms": 421.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When do performance reviews take place?",
+"expansions": [
+"What is the schedule for conducting performance evaluations?"
+],
+"ms": 347.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When do vendor access accounts expire?",
+"expansions": [
+"What are the expiration dates for vendor access accounts?"
+],
+"ms": 392.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When does the VPN disconnect automatically?",
+"expansions": [
+"What is the automatic disconnect time for the company's Virtual Private Network (VPN)?"
+],
+"ms": 514.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When does the cafeteria serve lunch?",
+"expansions": [
+"What is the cafeteria's lunch serving schedule?"
+],
+"ms": 338.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When is the building open, and when does the cafeteria serve lunch?",
+"expansions": [
+"What are the hours for the office building?",
+"When is the cafeteria open for lunch?",
+"What are the product manuals available for?"
+],
+"ms": 982.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When is the referral bonus paid and how long is probation?",
+"expansions": [
+"What is the schedule for receiving a referral bonus and how long is the probationary period?"
+],
+"ms": 643.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "When will firmware version 2.4 be released?",
+"expansions": [
+"What is the release date for firmware version 2.4?"
+],
+"ms": 409.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Where do we gather when the fire alarm goes off?",
+"expansions": [
+"Where do employees assemble during an emergency?"
+],
+"ms": 363.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Where is the Munich office?",
+"expansions": [
+"Where is the Munich office located?"
+],
+"ms": 259.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Where is the service center for warranty repairs?",
+"expansions": [
+"Where is the location for warranty service?"
+],
+"ms": 309.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which Linux distributions does the X2 SDK officially support?",
+"expansions": [],
+"ms": 480.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which ROS 2 distribution was added in firmware version 2.2?",
+"expansions": [
+"Which ROS 2 distribution was introduced in firmware version 2.2?",
+"What is the ROS 2 distribution added in firmware version 2.2?",
+"What is the ROS 2 distribution version 2.2 introduced?"
+],
+"ms": 1466.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which hotel chains are preferred for business travel?",
+"expansions": [
+"Which hotel chains offer the best service for business travelers?"
+],
+"ms": 411.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which industrial protocol for PLC integration was added in version 2.1?",
+"expansions": [
+"What is the industrial protocol used for PLC integration in version 2.1?"
+],
+"ms": 585.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which languages does the X2 SDK support, and which Python SDK version should I use?",
+"expansions": [
+"What languages does the X2 SDK support? What Python SDK version should I use?"
+],
+"ms": 659.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Which seat class may I book on a long-haul flight?",
+"expansions": [
+"What are the options for booking economy class on a long-distance flight?"
+],
+"ms": 524.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Who approves vacation requests shorter than two weeks?",
+"expansions": [
+"What is the authority that determines vacation approval for requests under two weeks?"
+],
+"ms": 462.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Who is the CEO of Acme Robotics?",
+"expansions": [
+"What is the name of the person in charge of Acme Robotics?"
+],
+"ms": 1890.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Who should a security incident be reported to, and what number do I call for urgent IT issues after hours?",
+"expansions": [
+"What is the procedure for reporting a security incident, and what is the contact number for urgent IT issues after regular business hours?"
+],
+"ms": 940.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "Will the company add money if I pay extra into my retirement savings?",
+"expansions": [
+"Does the company offer a retirement savings plan?",
+"Can I access the company's retirement savings policy?",
+"What are the terms of the retirement savings program?"
+],
+"ms": 978.7
+}
+]

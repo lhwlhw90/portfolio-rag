@@ -6,6 +6,8 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 
+from .text import last_heading
+
 SUPPORTED_EXTS = {".txt", ".md", ".markdown", ".pdf"}
 
 
@@ -124,9 +126,21 @@ def split_text(text: str, chunk_size: int, overlap: int) -> list[tuple[int, str]
 
 
 def chunk_pages(doc_id: str, doc_name: str, pages: list[Page], chunk_size: int, overlap: int) -> list[Chunk]:
+    """Chunks carry meta["heading"]: the section heading in force where the chunk starts (also
+    across page breaks), so answers from mid-section chunks can still show e.g. the version /
+    date that only appears in the heading."""
     chunks: list[Chunk] = []
+    carried: str | None = None
     for page in pages:
+        norm = _normalize(page.text)
         for start, piece in split_text(page.text, chunk_size, overlap):
+            line_start = norm.rfind("\n", 0, start) + 1
+            heading = last_heading(norm[:line_start], carried)  # whole lines before the chunk
+            if line_start < start:  # chunk starts mid-line: if that line is a heading, it is the full one
+                line_end = norm.find("\n", start)
+                heading = last_heading(norm[line_start: line_end if line_end != -1 else len(norm)], heading)
             chunks.append(Chunk(doc_id=doc_id, doc_name=doc_name, chunk_index=len(chunks),
-                                text=piece, page=page.page, start_char=start))
+                                text=piece, page=page.page, start_char=start,
+                                meta={"heading": heading} if heading else {}))
+        carried = last_heading(norm, carried)
     return chunks

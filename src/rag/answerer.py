@@ -21,7 +21,7 @@ from typing import Iterator, Protocol
 import httpx
 
 from .retriever import Hit
-from .text import content_tokens, identifiers, is_cjk, is_heading_like, split_sentences
+from .text import content_tokens, identifiers, is_cjk, is_heading_like, sentences_with_headings, split_sentences
 
 log = logging.getLogger(__name__)
 
@@ -65,6 +65,7 @@ class Answer:
     latency_ms: float | None = None
     refusal_reason: str | None = None    # machine-readable code, see REFUSAL_REASONS
     refusal_detail: str | None = None    # human-readable explanation shown in the UI
+    support_score: float | None = None   # answerability-judge score (NLI / cross-encoder), if enabled
 
 
 REFUSAL_REASONS = {
@@ -72,6 +73,7 @@ REFUSAL_REASONS = {
     "no_candidates": "The retrieved passages contain no usable sentences.",
     "low_confidence": "The best matching sentence is not similar enough to the question.",
     "unknown_identifier": "The question names a model / code / version that does not occur in the retrieved passages.",
+    "not_supported": "The answerability model judged that the retrieved sentences do not state what the question asks.",
     "llm_refused": "The language model said the sources do not answer the question.",
 }
 
@@ -81,15 +83,17 @@ REFUSAL_REASONS_ZH = {
     "no_candidates": "检索到的片段中没有可用的句子。",
     "low_confidence": "最相关的句子与问题的相似度不足。",
     "unknown_identifier": "问题中的型号 / 代码 / 版本号没有出现在检索到的片段中。",
+    "not_supported": "可答性模型判断检索到的句子没有给出问题所问的内容。",
     "llm_refused": "语言模型判断这些来源无法回答该问题。",
 }
 
 
 def refusal(question: str, backend: str, reason: str, detail: str | None = None, confidence: float | None = 0.0,
-            latency_ms: float | None = None, text: str | None = None) -> Answer:
+            latency_ms: float | None = None, text: str | None = None, support_score: float | None = None) -> Answer:
     base = (REFUSAL_REASONS_ZH if is_cjk(question) else REFUSAL_REASONS)[reason]
     return Answer(text or no_answer_text(question), [], backend, refused=True, confidence=confidence,
-                  latency_ms=latency_ms, refusal_reason=reason, refusal_detail=f"{base} {detail}" if detail else base)
+                  latency_ms=latency_ms, refusal_reason=reason, refusal_detail=f"{base} {detail}" if detail else base,
+                  support_score=support_score)
 
 
 def best_supporting_sentence(answer: str, chunk_text: str) -> str | None:
@@ -168,6 +172,29 @@ def attribute_citations(text: str, pairs: list[tuple[Citation, str]], min_overla
     return " ".join(out), used
 
 
+_TEMPORAL = re.compile(r"\b(?:when|date|dated|version|release[sd]?|year|month|since|until)\b|"
+                       r"何时|什么时候|哪天|哪一天|日期|版本|哪一年|哪年|几月|发布|上线", re.I)
+_NUM = re.compile(r"\d+")
+
+
+def with_heading(sentence: str, heading: str | None, question: str) -> str:
+    """Prefix the section heading when it carries information the sentence lacks and the
+    question needs, e.g. 'when was the first X2 firmware released?' + sentence 'First release
+    for the X2 hardware.' under '## Version 2.0 (2025-07-01)' ->
+    'Version 2.0 (2025-07-01): First release for the X2 hardware.'
+    Rules: (a) the heading has numbers (dates, versions) the sentence lacks and the question is
+    temporal/version-like or shares a term with the heading; (b) the heading supplies >= 2
+    question terms missing from the sentence."""
+    if not heading or heading in sentence:
+        return sentence
+    st, ht, qt = set(content_tokens(sentence)), set(content_tokens(heading)), set(content_tokens(question))
+    covers = (qt & ht) - st
+    new_nums = set(_NUM.findall(heading)) - set(_NUM.findall(sentence)) - set(_NUM.findall(question))
+    if (new_nums and (_TEMPORAL.search(question) or covers)) or len(covers) >= 2:
+        return f"{heading}{'：' if is_cjk(heading + sentence) else ': '}{sentence}"
+    return sentence
+
+
 class Answerer(Protocol):
     name: str
 
@@ -185,10 +212,17 @@ class ExtractiveAnswerer:
     name = "extractive"
 
     def __init__(self, max_sentences: int = 3, embedder=None, keep_ratio: float = 0.85, min_score: float = 0.0,
-                 lex_weight: float = 0.5, check_identifiers: bool = True):
+                 lex_weight: float = 0.5, check_identifiers: bool = True, heading_context: bool = True,
+                 judge=None, judge_min: float = 0.5, judge_policy: str = "and", judge_top: int = 3):
         self.max_sentences, self.embedder, self.keep_ratio = max_sentences, embedder, keep_ratio
         self.min_score, self.lex_weight = min_score, lex_weight
         self.check_identifiers = check_identifiers
+        self.heading_context = heading_context
+        # optional answerability judge (rag.answerability); policy: "replace" = judge instead of the
+        # cosine threshold, "and" = both must pass, "or" = either suffices
+        if judge_policy not in ("replace", "and", "or"):
+            raise ValueError(f"unknown judge policy {judge_policy!r}")
+        self.judge, self.judge_min, self.judge_policy, self.judge_top = judge, judge_min, judge_policy, judge_top
 
     def score_sentences(self, question: str, hits: list[Hit]) -> list[tuple[float, int, int, str, float]]:
         """Returns candidates (score, hit_rank, order, sentence, cosine), best first."""
@@ -243,11 +277,32 @@ class ExtractiveAnswerer:
             if missing:
                 return refusal(question, self.name, "unknown_identifier", confidence=round(conf, 4),
                                detail=("未找到：" if is_cjk(question) else "Not found: ") + ", ".join(missing))
-        if conf < self.min_score:
+        zh = is_cjk(question)
+        cos_ok, jscore = conf >= self.min_score, None
+        if self.judge is not None and not (self.judge_policy == "and" and not cos_ok):  # "and": skip if cos fails
+            jscore = round(self.judge.score(question, [c[3] for c in cands[: self.judge_top]]), 4)
+        judge_ok = jscore is not None and jscore >= self.judge_min
+        cos_detail = (f"（{conf:.3f} < 阈值 {self.min_score:.3f}）" if zh else
+                      f"(similarity {conf:.3f} < threshold {self.min_score:.3f})")
+        judge_detail = (f"（{self.judge.name} {jscore:.3f} < 阈值 {self.judge_min:.3f}）" if zh else
+                        f"({self.judge.name} score {jscore:.3f} < threshold {self.judge_min:.3f})") if jscore is not None else ""
+        if self.judge is None or self.judge_policy == "and":
+            if not cos_ok:
+                return refusal(question, self.name, "low_confidence", confidence=round(conf, 4), detail=cos_detail)
+            if self.judge is not None and not judge_ok:
+                return refusal(question, self.name, "not_supported", confidence=round(conf, 4), detail=judge_detail,
+                               support_score=jscore)
+        elif self.judge_policy == "replace" and not judge_ok:
+            return refusal(question, self.name, "not_supported", confidence=round(conf, 4), detail=judge_detail,
+                           support_score=jscore)
+        elif self.judge_policy == "or" and not (cos_ok or judge_ok):
             return refusal(question, self.name, "low_confidence", confidence=round(conf, 4),
-                           detail=(f"（{conf:.3f} < 阈值 {self.min_score:.3f}）" if is_cjk(question) else
-                                   f"(similarity {conf:.3f} < threshold {self.min_score:.3f})"))
-        picked = [c for c in cands if c[0] >= best * self.keep_ratio][: self.max_sentences]
+                           detail=f"{cos_detail} {judge_detail}", support_score=jscore)
+        picked, seen = [], set()
+        for c in cands:  # overlapping chunks repeat sentences: keep the first (best-ranked) copy only
+            if c[0] >= best * self.keep_ratio and c[3] not in seen and len(picked) < self.max_sentences:
+                picked.append(c)
+                seen.add(c[3])
         subs = split_subquestions(question)
         if len(subs) > 1:  # multi-part question: make sure every part gets its best sentence
             for sq in subs:
@@ -256,14 +311,20 @@ class ExtractiveAnswerer:
                     picked.append(sc[0])
             picked = picked[: self.max_sentences + len(subs)]
         picked.sort(key=lambda c: (c[1], c[2]))  # keep reading order
-        text = " ".join(f"{c[3]} [{c[1] + 1}]" for c in picked)
+        if self.heading_context:
+            heads = {r: sentences_with_headings(h.chunk.text, getattr(h.chunk, "heading", None))
+                     for r, h in enumerate(hits)}
+            shown = [with_heading(c[3], heads[c[1]][c[2]][1], question) for c in picked]
+        else:
+            shown = [c[3] for c in picked]
+        text = " ".join(f"{t} [{c[1] + 1}]" for t, c in zip(shown, picked))
         support: dict[int, list[str]] = {}
         for _, rank, _, sent, _ in picked:
             support.setdefault(rank + 1, []).append(sent)
         used = [c for c in build_citations(hits) if c.index in support]
         for c in used:  # snippet = the exact supporting sentence(s), so the citation is verifiable
             c.snippet = " … ".join(support[c.index])
-        return Answer(text, used, self.name, confidence=round(conf, 4))
+        return Answer(text, used, self.name, confidence=round(conf, 4), support_score=jscore)
 
 
 # Prompt tuned on qwen2.5:0.5b: "[1] (file)" style headers were echoed verbatim by the small

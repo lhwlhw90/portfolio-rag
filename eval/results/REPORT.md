@@ -64,24 +64,28 @@ answer acc = answerable questions answered (not refused) with the expected fact;
 
 | lang | embedding | chunk | answerer | split | threshold | answer acc | citation acc | explicit [n] | invalid [n] | refusal acc | false refusal | p50 ms | p95 ms |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| en | `bge-small-en-v1.5` | 800 | extractive | test | 0.67 | 66.7 | 100.0 | 100.0 | 0.0 | 42.1 | 29.8 | 75.8 | 184.9 |
-| en | `bge-small-en-v1.5` | 800 | extractive | dev | 0.67 | 78.4 | 96.9 | 100.0 | 0.0 | 69.2 | 13.5 | 76.1 | 208.5 |
+| en | `bge-small-en-v1.5` | 800 | extractive | test | 0.67 | 66.7 | 100.0 | 100.0 | 0.0 | 42.1 | 29.8 | 72.3 | 210.2 |
+| en | `bge-small-en-v1.5` | 800 | extractive | dev | 0.67 | 81.1 | 96.9 | 100.0 | 0.0 | 69.2 | 13.5 | 80.4 | 218.8 |
+| en | `bge-small-en-v1.5` | 800 | **M4 extractive**: cosine AND nli-t + identifier rule + rewrite (qwen2.5:1.5b) + headings | test | – | 40.4 | 100.0 | 100.0 | 0.0 | 94.7 | 57.9 | 699.0 | 1550.2 |
+| en | `bge-small-en-v1.5` | 800 | **M4 extractive**: cosine AND nli-t + identifier rule + rewrite (qwen2.5:1.5b) + headings | dev | – | 59.5 | 100.0 | 100.0 | 0.0 | 100.0 | 40.5 | 724.8 | 1648.7 |
 | en | `bge-small-en-v1.5` | 800 | LLM `qwen2.5:0.5b` + gate | test | 0.67 | 45.6 | 87.2 | 5.1 | 0.0 | 47.4 | 31.6 | 1035.9 | 1663.5 |
 | en | `bge-small-en-v1.5` | 800 | LLM `qwen2.5:0.5b` (no gate) | test | – | 64.9 | 87.3 | 1.8 | 0.0 | 5.3 | 3.5 | 970.3 | 1344.1 |
 | en | `bge-small-en-v1.5` | 800 | LLM `qwen2.5:1.5b` + gate | test | 0.67 | 61.4 | 89.7 | 15.4 | 0.0 | 57.9 | 31.6 | 2099.1 | 4729.4 |
 | en | `bge-small-en-v1.5` | 800 | LLM `qwen2.5:1.5b` (no gate) | test | – | 75.4 | 75.9 | 24.1 | 0.0 | 31.6 | 5.3 | 1558.2 | 2792.1 |
-| en | `bge-small-en-v1.5` | 400 | extractive | test | 0.67 | 63.2 | 95.0 | 100.0 | 0.0 | 42.1 | 29.8 | 43.1 | 119.5 |
-| en | `bge-small-en-v1.5` | 400 | extractive | dev | 0.67 | 78.4 | 96.9 | 100.0 | 0.0 | 69.2 | 13.5 | 44.2 | 140.7 |
+| en | `bge-small-en-v1.5` | 400 | extractive | test | 0.67 | 63.2 | 95.0 | 100.0 | 0.0 | 42.1 | 29.8 | 41.9 | 126.7 |
+| en | `bge-small-en-v1.5` | 400 | extractive | dev | 0.67 | 81.1 | 96.9 | 100.0 | 0.0 | 69.2 | 13.5 | 42.2 | 147.0 |
 | en | `paraphrase-multilingual-MiniLM-L12-v2` | 800 | extractive | test | 0.59 | 49.1 | 100.0 | 100.0 | 0.0 | 57.9 | 45.6 | 88.4 | 275.8 |
 | en | `paraphrase-multilingual-MiniLM-L12-v2` | 800 | extractive | dev | 0.59 | 59.5 | 96.0 | 100.0 | 0.0 | 84.6 | 32.4 | 83.0 | 202.6 |
-| zh | `bge-small-zh-v1.5` | 800 | extractive | test | 0.63 | 81.8 | 100.0 | 100.0 | 0.0 | 66.7 | 16.4 | 61.5 | 220.2 |
-| zh | `bge-small-zh-v1.5` | 800 | extractive | dev | 0.63 | 81.1 | 100.0 | 100.0 | 0.0 | 75.0 | 16.2 | 63.6 | 189.7 |
+| zh | `bge-small-zh-v1.5` | 800 | extractive | test | 0.63 | 81.8 | 100.0 | 100.0 | 0.0 | 66.7 | 16.4 | 55.7 | 190.1 |
+| zh | `bge-small-zh-v1.5` | 800 | extractive | dev | 0.63 | 81.1 | 100.0 | 100.0 | 0.0 | 75.0 | 16.2 | 58.7 | 179.3 |
+| zh | `bge-small-zh-v1.5` | 800 | **M4 extractive**: cosine AND reranker-m3 + identifier rule + rewrite (qwen2.5:0.5b) + headings | test | – | 92.7 | 100.0 | 100.0 | 0.0 | 61.1 | 5.5 | 471.6 | 726.3 |
+| zh | `bge-small-zh-v1.5` | 800 | **M4 extractive**: cosine AND reranker-m3 + identifier rule + rewrite (qwen2.5:0.5b) + headings | dev | – | 89.2 | 100.0 | 100.0 | 0.0 | 83.3 | 10.8 | 457.8 | 1039.4 |
 | zh | `bge-small-zh-v1.5` | 800 | LLM `qwen2.5:0.5b` + gate | test | 0.63 | 65.5 | 91.3 | 2.2 | 0.0 | 66.7 | 16.4 | 1204.9 | 2000.6 |
 | zh | `bge-small-zh-v1.5` | 800 | LLM `qwen2.5:0.5b` (no gate) | test | – | 69.1 | 87.3 | 1.8 | 0.0 | 0.0 | 0.0 | 1064.1 | 1731.9 |
 | zh | `bge-small-zh-v1.5` | 800 | LLM `qwen2.5:1.5b` + gate | test | 0.63 | 69.1 | 90.9 | 9.1 | 0.0 | 66.7 | 20.0 | 1692.0 | 2997.8 |
 | zh | `bge-small-zh-v1.5` | 800 | LLM `qwen2.5:1.5b` (no gate) | test | – | 85.5 | 96.2 | 3.8 | 0.0 | 22.2 | 3.6 | 1555.8 | 2404.1 |
-| zh | `bge-small-zh-v1.5` | 200 | extractive | test | 0.625 | 83.6 | 100.0 | 100.0 | 0.0 | 66.7 | 14.5 | 30.0 | 104.9 |
-| zh | `bge-small-zh-v1.5` | 200 | extractive | dev | 0.625 | 81.1 | 100.0 | 100.0 | 0.0 | 75.0 | 16.2 | 32.4 | 116.3 |
+| zh | `bge-small-zh-v1.5` | 200 | extractive | test | 0.625 | 83.6 | 100.0 | 100.0 | 0.0 | 66.7 | 14.5 | 32.2 | 105.7 |
+| zh | `bge-small-zh-v1.5` | 200 | extractive | dev | 0.625 | 81.1 | 100.0 | 100.0 | 0.0 | 75.0 | 16.2 | 30.2 | 74.8 |
 | zh | `paraphrase-multilingual-MiniLM-L12-v2` | 800 | extractive | test | 0.555 | 74.5 | 100.0 | 100.0 | 0.0 | 88.9 | 23.6 | 112.2 | 363.8 |
 | zh | `paraphrase-multilingual-MiniLM-L12-v2` | 800 | extractive | dev | 0.555 | 73.0 | 90.3 | 100.0 | 0.0 | 66.7 | 16.2 | 121.8 | 395.0 |
 
@@ -221,3 +225,85 @@ Ablation — same dev-calibration protocol without the unknown-identifier refusa
 - `zh-c012` (cross, conf 0.5562): S7的固件升级大约需要多久？升级时有什么注意事项？ → 固件升级需要电量高于20%，升级过程大约需要10分钟。 [1] S7 的电池容量为5200毫安时，标准模式下续航时间约为180分钟。 [2]
 - `zh-u013` (unanswerable, conf 0.7337): 入职满三年的员工有多少天年假？ → 入职满五年的员工每年额外增加3天年假。 [1]
 - `zh-u015` (unanswerable, conf 0.7102): 员工餐厅晚餐几点供应？ → 员工餐厅午餐供应时间为11点半至13点半，公司每天补贴午餐20元。 [1]
+
+## 5. Answerability: cosine threshold vs NLI / cross-encoder judges (M4)
+
+Each variant's threshold(s) are chosen on **dev** (max balanced accuracy, middle of the plateau; 2-D grid for AND/OR) and applied unchanged to **test**. Judges score the top-3 candidate sentences: `nli` = mDeBERTa-v3 XNLI fp32 ONNX, max P(entailment) with the question as hypothesis; `nli-t` = same with "The text answers the question: …"; `reranker` = ms-marco-MiniLM-L-12 (en); `reranker-m3` = bge-reranker-v2-m3 uint8 (multilingual). answer acc = answerable questions answered with the expected fact (threshold-free answer text, so variants differ only by what they refuse). Latency p50 = retrieval + extractive answer + judge, CPU. **Bold** = variant chosen on dev.
+
+| lang | variant | thresholds (cos / judge) | dev bal. acc | test refusal acc | test false refusal | test bal. acc | test answer acc | judge ms p50 | latency p50 ms |
+|---|---|---|---|---|---|---|---|---|---|
+| en | M3: cosine + identifier rule | 0.67 / – | 77.9 | 42.1 | 29.8 | 56.1 | 66.7 | 0.0 | 114.7 |
+| en | cosine only (no identifier rule) | 0.67 / – | 74.0 | 31.6 | 29.8 | 50.9 | 66.7 | 0.0 | 114.7 |
+| en | nli only + identifier rule | – / 0.3059 | 75.9 | 94.7 | 52.6 | 71.1 | 45.6 | 119.1 | 236.2 |
+| en | cosine AND nli + identifier rule | 0.665 / 0.3332 | 78.4 | 94.7 | 54.4 | 70.2 | 43.9 | 119.1 | 236.2 |
+| en | cosine OR nli + identifier rule | 0.67 / 0.9064 | 77.9 | 42.1 | 28.1 | 57.0 | 68.4 | 119.1 | 236.2 |
+| en | nli-t only + identifier rule | – / 0.6058 | 78.6 | 94.7 | 50.9 | 71.9 | 45.6 | 102.9 | 225.2 |
+| en | **cosine AND nli-t + identifier rule** | 0.665 / 0.6058 | 81.1 | 94.7 | 56.1 | 69.3 | 42.1 | 102.9 | 225.2 |
+| en | cosine OR nli-t + identifier rule | 0.875 / 0.6058 | 78.6 | 94.7 | 49.1 | 72.8 | 47.4 | 102.9 | 225.2 |
+| en | reranker only + identifier rule | – / 0.8775 | 72.2 | 68.4 | 35.1 | 66.7 | 61.4 | 20.9 | 137.9 |
+| en | cosine AND reranker + identifier rule | 0.67 / -0.001 | 77.9 | 42.1 | 29.8 | 56.1 | 66.7 | 20.9 | 137.9 |
+| en | cosine OR reranker + identifier rule | 0.67 / 0.8063 | 77.9 | 42.1 | 24.6 | 58.8 | 71.9 | 20.9 | 137.9 |
+| en | reranker-m3 only + identifier rule | – / 0.5344 | 77.2 | 78.9 | 40.4 | 69.3 | 56.1 | 154.5 | 268.5 |
+| en | cosine AND reranker-m3 + identifier rule | 0.665 / 0.367 | 79.9 | 78.9 | 38.6 | 70.2 | 57.9 | 154.5 | 268.5 |
+| en | cosine OR reranker-m3 + identifier rule | 0.67 / 0.5344 | 77.9 | 42.1 | 24.6 | 58.8 | 71.9 | 154.5 | 268.5 |
+| zh | M3: cosine + identifier rule | 0.63 / – | 79.4 | 66.7 | 16.4 | 75.2 | 81.8 | 0.0 | 108.8 |
+| zh | cosine only (no identifier rule) | 0.655 / – | 78.2 | 72.2 | 18.2 | 77.0 | 80.0 | 0.0 | 108.8 |
+| zh | nli only + identifier rule | – / 0.6352 | 79.6 | 88.9 | 29.1 | 79.9 | 70.9 | 120.5 | 225.1 |
+| zh | cosine AND nli + identifier rule | 0.63 / 0.172 | 80.9 | 72.2 | 18.2 | 77.0 | 80.0 | 120.5 | 225.1 |
+| zh | cosine OR nli + identifier rule | 0.655 / 0.6844 | 83.6 | 72.2 | 14.5 | 78.8 | 83.6 | 120.5 | 225.1 |
+| zh | nli-t only + identifier rule | – / 0.5799 | 72.6 | 77.8 | 18.2 | 79.8 | 81.8 | 110.9 | 212.9 |
+| zh | cosine AND nli-t + identifier rule | 0.63 / 0.4658 | 79.6 | 72.2 | 25.5 | 73.4 | 74.5 | 110.9 | 212.9 |
+| zh | cosine OR nli-t + identifier rule | 0.655 / 0.8813 | 80.9 | 77.8 | 14.5 | 81.6 | 83.6 | 110.9 | 212.9 |
+| zh | reranker-m3 only + identifier rule | – / 0.5484 | 85.0 | 72.2 | 10.9 | 80.7 | 87.3 | 160.8 | 263.5 |
+| zh | **cosine AND reranker-m3 + identifier rule** | 0.575 / 0.1182 | 86.3 | 61.1 | 5.5 | 77.8 | 92.7 | 160.8 | 263.5 |
+| zh | cosine OR reranker-m3 + identifier rule | 0.855 / 0.5484 | 85.0 | 72.2 | 10.9 | 80.7 | 87.3 | 160.8 | 263.5 |
+
+ROC AUC (answerable vs unanswerable) of each raw score — dev / test:
+
+| lang | cos | nli | nli-t | reranker | reranker-m3 |
+|---|---|---|---|---|---|
+| en | 0.731 / 0.593 | 0.738 / 0.779 | 0.767 / 0.829 | 0.689 / 0.654 | 0.772 / 0.747 |
+| zh | 0.775 / 0.795 | 0.766 / 0.884 | 0.682 / 0.857 | – | 0.878 / 0.879 |
+
+## 6. Query expansion for paraphrased questions (M4)
+
+Hybrid retrieval (dev-tuned alpha); expansions are fused with the original query by RRF, expansion weight tuned on dev. LLM expansions use local Ollama (temperature 0); expansion latency is the extra time per question on CPU (cached in `eval/results/qe_cache_*.json`, measured when first computed). **Bold** = default chosen on dev MRR (all answerable questions).
+
+| lang | expansion | weight | dev MRR | test hit@1 | test MRR | test paraphrase hit@1 | test paraphrase MRR | extra ms p50 | extra ms p95 |
+|---|---|---|---|---|---|---|---|---|---|
+| en | off | – | 0.892 | 78.9 | 0.848 | 50.0 | 0.635 | 0 | 0 |
+| en | prf | 0.5 | 0.848 | 63.2 | 0.748 | 45.5 | 0.6 | 5.2 | 6.5 |
+| en | rewrite (qwen2.5:0.5b) | 1.0 | 0.913 | 80.7 | 0.864 | 54.5 | 0.679 | 232.4 | 426.1 |
+| en | **rewrite (qwen2.5:1.5b)** | 1.0 | 0.917 | 82.5 | 0.875 | 59.1 | 0.708 | 508.1 | 1426.8 |
+| en | hyde (qwen2.5:0.5b) | 1.0 | 0.906 | 78.9 | 0.854 | 50.0 | 0.645 | 277.3 | 626.5 |
+| en | hyde (qwen2.5:1.5b) | 0.5 | 0.9 | 80.7 | 0.874 | 54.5 | 0.696 | 731.8 | 1563.8 |
+| zh | off | – | 0.943 | 89.1 | 0.941 | 86.4 | 0.932 | 0 | 0 |
+| zh | prf | 0.5 | 0.932 | 87.3 | 0.926 | 86.4 | 0.924 | 2.4 | 3.2 |
+| zh | **rewrite (qwen2.5:0.5b)** | 1.0 | 0.951 | 89.1 | 0.941 | 86.4 | 0.932 | 196.4 | 311.0 |
+| zh | rewrite (qwen2.5:1.5b) | 1.0 | 0.945 | 80.0 | 0.881 | 77.3 | 0.865 | 571.9 | 1355.8 |
+| zh | hyde (qwen2.5:0.5b) | 1.0 | 0.951 | 85.5 | 0.911 | 81.8 | 0.881 | 218.9 | 473.6 |
+| zh | hyde (qwen2.5:1.5b) | 1.0 | 0.946 | 90.9 | 0.952 | 90.9 | 0.955 | 657.8 | 1841.3 |
+
+## 7. Heading context in extractive answers (M4)
+
+Answer accuracy of the extractive answerer (dev-calibrated threshold) without / with the section heading prefixed when it carries the asked-for date, version or terms (`HEADING_CONTEXT`).
+
+| lang | split | answer acc off | answer acc on | answers changed |
+|---|---|---|---|---|
+| en | dev | 78.4 | 81.1 | 4 |
+| en | test | 66.7 | 66.7 | 4 |
+| zh | dev | 81.1 | 81.1 | 2 |
+| zh | test | 81.8 | 81.8 | 0 |
+
+Changed answers:
+
+- `en-f011` (en dev, same): Which ROS 2 distribution was added in firmware version 2.2? → Version 2.2 (2026-02-14): Added support for ROS 2 Jazzy in the open-source driver. [1] A ROS 2 driver is available as an open-source package. [4]
+- `en-f037` (en dev, same): How many counselling sessions per year does the employee assistance program cover? → The employee assistance program offers free and confidential counselling by phone, 24 hours a day. [1] Employee assistance: Up to six counselling sessions per year are covered. [1]
+- `en-c002` (en dev, fixed): How long is the X2 warranty and when was the first X2 firmware released? → The RoboArm X2 comes with a 3-year limited warranty covering parts and labour. [2] Version 2.0 (2025-07-01): First release for the X2 hardware. [4]
+- `en-c004` (en dev, same): Which languages does the X2 SDK support, and which Python SDK version should I use? → Version 2.1 (2025-10-30): Python SDK 2.x released; the legacy Python 1.x SDK is deprecated and will stop receiving updates in 2027. [1] The X2 SDK supports Python and C++. [3]
+- `en-f006` (en test, same): What IP rating does the RoboArm X2 have? → Acme RoboArm X2 - Frequently Asked Questions: The arm has an IP54 rating. [1] The RoboArm X2 weighs 21 kg without the controller. [2] The RoboArm X2 comes with a 3-year limited warranty covering parts
+- `en-f015` (en test, same): How long are guest Wi-Fi access codes valid? → Guest Wi-Fi: Guest access codes are valid for 24 hours and are issued at reception. [1]
+- `en-f035` (en test, same): When do vendor access accounts expire? → Section 4. Backups and vendors: Vendors receive time-limited access accounts that expire after 90 days. [1]
+- `en-f039` (en test, same): Which industrial protocol for PLC integration was added in version 2.1? → Version 2.1 (2025-10-30): Added Modbus TCP support for PLC integration. [1]
+- `zh-f034` (zh dev, same): v2.2.0之后回充成功率是多少？ → v2.2.0（2024年6月）：回充成功率提升到98%。 [1]
+- `zh-f042` (zh dev, same): 安全事件上报的邮箱是什么？ → 安全事件上报：发现安全事件后，必须在2小时内向信息安全部报告，邮箱为 security@xinghe.example。 [1]

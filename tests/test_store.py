@@ -48,7 +48,11 @@ def test_hash_embedder_deterministic_and_normalised():
 def test_resolved_min_score_per_model():
     from rag.config import DEFAULT_MIN_SCORE, MODEL_MIN_SCORES, Settings
     assert Settings(embedding_backend="hash", _env_file=None).resolved_min_score == 0.0
-    s = Settings(embedding_model="BAAI/bge-small-zh-v1.5", _env_file=None)
+    s = Settings(embedding_model="BAAI/bge-small-zh-v1.5", answerability_judge="none", _env_file=None)
     assert s.resolved_min_score == MODEL_MIN_SCORES["BAAI/bge-small-zh-v1.5"]
+    # with the M4 judge (auto) the cosine threshold is the one calibrated jointly with the judge
+    from rag.config import ANSWERABILITY_DEFAULTS
+    s = Settings(embedding_model="BAAI/bge-small-zh-v1.5", _env_file=None)
+    assert s.resolved_min_score == ANSWERABILITY_DEFAULTS["BAAI/bge-small-zh-v1.5"][2]
     assert Settings(embedding_model="other/model", _env_file=None).resolved_min_score == DEFAULT_MIN_SCORE
     assert Settings(answer_min_score=0.1, _env_file=None).resolved_min_score == 0.1

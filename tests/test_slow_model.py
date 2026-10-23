@@ -82,3 +82,28 @@ def test_live_llm_backend(tmp_path):
     svc.answerer.base_url = "http://127.0.0.1:9/v1"
     res = svc.ask("What is the maximum payload of the RoboArm X2?")
     assert res["backend"].startswith("openai->fallback") and "7.5 kg" in res["answer"]
+
+
+def test_real_nli_judge_and_heading_context(tmp_path):
+    from rag.answerability import NLIJudge
+    j = NLIJudge(MODEL_DIR)
+    s = ["Full-time employees receive 25 days of paid vacation per year."]
+    assert j.score("How many vacation days do full-time employees get?", s) > \
+        j.score("What is the CEO's favourite colour?", s)
+    assert 0.0 <= j.score("全职员工有多少天年假？", ["全职员工每年享有25天带薪年假。"]) <= 1.0
+    # heading context end-to-end with real embeddings: the date only appears in the section heading
+    svc = _service(tmp_path, "en", "BAAI/bge-small-en-v1.5")
+    res = svc.ask("When was the first X2 firmware released?")
+    assert not res["refused"] and "2025-07-01" in res["answer"]
+
+
+def test_live_llm_query_expansion(tmp_path):
+    base = os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1")
+    try:
+        httpx.get(base.rsplit("/v1", 1)[0] + "/api/version", timeout=2).raise_for_status()
+    except Exception:
+        pytest.skip(f"no local LLM server at {base}")
+    svc = _service(tmp_path, "en", "BAAI/bge-small-en-v1.5", llm_base_url=base, query_expansion="rewrite",
+                   query_expansion_model=os.environ.get("LLM_MODEL", "qwen2.5:0.5b"))
+    res = svc.ask("Somebody stole my work notebook computer. What should I do?")
+    assert res["query_expansion"] == "rewrite" and svc.expander.cache   # expansion was computed

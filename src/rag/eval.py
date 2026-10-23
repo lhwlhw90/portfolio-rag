@@ -23,6 +23,7 @@ import time
 from dataclasses import asdict
 from pathlib import Path
 
+from . import eval_ext
 from .answerer import ExtractiveAnswerer, OpenAICompatAnswerer
 from .config import PROJECT_ROOT, Settings, apply_model_cache_env
 from .service import RAGService
@@ -75,16 +76,29 @@ def pct(x: float) -> float:
     return round(100 * x, 1)
 
 
+def auc(rows: list[dict], key: str) -> float:
+    """ROC AUC of `key` separating answerable (positive) from unanswerable questions."""
+    pos = [r[key] for r in rows if r["type"] != "unanswerable"]
+    neg = [r[key] for r in rows if r["type"] == "unanswerable"]
+    if not pos or not neg:
+        return float("nan")
+    return round(sum((p > n) + 0.5 * (p == n) for p in pos for n in neg) / (len(pos) * len(neg)), 3)
+
+
 # ----------------------------------------------------------------- retrieval
-def eval_retrieval(svc: RAGService, items: list[dict], mode: str, depth: int = 10) -> dict:
+def eval_retrieval(svc: RAGService, items: list[dict], mode: str, depth: int = 10, expander=None) -> dict:
     rows, per_type = [], {}
     for it in items:
         if it["type"] == "unanswerable":
             continue
-        hits = svc.retriever.retrieve(it["question"], k=depth, mode=mode)
+        extra = expander.expand(it["question"], svc.retriever) if expander is not None else None
+        hits = svc.retriever.retrieve(it["question"], k=depth, mode=mode, expansions=extra,
+                                      expansion_weight=expander.weight if expander is not None else 1.0)
         rank = next((r for r, h in enumerate(hits, 1) if any(is_gold(h.chunk, ev) for ev in it["evidence"])), None)
         covered5 = sum(any(is_gold(h.chunk, ev) for h in hits[:5]) for ev in it["evidence"]) / len(it["evidence"])
-        rows.append({"id": it["id"], "type": it["type"], "rank": rank, "evidence_recall@5": covered5})
+        rows.append({"id": it["id"], "type": it["type"], "rank": rank, "evidence_recall@5": covered5,
+                     "expansion_ms": round(expander.last_cost_ms, 1) if expander is not None else 0.0,
+                     "expansions": extra or []})
     def agg(rs):
         n = len(rs) or 1
         d = {f"hit@{k}": pct(sum(1 for r in rs if r["rank"] and r["rank"] <= k) / n) for k in KS}
@@ -98,14 +112,18 @@ def eval_retrieval(svc: RAGService, items: list[dict], mode: str, depth: int = 1
 
 
 # ----------------------------------------------------------------- answers
-def run_answers(svc: RAGService, items: list[dict], answerer, top_k: int) -> list[dict]:
+def run_answers(svc: RAGService, items: list[dict], answerer, top_k: int, expander=None) -> list[dict]:
     chunk_by_id = {c.chunk_id: c for c in svc.store.chunks}
     out = []
     for it in items:
         t0 = time.perf_counter()
-        hits = svc.retriever.retrieve(it["question"], k=top_k, mode="hybrid")
+        extra = expander.expand(it["question"], svc.retriever) if expander is not None else None
+        hits = svc.retriever.retrieve(it["question"], k=top_k, mode="hybrid", expansions=extra,
+                                      expansion_weight=expander.weight if expander is not None else 1.0)
         ans = answerer.answer(it["question"], hits)
         latency = (time.perf_counter() - t0) * 1000
+        if expander is not None:  # count the LLM time even when the expansion came from the cache
+            latency += expander.last_cost_ms - expander.last_ms
         cited = [chunk_by_id[c.chunk_id] for c in ans.citations]
         ev_cov = (sum(any(is_gold(ch, ev) for ch in cited) for ev in it["evidence"]) / len(it["evidence"])
                   if it["evidence"] else None)
@@ -200,7 +218,8 @@ def threshold_metrics(rows: list[dict], t: float) -> dict:
 
 
 def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: list[str], llm_url: str,
-        top_k: int, model_dir: Path, llm_gating: tuple[bool, ...] = (True, False)) -> dict:
+        top_k: int, model_dir: Path, llm_gating: tuple[bool, ...] = (True, False), judges: list[str] = (),
+        qe_configs: list[dict] = ()) -> dict:
     data = {sp: load_split(lang, sp) for sp in SPLITS}
     docs_dir = PROJECT_ROOT / "sample_docs" / lang
     errs = [e for sp in SPLITS for e in validate_dataset(data[sp], docs_dir)]
@@ -216,7 +235,7 @@ def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: li
         with tempfile.TemporaryDirectory() as tmp:
             s = Settings(data_dir=Path(tmp), model_dir=model_dir, embedding_backend="fastembed",
                          embedding_model=model, chunk_size=cs, chunk_overlap=max(cs // 7, 20), top_k=top_k,
-                         _env_file=None)
+                         answerability_judge="none", query_expansion="off", _env_file=None)
             svc = RAGService(s, embedder=embedder)
             embedder = svc.embedder
             t0 = time.perf_counter()
@@ -241,6 +260,27 @@ def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: li
             abl_thr = calibrate(abl_rows0["dev"])["best"]["threshold"]
             entry["ablation_no_identifier_rule"] = {"threshold": abl_thr, **{
                 sp: threshold_metrics(abl_rows0[sp], abl_thr) for sp in SPLITS}}
+            # M4 blocks (default chunk size only)
+            if cs == chunk_sizes[0]:
+                if judges:
+                    from .answerability import build_judge
+                    jm = {j: build_judge(j, model_dir) for j in judges}
+                    feats = {sp: eval_ext.answerability_features(svc, data[sp], jm, top_k, embedder, answer_correct)
+                             for sp in SPLITS}
+                    entry["answerability"] = {**eval_ext.eval_answerability(feats, list(judges)), "features": feats}
+                    print(f"   answerability: chosen on dev = {entry['answerability']['chosen']}")
+                if qe_configs:
+                    entry["query_expansion"] = eval_ext.eval_query_expansion(
+                        svc, data, list(qe_configs), eval_retrieval, cache_path=RESULTS / f"qe_cache_{lang}.json")
+                    print(f"   query expansion: chosen on dev = {entry['query_expansion']['chosen']}")
+                entry["heading_context"] = eval_ext.eval_heading(svc, data, embedder, thr, top_k, run_answers,
+                                                                 summarize_answers)
+                if judges and qe_configs:  # end-to-end M4 system with the dev-chosen components
+                    entry["m4_system"] = eval_ext.eval_system(
+                        svc, data, embedder, entry, jm, top_k, run_answers, summarize_answers,
+                        cache_path=RESULTS / f"qe_cache_{lang}.json")
+                    for sp in SPLITS:
+                        print(f"   {sp}: M4 system={entry['m4_system'][sp]['summary']}")
             ext = ExtractiveAnswerer(embedder=embedder, min_score=thr)
             entry["extractive"] = {"threshold": thr}
             for sp in SPLITS:
@@ -274,6 +314,9 @@ def run(lang: str, model: str, chunk_sizes: list[int], llm: bool, llm_models: li
                 prev = old.get("chunking", {}).get(cs, {})
                 if prev.get("extractive", {}).get("threshold") == e["extractive"]["threshold"]:
                     e["llm"] += [x for x in prev.get("llm", []) if (x["model"], x["gated"]) not in done]
+                for key in ("answerability", "query_expansion"):  # M4 blocks not re-run this time
+                    if key not in e and key in prev:
+                        e[key] = prev[key]
     out.write_text(json.dumps(result, ensure_ascii=False, indent=1))
     print(f"wrote {out}")
     return result
@@ -284,8 +327,8 @@ def short(r: dict) -> str:
 
 
 def report() -> Path:
-    results = [r for r in (json.loads(p.read_text()) for p in sorted(RESULTS.glob("*.json")))
-               if isinstance(r.get("n_questions"), dict)]
+    results = [r for r in (json.loads(p.read_text()) for p in sorted(RESULTS.glob("*__*.json")))
+               if isinstance(r, dict) and isinstance(r.get("n_questions"), dict)]
     L = ["# Evaluation report", "",
          "Generated by `make eval` (`python -m rag.eval`). Datasets: `eval/datasets/{lang}.{dev,test}.jsonl` "
          "(frozen, stratified by question type; built by `scripts/split_dataset.py`); corpora: `sample_docs/{lang}/`.",
@@ -336,6 +379,10 @@ def report() -> Path:
             runs = [("extractive", sp, e["extractive"]["threshold"], e["extractive"][sp]["summary"]) for sp in ("test", "dev")]
             runs += [(f"LLM `{x['model']}` {'+ gate' if x['gated'] else '(no gate)'}", x.get("split", "test"),
                       x.get("threshold"), x["summary"]) for x in e.get("llm", [])]
+            if e.get("m4_system"):
+                m4 = e["m4_system"]
+                runs[2:2] = [(f"**M4 extractive**: {m4['answerability']} + {m4['query_expansion']} + headings", sp, None,
+                              m4[sp]["summary"]) for sp in ("test", "dev")]
             for name, sp, thr, s in runs:
                 L.append(f"| {r['lang']} | {short(r)} | {cs} | {name} | {sp} | {thr or '–'} "
                          f"| {s['answer_accuracy']} | {s['citation_accuracy']} | {s['explicit_citation_rate']} "
@@ -375,10 +422,82 @@ def report() -> Path:
             L.append(f"- `{x['id']}` ({x['type']}, conf {x['confidence']}): {x['question']} → "
                      f"{x['answer'][:140].replace('|', '/')}{'…' if len(x['answer']) > 140 else ''}")
         L.append("")
+    L += m4_report(results)
     out = RESULTS / "REPORT.md"
     out.write_text("\n".join(L), encoding="utf-8")
     print(f"wrote {out}")
     return out
+
+
+AUC_KEYS = ("cos", "nli", "nli-t", "reranker", "reranker-m3")
+
+
+def m4_report(results: list[dict]) -> list[str]:
+    L = ["## 5. Answerability: cosine threshold vs NLI / cross-encoder judges (M4)", "",
+         "Each variant's threshold(s) are chosen on **dev** (max balanced accuracy, middle of the plateau; 2-D grid "
+         "for AND/OR) and applied unchanged to **test**. Judges score the top-3 candidate sentences: `nli` = "
+         "mDeBERTa-v3 XNLI fp32 ONNX, max P(entailment) with the question as hypothesis; `nli-t` = same with "
+         "\"The text answers the question: …\"; `reranker` = ms-marco-MiniLM-L-12 (en); `reranker-m3` = "
+         "bge-reranker-v2-m3 uint8 (multilingual). answer acc = answerable questions answered with the expected fact "
+         "(threshold-free answer text, so variants differ only by what they refuse). Latency p50 = retrieval + "
+         "extractive answer + judge, CPU. **Bold** = variant chosen on dev.", "",
+         "| lang | variant | thresholds (cos / judge) | dev bal. acc | test refusal acc | test false refusal | test bal. acc "
+         "| test answer acc | judge ms p50 | latency p50 ms |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in results:
+        e = next(iter(r["chunking"].values()))
+        a = e.get("answerability")
+        if not a:
+            continue
+        for v in a["variants"]:
+            nm = f"**{v['name']}**" if v["name"] == a["chosen"] else v["name"]
+            th = f"{v.get('t_cos') if v.get('t_cos') is not None else '–'} / {v.get('t_judge') if v.get('t_judge') is not None else '–'}"
+            d, t = v["dev"], v["test"]
+            L.append(f"| {r['lang']} | {nm} | {th} | {d['balanced_accuracy']} | {t['refusal_accuracy']} | "
+                     f"{t['false_refusal_rate']} | {t['balanced_accuracy']} | {t['answer_accuracy']} | {t['judge_ms_p50']} "
+                     f"| {t['latency_p50_ms']} |")
+    L += ["", "ROC AUC (answerable vs unanswerable) of each raw score — dev / test:", "",
+          "| lang | " + " | ".join(AUC_KEYS) + " |", "|---" * (len(AUC_KEYS) + 1) + "|"]
+    for r in results:
+        a = next(iter(r["chunking"].values())).get("answerability")
+        if a:
+            L.append(f"| {r['lang']} | " + " | ".join(
+                f"{a['auc']['dev'][k]} / {a['auc']['test'][k]}" if k in a["auc"]["dev"] else "–"
+                for k in AUC_KEYS) + " |")
+    L += ["", "## 6. Query expansion for paraphrased questions (M4)", "",
+          "Hybrid retrieval (dev-tuned alpha); expansions are fused with the original query by RRF, expansion weight "
+          "tuned on dev. LLM expansions use local Ollama (temperature 0); expansion latency is the extra time per "
+          "question on CPU (cached in `eval/results/qe_cache_*.json`, measured when first computed). **Bold** = default "
+          "chosen on dev MRR (all answerable questions).", "",
+          "| lang | expansion | weight | dev MRR | test hit@1 | test MRR | test paraphrase hit@1 | test paraphrase MRR "
+          "| extra ms p50 | extra ms p95 |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in results:
+        q = next(iter(r["chunking"].values())).get("query_expansion")
+        if not q:
+            continue
+        for c in q["configs"]:
+            nm = f"**{c['name']}**" if c["name"] == q["chosen"] else c["name"]
+            t, para = c["test"]["overall"], c["test"]["by_type"].get("paraphrase", {})
+            L.append(f"| {r['lang']} | {nm} | {c['weight'] or '–'} | {c['dev']['overall']['mrr']} | {t['hit@1']} | {t['mrr']} "
+                     f"| {para.get('hit@1', '–')} | {para.get('mrr', '–')} | {c['test'].get('expansion_ms_p50', 0)} "
+                     f"| {c['test'].get('expansion_ms_p95', 0)} |")
+    L += ["", "## 7. Heading context in extractive answers (M4)", "",
+          "Answer accuracy of the extractive answerer (dev-calibrated threshold) without / with the section heading "
+          "prefixed when it carries the asked-for date, version or terms (`HEADING_CONTEXT`).", "",
+          "| lang | split | answer acc off | answer acc on | answers changed |", "|---|---|---|---|---|"]
+    ex = []
+    for r in results:
+        h = next(iter(r["chunking"].values())).get("heading_context")
+        if not h:
+            continue
+        for sp in SPLITS:
+            L.append(f"| {r['lang']} | {sp} | {h[sp]['off']} | {h[sp]['on']} | {h[sp]['n_changed']} |")
+            ex += [(r["lang"], sp, c) for c in h[sp]["changed"]]
+    if ex:
+        L += ["", "Changed answers:", ""]
+        for lang, sp, c in ex:
+            mark = {(False, True): "fixed", (True, False): "broken"}.get((bool(c["correct_off"]), bool(c["correct_on"])), "same")
+            L.append(f"- `{c['id']}` ({lang} {sp}, {mark}): {c['question']} → {c['on'][:200].replace('|', '/')}")
+    return L + [""]
 
 
 def main(argv=None):
@@ -393,13 +512,17 @@ def main(argv=None):
     ap.add_argument("--llm-url", default="http://127.0.0.1:11434/v1")
     ap.add_argument("--model-dir", default=str(PROJECT_ROOT / "models"))
     ap.add_argument("--report", action="store_true", help="only rebuild REPORT.md")
+    ap.add_argument("--judges", default="", help="answerability judges to compare, e.g. nli,reranker,reranker-m3")
+    ap.add_argument("--qe", default="", help="query-expansion configs, e.g. prf,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b")
     a = ap.parse_args(argv)
     if not a.report:
         if not (a.lang and a.model):
             ap.error("--lang and --model are required unless --report")
         gating = tuple(g == "gated" for g in a.llm_gating.split(","))
+        qe = [{"mode": c.split(":", 1)[0], "model": c.split(":", 1)[1] if ":" in c else None, "url": a.llm_url}
+              for c in a.qe.split(",") if c]
         run(a.lang, a.model, [int(x) for x in a.chunk_sizes.split(",")], a.llm, a.llm_models.split(","), a.llm_url,
-            a.top_k, Path(a.model_dir), gating)
+            a.top_k, Path(a.model_dir), gating, [j for j in a.judges.split(",") if j], qe)
     report()
 
 

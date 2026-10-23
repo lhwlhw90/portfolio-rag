@@ -58,32 +58,71 @@ def _join(a: str, b: str) -> str:
     return a + b if (a and b and _CJK.match(a[-1]) and _CJK.match(b[0])) else f"{a} {b}"
 
 
-def split_sentences(text: str) -> list[str]:
-    """Sentence splitter that tolerates hard-wrapped lines (Markdown, PDF text):
-    single newlines are joined, blank lines / headings start a new block.
-    Handles both '. ' (English) and '。！？；' (Chinese, no trailing space)."""
-    blocks: list[str] = []
+def _blocks(text: str) -> list[tuple[str, bool]]:
+    """(block, is_heading) pairs. Single newlines are joined (hard-wrapped Markdown / PDF text),
+    blank lines start a new block, '#' lines and short title-like lines are heading blocks."""
+    blocks: list[tuple[str, bool]] = []
     buf = ""
     for line in text.split("\n"):
         line = re.sub(r"^(?:[-*•]|\d+[.)、])\s+", "", line.strip())  # drop list bullets
         if not line:
             if buf:
-                blocks.append(buf)
+                blocks.append((buf, False))
                 buf = ""
             continue
         if line.startswith("#"):
             if buf:
-                blocks.append(buf)
+                blocks.append((buf, False))
                 buf = ""
-            blocks.append(line.lstrip("#").strip())
+            blocks.append((line.lstrip("#").strip(), True))
             continue
         if not buf and is_heading_like(line):
-            blocks.append(line)
+            blocks.append((line, True))
             continue
         buf = _join(buf, line) if buf else line
     if buf:
-        blocks.append(buf)
-    return [s.strip() for b in blocks for s in _SENT_END.split(b) if s and s.strip()]
+        blocks.append((buf, False))
+    return blocks
+
+
+def _sents(block: str) -> list[str]:
+    return [s.strip() for s in _SENT_END.split(block) if s and s.strip()]
+
+
+def split_sentences(text: str) -> list[str]:
+    """Sentence splitter that tolerates hard-wrapped lines (Markdown, PDF text):
+    single newlines are joined, blank lines / headings start a new block.
+    Handles both '. ' (English) and '。！？；' (Chinese, no trailing space)."""
+    return [s for b, _ in _blocks(text) for s in _sents(b)]
+
+
+def _usable_heading(h: str) -> bool:
+    return bool(h) and not h.endswith(("?", "？")) and len(h) <= 80
+
+
+def sentences_with_headings(text: str, inherited: str | None = None) -> list[tuple[str, str | None]]:
+    """Like split_sentences, but each sentence is paired with the nearest heading above it
+    (`inherited` = heading in force where the chunk starts, for chunks that begin mid-section).
+    Order and content of the sentences are identical to split_sentences(text)."""
+    out: list[tuple[str, str | None]] = []
+    cur = inherited
+    for n, (b, is_head) in enumerate(_blocks(text)):
+        for s in _sents(b):
+            out.append((s, None if is_head else cur))
+        if n == 0 and is_head and inherited and inherited.endswith(b):
+            continue  # the chunk starts inside its (inherited) heading line: keep the full heading
+        if is_head and _usable_heading(b):
+            cur = b
+    return out
+
+
+def last_heading(text: str, inherited: str | None = None) -> str | None:
+    """Heading in force at the end of `text` (carried into the next chunk / page)."""
+    cur = inherited
+    for b, is_head in _blocks(text):
+        if is_head and _usable_heading(b):
+            cur = b
+    return cur
 
 
 def is_terminal(sentence: str) -> bool:

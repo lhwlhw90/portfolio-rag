@@ -52,13 +52,13 @@
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const REASONS={no_context:'No matching passages',no_candidates:'No usable sentences',low_confidence:'Low confidence',unknown_identifier:'Unknown model / code / version',llm_refused:'The LLM declined'};
+const REASONS={no_context:'No matching passages',no_candidates:'No usable sentences',low_confidence:'Low confidence',unknown_identifier:'Unknown model / code / version',llm_refused:'The LLM declined',not_supported:'Evidence does not state it (answerability judge)'};
 let last=null,health={};
 async function refresh(){
   const docs=await (await fetch('/documents')).json();
   $('#docs').innerHTML=docs.length?docs.map(d=>`<li>${esc(d.name)} <span class="mut">— ${d.n_chunks} chunk${d.n_chunks===1?'':'s'}${d.pages>1?`, ${d.pages} pages`:''}</span> <a href="#" data-id="${d.doc_id}" class="mut del">delete</a></li>`).join(''):'<li class="mut">No documents yet.</li>';
   health=await (await fetch('/health')).json();
-  $('#health').textContent=`embedder: ${health.embedder} · default answerer: ${health.answerer} · LLM ${health.llm_model}: ${health.llm_available?'online':'offline (falls back to extractive)'} · refusal threshold: ${health.min_score} · ${health.chunks} chunks indexed`;
+  $('#health').textContent=`embedder: ${health.embedder} · default answerer: ${health.answerer} · LLM ${health.llm_model}: ${health.llm_available?'online':'offline (falls back to extractive)'} · refusal threshold: ${health.min_score}${health.answerability_judge&&health.answerability_judge!=='none'?' + '+health.answerability_judge+' judge':''} · query expansion: ${health.query_expansion||'off'} · ${health.chunks} chunks indexed`;
   $('#answerer option[value=llm]').textContent=`local LLM (${health.llm_model}${health.llm_available?'':', offline'})`;
 }
 $('#docs').onclick=async e=>{if(!e.target.classList.contains('del'))return;e.preventDefault();await fetch('/documents/'+e.target.dataset.id,{method:'DELETE'});refresh();};
@@ -75,7 +75,7 @@ function meter(j){
 }
 function render(j){
   last=j;
-  let h=`<div class="chips"><span class="chip">${esc(j.backend)}</span><span class="chip">${esc(j.mode)}</span>${meter(j)}<span class="chip">${j.latency_ms} ms</span>${j.citation_mode!=='explicit'?`<span class="chip">citations: ${esc(j.citation_mode)}</span>`:''}</div>`;
+  let h=`<div class="chips"><span class="chip">${esc(j.backend)}</span><span class="chip">${esc(j.mode)}</span>${meter(j)}${j.support_score!=null?`<span class="chip" title="answerability judge score">support ${j.support_score}</span>`:''}${j.query_expansion&&j.query_expansion!=='off'?`<span class="chip">query expansion: ${esc(j.query_expansion)}</span>`:''}<span class="chip">${j.latency_ms} ms</span>${j.citation_mode!=='explicit'?`<span class="chip">citations: ${esc(j.citation_mode)}</span>`:''}</div>`;
   if(j.refused)h+=`<div class="refusal"><b>Refused — ${esc(REASONS[j.refusal_reason]||j.refusal_reason||'not answerable')}.</b> ${esc(j.refusal_detail||'')}</div>`;
   h+=`<div class="answer">${markers(j.answer)}</div>`;
   h+=j.citations.map(c=>`<div class="cit" data-n="${c.index}"><b>[${c.index}] ${esc(c.doc_name)}${c.page!=null?`, p. ${c.page}`:''}</b> <span class="mut">${esc(c.chunk_id)} · score ${c.score}</span><p>${esc(c.snippet)}</p></div>`).join('');

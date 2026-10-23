@@ -33,6 +33,7 @@ class StoredChunk:
     chunk_index: int
     page: int | None
     text: str
+    heading: str | None = None  # section heading in force at the chunk start (meta["heading"])
 
 
 class EmbeddingMismatch(RuntimeError):
@@ -62,10 +63,11 @@ class VectorStore:
 
     def _reload(self) -> None:
         rows = self._conn.execute(
-            "SELECT c.chunk_id, c.doc_id, d.name, c.chunk_index, c.page, c.text, c.embedding "
+            "SELECT c.chunk_id, c.doc_id, d.name, c.chunk_index, c.page, c.text, c.embedding, c.meta "
             "FROM chunks c JOIN documents d USING(doc_id) ORDER BY d.created_at, c.doc_id, c.chunk_index"
         ).fetchall()
-        self.chunks = [StoredChunk(r[0], r[1], r[2], r[3], r[4], r[5]) for r in rows]
+        self.chunks = [StoredChunk(r[0], r[1], r[2], r[3], r[4], r[5], json.loads(r[7] or "{}").get("heading"))
+                       for r in rows]
         self.matrix = (np.stack([np.frombuffer(r[6], dtype=np.float32) for r in rows])
                        if rows else np.zeros((0, 0), dtype=np.float32))
 

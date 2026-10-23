@@ -10,9 +10,11 @@ from typing import Iterator
 
 import httpx
 
+from .answerability import build_judge
 from .answerer import Answer, Answerer, ExtractiveAnswerer, OpenAICompatAnswerer, stream_answer
 from .config import Settings
 from .embeddings import Embedder, build_embedder
+from .query import QueryExpander
 from .ingest import SUPPORTED_EXTS, chunk_pages, parse_document
 from .retriever import Hit, HybridRetriever
 from .store import VectorStore
@@ -33,7 +35,14 @@ class RAGService:
                                                    settings.model_dir)
         self.store = VectorStore(settings.db_path, self.embedder.name, self.embedder.dim)
         self.retriever = HybridRetriever(self.store, self.embedder, alpha=settings.hybrid_alpha)
-        self.extractive = ExtractiveAnswerer(embedder=self.embedder, min_score=settings.resolved_min_score)
+        self.judge = build_judge(settings.resolved_judge, settings.model_dir)
+        self.extractive = ExtractiveAnswerer(embedder=self.embedder, min_score=settings.resolved_min_score,
+                                             heading_context=settings.heading_context, judge=self.judge,
+                                             judge_min=settings.resolved_judge_min,
+                                             judge_policy=settings.resolved_policy)
+        qe_mode, qe_model, qe_weight = settings.resolved_expansion
+        self.expander = QueryExpander(qe_mode, settings.llm_base_url, qe_model, timeout=settings.query_expansion_timeout,
+                                      weight=qe_weight)
         self._llm: OpenAICompatAnswerer | None = None
         if answerer is not None:
             self.answerer = answerer
@@ -112,12 +121,15 @@ class RAGService:
         return {"question": question, "answer": ans.answer, "backend": ans.backend, "refused": ans.refused,
                 "refusal_reason": ans.refusal_reason, "refusal_detail": ans.refusal_detail,
                 "confidence": ans.confidence, "min_score": self.extractive.min_score,
+                "support_score": ans.support_score, "query_expansion": self.expander.mode,
                 "citation_mode": ans.citation_mode, "mode": mode,
                 "latency_ms": round((time.perf_counter() - t0) * 1000, 1),
                 "citations": [asdict(c) for c in ans.citations]}
 
     def retrieve(self, question: str, top_k: int | None, mode: str) -> list[Hit]:
-        return self.retriever.retrieve(question, k=top_k or self.settings.top_k, mode=mode)
+        extra = self.expander.expand(question, self.retriever) if mode == "hybrid" else None
+        return self.retriever.retrieve(question, k=top_k or self.settings.top_k, mode=mode, expansions=extra,
+                                       expansion_weight=self.expander.weight)
 
     def ask(self, question: str, top_k: int | None = None, mode: str = "hybrid", answerer: str | None = None) -> dict:
         t0 = time.perf_counter()

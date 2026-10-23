@@ -5,3 +5,12 @@ data
 .pytest_cache
 **/__pycache__
 .env
+tools
+build
+dist
+docs/img
+eval/results
+eval/datasets
+eval/authoring
+sample_docs
+tests

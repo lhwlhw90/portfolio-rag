@@ -1,0 +1,3615 @@
+[
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "IT服务台的电话分机是多少？",
+"expansions": [
+"IT服务台的电话分机是0755-83889999。"
+],
+"ms": 352.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7不支持5GHz网络，双频路由器配网失败应该怎么办？",
+"expansions": [
+"请确认S7是否支持5GHz网络，如不支持，请联系技术支持。"
+],
+"ms": 273.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7充满电要多久？首次使用前要充多久？",
+"expansions": [
+"S7充满电需要10小时，首次使用前需要充10000小时。"
+],
+"ms": 327.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7单层地图最多可以保存几张？",
+"expansions": [
+"S7单层地图最多可以保存100张。"
+],
+"ms": 211.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7固件v2.3.0新增了什么识别功能？",
+"expansions": [
+"S7固件v2.3.0新增了“多点识别”功能，可以实现多点同时识别，提高识别效率。"
+],
+"ms": 390.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7固件升级大约需要多长时间？",
+"expansions": [
+"S7固件升级一般需要1-2天。"
+],
+"ms": 206.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7安静模式下的噪音是多少分贝？",
+"expansions": [
+"S7安静模式下噪音为0分贝。"
+],
+"ms": 202.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7整机保修期是多久？",
+"expansions": [
+"S7整机保修期为10年。"
+],
+"ms": 211.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7最多可以设置几个定时任务？",
+"expansions": [
+"S7最多可以设置10个定时任务。"
+],
+"ms": 188.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7滤网多久更换一次？边刷多久更换一次？",
+"expansions": [
+"S7滤网每6个月更换一次，边刷每3个月更换一次。"
+],
+"ms": 278.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的固件升级大约需要多久？升级时有什么注意事项？",
+"expansions": [
+"S7的固件升级一般需要24小时，升级时需要备份数据，确保数据安全。"
+],
+"ms": 324.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的尘盒容量是多少？",
+"expansions": [
+"S7的尘盒容量为10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+],
+"ms": 1225.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的整机保修期是多久？主刷多久需要更换一次？",
+"expansions": [
+"S7的整机保修期是1年，主刷需要每3个月更换一次。"
+],
+"ms": 320.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的最大吸力是多少？",
+"expansions": [
+"S7的最大吸力是1000磅。"
+],
+"ms": 206.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的电池容量是多少？",
+"expansions": [
+"S7的电池容量为12V。"
+],
+"ms": 176.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的边刷多久更换一次？",
+"expansions": [
+"S7的边刷每6个月更换一次。"
+],
+"ms": 215.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7的配套App叫什么名字？",
+"expansions": [
+"S7的配套App叫S7助手。"
+],
+"ms": 200.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "S7首次使用前需要充电多久？",
+"expansions": [
+"S7首次使用前需要充电24小时。"
+],
+"ms": 188.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "v2.2.0之后回充成功率是多少？",
+"expansions": [
+"v2.2.0之后回充成功率是99.99%。"
+],
+"ms": 442.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "一次报一万块需要谁批？",
+"expansions": [
+"一次报一万块需要人力资源部或总经理批。"
+],
+"ms": 187.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "一线城市出差的住宿标准是多少？",
+"expansions": [
+"一线城市出差的住宿标准一般为1-2晚，具体以当地政策为准。"
+],
+"ms": 285.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "产假有多少天？",
+"expansions": [
+"产假为90天。"
+],
+"ms": 148.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "今年没休完的假期可以留到明年吗？",
+"expansions": [
+"今年没休完的假期可以留到明年。"
+],
+"ms": 209.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "会议室单次最长可以预订多久？",
+"expansions": [
+"会议室单次最长可以预订12小时。"
+],
+"ms": 187.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "会议室单次最长订多久？30人以上大会议室要提前多久申请？",
+"expansions": [
+"会议室单次最长订多久？30人以上大会议室要提前多久申请？"
+],
+"ms": 286.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "住房公积金的缴存比例是多少？",
+"expansions": [
+"住房公积金的缴存比例一般为职工工资的1%。"
+],
+"ms": 235.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "充电底座周围要空出多大地方？",
+"expansions": [
+"充电底座周围至少要留出10厘米的空隙。"
+],
+"ms": 259.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "入职满一年有多少天年假？满五年额外增加几天？",
+"expansions": [
+"入职满一年有15天年假，满五年额外增加10天年假。"
+],
+"ms": 317.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "入职满一年的员工每年有多少天带薪年假？",
+"expansions": [
+"入职满一年的员工每年有10天带薪年假。"
+],
+"ms": 243.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "全公司断网了半夜找谁？",
+"expansions": [
+"全公司断网了，半夜找谁？"
+],
+"ms": 201.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "公司总部的地址在哪里？",
+"expansions": [
+"公司总部位于北京市朝阳区建国路1号。"
+],
+"ms": 194.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "公司每天补贴午餐多少钱？",
+"expansions": [
+"公司每天补贴午餐的金额根据员工的职位、工作时间、工作性质等因素而定。"
+],
+"ms": 294.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "公司的核心工作时间是几点到几点？",
+"expansions": [
+"公司的核心工作时间是早上8点到晚上10点。"
+],
+"ms": 234.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "公司笔记本电脑多久更换一次？",
+"expansions": [
+"公司笔记本电脑一般每两年更换一次。"
+],
+"ms": 219.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "出差期间每天的餐补是多少？",
+"expansions": [
+"出差期间每天的餐补是根据出差天数和标准餐补金额计算的。"
+],
+"ms": 301.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "出差餐补每天多少钱？公司每天补贴午餐多少钱？",
+"expansions": [
+"出差餐补每天多少钱？公司每天补贴午餐多少钱？"
+],
+"ms": 214.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "办公楼的开放时间是什么？",
+"expansions": [
+"办公楼的开放时间是周一至周五上午9:00至下午5:00。"
+],
+"ms": 288.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "加班到很晚回家打车能报销吗？",
+"expansions": [
+"不能。"
+],
+"ms": 116.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "发现被黑客攻击后多长时间内要上报？",
+"expansions": [
+"发现被黑客攻击后，应立即上报，一般应在24小时内上报。"
+],
+"ms": 284.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "发票过了多久就不能报了？",
+"expansions": [
+"发票过期后，不能再进行报账。"
+],
+"ms": 212.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "可以把客户资料存到自己的百度网盘吗？",
+"expansions": [
+"可以，百度网盘是客户资料存到自己的云存储服务。"
+],
+"ms": 249.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "员工生日礼金是多少？",
+"expansions": [
+"员工生日礼金的发放标准由公司根据员工的职位、部门、工作年限等因素确定。"
+],
+"ms": 295.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "员工走人那天账号什么时候被关掉？",
+"expansions": [
+"员工走人当天，账号将被自动注销。"
+],
+"ms": 223.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "在公司干了五年以上有什么额外假期？",
+"expansions": [
+"在公司干了五年以上，可以享受五年以上的年休假。"
+],
+"ms": 256.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "地下停车场有多少个车位？",
+"expansions": [
+"地下停车场有100个车位。"
+],
+"ms": 170.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "孩子能一起买公司的商业医疗保险吗？",
+"expansions": [
+"公司可以为员工提供商业医疗保险，但需与员工协商并签署保险合同。"
+],
+"ms": 334.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "安全事件上报的邮箱是什么？",
+"expansions": [
+"安全事件上报的邮箱是：安全事件@公司邮箱。"
+],
+"ms": 225.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "安全事件要在多久内上报？普通IT工单多久首次响应？",
+"expansions": [
+"一般IT工单应在1小时内首次响应，安全事件应在24小时内上报。"
+],
+"ms": 283.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "家里路由器是5G频段的，机器人能连上吗？",
+"expansions": [
+"家里路由器是5G频段的，机器人能连上吗？"
+],
+"ms": 236.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "密码多久必须更换一次？",
+"expansions": [
+"密码应至少每6个月更换一次。"
+],
+"ms": 176.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "居家办公一周最多几天？居家办公设备补贴多少钱？",
+"expansions": [
+"居家办公一周最多几天？居家办公设备补贴多少钱？"
+],
+"ms": 215.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "居家办公设备补贴是多少钱？",
+"expansions": [
+"补贴金额根据设备类型、使用年限、使用情况等因素确定。"
+],
+"ms": 230.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "开电动车上班能在公司充电吗？",
+"expansions": [
+"公司是否允许员工开电动车上班充电？"
+],
+"ms": 185.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "怎么让扫地机器人别进某个房间？",
+"expansions": [
+"扫地机器人在进入房间时，应先检查房间是否空闲，避免误入。"
+],
+"ms": 300.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "怎么防止小孩乱按扫地机器人的按钮？",
+"expansions": [
+"请告诉他们不要随意按动机器人的按钮，以免造成不必要的伤害。"
+],
+"ms": 298.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "我一周能在家上班几天？",
+"expansions": [
+"一周能在家上班4天。"
+],
+"ms": 145.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "我想要两块外接屏幕可以吗？",
+"expansions": [
+"您想要两块外接屏幕吗？"
+],
+"ms": 182.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "我要结婚了，公司给几天假？",
+"expansions": [
+"请提供您的结婚日期，以便我为您查询并提供相应的假期安排。"
+],
+"ms": 262.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人充满电要多久？",
+"expansions": [
+"扫地机器人充满电需要10小时。"
+],
+"ms": 218.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人怎么进入联网模式？",
+"expansions": [
+"扫地机器人进入联网模式需要按照说明书上的步骤操作。"
+],
+"ms": 214.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人能说广东话吗？",
+"expansions": [
+"能。"
+],
+"ms": 125.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "扫地机能钻到床底下吗？",
+"expansions": [
+"床底下不能。"
+],
+"ms": 127.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "报销的钱多久能到账？",
+"expansions": [
+"报销的钱到账时间视情况而定，一般需要1-3个工作日。"
+],
+"ms": 239.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "招待客户的人均标准是多少？",
+"expansions": [
+"接待客户的人均标准是根据客户类型、服务项目、服务内容等因素综合确定的。"
+],
+"ms": 296.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "推荐奖金是多少？",
+"expansions": [
+"请提供更多信息，以便我为您撰写一段简短的文字。"
+],
+"ms": 211.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "推荐奖金是多少？试用期多长？",
+"expansions": [
+"公司对员工的奖励政策是根据员工的贡献和工作表现而定的。试用期通常为6个月，具体期限根据公司政策和员工的绩效而定。"
+],
+"ms": 473.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "故障代码E3表示什么？",
+"expansions": [
+"故障代码E3表示设备故障。"
+],
+"ms": 158.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "新同事的邮箱什么时候能用？",
+"expansions": [
+"新同事的邮箱何时能用？"
+],
+"ms": 164.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "新员工的试用期是多久？",
+"expansions": [
+"新员工的试用期为三个月。"
+],
+"ms": 189.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "普通IT工单的首次响应时间是多久？",
+"expansions": [
+"普通IT工单的首次响应时间一般为1-2小时。"
+],
+"ms": 334.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "朋友来公司找我需要提前做什么？",
+"expansions": [
+"朋友来公司找我，需要提前了解公司的规章制度、工作流程、工作时间、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、工作地点、"
+],
+"ms": 1268.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "机器人怎么恢复到出厂状态？",
+"expansions": [
+"机器人出厂后，如果出现故障或损坏，可以按照以下步骤进行恢复：首先，检查机器人是否已经完全断电；其次，检查机器人内部的电池和电源是否正常；最后，检查机器人内部的机械部件是否损坏，如果损坏，需要更换新的机械部件。"
+],
+"ms": 654.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "机器人显示E7是怎么回事？",
+"expansions": [
+"E7是机器人显示的缩写。"
+],
+"ms": 201.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "机器人的电池坏了，保修多久？",
+"expansions": [
+"保修期为1年。"
+],
+"ms": 168.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "正版办公软件许可证每人最多可以激活几台设备？",
+"expansions": [
+"每人最多可以激活10台设备。"
+],
+"ms": 226.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "每位员工每年的学习经费是多少？",
+"expansions": [
+"每位员工每年的学习经费是根据其所在公司的政策和规定来确定的。"
+],
+"ms": 269.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "每年的学习经费是多少？每月健身补贴是多少？",
+"expansions": [
+"每年的学习经费是10000元，每月健身补贴是500元。"
+],
+"ms": 289.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "每月的健身补贴是多少？",
+"expansions": [
+"每月的健身补贴为100元。"
+],
+"ms": 181.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "火警响了大家到哪里集合？",
+"expansions": [
+"大家到集合地点集合。"
+],
+"ms": 160.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "生产数据库的备份保留多少天？",
+"expansions": [
+"生产数据库的备份应至少保留30天。"
+],
+"ms": 207.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "生产服务器访问权限的有效期是多久？",
+"expansions": [
+"生产服务器访问权限的有效期是3个月。"
+],
+"ms": 223.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "电脑丢了应该怎么办？",
+"expansions": [
+"电脑丢失后，应立即联系电脑供应商或客服，报告丢失情况并提供相关证据。"
+],
+"ms": 284.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "电量多少的时候才能升级固件？",
+"expansions": [
+"升级固件时，需要检查设备的电量。"
+],
+"ms": 230.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "登录VPN有什么要求？申请生产服务器权限需要谁审批？",
+"expansions": [
+"申请生产服务器权限需要IT部门审批。"
+],
+"ms": 191.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "笔记本电脑丢失要什么时候通知IT？IT服务台的分机号是多少？",
+"expansions": [
+"IT服务台的电话号码是010-6234-5678。"
+],
+"ms": 386.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "绩效考核在哪几个月进行？",
+"expansions": [
+"绩效考核一般在每年的10月和次年的1月进行。"
+],
+"ms": 245.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "老婆生孩子，男员工可以休几天假？",
+"expansions": [
+"男员工可以休10天假。"
+],
+"ms": 182.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "自己的手机电脑能连办公网吗？",
+"expansions": [
+"能。"
+],
+"ms": 123.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "订了会议室但是没去会怎样？",
+"expansions": [
+"如果在会议室等了很长时间，但没有到会，可能是因为会议已经结束，或者你可能需要提前到达。"
+],
+"ms": 328.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "账号密码长度至少要多少位？",
+"expansions": [
+"账号密码长度至少要8位。"
+],
+"ms": 170.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "长时间出差不用扫地机，电池要怎么保养？",
+"expansions": [
+"长时间出差不用扫地机，电池要定期充电和更换。"
+],
+"ms": 221.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:0.5b",
+"question": "飞很远的航班能坐更好的舱位吗？",
+"expansions": [
+"飞很远的航班能坐更好的舱位吗？"
+],
+"ms": 224.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "IT服务台的电话分机是多少？",
+"expansions": [
+"IT服务台的电话分机是1234。"
+],
+"ms": 464.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7不支持5GHz网络，双频路由器配网失败应该怎么办？",
+"expansions": [
+"如果S7不支持5GHz网络，双频路由器配网失败，可以尝试更换支持5GHz网络的路由器，或者使用5GHz频段的设备。"
+],
+"ms": 1113.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7充满电要多久？首次使用前要充多久？",
+"expansions": [
+"S7电池充满电大约需要2-3小时，首次使用前建议先充满电再使用，以确保电池性能最佳。"
+],
+"ms": 798.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7单层地图最多可以保存几张？",
+"expansions": [
+"S7单层地图最多可以保存100张。"
+],
+"ms": 474.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7固件v2.3.0新增了什么识别功能？",
+"expansions": [
+"S7固件v2.3.0新增了对多种新设备的识别功能，包括智能门锁、智能摄像头和智能家居设备，提高了设备的兼容性和使用便捷性。"
+],
+"ms": 1233.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7固件升级大约需要多长时间？",
+"expansions": [
+"S7固件升级的耗时取决于多种因素，包括当前的网络连接速度、设备的硬件配置以及固件的复杂程度。通常，升级过程可能需要几分钟到几小时不等，具体时间取决于上述条件。"
+],
+"ms": 1377.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7安静模式下的噪音是多少分贝？",
+"expansions": [
+"在S7安静模式下，噪音水平低于30分贝。"
+],
+"ms": 528.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7整机保修期是多久？",
+"expansions": [
+"S7整机的保修期为一年，自购买之日起计算。"
+],
+"ms": 510.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7最多可以设置几个定时任务？",
+"expansions": [
+"S7最多可以设置50个定时任务。"
+],
+"ms": 367.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7滤网多久更换一次？边刷多久更换一次？",
+"expansions": [
+"S7滤网建议每季度更换一次，以确保空气流通畅通。边刷建议每季度更换一次，以保持清洁和卫生。"
+],
+"ms": 938.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的固件升级大约需要多久？升级时有什么注意事项？",
+"expansions": [
+"固件升级通常需要几分钟到几小时不等，具体时间取决于当前的网络状况和升级的复杂性。在升级过程中，请确保设备处于关闭状态，避免在升级期间进行任何操作。升级完成后，请检查设备的连接状态和功能是否正常。"
+],
+"ms": 1620.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的尘盒容量是多少？",
+"expansions": [
+"S7的尘盒容量为1000微升。"
+],
+"ms": 613.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的整机保修期是多久？主刷多久需要更换一次？",
+"expansions": [
+"S7的整机保修期为一年，主刷需要在一年内进行更换。"
+],
+"ms": 2106.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的最大吸力是多少？",
+"expansions": [
+"S7的吸力为1000磅。"
+],
+"ms": 591.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的电池容量是多少？",
+"expansions": [
+"S7的电池容量为3000mAh。"
+],
+"ms": 531.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的边刷多久更换一次？",
+"expansions": [
+"S7的边刷建议每三个月更换一次，以保持最佳的清洁效果和延长设备寿命。"
+],
+"ms": 679.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7的配套App叫什么名字？",
+"expansions": [
+"S7的配套App名为S7 Manager。"
+],
+"ms": 429.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "S7首次使用前需要充电多久？",
+"expansions": [
+"S7首次使用前需要充电1小时。"
+],
+"ms": 348.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "v2.2.0之后回充成功率是多少？",
+"expansions": [
+"v2.2.0之后，我们优化了回充成功率，现在平均成功率达到了95%以上。"
+],
+"ms": 869.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "一次报一万块需要谁批？",
+"expansions": [
+"一次报一万块需要总经理审批。"
+],
+"ms": 332.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "一线城市出差的住宿标准是多少？",
+"expansions": [
+"一线城市出差的住宿标准通常为每晚人民币300元至500元，具体标准可能根据公司政策和预算有所不同。"
+],
+"ms": 870.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "产假有多少天？",
+"expansions": [
+"根据公司人事制度，女性员工享有120天的产假。"
+],
+"ms": 483.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "今年没休完的假期可以留到明年吗？",
+"expansions": [
+"根据公司政策，员工的假期应在当年内使用完毕，不得留到次年。"
+],
+"ms": 643.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "会议室单次最长可以预订多久？",
+"expansions": [
+"会议室单次最长可以预订为2小时。"
+],
+"ms": 477.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "会议室单次最长订多久？30人以上大会议室要提前多久申请？",
+"expansions": [
+"会议室的预订通常遵循以下规则：单次最长订时间为30分钟。对于30人以上的大型会议室，建议提前至少一周进行申请。"
+],
+"ms": 950.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "住房公积金的缴存比例是多少？",
+"expansions": [
+"住房公积金的缴存比例一般为12%至12%，具体比例可能因地区和单位而异。"
+],
+"ms": 859.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "充电底座周围要空出多大地方？",
+"expansions": [
+"充电底座周围应留有足够的空间，以确保充电过程的顺畅和安全。建议至少留出10厘米的空隙，以便于散热和避免底座过热。"
+],
+"ms": 2596.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "入职满一年有多少天年假？满五年额外增加几天？",
+"expansions": [
+"入职满一年的员工享有5天年假。满五年后，员工将额外获得5天年假。"
+],
+"ms": 734.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "入职满一年的员工每年有多少天带薪年假？",
+"expansions": [
+"根据公司人事制度，入职满一年的员工每年享有5天带薪年假。"
+],
+"ms": 820.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "全公司断网了半夜找谁？",
+"expansions": [
+"全公司断网了，应立即联系IT服务团队。"
+],
+"ms": 479.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "公司总部的地址在哪里？",
+"expansions": [
+"公司总部位于北京市朝阳区，具体地址是东三环北路10号。"
+],
+"ms": 698.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "公司每天补贴午餐多少钱？",
+"expansions": [
+"公司每日午餐补贴金额为50元。"
+],
+"ms": 402.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "公司的核心工作时间是几点到几点？",
+"expansions": [
+"公司的工作时间为上午9:00至下午5:00，每周五天工作制。"
+],
+"ms": 883.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "公司笔记本电脑多久更换一次？",
+"expansions": [
+"根据公司的IT服务指南，笔记本电脑的更换周期为两年一次。"
+],
+"ms": 530.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "出差期间每天的餐补是多少？",
+"expansions": [
+"出差期间的餐补标准为每人每天100元人民币。"
+],
+"ms": 470.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "出差餐补每天多少钱？公司每天补贴午餐多少钱？",
+"expansions": [
+"出差餐补的金额因公司政策而异，通常由公司根据出差人员的职务、出差地点和时间等因素决定。一般来说，午餐补贴每天可能在10元至50元之间，具体数额需查阅公司的人事制度或联系人力资源部门获取准确信息。"
+],
+"ms": 1823.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "办公楼的开放时间是什么？",
+"expansions": [
+"办公楼的开放时间是早上8:00到晚上6:00，周一至周五。"
+],
+"ms": 870.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "加班到很晚回家打车能报销吗？",
+"expansions": [
+"根据公司规定，加班到很晚回家打车通常不能报销。"
+],
+"ms": 533.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "发现被黑客攻击后多长时间内要上报？",
+"expansions": [
+"一旦发现被黑客攻击，应立即上报并采取措施进行处理。"
+],
+"ms": 486.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "发票过了多久就不能报了？",
+"expansions": [
+"根据我们的规定，发票必须在开具之日起30天内进行报销，超过期限将不再受理。"
+],
+"ms": 759.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "可以把客户资料存到自己的百度网盘吗？",
+"expansions": [
+"根据我们的公司政策，我们不建议将客户资料存到个人的百度网盘。建议使用公司内部的文件存储系统。"
+],
+"ms": 925.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "员工生日礼金是多少？",
+"expansions": [
+"员工生日礼金为500元。"
+],
+"ms": 392.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "员工走人那天账号什么时候被关掉？",
+"expansions": [
+"员工走人当天，其账号将在当天24:00后被自动关闭。"
+],
+"ms": 635.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "在公司干了五年以上有什么额外假期？",
+"expansions": [
+"员工在公司工作五年以上，将享有额外的年假。具体假期天数根据员工的工作年限而定，通常为每年5天起。"
+],
+"ms": 1055.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "地下停车场有多少个车位？",
+"expansions": [
+"地下停车场共有120个车位。"
+],
+"ms": 360.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "孩子能一起买公司的商业医疗保险吗？",
+"expansions": [
+"根据公司政策，员工及其直系亲属可以共同购买商业医疗保险。"
+],
+"ms": 887.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "安全事件上报的邮箱是什么？",
+"expansions": [
+"安全事件应通过公司指定的安全事件上报邮箱进行报告，该邮箱为：[安全事件上报邮箱]。"
+],
+"ms": 796.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "安全事件要在多久内上报？普通IT工单多久首次响应？",
+"expansions": [
+"安全事件应在24小时内上报，普通IT工单首次响应时间不超过2小时。"
+],
+"ms": 602.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "家里路由器是5G频段的，机器人能连上吗？",
+"expansions": [
+"机器人通常不支持5G频段，因此无法直接连接到5G路由器。建议使用4G或5G路由器，以确保机器人能够正常连接网络。"
+],
+"ms": 1327.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "密码多久必须更换一次？",
+"expansions": [
+"密码应每三个月更换一次，以确保账户安全。"
+],
+"ms": 550.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "居家办公一周最多几天？居家办公设备补贴多少钱？",
+"expansions": [
+"居家办公一周最多三天。居家办公设备补贴金额为500元。"
+],
+"ms": 596.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "居家办公设备补贴是多少钱？",
+"expansions": [
+"居家办公设备补贴金额因地区和公司政策而异，通常在几百到几千元不等。具体金额请咨询您的公司人事部门。"
+],
+"ms": 1267.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "开电动车上班能在公司充电吗？",
+"expansions": [
+"根据公司政策，电动车在公司内仅限于充电，不得用于其他用途。"
+],
+"ms": 775.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "怎么让扫地机器人别进某个房间？",
+"expansions": [
+"请在扫地机器人进入房间前，使用遥控器或手机应用设置房间的“不进入模式”。这样，机器人将不会进入该房间进行清洁。"
+],
+"ms": 1057.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "怎么防止小孩乱按扫地机器人的按钮？",
+"expansions": [
+"为了防止小孩乱按扫地机器人的按钮，建议采取以下措施：首先，确保机器人上有一个坚固的盖子，防止小孩误触。其次，设定一个儿童无法触及的按钮，只有成年人才能操作。最后，定期检查并清洁机器人，确保其表面没有小物件，避免小孩误触。"
+],
+"ms": 3906.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "我一周能在家上班几天？",
+"expansions": [
+"根据公司政策，员工每周可以在家上班不超过三天。"
+],
+"ms": 502.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "我想要两块外接屏幕可以吗？",
+"expansions": [
+"我们提供外接屏幕的选项，但需要确认您的设备兼容性。"
+],
+"ms": 483.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "我要结婚了，公司给几天假？",
+"expansions": [
+"根据公司人事制度，员工结婚时可享受5天的婚假。"
+],
+"ms": 590.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人充满电要多久？",
+"expansions": [
+"扫地机器人充满电的时间取决于其电池容量和所使用的充电器。一般来说，标准型号的扫地机器人充满电需要3到5小时，具体时间可能因品牌和型号而异。"
+],
+"ms": 1676.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人怎么进入联网模式？",
+"expansions": [
+"请按下机器人底部的“设置”键，然后选择“网络设置”，按照屏幕上的指示操作，即可进入联网模式。"
+],
+"ms": 940.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人能说广东话吗？",
+"expansions": [
+"扫地机器人能够识别并理解中文指令，包括广东话。"
+],
+"ms": 860.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "扫地机能钻到床底下吗？",
+"expansions": [
+"扫地机通常设计为能够进入狭窄的通道，包括床底下，以清理灰尘和垃圾。然而，具体能否进入床底下取决于扫地机的型号和设计。建议在使用前检查产品说明或咨询客服以获取更准确的信息。"
+],
+"ms": 1810.4
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "报销的钱多久能到账？",
+"expansions": [
+"我们承诺在收到报销申请后的1-3个工作日内完成审核并处理报销款项。"
+],
+"ms": 686.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "招待客户的人均标准是多少？",
+"expansions": [
+"招待客户的人均标准因公司规模、行业特性及具体业务而异。通常，公司会根据接待的客户重要性和公司政策来确定人均标准。一般而言，接待重要客户时，人均标准可能在100元至500元之间，具体数额需根据实际情况和公司规定来确定。"
+],
+"ms": 1841.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "推荐奖金是多少？",
+"expansions": [
+"根据公司政策，推荐奖金的标准是根据推荐人的推荐人数和被推荐人的绩效评估结果来确定的。具体金额将由人力资源部门根据公司的财务状况和市场情况来确定。"
+],
+"ms": 1189.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "推荐奖金是多少？试用期多长？",
+"expansions": [
+"推荐奖金根据个人贡献和业绩而定，具体数额需由公司人力资源部门确定。试用期通常为一个月，但具体时长视职位和公司政策而定。"
+],
+"ms": 1088.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "故障代码E3表示什么？",
+"expansions": [
+"故障代码E3通常表示发动机控制单元检测到发动机转速异常或燃油喷射不均。"
+],
+"ms": 724.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "新同事的邮箱什么时候能用？",
+"expansions": [
+"新同事的邮箱将在入职当天启用，以便他们能够及时接收和回复工作邮件。"
+],
+"ms": 657.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "新员工的试用期是多久？",
+"expansions": [
+"新员工的试用期通常为3到6个月，具体时长取决于公司的具体规定。"
+],
+"ms": 595.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "普通IT工单的首次响应时间是多久？",
+"expansions": [
+"普通IT工单的首次响应时间通常为24小时内。"
+],
+"ms": 522.6
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "朋友来公司找我需要提前做什么？",
+"expansions": [
+"请提前告知我朋友来公司的时间和目的，以便我安排合适的接待和安排。"
+],
+"ms": 578.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "机器人怎么恢复到出厂状态？",
+"expansions": [
+"请按照以下步骤操作：首先，确保机器人已断电。然后，使用配套的恢复工具连接到机器人。接着，按照工具的指示进行操作，直到机器人恢复到出厂状态。"
+],
+"ms": 1727.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "机器人显示E7是怎么回事？",
+"expansions": [
+"机器人显示E7通常表示系统检测到的环境温度超过了预设的安全阈值。这可能是由于机器人在高温环境下工作导致的，也可能是传感器故障或其他硬件问题。建议检查机器人的工作环境和相关硬件，必要时联系技术支持进行诊断和修复。"
+],
+"ms": 1692.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "机器人的电池坏了，保修多久？",
+"expansions": [
+"机器人电池损坏的保修期限为一年。"
+],
+"ms": 400.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "正版办公软件许可证每人最多可以激活几台设备？",
+"expansions": [
+"根据我们的正版办公软件许可证政策，每人最多可以激活两台设备。"
+],
+"ms": 739.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "每位员工每年的学习经费是多少？",
+"expansions": [
+"每位员工每年的学习经费为500元。"
+],
+"ms": 400.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "每年的学习经费是多少？每月健身补贴是多少？",
+"expansions": [
+"每年的学习经费为5000元，每月健身补贴为200元。"
+],
+"ms": 674.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "每月的健身补贴是多少？",
+"expansions": [
+"每月的健身补贴为50元。"
+],
+"ms": 403.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "火警响了大家到哪里集合？",
+"expansions": [
+"火警响起时，请全体人员立即前往集合点。"
+],
+"ms": 439.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "生产数据库的备份保留多少天？",
+"expansions": [
+"根据公司政策，生产数据库的备份保留期限为7天。"
+],
+"ms": 509.8
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "生产服务器访问权限的有效期是多久？",
+"expansions": [
+"生产服务器访问权限的有效期通常为一年，但具体有效期需根据公司政策和服务器使用情况确定。"
+],
+"ms": 958.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "电脑丢了应该怎么办？",
+"expansions": [
+"如果您不慎丢失了电脑，首先应立即联系IT服务部门报告丢失情况。其次，尽快通过官方渠道或社交媒体平台发布丢失信息，以便寻找失主。最后，根据丢失电脑的型号和序列号，尝试通过官方渠道找回电脑。"
+],
+"ms": 1818.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "电量多少的时候才能升级固件？",
+"expansions": [
+"请在设备电量低于20%时，尝试升级固件。"
+],
+"ms": 530.5
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "登录VPN有什么要求？申请生产服务器权限需要谁审批？",
+"expansions": [
+"登录VPN需要输入正确的用户名和密码，且设备需连接到公司的网络。申请生产服务器权限需要由IT部门审批。"
+],
+"ms": 776.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "笔记本电脑丢失要什么时候通知IT？IT服务台的分机号是多少？",
+"expansions": [
+"笔记本电脑丢失时，应立即通知IT服务台。IT服务台的分机号为12345。"
+],
+"ms": 1586.9
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "绩效考核在哪几个月进行？",
+"expansions": [
+"绩效考核通常在每年的1月和7月进行。"
+],
+"ms": 580.2
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "老婆生孩子，男员工可以休几天假？",
+"expansions": [
+"根据公司人事制度，男员工在配偶生育期间可享有15天的带薪产假。"
+],
+"ms": 755.7
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "自己的手机电脑能连办公网吗？",
+"expansions": [
+"您的手机和电脑可以连接到办公网络，但具体是否可以连接取决于您的网络配置和设备的兼容性。通常，这需要通过公司的网络管理工具进行设置。"
+],
+"ms": 1125.1
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "订了会议室但是没去会怎样？",
+"expansions": [
+"如果订了会议室但没有去，建议提前联系会议主办方确认会议时间，以避免后续的不便。"
+],
+"ms": 742.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "账号密码长度至少要多少位？",
+"expansions": [
+"账号密码长度至少应为8位，以确保账户安全。"
+],
+"ms": 493.0
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "长时间出差不用扫地机，电池要怎么保养？",
+"expansions": [
+"长时间出差时，确保扫地机电池的正确保养对于保持设备性能和延长使用寿命至关重要。首先，定期使用专用充电器为电池充电，避免过度放电。其次，避免电池长时间处于低电量状态，以减少电池老化。最后，定期清洁电池表面，去除灰尘和污垢，以保持电池的清洁和高效运行。"
+],
+"ms": 2174.3
+},
+{
+"mode": "hyde",
+"model": "qwen2.5:1.5b",
+"question": "飞很远的航班能坐更好的舱位吗？",
+"expansions": [
+"根据我们的政策，飞很远的航班通常不提供升级至更高级舱位的选择。"
+],
+"ms": 773.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "IT服务台周末上班吗？",
+"expansions": [
+"周末IT服务台是否开放？"
+],
+"ms": 176.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "IT服务台的电话分机是多少？",
+"expansions": [
+"电话分机是IT服务台的电话号码。"
+],
+"ms": 192.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7不支持5GHz网络，双频路由器配网失败应该怎么办？",
+"expansions": [
+"S7不支持5GHz网络，双频路由器配网失败，应该检查网络配置，更换双频路由器。"
+],
+"ms": 419.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7充满电要多久？首次使用前要充多久？",
+"expansions": [
+"S7首次使用前需要充电，S7充满电需要多久？"
+],
+"ms": 460.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7单层地图最多可以保存几张？",
+"expansions": [
+"S7单层地图最多可以保存3张。"
+],
+"ms": 214.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7可以用Siri语音控制吗？",
+"expansions": [
+"S7是否能通过Siri语音控制？"
+],
+"ms": 221.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7固件v2.3.0新增了什么识别功能？",
+"expansions": [
+"S7固件v2.3.0新增了哪些识别功能？"
+],
+"ms": 266.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7固件v2.4.0什么时候发布？",
+"expansions": [
+"哪个版本的S7固件发布？"
+],
+"ms": 171.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7固件升级大约需要多长时间？",
+"expansions": [
+"S7固件升级一般需要多长时间？"
+],
+"ms": 201.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7安静模式下的噪音是多少分贝？",
+"expansions": [
+"S7安静模式下噪音是多少分贝？"
+],
+"ms": 191.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7扫地机器人的售价是多少？",
+"expansions": [
+"S7扫地机器人售价是多少？"
+],
+"ms": 166.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7支持拖地自动烘干吗？",
+"expansions": [
+"S7是否支持自动拖地烘干？"
+],
+"ms": 184.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7整机保修期是多久？",
+"expansions": [],
+"ms": 314.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7最多可以设置几个定时任务？",
+"expansions": [
+"S7最多可以设置12个定时任务。"
+],
+"ms": 197.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7滤网多久更换一次？边刷多久更换一次？",
+"expansions": [
+"S7滤网多久更换一次？S7滤网多久更换一次？"
+],
+"ms": 479.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的主刷可以水洗吗？",
+"expansions": [
+"S7的主刷是否可以水洗？"
+],
+"ms": 159.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的固件升级大约需要多久？升级时有什么注意事项？",
+"expansions": [
+"S7的固件升级一般需要多长时间？在升级时需要注意哪些事项？"
+],
+"ms": 311.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的尘盒容量是多少？",
+"expansions": [],
+"ms": 203.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的整机保修期是多久？主刷多久需要更换一次？",
+"expansions": [
+"S7整机保修期多久？主刷多久需要更换一次？"
+],
+"ms": 279.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的最大吸力是多少？",
+"expansions": [],
+"ms": 222.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的水箱可以加消毒液吗？",
+"expansions": [
+"S7的水箱是否可以加消毒液？"
+],
+"ms": 222.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的电池可以单独购买吗？",
+"expansions": [
+"S7的电池是否可以单独购买？"
+],
+"ms": 176.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的电池容量是多少？",
+"expansions": [],
+"ms": 152.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的边刷多久更换一次？",
+"expansions": [
+"S7的边刷需要多久更换一次？"
+],
+"ms": 202.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7的配套App叫什么名字？",
+"expansions": [],
+"ms": 166.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7能扫描楼梯并自动上下楼吗？",
+"expansions": [
+"S7能自动扫描楼梯并上下楼。"
+],
+"ms": 195.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S7首次使用前需要充电多久？",
+"expansions": [],
+"ms": 188.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "S9扫地机器人的吸力是多少？",
+"expansions": [],
+"ms": 186.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "VPN每次连接多久后会自动断开？",
+"expansions": [
+"是否自动断开，需根据用户设置。"
+],
+"ms": 174.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "v2.2.0之后回充成功率是多少？",
+"expansions": [],
+"ms": 212.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "一次报一万块需要谁批？",
+"expansions": [
+"需要人事部门或IT部门的审批。"
+],
+"ms": 218.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "一线城市出差的住宿标准是多少？",
+"expansions": [
+"出差到一线城市，住宿标准如何？"
+],
+"ms": 216.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "产假有多少天？",
+"expansions": [],
+"ms": 165.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "今年没休完的假期可以留到明年吗？",
+"expansions": [
+"今年是否还有未休完的假期可以留到明年？"
+],
+"ms": 224.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "会议室单次最长可以预订多久？",
+"expansions": [
+"公司知识库（人事制度）：最长可以预订的会议室单次最长可以预订多久？"
+],
+"ms": 301.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "会议室单次最长订多久？30人以上大会议室要提前多久申请？",
+"expansions": [
+"单次最长订多久？30人以上大会议室要提前多久申请？"
+],
+"ms": 622.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "会议室可以提前多少天预订？",
+"expansions": [
+"可提前多少天预订会议室？"
+],
+"ms": 152.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "住房公积金的缴存比例是多少？",
+"expansions": [],
+"ms": 178.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "体检可以带家属一起去吗？",
+"expansions": [
+"是否可以带家属一起去体检？"
+],
+"ms": 157.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "停车位每月收费多少？",
+"expansions": [
+"停车场每月收费多少？"
+],
+"ms": 143.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "充电底座周围要空出多大地方？",
+"expansions": [
+"充电底座周围需要留出多少空间？"
+],
+"ms": 195.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "入职满一年有多少天年假？满五年额外增加几天？",
+"expansions": [
+"一年：365天；五年：525天；额外增加：14天"
+],
+"ms": 301.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "入职满一年的员工每年有多少天带薪年假？",
+"expansions": [
+"入职满一年的员工每年有15天带薪年假。"
+],
+"ms": 284.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "入职满三年的员工有多少天年假？",
+"expansions": [],
+"ms": 215.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "全公司断网了半夜找谁？",
+"expansions": [
+"公司网络中断半夜找谁？"
+],
+"ms": 176.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司允许带宠物上班吗？",
+"expansions": [
+"公司允许宠物上班吗？"
+],
+"ms": 141.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司在上海有办公室吗？",
+"expansions": [
+"上海是否有办公室？"
+],
+"ms": 125.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司年终奖一般发几个月？",
+"expansions": [
+"年终奖一般发几个月？"
+],
+"ms": 153.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司总部的地址在哪里？",
+"expansions": [],
+"ms": 147.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司有多少名员工？",
+"expansions": [
+"公司有多少员工？"
+],
+"ms": 121.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司有班车吗？",
+"expansions": [
+"公司有班车服务吗？"
+],
+"ms": 143.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司每天补贴午餐多少钱？",
+"expansions": [
+"公司每天补贴午餐的金额是多少？"
+],
+"ms": 171.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司的CEO是谁？",
+"expansions": [
+"谁是公司的CEO？"
+],
+"ms": 1539.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司的核心工作时间是几点到几点？",
+"expansions": [
+"公司的工作时间是几点到几点？"
+],
+"ms": 181.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司笔记本电脑多久更换一次？",
+"expansions": [],
+"ms": 163.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司给员工配手机吗？",
+"expansions": [
+"公司是否为员工提供手机？"
+],
+"ms": 181.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "公司股票期权怎么分配？",
+"expansions": [
+"公司股票期权分配标准。"
+],
+"ms": 151.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "出差住宿超标了怎么处理？",
+"expansions": [
+"查询公司知识库（人事制度）：出差住宿超标如何处理？"
+],
+"ms": 234.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "出差期间每天的餐补是多少？",
+"expansions": [
+"出差期间的餐补标准是多少？"
+],
+"ms": 442.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "出差餐补每天多少钱？公司每天补贴午餐多少钱？",
+"expansions": [],
+"ms": 241.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "办公楼的开放时间是什么？",
+"expansions": [
+"开放时间是什么？"
+],
+"ms": 128.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "加班到很晚回家打车能报销吗？",
+"expansions": [
+"公司是否可以报销加班到很晚回家的打车费用？"
+],
+"ms": 226.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "发现被黑客攻击后多长时间内要上报？",
+"expansions": [
+"需要在多长时间内上报？"
+],
+"ms": 175.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "发票过了多久就不能报了？",
+"expansions": [
+"发票过期不能报了。"
+],
+"ms": 158.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "可以把客户资料存到自己的百度网盘吗？",
+"expansions": [
+"将客户资料存到自己的百度网盘上。"
+],
+"ms": 217.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "员工生日礼金是多少？",
+"expansions": [
+"公司人事制度中关于员工生日礼金的条款。"
+],
+"ms": 215.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "员工走人那天账号什么时候被关掉？",
+"expansions": [
+"员工走人当天账号被关掉。"
+],
+"ms": 202.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "员工餐厅晚餐几点供应？",
+"expansions": [
+"餐厅晚餐何时供应？"
+],
+"ms": 144.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "国际出差的住宿标准是多少？",
+"expansions": [
+"出差住宿标准：根据公司规定，出差住宿标准为：（1）标准间：（2）商务套房：（3）豪华套房：（4）总统套房：（5）高级商务套房：（6）豪华商务套房：（7）总统商务套房：（8）高级商务套房：（9）豪华商务套房：（10）总统商务套房：（11）高级商务套房：（12）豪华商务套房：（13）总统商务套房：（14）高级商务套房：（15）豪华商务套房："
+],
+"ms": 1238.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "在公司干了五年以上有什么额外假期？",
+"expansions": [
+"公司有五年以上的员工有额外的假期。"
+],
+"ms": 208.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "地下停车场有多少个车位？",
+"expansions": [
+"停车场有多少个车位？"
+],
+"ms": 140.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "孩子能一起买公司的商业医疗保险吗？",
+"expansions": [
+"公司是否可以为孩子购买商业医疗保险？"
+],
+"ms": 176.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "安全事件上报的邮箱是什么？",
+"expansions": [
+"安全事件的报告邮箱是什么？"
+],
+"ms": 160.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "安全事件要在多久内上报？普通IT工单多久首次响应？",
+"expansions": [
+"安全事件应在多长时间内上报？普通IT工单首次响应应在多长时间内？"
+],
+"ms": 603.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "实习生有带薪年假吗？",
+"expansions": [
+"实习生有带薪休假吗？"
+],
+"ms": 160.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "家里路由器是5G频段的，机器人能连上吗？",
+"expansions": [
+"路由器是5G频段的，机器人能连上吗？"
+],
+"ms": 233.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "密码多久必须更换一次？",
+"expansions": [
+"密码有效期多久？"
+],
+"ms": 147.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "居家办公一周最多几天？居家办公设备补贴多少钱？",
+"expansions": [
+"一周最多几天居家办公？补贴多少钱？"
+],
+"ms": 182.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "居家办公设备补贴是多少钱？",
+"expansions": [
+"公司是否提供居家办公设备补贴？"
+],
+"ms": 174.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "开电动车上班能在公司充电吗？",
+"expansions": [
+"公司能否为电动车员工提供充电服务？"
+],
+"ms": 181.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "怎么让扫地机器人别进某个房间？",
+"expansions": [
+"请提供房间编号。"
+],
+"ms": 148.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "怎么防止小孩乱按扫地机器人的按钮？",
+"expansions": [
+"如何防止小孩随意按下扫地机器人的按钮？"
+],
+"ms": 202.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "我一周能在家上班几天？",
+"expansions": [
+"我一周能在家上班多少天？"
+],
+"ms": 175.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "我想要两块外接屏幕可以吗？",
+"expansions": [
+"我需要两块外接屏幕吗？"
+],
+"ms": 196.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "我要结婚了，公司给几天假？",
+"expansions": [
+"公司给结婚假几天？"
+],
+"ms": 146.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人充满电要多久？",
+"expansions": [
+"机器人充满电需要多久？"
+],
+"ms": 141.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人怎么进入联网模式？",
+"expansions": [
+"机器人如何进入联网模式？"
+],
+"ms": 146.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "扫地机器人能说广东话吗？",
+"expansions": [
+"能，但需要人工翻译。"
+],
+"ms": 162.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "扫地机能钻到床底下吗？",
+"expansions": [
+"床底下有没有能钻到的地方？"
+],
+"ms": 171.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "报销的钱多久能到账？",
+"expansions": [
+"报销的款项到账时间？"
+],
+"ms": 147.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "招待客户的人均标准是多少？",
+"expansions": [
+"公司的人均标准是多少？"
+],
+"ms": 296.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "推荐奖金是多少？",
+"expansions": [
+"询问奖金数额。"
+],
+"ms": 128.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "推荐奖金是多少？试用期多长？",
+"expansions": [
+"请提供公司知识库中关于奖金、试用期的详细信息。"
+],
+"ms": 257.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "故障代码E3表示什么？",
+"expansions": [
+"故障代码E3表示设备故障。"
+],
+"ms": 166.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "故障代码E5表示什么？",
+"expansions": [
+"故障代码E5表示设备故障。"
+],
+"ms": 166.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "新同事的邮箱什么时候能用？",
+"expansions": [
+"新同事的邮箱何时可用？"
+],
+"ms": 172.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "新员工的试用期是多久？",
+"expansions": [
+"试用期多久？"
+],
+"ms": 193.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "普通IT工单的首次响应时间是多久？",
+"expansions": [
+"首次响应时间是多久？"
+],
+"ms": 153.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "朋友来公司找我需要提前做什么？",
+"expansions": [
+"你朋友来公司找我，需要提前做什么？"
+],
+"ms": 222.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "机器人怎么恢复到出厂状态？",
+"expansions": [
+"如何恢复机器人出厂状态？"
+],
+"ms": 148.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "机器人显示E7是怎么回事？",
+"expansions": [
+"E7是什么意思？"
+],
+"ms": 151.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "机器人的电池坏了，保修多久？",
+"expansions": [
+"保修多久？"
+],
+"ms": 146.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "正版办公软件许可证每人最多可以激活几台设备？",
+"expansions": [
+"公司知识库（人事制度、IT服务、产品说明书）：公司知识库（人事制度、IT服务、产品说明书）：公司知识库（人事制度、IT服务、产品说明书）：公司知识库（人事制度、IT服务、产品说明书）"
+],
+"ms": 652.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "每位员工每年的学习经费是多少？",
+"expansions": [
+"每位员工每年需缴纳多少学习经费？"
+],
+"ms": 245.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "每年的学习经费是多少？每月健身补贴是多少？",
+"expansions": [
+"每年的培训经费是多少？每月的健身补贴是多少？"
+],
+"ms": 208.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "每月的健身补贴是多少？",
+"expansions": [],
+"ms": 142.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "火警响了大家到哪里集合？",
+"expansions": [
+"大家集合地点在哪里？"
+],
+"ms": 150.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "生产数据库的备份保留多少天？",
+"expansions": [
+"数据库备份的保留天数是多少？"
+],
+"ms": 193.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "生产服务器访问权限的有效期是多久？",
+"expansions": [
+"服务器访问权限的有效期是多少？"
+],
+"ms": 170.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "电脑丢了应该怎么办？",
+"expansions": [
+"电脑丢失了应该怎么办？"
+],
+"ms": 151.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "电量多少的时候才能升级固件？",
+"expansions": [
+"需要升级固件时，电量多少？"
+],
+"ms": 190.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "病假超过5天后工资怎么算？",
+"expansions": [
+"超过5天的病假工资如何计算？"
+],
+"ms": 187.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "登录VPN有什么要求？申请生产服务器权限需要谁审批？",
+"expansions": [
+"是否需要登录VPN？需要谁审批？"
+],
+"ms": 359.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "笔记本电脑丢失要什么时候通知IT？IT服务台的分机号是多少？",
+"expansions": [
+"IT服务台的电话号码是多少？通知IT的日期是什么时候？"
+],
+"ms": 279.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "绩效考核在哪几个月进行？",
+"expansions": [
+"考核在哪些月份进行？"
+],
+"ms": 155.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "老婆生孩子，男员工可以休几天假？",
+"expansions": [
+"员工可以休产假，男员工可以休15天假。"
+],
+"ms": 241.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "自己的手机电脑能连办公网吗？",
+"expansions": [
+"手机电脑是否能连办公网，取决于具体设备的型号和操作系统。"
+],
+"ms": 260.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "订了会议室但是没去会怎样？",
+"expansions": [
+"没去会。"
+],
+"ms": 133.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "访客可以带笔记本电脑进入研发区域吗？",
+"expansions": [
+"研发区域是否允许访客带笔记本电脑？"
+],
+"ms": 203.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "账号密码长度至少要多少位？",
+"expansions": [
+"账号密码长度至少要6位。"
+],
+"ms": 279.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "长时间出差不用扫地机，电池要怎么保养？",
+"expansions": [
+"公司知识库（人事制度、IT服务、产品说明书）中： 1. 电池要定期检查，避免过热。 2. 电池要避免高温和潮湿环境。"
+],
+"ms": 599.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:0.5b",
+"question": "飞很远的航班能坐更好的舱位吗？",
+"expansions": [
+"能，但可能需要考虑其他因素。"
+],
+"ms": 214.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "IT服务台的电话分机是多少？",
+"expansions": [
+"IT服务台的电话分机号码是什么？"
+],
+"ms": 358.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7不支持5GHz网络，双频路由器配网失败应该怎么办？",
+"expansions": [
+"如何解决S7不支持5GHz网络的问题？",
+"双频路由器配网失败的原因及解决方法？",
+"如何解决S7不支持5GHz网络，双频路由器配网失败的问题？"
+],
+"ms": 1814.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7充满电要多久？首次使用前要充多久？",
+"expansions": [
+"How long does it take for S7 to fully charge?",
+"How long should I charge S7 for the first time?"
+],
+"ms": 896.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7单层地图最多可以保存几张？",
+"expansions": [
+"What is the maximum number of maps that S7 can store?"
+],
+"ms": 538.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7固件v2.3.0新增了什么识别功能？",
+"expansions": [
+"What new recognition feature was added in S7 firmware version v2.3.0?"
+],
+"ms": 691.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7固件升级大约需要多长时间？",
+"expansions": [
+"S7固件升级的时长是多少？"
+],
+"ms": 416.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7安静模式下的噪音是多少分贝？",
+"expansions": [
+"What is the noise level in dB when S7 is in quiet mode?"
+],
+"ms": 515.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7整机保修期是多久？",
+"expansions": [
+"What is the warranty period for the S7 whole machine?"
+],
+"ms": 463.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7最多可以设置几个定时任务？",
+"expansions": [
+"What is the maximum number of scheduled tasks that can be set for S7?"
+],
+"ms": 580.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7滤网多久更换一次？边刷多久更换一次？",
+"expansions": [
+"What is the frequency of S7 filter replacement? How often should the side brush be replaced?"
+],
+"ms": 733.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的固件升级大约需要多久？升级时有什么注意事项？",
+"expansions": [
+"How long does it take to upgrade the firmware for S7?",
+"What are the important points to consider during the firmware upgrade process?",
+"What are the steps to follow when upgrading the firmware for S7?"
+],
+"ms": 1419.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的尘盒容量是多少？",
+"expansions": [],
+"ms": 298.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的整机保修期是多久？主刷多久需要更换一次？",
+"expansions": [
+"What is the warranty period for S7? How long does the main update need to be replaced?"
+],
+"ms": 679.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的最大吸力是多少？",
+"expansions": [
+"What is the maximum suction force of S7?"
+],
+"ms": 387.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的电池容量是多少？",
+"expansions": [],
+"ms": 293.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的边刷多久更换一次？",
+"expansions": [
+"What is the recommended frequency for replacing the S7 edge brush?"
+],
+"ms": 801.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7的配套App叫什么名字？",
+"expansions": [],
+"ms": 361.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "S7首次使用前需要充电多久？",
+"expansions": [
+"S7电池首次使用前需要充电多久？",
+"S7产品说明书中的IT服务部分包含哪些内容？",
+"S7产品说明书中的产品信息部分包含哪些内容？"
+],
+"ms": 1178.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "v2.2.0之后回充成功率是多少？",
+"expansions": [
+"What is the success rate for recharging after version 2.2.0?"
+],
+"ms": 605.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "一次报一万块需要谁批？",
+"expansions": [
+"谁需要批准一次报一万块的请求？",
+"IT服务如何处理用户故障报告？"
+],
+"ms": 622.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "一线城市出差的住宿标准是多少？",
+"expansions": [
+"查询一线城市出差的住宿标准。"
+],
+"ms": 350.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "产假有多少天？",
+"expansions": [
+"什么是公司的产假政策？"
+],
+"ms": 300.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "今年没休完的假期可以留到明年吗？",
+"expansions": [
+"是否可以将未休完的假期留到明年？",
+"IT服务是否支持远程工作？",
+"产品说明书是否包含最新的功能更新？"
+],
+"ms": 990.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "会议室单次最长可以预订多久？",
+"expansions": [
+"最长会议室预订时间是多少？",
+"公司知识库中关于人事制度的信息。"
+],
+"ms": 453.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "会议室单次最长订多久？30人以上大会议室要提前多久申请？",
+"expansions": [
+"What is the longest duration for a single meeting room reservation? How far in advance should a large conference room reservation be made for 30 people or more?"
+],
+"ms": 1152.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "住房公积金的缴存比例是多少？",
+"expansions": [
+"公司知识库中的人事制度部分包含关于住房公积金缴存比例的信息。",
+"IT服务方面，公司知识库中有关于如何查询住房公积金缴存比例的指导。",
+"产品说明书部分提供了关于如何使用住房公积金进行缴存的详细说明。"
+],
+"ms": 1632.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "充电底座周围要空出多大地方？",
+"expansions": [
+"请提供充电底座的尺寸规格，以便确定周围应留出的空间。"
+],
+"ms": 654.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "入职满一年有多少天年假？满五年额外增加几天？",
+"expansions": [
+"公式入职满一年的年假天数",
+"公式入职满五年额外增加的年假天数",
+"公式年假天数计算"
+],
+"ms": 1355.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "入职满一年的员工每年有多少天带薪年假？",
+"expansions": [
+"公司知识库：员工入职满一年后每年享有多少天带薪年假？",
+"IT服务：员工入职满一年后每年可享受多少天的带薪年假？",
+"产品说明书：员工入职满一年后每年可获得多少天的带薪年假？"
+],
+"ms": 1958.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "全公司断网了半夜找谁？",
+"expansions": [
+"谁负责处理全公司断网问题？"
+],
+"ms": 341.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "公司总部的地址在哪里？",
+"expansions": [
+"请提供公司总部的具体地址。"
+],
+"ms": 264.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "公司每天补贴午餐多少钱？",
+"expansions": [
+"公司提供午餐补贴的金额是多少？",
+"公司提供IT服务的费用是多少？",
+"公司产品说明书的版本有哪些？"
+],
+"ms": 774.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "公司的核心工作时间是几点到几点？",
+"expansions": [
+"What are the standard working hours for the company?"
+],
+"ms": 339.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "公司笔记本电脑多久更换一次？",
+"expansions": [
+"何时更换公司笔记本电脑？",
+"公司笔记本电脑的更换周期是多少？",
+"如何确定公司笔记本电脑的更换时间？"
+],
+"ms": 967.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "出差期间每天的餐补是多少？",
+"expansions": [],
+"ms": 333.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "出差餐补每天多少钱？公司每天补贴午餐多少钱？",
+"expansions": [
+"What is the daily allowance for出差餐补？What is the daily allowance for lunch subsidies by the company?"
+],
+"ms": 709.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "办公楼的开放时间是什么？",
+"expansions": [
+"办公楼的营业时间是什么？",
+"IT服务的响应时间是多少？",
+"产品说明书的下载链接在哪里？"
+],
+"ms": 710.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "加班到很晚回家打车能报销吗？",
+"expansions": [
+"是否可以报销加班到很晚回家打的士费用？",
+"公司是否提供IT服务？"
+],
+"ms": 612.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "发现被黑客攻击后多长时间内要上报？",
+"expansions": [
+"在被黑客攻击后多长时间内上报？",
+"多久内上报被黑客攻击？",
+"多久内报告黑客攻击？"
+],
+"ms": 744.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "发票过了多久就不能报了？",
+"expansions": [
+"发票有效期多久？",
+"公司如何处理IT服务请求？",
+"产品说明书更新频率是多少？"
+],
+"ms": 581.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "可以把客户资料存到自己的百度网盘吗？",
+"expansions": [
+"能否将客户资料存入个人的百度网盘？"
+],
+"ms": 432.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "员工生日礼金是多少？",
+"expansions": [
+"公司员工生日礼金政策",
+"人事制度：员工生日礼金详情",
+"IT服务：员工生日礼金流程"
+],
+"ms": 1100.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "员工走人那天账号什么时候被关掉？",
+"expansions": [
+"何时关闭员工账号？",
+"员工离职时，账号何时被关闭？",
+"员工离职后，账号何时被关闭？"
+],
+"ms": 687.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "在公司干了五年以上有什么额外假期？",
+"expansions": [
+"什么是公司提供给五年以上员工的额外假期？"
+],
+"ms": 413.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "地下停车场有多少个车位？",
+"expansions": [
+"查询公司知识库中的停车场车位数量。"
+],
+"ms": 414.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "孩子能一起买公司的商业医疗保险吗？",
+"expansions": [
+"能否为孩子购买公司的商业医疗保险？"
+],
+"ms": 345.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "安全事件上报的邮箱是什么？",
+"expansions": [
+"公司知识库：安全事件上报的邮箱是什么？"
+],
+"ms": 417.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "安全事件要在多久内上报？普通IT工单多久首次响应？",
+"expansions": [
+"何时上报安全事件？",
+"IT工单首次响应时间是多少？"
+],
+"ms": 588.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "家里路由器是5G频段的，机器人能连上吗？",
+"expansions": [
+"能否通过5G频段连接到路由器？"
+],
+"ms": 376.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "密码多久必须更换一次？",
+"expansions": [
+"What is the password change frequency?"
+],
+"ms": 305.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "居家办公一周最多几天？居家办公设备补贴多少钱？",
+"expansions": [
+"最多居家办公一周的天数是多少？",
+"居家办公设备补贴的标准是多少？",
+"产品说明书中的产品使用指南是什么？"
+],
+"ms": 1094.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "居家办公设备补贴是多少钱？",
+"expansions": [
+"居家办公设备补贴金额是多少？",
+"公司人事制度",
+"IT服务"
+],
+"ms": 515.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "开电动车上班能在公司充电吗？",
+"expansions": [
+"是否允许在公司内为电动车充电？"
+],
+"ms": 363.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "怎么让扫地机器人别进某个房间？",
+"expansions": [
+"如何防止扫地机器人进入特定房间？"
+],
+"ms": 418.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "怎么防止小孩乱按扫地机器人的按钮？",
+"expansions": [
+"如何防止儿童接触并操作扫地机器人上的按钮？",
+"如何确保儿童不会误操作扫地机器人的按钮？",
+"如何防止儿童接触并操作扫地机器人的控制面板？"
+],
+"ms": 1084.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "我一周能在家上班几天？",
+"expansions": [
+"我需要了解公司允许的远程工作天数。",
+"我需要IT服务的最新版本。"
+],
+"ms": 709.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "我想要两块外接屏幕可以吗？",
+"expansions": [
+"我需要两块外接屏幕。"
+],
+"ms": 297.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "我要结婚了，公司给几天假？",
+"expansions": [
+"我需要了解公司规定的婚假天数。"
+],
+"ms": 436.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人充满电要多久？",
+"expansions": [
+"扫地机器人充满电需要多长时间？"
+],
+"ms": 364.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人怎么进入联网模式？",
+"expansions": [
+"如何将扫地机器人设置为联网模式？"
+],
+"ms": 360.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "扫地机器人能说广东话吗？",
+"expansions": [
+"能说广东话的扫地机器人有哪些型号？"
+],
+"ms": 468.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "扫地机能钻到床底下吗？",
+"expansions": [
+"能否使用扫地机清洁床底？"
+],
+"ms": 356.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "报销的钱多久能到账？",
+"expansions": [
+"报销流程何时完成？"
+],
+"ms": 247.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "招待客户的人均标准是多少？",
+"expansions": [
+"公司人事制度中关于客户招待的标准是多少？",
+"IT服务部门的客户接待标准是什么？",
+"产品说明书中的客户接待指南是什么？"
+],
+"ms": 1250.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "推荐奖金是多少？",
+"expansions": [
+"请提供具体的奖金类型，如基本工资、年终奖金或绩效奖金。"
+],
+"ms": 571.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "推荐奖金是多少？试用期多长？",
+"expansions": [
+"What is the recommended bonus amount?",
+"How long is the probationary period?"
+],
+"ms": 560.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "故障代码E3表示什么？",
+"expansions": [
+"查询E3故障代码的具体含义。",
+"IT服务部门应提供以下产品说明书：",
+"产品A的使用指南"
+],
+"ms": 2581.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "新同事的邮箱什么时候能用？",
+"expansions": [
+"何时可为新同事配置邮箱？"
+],
+"ms": 344.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "新员工的试用期是多久？",
+"expansions": [
+"什么是新员工的试用期？"
+],
+"ms": 339.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "普通IT工单的首次响应时间是多久？",
+"expansions": [
+"IT工单首次响应时间是多少？",
+"IT服务的首次响应时间是多少？",
+"产品说明书的首次响应时间是多少？"
+],
+"ms": 895.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "朋友来公司找我需要提前做什么？",
+"expansions": [
+"请提供朋友的姓名和职位。",
+"请提供IT服务的详细操作指南。",
+"请提供产品说明书中的使用说明。"
+],
+"ms": 748.8
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "机器人怎么恢复到出厂状态？",
+"expansions": [
+"如何恢复机器人到出厂设置？"
+],
+"ms": 286.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "机器人显示E7是怎么回事？",
+"expansions": [
+"机器人显示E7错误是什么？",
+"机器人出现E7错误怎么办？",
+"机器人E7错误如何解决？"
+],
+"ms": 797.1
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "机器人的电池坏了，保修多久？",
+"expansions": [
+"机器人电池故障的保修期限是多少？",
+"公司知识库中关于产品说明书的查询：",
+"机器人电池故障的保修期限是多少？"
+],
+"ms": 1265.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "正版办公软件许可证每人最多可以激活几台设备？",
+"expansions": [
+"公司知识库：人事制度 - 激活正版办公软件的设备数量限制",
+"公司知识库：IT服务 - 办公软件许可证的设备激活数量",
+"公司知识库：产品说明书 - 正版办公软件的设备激活限制"
+],
+"ms": 1626.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "每位员工每年的学习经费是多少？",
+"expansions": [
+"What is the annual learning allowance for all employees?"
+],
+"ms": 435.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "每年的学习经费是多少？每月健身补贴是多少？",
+"expansions": [
+"What is the annual learning allowance?",
+"What is the monthly fitness subsidy?"
+],
+"ms": 637.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "每月的健身补贴是多少？",
+"expansions": [
+"查询公司提供的每月健身补贴金额。"
+],
+"ms": 468.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "火警响了大家到哪里集合？",
+"expansions": [
+"在哪里集合以应对火灾？"
+],
+"ms": 273.7
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "生产数据库的备份保留多少天？",
+"expansions": [
+"人事制度：公司规定员工的薪资调整周期。",
+"IT服务：查询IT服务的最新更新和维护计划。",
+"产品说明书：查找产品使用手册中的技术规格和操作指南。"
+],
+"ms": 1316.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "生产服务器访问权限的有效期是多久？",
+"expansions": [
+"人事制度：生产服务器访问权限的有效期是多少？",
+"IT服务：生产服务器的访问权限期限是多少？",
+"产品说明书：生产服务器的访问权限有效期是多少？"
+],
+"ms": 1201.6
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "电脑丢了应该怎么办？",
+"expansions": [
+"如何处理丢失的电脑？"
+],
+"ms": 262.3
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "电量多少的时候才能升级固件？",
+"expansions": [
+"何时需要升级固件？"
+],
+"ms": 316.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "登录VPN有什么要求？申请生产服务器权限需要谁审批？",
+"expansions": [
+"What are the login requirements for the VPN?",
+"Who needs to approve the request for server production access?",
+"How do I obtain the necessary permissions for the product manual?"
+],
+"ms": 1216.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "笔记本电脑丢失要什么时候通知IT？IT服务台的分机号是多少？",
+"expansions": [
+"何时通知IT关于笔记本电脑丢失？IT服务台的分机号是多少？"
+],
+"ms": 590.5
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "绩效考核在哪几个月进行？",
+"expansions": [
+"何时进行绩效考核？"
+],
+"ms": 224.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "老婆生孩子，男员工可以休几天假？",
+"expansions": [
+"休产假天数",
+"男员工可休产假天数",
+"生育假天数"
+],
+"ms": 1261.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "自己的手机电脑能连办公网吗？",
+"expansions": [
+"能否将个人手机或电脑连接到公司办公网络？"
+],
+"ms": 419.4
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "订了会议室但是没去会怎样？",
+"expansions": [
+"取消预订的会议室安排。",
+"会议室预订未使用。",
+"会议室预订未确认。"
+],
+"ms": 541.0
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "账号密码长度至少要多少位？",
+"expansions": [
+"What is the minimum length for the password?"
+],
+"ms": 339.2
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "长时间出差不用扫地机，电池要怎么保养？",
+"expansions": [
+"如何保养扫地机电池？",
+"如何在长时间出差时确保扫地机电池的正常运行？",
+"如何维护扫地机电池的使用寿命？"
+],
+"ms": 856.9
+},
+{
+"mode": "rewrite",
+"model": "qwen2.5:1.5b",
+"question": "飞很远的航班能坐更好的舱位吗？",
+"expansions": [
+"能否在更高级别的舱位中乘坐飞往远距离的航班？",
+"能提供IT服务的公司有哪些？"
+],
+"ms": 862.7
+}
+]
