@@ -1,4 +1,4 @@
-# RAG 知识库问答系统：技术方案 (v0.4，M4 已完成)
+# RAG 知识库问答系统：技术方案 (v0.5，M5 已完成)
 
 > AI 作品集项目 #1。目标是一个**纯 CPU、零付费 API、可离线**的 RAG 问答系统，回答必须带可核验的引用（文档名 + 页码 + 原句）。
 
@@ -350,3 +350,48 @@ M4 在英文上按 dev 平衡准确率选出的"余弦 AND nli-t"在 test 上误
   - en：nli-t 0.755 → 0.773（heading）/ 0.824（section）；m3 0.830 → 0.861（section）
   - zh：nli 0.778 → 0.817（section）；m3 0.896 → 0.897（heading）
   - 扩充后的 dev 上，en 余弦的 AUC 为 0.829（已含查询扩展）。
+
+### 13.5 test 结果（只评一次）与兜底
+- 最终运行（`m5_{en,zh}.json`，`test_evaluations = 1`）中，dev 选择这一步在同一进程里重新计算：
+  - en 选中 `nli[section] OR cosine`（余弦 ≥ 0.695 或 nli ≥ 0.888）。它与 `nli-t[section] OR cosine` 在 dev 上并列 84.3，按顺序取前者。
+  - zh 选中 `reranker-m3[heading] only`（≥ 0.4024），与 13.4 一致。
+- **与 13.4 预登记不一致的原因：发现一个可复现性 bug。**
+  - store 读取 chunk 的顺序是 `ORDER BY created_at, doc_id`。同一秒内入库的文档 `created_at` 相同，于是退化成按随机 uuid 排序。chunk 顺序决定 RRF 和 BM25 并列时谁排前面，所以不同进程会有差异。
+  - 实测：同一道题 en-c003 在不同 PYTHONHASHSEED（即不同 uuid）下，余弦在 0.6793 和 0.7293 之间切换。两次 dev 运行只有这一道题的特征不同，但足以改变英文的选择。
+  - 修复：按入库顺序（`d.rowid`）排序，并加了单元测试。修复后用不同 PYTHONHASHSEED 运行，结果完全一致。修复后的 dev-only 重跑（`m5_en.dev.postfix.json`）复现了最终运行的选择和全部 dev 指标。
+  - 修复之后没有再评 test。
+
+**英文**（dev n=97 / test n=76）
+
+| 系统 | dev 答对 / 误拒 / 拒答 / 平衡 | test 答对 / 误拒 / 拒答 / 平衡 | test 延迟 p50 |
+|---|---|---|---|
+| M3 | 78.4 / 13.5 / 68.3 / 77.4 | 66.7 / 29.8 / 42.1 / 56.1 | 78 ms |
+| M4 | 59.5 / 40.5 / 91.7 / 75.6 | 40.4 / 57.9 / 94.7 / 68.4 | 686 ms |
+| M5 dev 选择（nli[section] OR cos） | 83.8 / 8.1 / 76.7 / 84.3 | 61.4 / 35.1 / 47.4 / 56.2 | 702 ms |
+| **M5 兜底 = 实际默认（judge none）** | 81.1 / 10.8 / 66.7 / 77.9 | 64.9 / 29.8 / 36.8 / 53.5 | 544 ms |
+
+**中文**（dev n=70 / test n=73）
+
+| 系统 | dev 答对 / 误拒 / 拒答 / 平衡 | test 答对 / 误拒 / 拒答 / 平衡 | test 延迟 p50 |
+|---|---|---|---|
+| M3 | 81.1 / 16.2 / 60.6 / 72.2 | 81.8 / 16.4 / 66.7 / 75.1 | 69 ms |
+| M4 | 89.2 / 10.8 / 63.6 / 76.4 | 92.7 / 5.5 / 61.1 / 77.8 | 482 ms |
+| **M5 = 默认（m3[heading] replace）** | 83.8 / 16.2 / 84.8 / 84.3 | 94.5 / 3.6 / 61.1 / 78.8 | 504 ms |
+
+- **兜底规则触发（en）**：M5 在 test 上答对率 61.4 < 66.7，误拒率 35.1 > 29.8。
+  - 英文默认改为 `ANSWERABILITY_JUDGE=none`，即余弦 0.67 + 标识符规则，查询改写和标题上下文保留。
+  - 另一个并列候选 nli-t[section] 在 test 上是 59.6 / 36.8，同样会触发，所以结论不受上面那个 bug 影响。
+  - 兜底后的英文系统在 test 上比 M3 少答对 1 题、少拒对 1 题（查询改写和标题上下文带来的差异），误拒率相同。
+- **中文保留判别器**：test 上答对率、误拒率、平衡准确率都是三代里最好的，但拒答准确率（61.1）低于 M3（66.7）。
+- **结论**：英文的问题不在判别器本身（AUC 0.82 以上），而在 dev 的可答题（37 道，口语化改写少）不能代表 test。dev 误拒率 8.1% 到了 test 变成 35.1%。
+- **后续**：补充 dev 的可答改写题；准备一个全新的 test（现有 test 已在 M4 和 M5 各看过一次）。
+- 默认值按语言分别配置：`config.ANSWERABILITY_DEFAULTS`，en `("none", None, 0.67, None, None)`，zh `("reranker-m3", "replace", 0.0, 0.4024, "heading")`；M4 的配置保留在 `M4_ANSWERABILITY_DEFAULTS`。
+
+### 13.6 发布前清理
+- `.gitignore` 排除 `models/`、`tools/`、`build/`、`data/`、`.venv/`、`.env`，以及 `*.onnx`、`*.gguf`、`*.safetensors`、`*.bin`、`*.tar` 等。
+- `scripts/check_repo.sh`（`make check-repo`）检查这些目录没有被跟踪，并检查当前树和全部历史中没有超过 2 MB 的 blob、没有模型或 .env 类文件。
+  - 结果：当前树 100 余个文件，约 5 MB；`.git` 约 6 MB；最大 blob 是 `docs/img/demo.gif`（787 KB）和评测 JSON（< 0.8 MB）。
+- 模型下载 `scripts/download_model.py`：
+  - 三个档位：minimal 约 163 MB、default 约 0.75 GB（en/zh 嵌入 + zh 判别器）、full 约 2.2 GB（全部评测模型），可选 `--ollama 0.5b,1.5b`（491 MB / 1.1 GB）。
+  - `--list` 列出已有模型和大小；`--export` 打包成 tar，用于离线机器。
+  - `make download-models` 现在用 default 档。

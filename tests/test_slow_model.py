@@ -109,3 +109,19 @@ def test_live_llm_query_expansion(tmp_path):
                    query_expansion_model=os.environ.get("LLM_MODEL", "qwen2.5:0.5b"))
     res = svc.ask("Somebody stole my work notebook computer. What should I do?")
     assert res["query_expansion"] == "rewrite" and svc.expander.cache   # expansion was computed
+
+
+def test_m5_default_zh_judge_and_en_none(tmp_path):
+    """M5 shipped defaults: zh = bge-reranker-v2-m3 on heading-context sentences (replace policy),
+    en = no judge (pre-registered fallback)."""
+    for sub in ("zh", "en"):
+        (tmp_path / sub).mkdir()
+    zh = _service(tmp_path / "zh", "zh", "BAAI/bge-small-zh-v1.5", query_expansion="off")
+    assert (zh.settings.resolved_judge, zh.settings.resolved_policy, zh.extractive.judge_input) == \
+        ("reranker-m3", "replace", "heading")
+    ok = zh.ask("全职员工每年有多少天带薪年假？")
+    assert not ok["refused"] and "15" in ok["answer"] and ok["support_score"] >= zh.settings.resolved_judge_min
+    no = zh.ask("S7充电座的额定功率是多少瓦？")   # M5 dev-extra question: not in the documents
+    assert no["refused"] and no["refusal_reason"] in ("not_supported", "unknown_identifier")
+    en = _service(tmp_path / "en", "en", "BAAI/bge-small-en-v1.5", query_expansion="off")
+    assert en.judge is None and en.settings.resolved_min_score == 0.67

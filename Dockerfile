@@ -15,7 +15,7 @@ RUN pip install --no-deps .
 # Optional: bake the model into the image (docker build --build-arg BAKE_MODEL=1 .)
 ARG BAKE_MODEL=0
 COPY scripts/download_model.py ./scripts/
-RUN if [ "$BAKE_MODEL" = "1" ]; then python scripts/download_model.py; fi
+RUN if [ "$BAKE_MODEL" = "1" ]; then python scripts/download_model.py --profile current; fi
 
 # Non-root runtime user. chown fails under rootless builders that only have a single UID mapping
 # (e.g. podman without the setuid newuidmap helper: "chown: Invalid argument"), so fall back to

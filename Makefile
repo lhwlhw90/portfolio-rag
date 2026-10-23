@@ -5,7 +5,7 @@ export HF_HOME := $(MODEL_DIR)
 export FASTEMBED_CACHE_PATH := $(MODEL_DIR)
 export PYTHONPATH := $(CURDIR)/src
 
-.PHONY: venv install test test-slow download-model download-models run demo eval eval-m4 eval-llm eval-report datasets sample-pdfs \
+.PHONY: venv install test test-slow download-model download-models download-models-full run demo eval eval-m4 eval-m5 check-repo eval-llm eval-report datasets sample-pdfs \
         ollama-install ollama-up ollama-down ollama-pull run-llm docker-build docker-up podman-smoke ci-local clean
 
 venv:
@@ -18,14 +18,17 @@ install: venv
 test:
 	$(PY) -m pytest -q
 
-test-slow: download-models
+test-slow: download-models-full
 	HF_HUB_OFFLINE=1 $(PY) -m pytest -q -m slow
 
 download-model:
 	$(PY) scripts/download_model.py
 
-download-models:  # English + Chinese embedding models + M4 answerability judges
-	$(PY) scripts/download_model.py BAAI/bge-small-en-v1.5 BAAI/bge-small-zh-v1.5 nli-t reranker-m3
+download-models:  # what the shipped defaults use: en + zh embeddings + zh judge (~0.75 GB); --list shows sizes
+	$(PY) scripts/download_model.py --profile default
+
+download-models-full:  # + every judge / embedding compared in the eval (~2.2 GB); add --ollama 0.5b,1.5b for the LLMs
+	$(PY) scripts/download_model.py --profile full
 
 run:
 	$(PY) -m uvicorn rag.api:app_factory --factory --host 0.0.0.0 --port 8000
@@ -48,9 +51,17 @@ eval-llm: download-models  # requires `make ollama-up`; LLM runs on the test spl
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 --chunk-sizes 800,400 --llm --llm-models $(LLM_MODELS)
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5 --chunk-sizes 800,200 --llm --llm-models $(LLM_MODELS)
 
-eval-m4: download-models  # + answerability judges and query expansion (needs `make ollama-up` and qwen2.5 0.5b/1.5b)
+eval-m4: download-models-full  # + answerability judges and query expansion (needs `make ollama-up` and qwen2.5 0.5b/1.5b)
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang en --model BAAI/bge-small-en-v1.5 --chunk-sizes 800,400 --judges nli,nli-t,reranker,reranker-m3 --qe prf,rewrite:qwen2.5:0.5b,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b,hyde:qwen2.5:1.5b
 	HF_HUB_OFFLINE=1 $(PY) -m rag.eval --lang zh --model BAAI/bge-small-zh-v1.5 --chunk-sizes 800,200 --judges nli,nli-t,reranker-m3 --qe prf,rewrite:qwen2.5:0.5b,rewrite:qwen2.5:1.5b,hyde:qwen2.5:0.5b,hyde:qwen2.5:1.5b
+
+eval-m5: download-models-full  # M5: dev-only selection; add FINAL=1 for the single test evaluation (needs make ollama-up)
+	HF_HUB_OFFLINE=1 $(PY) scripts/build_dev_extra.py en zh
+	HF_HUB_OFFLINE=1 $(PY) -m rag.eval_m5 --lang en $(if $(FINAL),--final,)
+	HF_HUB_OFFLINE=1 $(PY) -m rag.eval_m5 --lang zh $(if $(FINAL),--final,)
+
+check-repo:  # no large / local-only files in the git tree or history
+	./scripts/check_repo.sh
 
 eval-report:
 	$(PY) -m rag.eval --report

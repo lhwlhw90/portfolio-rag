@@ -27,11 +27,15 @@ It runs fully on CPU. It needs no GPU and no paid API, and the default setup doe
     - **post-hoc citation attribution** for when small models forget `[n]` markers;
     - detection of invalid markers;
     - automatic fallback to extractive if the LLM is unreachable.
-- **Answerability judge (M4)**: a small ONNX model reads the question together with the candidate sentences and decides whether the evidence actually states what is asked. English uses mDeBERTa-v3 XNLI; Chinese uses bge-reranker-v2-m3. It is combined with the cosine threshold, chosen and calibrated on dev only, and refuses with `not_supported`. See [Evaluation](#evaluation) for the honest trade-off.
+- **Answerability judge (M4/M5)**: a small ONNX model reads the question together with the candidate sentences (with their section heading) and decides whether the evidence actually states what is asked. It refuses with `not_supported`. Defaults are per language and chosen on dev only, under the constraint "no more false refusals than M3":
+  - **Chinese**: bge-reranker-v2-m3 (uint8) on by default.
+  - **English**: off (`ANSWERABILITY_JUDGE=none`), because no judge configuration beat the M3 cosine rule on the held-out test. This was a pre-registered fallback.
+
+  See [Evaluation](#evaluation).
 - **Query rewriting for paraphrases (M4)**: optional query expansion (`prf`, LLM `rewrite`, or `hyde`) through the local Ollama. Expanded queries are RRF-fused with the original query. The default is chosen on dev: `rewrite`, which falls back silently if the LLM is down.
 - **Heading context (M4)**: chunks remember the section heading they start in. Extractive answers prefix it when it carries the asked-for date, version or terms, for example "Version 2.0 (2025-07-01): First release for the X2 hardware."
 - **Refusal with a reason**: every refusal carries a machine-readable `refusal_reason` (`low_confidence`, `unknown_identifier`, `llm_refused`, `no_context`, …) and a human-readable `refusal_detail`. Besides the confidence threshold, a cheap rule refuses when the question names a model / error code / version (`X3`, `E402`, `v2.4.0`) that occurs nowhere in the retrieved passages.
-- **Evaluation**: 126 English + 122 Chinese questions, split into a frozen **dev** split (used to tune the hybrid weight and the refusal threshold) and a held-out **test** split (headline numbers). `make eval` reports hit@k, MRR, answer/citation accuracy, refusal accuracy and false-refusal rate for dev and test side by side, compares vector/BM25/hybrid, and shows what tuning on test would have given ("oracle"), so the optimism gap is visible. Results go to [`eval/results/REPORT.md`](eval/results/REPORT.md) and JSON.
+- **Evaluation**: 126 English + 122 Chinese questions (+ 47 / 21 dev-only unanswerables added in M5), split into a frozen **dev** split (used to tune the hybrid weight and the refusal threshold) and a held-out **test** split (headline numbers). `make eval` reports hit@k, MRR, answer/citation accuracy, refusal accuracy and false-refusal rate for dev and test side by side, compares vector/BM25/hybrid, and shows what tuning on test would have given ("oracle"), so the optimism gap is visible. Results go to [`eval/results/REPORT.md`](eval/results/REPORT.md) and JSON.
 - **Persistence**: a single SQLite file holds metadata and float32 vectors, and an in-memory NumPy matrix handles search. A file-hash dedup makes re-uploads idempotent.
 - **REST API + web demo**: built with FastAPI. The UI is a single static HTML page with no build step:
   - click a citation card or an inline `[n]` marker → the source viewer shows the retrieved chunk with the cited sentence highlighted;
@@ -67,12 +71,34 @@ See [`docs/DESIGN.md`](docs/DESIGN.md) for the full design (in Chinese).
 
 ```bash
 make install           # creates .venv inside the project and installs pinned deps
-make test              # 108 offline tests (~3 s)
-make download-models   # bge-small en (~65 MB) + zh (~90 MB) + answerability judges (NLI 1.1 GB, m3 0.55 GB) -> ./models
+make test              # 121 offline tests (~4 s)
+make download-models   # models used by the defaults -> ./models (~0.75 GB, see "Models and download sizes")
 make test-slow         # integration tests with the real models (+ live LLM if running)
 make eval              # dev/test retrieval/answer/refusal metrics -> eval/results/REPORT.md
 make run               # http://localhost:8000
 make demo              # (another shell) uploads sample_docs/en and asks a question
+```
+
+### Models and download sizes
+
+Nothing is committed to git: `models/`, `tools/`, `build/`, `data/` and `.venv/` are git-ignored, and `scripts/check_repo.sh` checks that no large file is in the tree or the history. Models are downloaded on first use, or ahead of time with `scripts/download_model.py` (`--list` shows what is present):
+
+| model | download | needed for | profile |
+|---|---|---|---|
+| `BAAI/bge-small-en-v1.5` (ONNX, Qdrant export) | ~67 MB | English embeddings | minimal, default |
+| `BAAI/bge-small-zh-v1.5` (ONNX) | ~96 MB | Chinese embeddings | minimal, default |
+| `reranker-m3`: bge-reranker-v2-m3 uint8 | ~590 MB | Chinese answerability judge (default on) | default |
+| `nli` / `nli-t`: mDeBERTa-v3 XNLI fp32 | ~1.1 GB | English judge if you turn it on; eval | full |
+| `reranker`: ms-marco-MiniLM-L-12 | ~135 MB | eval comparison | full |
+| paraphrase-multilingual-MiniLM-L12-v2 | ~235 MB | eval comparison | full |
+| Ollama `qwen2.5:0.5b` / `qwen2.5:1.5b` (GGUF Q4_K_M) | 491 MB / 1.1 GB | optional: `LLM_BACKEND=openai` and query rewriting (`QUERY_EXPANSION`). Skipped silently when no Ollama server is running | `--ollama 0.5b,1.5b` |
+
+```bash
+make download-models                                   # = --profile default: ~0.75 GB (en+zh embeddings + zh judge)
+.venv/bin/python scripts/download_model.py --profile minimal   # ~163 MB, judges off (set ANSWERABILITY_JUDGE=none for zh)
+.venv/bin/python scripts/download_model.py --profile full --ollama 0.5b,1.5b   # everything the eval uses (~3.7 GB)
+.venv/bin/python scripts/download_model.py --profile default --export build/models.tar  # bundle for an offline machine (tar -xf into models/)
+.venv/bin/python scripts/download_model.py --profile current   # only EMBEDDING_MODEL + its judge (used by the Docker BAKE_MODEL build)
 ```
 
 ## Quick start (Docker)
@@ -145,9 +171,10 @@ All settings are environment variables. See [`.env.example`](.env.example).
 | `CHUNK_SIZE` / `CHUNK_OVERLAP` | `800` / `120` | Characters |
 | `TOP_K` | `4` | Chunks retrieved per question |
 | `HYBRID_ALPHA` | `0.5` | 1 = vector only, 0 = BM25 only (dev-tuned values vary 0.3–0.6, see report) |
-| `ANSWER_MIN_SCORE` | per model | Refusal threshold on max sentence cosine; unset = dev-calibrated default (M3 cosine-only: en 0.67 / zh 0.63; with the M4 judge: en 0.665 / zh 0.575) |
-| `ANSWERABILITY_JUDGE` | `auto` | `auto` (dev-chosen per embedding model: en `nli-t`, zh `reranker-m3`), `none` (M3 behaviour), `nli`, `nli-t`, `reranker`, `reranker-m3` |
-| `ANSWERABILITY_POLICY` / `ANSWERABILITY_MIN` | auto (`and`, dev-calibrated) | `and` = cosine and judge must pass, `or` = either, `replace` = judge only |
+| `ANSWER_MIN_SCORE` | per model | Refusal threshold on max sentence cosine; unset = the per-language default (en 0.67, the M3 value; zh 0.0 because the judge replaces the cosine threshold) |
+| `ANSWERABILITY_JUDGE` | `auto` | `auto` = per-language M5 default (en `none`, zh `reranker-m3`); also `none`, `nli`, `nli-t`, `reranker`, `reranker-m3` |
+| `ANSWERABILITY_POLICY` / `ANSWERABILITY_MIN` | auto (zh: `replace`, 0.4024) | `and` = cosine and judge must pass, `or` = either, `replace` = judge only. If you turn on a judge for a language without a default, set these yourself (fallback: `and`, 0.5) |
+| `ANSWERABILITY_INPUT` | auto (`heading`) | What the judge reads: `heading` = the sentence as shown in the answer (heading prefixed when relevant), `section` = always prefix the section heading, `plain` = the bare sentence (M4) |
 | `QUERY_EXPANSION` | `auto` | `auto` (en: `rewrite` with qwen2.5:1.5b; zh: `rewrite` with 0.5b), `off`, `prf`, `rewrite`, `hyde`; uses `LLM_BASE_URL`, falls back to `off` if unreachable |
 | `QUERY_EXPANSION_MODEL` / `QUERY_EXPANSION_WEIGHT` | auto | LLM tag; RRF weight of the expansions |
 | `HEADING_CONTEXT` | `true` | Prefix section headings in extractive answers when they carry the asked-for date / version |
@@ -240,7 +267,7 @@ The tables above are the M3 baseline (cosine threshold). M4 results follow; full
 - The judges separate answerable from unanswerable questions much better than cosine. Test ROC AUC: en cosine 0.59 vs NLI 0.83; zh cosine 0.80 vs NLI 0.88 / m3 0.88.
 - **Chinese: clear win.** Answer accuracy rises from 81.8 to 92.7 and false refusals drop from 16.4 to 5.5.
 - **English: the dev-chosen setting is a bad product trade-off.** It refuses 94.7 % of unanswerable questions but also 56 % of answerable ones, so answer accuracy drops from 66.7 to 42.1. The selection criterion (balanced accuracy on only 13 dev unanswerables) favours refusing. It was not changed after looking at test. `ANSWERABILITY_JUDGE=none` restores the M3 behaviour.
-- One concrete cause: the judge reads the bare sentence without its heading, so "When was the first X2 firmware released?" is refused even though the heading-context answer contains the date. See the roadmap.
+- One concrete cause: the judge reads the bare sentence without its heading, so "When was the first X2 firmware released?" is refused even though the heading-context answer contains the date. M5 addresses this (below).
 
 **Query rewriting for paraphrases (M4)** (hybrid retrieval, test; the default is chosen on dev MRR)
 
@@ -257,15 +284,60 @@ For English paraphrases, hit@1 goes from 50 % to 59 % (+2 of 22 questions) at ab
 
 **Heading context (M4).** English dev answer accuracy goes from 78.4 to 81.1 (the cross-document question about the first X2 firmware now carries `2025-07-01`). English test and Chinese are unchanged (4 and 0 answers gained a heading, none flipped). Few questions depend on headings.
 
-**Optimism bias, M2 → M3 → M4** (extractive answerer, end-to-end with each milestone's defaults)
+**M5: fixing the English judge — re-selection on a larger dev set under a false-refusal cap.**
+
+What changed in M5:
+- **Bigger dev set.** M5 adds brand-new unanswerable questions to **dev only**: 47 English, 21 Chinese, in `eval/datasets/{lang}.dev_extra.jsonl`.
+  - No new question is a copy or paraphrase of a test question. Checked with character-3-gram cosine < 0.6 and content-word Jaccard < 0.5; the max embedding cosine to any test question is 0.84.
+  - The test files are byte-identical to M3/M4 (`eval/datasets/SHA256SUMS`, checked by a unit test).
+- **Judge input.** Judges now read each candidate sentence *with its section heading*.
+- **Constrained selection.** Each variant (cosine alone, or judge × input × policy) is calibrated on dev. Only thresholds with **dev false refusal ≤ M3's** (en 13.5 %, zh 16.2 %) are allowed. Among those, the best dev balanced accuracy wins.
+- **Test was evaluated once** (`python -m rag.eval_m5 --final`, guarded against re-runs).
+- **Caveat:** the test split had already been looked at in M4, and the M5 design was made knowing that M4's English judge failed on it. So the M5 test numbers may carry a slight selection bias.
+
+End-to-end systems: deployed retrieval, extractive answer, refusal. The extended dev set has 37 answerable questions in both languages, and 60 (en) / 33 (zh) unanswerable ones. Test has 57/19 (en) and 55/18 (zh).
+
+| lang | system | split | answer acc | false refusal | refusal acc | balanced acc | latency p50 / p95 |
+|---|---|---|---|---|---|---|---|
+| en | M3: cosine 0.67 | dev | 78.4 | 13.5 | 68.3 | 77.4 | 72 / 203 ms |
+| en | M4: cosine AND nli-t | dev | 59.5 | 40.5 | 91.7 | 75.6 | 693 / 1704 ms |
+| en | M5 dev choice: nli[section] OR cosine | dev | 83.8 | 8.1 | 76.7 | 84.3 | 741 / 1721 ms |
+| en | **M5 shipped = fallback (judge none)** | dev | 81.1 | 10.8 | 66.7 | 77.9 | 560 / 1554 ms |
+| en | M3: cosine 0.67 | test | **66.7** | **29.8** | 42.1 | 56.1 | 78 / 185 ms |
+| en | M4: cosine AND nli-t | test | 40.4 | 57.9 | **94.7** | **68.4** | 686 / 1597 ms |
+| en | M5 dev choice: nli[section] OR cosine | test | 61.4 | 35.1 | 47.4 | 56.2 | 702 / 1665 ms |
+| en | **M5 shipped = fallback (judge none)** | test | 64.9 | **29.8** | 36.8 | 53.5 | 544 / 1494 ms |
+| zh | M3: cosine 0.63 | dev | 81.1 | 16.2 | 60.6 | 72.2 | 65 / 192 ms |
+| zh | M4: cosine AND m3 | dev | 89.2 | 10.8 | 63.6 | 76.4 | 480 / 1082 ms |
+| zh | **M5: m3[heading] replaces cosine** | dev | 83.8 | 16.2 | 84.8 | 84.3 | 489 / 1139 ms |
+| zh | M3: cosine 0.63 | test | 81.8 | 16.4 | **66.7** | 75.1 | 69 / 220 ms |
+| zh | M4: cosine AND m3 | test | 92.7 | 5.5 | 61.1 | 77.8 | 482 / 761 ms |
+| zh | **M5: m3[heading] replaces cosine** | test | **94.5** | **3.6** | 61.1 | **78.8** | 504 / 720 ms |
+
+- **English: the fallback was triggered.**
+  - The dev-chosen judge reached 84.3 balanced accuracy and 8.1 % false refusal on dev. On test it gave answer accuracy 61.4 (vs M3's 66.7) and false refusal 35.1 % (vs 29.8 %).
+  - The pre-registered rule was: if English M5 is worse than M3 on test, ship `ANSWERABILITY_JUDGE=none`. English therefore ships with the M3 refusal rule (cosine 0.67 + unknown-identifier rule), plus M4's query rewriting and heading context.
+  - That shipped system is 1 question below M3 on test answer accuracy (64.9 vs 66.7) and 1 question below on refusal accuracy, with the same false refusal rate.
+  - Lesson: the English test answerables (many colloquial paraphrases) behave differently from the dev ones. With 37 dev answerables, a 13.5 % false-refusal cap on dev turned into 35 % on test.
+- **Chinese: the judge holds up.** bge-reranker-v2-m3 on heading-context sentences, used alone, beats M3 and M4 on test answer accuracy (94.5), false refusal (3.6 %) and balanced accuracy (78.8). It catches 61 % of the unanswerable questions, below M3's 67 %.
+- **Heading-context input helps the judges separate the classes.** Dev ROC AUC: en nli-t 0.755 → 0.824, en m3 0.830 → 0.861, zh nli 0.778 → 0.817. Full tables: REPORT.md section 8.
+- **A reproducibility bug was found on the way.** Documents ingested within the same second were ordered by their random uuid, so retrieval tie-breaks (and one English dev question) changed between processes.
+  - The dev-only pre-registration run (`m5_en.dev.json`, commit b437f3a) therefore listed `nli-t[section] OR cosine`. The single final run picked `nli[section] OR cosine`; the two tied on that run's dev.
+  - Chunk order now follows ingestion order (tested). A post-fix dev-only re-run reproduces the final run's choice exactly.
+  - Both English candidates fail the fallback test (nli-t[section]: 59.6 / 36.8 on test), so the decision doesn't depend on the bug.
+
+**Optimism bias, M2 → M3 → M4 → M5** (extractive answerer, end-to-end with each milestone's shipped defaults; dev in brackets)
 
 | | evaluated on | en answer acc / false refusal | zh answer acc / false refusal |
 |---|---|---|---|
 | M2 | 44 en / 26 zh questions, threshold calibrated on the same questions | 88.2 / 5.9 | 89.5 / 10.5 |
-| M3 | held-out test (dev in brackets) | 66.7 / 29.8 (78.4 / 13.5) | 81.8 / 16.4 (81.1 / 16.2) |
-| M4 | held-out test (dev in brackets) | 40.4 / 57.9 (59.5 / 40.5) | 92.7 / 5.5 (89.2 / 10.8) |
+| M3 | held-out test | 66.7 / 29.8 (78.4 / 13.5) | 81.8 / 16.4 (81.1 / 16.2) |
+| M4 | held-out test | 40.4 / 57.9 (59.5 / 40.5) | 92.7 / 5.5 (89.2 / 10.8) |
+| M5 | held-out test, already seen once in M4 | 64.9 / 29.8 (81.1 / 10.8), judge off | 94.5 / 3.6 (83.8 / 16.2) |
 
-M2's numbers were self-calibrated and optimistic. M3 exposed this with a held-out split. M4 shows the gap is still there whenever several knobs are chosen on a small dev set: the English judge's balanced accuracy drops from 81.1 on dev to 69.3 on test. The Chinese improvement does transfer.
+- M2's numbers were self-calibrated and optimistic; M3 exposed this with a held-out split.
+- M4 showed the gap is still there whenever several knobs are chosen on a small dev set: the English judge's balanced accuracy dropped from 81.1 on dev to 69.3 on test.
+- M5 shows it a third time. A larger dev set and a false-refusal cap made the English judge look good on dev (84.3), but it did not transfer (56.2 on test), so it was switched off. The Chinese judge transfers.
 
 ## Project layout
 
@@ -283,24 +355,29 @@ src/rag/
   service.py     orchestration (ingest / ask / ask_stream, stored files, answerer switch)
   pdfview.py     server-side PDF page rendering + highlight boxes (pypdfium2 + Pillow)
   eval.py        evaluation harness (python -m rag.eval); eval_ext.py = M4 blocks (judges, expansion, headings)
+  eval_m5.py     M5: constrained judge re-selection on the extended dev, single guarded test run
+  leakage.py     near-duplicate checks for new eval questions (char n-gram cosine, token Jaccard)
   api.py         FastAPI app factory
   static/        single-file web UI
 tests/           pytest (offline fast suite + @slow integration)
-scripts/         download_model.py, e2e_demo.sh, make_pdf.py / make_zh_pdf.py (sample PDFs), split_dataset.py,
+scripts/         download_model.py (profiles / export), check_repo.sh, build_dev_extra.py, e2e_demo.sh, make_pdf.py / make_zh_pdf.py (sample PDFs), split_dataset.py,
                  screenshot.py / record_gif.py (headless Chrome via DevTools), ollama.sh (local LLM),
                  podman.sh / docker_smoke.sh (rootless container build + smoke test), ci_local.sh (CI steps locally)
 sample_docs/     en/ (md, txt, 2 PDFs) and zh/ (md, txt, 1 Chinese PDF) demo corpora
-eval/            authoring/ (question sources), datasets/{en,zh}.{dev,test}.jsonl (frozen), results/ (JSON + REPORT.md)
+eval/            authoring/ (question sources), datasets/{en,zh}.{dev,test}.jsonl (frozen, SHA256SUMS),
+                 {en,zh}.dev_extra.jsonl (M5 dev-only), results/ (JSON + REPORT.md)
 docs/            DESIGN.md, screenshots
 ```
 
 ## Limitations and roadmap
 
-- **English refusal is still the weakest part.** The NLI judge separates the classes far better than cosine (test AUC 0.83 vs 0.59), but the dev-chosen operating point refuses too much. Next steps:
-  - feed the judge the heading-prefixed sentence;
-  - choose thresholds under a false-refusal constraint (for example ≤ the M3 rate on dev);
-  - grow the dev set's unanswerable questions (13 is too few to tune two thresholds).
+- **English refusal is still the weakest part, and English ships without a judge.** M5 added heading-context judge input, a false-refusal cap and 47 extra dev unanswerables, but the dev-chosen judge was still worse than M3 on test. Next steps:
+  - more *answerable* dev questions, especially colloquial paraphrases, because the false-refusal estimate rests on only 37;
+  - a fresh test split, since the current one has now been looked at in M4 and M5;
+  - judging the LLM-rewritten query instead of the raw question;
+  - a stronger English embedding model.
 - English paraphrase retrieval improved (hit@1 50 → 59 %) but needs the local LLM and adds about 0.5 s. A stronger embedding model is the other route.
+- `HYBRID_ALPHA` defaults to 0.5 in the app, while the eval uses the dev-tuned alpha (en 0.3, zh 0.5). The sweep is flat, but the shipped English system isn't byte-for-byte the evaluated one.
 - **int8 ONNX models are unsafe on this AMX VM.** onnxruntime's AMX int8 GEMM returns random results when tile state isn't preserved (onnxruntime #33247), so the judges use fp32 / uint8 weights. The bge-small embedders are unaffected; this was verified bit-for-bit.
 - Scanned PDFs (images) are rejected because there's no OCR yet.
 - PDF highlight boxes come from text search on the page. If a cited sentence was hyphenated across lines in the PDF, it may not be boxed (the chunk text is still highlighted).

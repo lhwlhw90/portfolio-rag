@@ -183,10 +183,10 @@ def fallback_rule(test_sys: dict) -> dict:
 
 
 # ------------------------------------------------------------------ main
-def run(lang: str, final: bool, force_retest: bool, model_dir: Path) -> dict:
+def run(lang: str, final: bool, force_retest: bool, model_dir: Path, tag: str = "") -> dict:
     sums = verify_test_frozen()
     model = MODELS[lang]
-    out_path = RESULTS / f"m5_{lang}.json" if final else RESULTS / f"m5_{lang}.dev.json"
+    out_path = RESULTS / f"m5_{lang}.json" if final else RESULTS / f"m5_{lang}.dev{'.' + tag if tag else ''}.json"
     n_test_runs = 0
     if final and out_path.exists():
         prev = json.loads(out_path.read_text())
@@ -265,9 +265,12 @@ def main(argv=None):
     ap.add_argument("--lang", choices=["en", "zh"], required=True)
     ap.add_argument("--final", action="store_true", help="evaluate test once with the dev-frozen choices")
     ap.add_argument("--force-retest", action="store_true")
+    ap.add_argument("--tag", default="", help="dev-only runs: write m5_{lang}.dev.{tag}.json")
     ap.add_argument("--model-dir", default=os.environ.get("MODEL_DIR", str(PROJECT_ROOT / "models")))
     a = ap.parse_args(argv)
-    run(a.lang, a.final, a.force_retest, Path(a.model_dir))
+    if a.final and a.tag:
+        ap.error("--tag is for dev-only runs")
+    run(a.lang, a.final, a.force_retest, Path(a.model_dir), a.tag)
 
 
 if __name__ == "__main__":
@@ -304,6 +307,9 @@ def report_lines() -> list[str]:
                  f"{r['selection']['fr_cap']}; test evaluations: {r.get('test_evaluations')}; fallback rule "
                  + ("not applicable (zh)" if fb.get("applies") is False else
                     f"**{'triggered' if fb.get('triggered') else 'not triggered'}** (M5 test {fb.get('m5')} vs M3 {fb.get('m3')})"))
+    L.append("- Shipped defaults (`config.ANSWERABILITY_DEFAULTS`): **en = M5-fallback (judge none, cosine 0.67)** if the "
+             "rule triggered, else M5; **zh = M5**. Chunk-order fix after the final run: dev-only re-runs "
+             "(`m5_{lang}.dev.postfix.json`) reproduce the final run's dev choices; test was not re-evaluated.")
     L += ["", "Top variants by dev balanced accuracy (admissible = meets the FR cap; plain input = M4 ablation, "
           "not eligible). Test columns are reported only:", "",
           "| lang | variant | thresholds (cos / judge) | dev bal. | dev FR | test bal. | test FR | test refusal acc |",

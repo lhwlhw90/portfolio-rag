@@ -335,6 +335,7 @@ Chosen on dev (FR cap = M3's dev false refusal) and the pre-registered English f
 
 - **en**: `nli[section] OR cosine` (cos 0.695, judge 0.8881), dev FR cap 13.5; test evaluations: 1; fallback rule **triggered** (M5 test {'answer_accuracy': 61.4, 'false_refusal_rate': 35.1} vs M3 {'answer_accuracy': 66.7, 'false_refusal_rate': 29.8})
 - **zh**: `reranker-m3[heading] only` (cos None, judge 0.4024), dev FR cap 16.2; test evaluations: 1; fallback rule not applicable (zh)
+- Shipped defaults (`config.ANSWERABILITY_DEFAULTS`): **en = M5-fallback (judge none, cosine 0.67)** if the rule triggered, else M5; **zh = M5**. Chunk-order fix after the final run: dev-only re-runs (`m5_{lang}.dev.postfix.json`) reproduce the final run's dev choices; test was not re-evaluated.
 
 Top variants by dev balanced accuracy (admissible = meets the FR cap; plain input = M4 ablation, not eligible). Test columns are reported only:
 

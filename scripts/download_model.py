@@ -3,6 +3,7 @@
     python scripts/download_model.py --list                # what exists, sizes, which are needed
     python scripts/download_model.py                       # profile "default" (what the shipped defaults use)
     python scripts/download_model.py --profile minimal     # embeddings only (judge off: ANSWERABILITY_JUDGE=none)
+    python scripts/download_model.py --profile current     # EMBEDDING_MODEL + the judge it resolves to (Docker bake)
     python scripts/download_model.py --profile full        # + every judge compared in the eval (make eval-m4 / eval-m5)
     python scripts/download_model.py --ollama 0.5b,1.5b    # + local LLMs via scripts/ollama.sh (optional)
     python scripts/download_model.py BAAI/bge-small-zh-v1.5 nli-t ...   # explicit names
@@ -48,7 +49,14 @@ def default_set() -> list[str]:
     return list(dict.fromkeys(names))
 
 
+def current_set() -> list[str]:
+    """Only what the configured EMBEDDING_MODEL (+ its resolved judge) needs, e.g. for a baked image."""
+    s = get_settings()
+    return [s.embedding_model] + ([s.resolved_judge] if s.resolved_judge != "none" else [])
+
+
 PROFILES = {
+    "current": current_set,
     "minimal": lambda: ["BAAI/bge-small-en-v1.5", "BAAI/bge-small-zh-v1.5"],
     "default": default_set,
     "full": lambda: [*default_set(), "nli", "nli-t", "reranker", "reranker-m3",
